@@ -18,7 +18,6 @@ package org.apache.commons.collections4.iterators;
 
 import java.util.ListIterator;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Unmodifiable;
 
 /**
@@ -46,25 +45,13 @@ public final class UnmodifiableListIterator<E> implements ListIterator<E>, Unmod
         return unmodifiableListIterator(iterator);
     }
 
-    /**
-     * Decorates the specified iterator such that it cannot be modified.
-     *
-     * @param <E>  the element type
-     * @param iterator  the iterator to decorate
-     * @return a new unmodifiable list iterator
-     * @throws NullPointerException if the iterator is null
-     */
     public static <E> ListIterator<E> unmodifiableListIterator(final ListIterator<? extends E> iterator) {
-        Objects.requireNonNull(iterator, "iterator");
-        if (iterator instanceof Unmodifiable) {
-            @SuppressWarnings("unchecked") // safe to upcast
-            final ListIterator<E> tmpIterator = (ListIterator<E>) iterator;
-            return tmpIterator;
-        }
-        return new UnmodifiableListIterator<>(iterator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The iterator being decorated */
+    /**
+     * The iterator being decorated
+     */
     private final ListIterator<? extends E> iterator;
 
     /**
@@ -78,47 +65,46 @@ public final class UnmodifiableListIterator<E> implements ListIterator<E>, Unmod
 
     @Override
     public void add(final E obj) {
-        throw new UnsupportedOperationException("add() is not supported");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean hasNext() {
-        return iterator.hasNext();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean hasPrevious() {
-        return iterator.hasPrevious();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E next() {
-        return iterator.next();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int nextIndex() {
-        return iterator.nextIndex();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E previous() {
-        return iterator.previous();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int previousIndex() {
-        return iterator.previousIndex();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void remove() {
-        throw new UnsupportedOperationException("remove() is not supported");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void set(final E ignored) {
-        throw new UnsupportedOperationException("set() is not supported");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -18,7 +18,6 @@ package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Equator;
 
 /**
@@ -29,11 +28,16 @@ import org.apache.commons.collections4.Equator;
  */
 public class DefaultEquator<T> implements Equator<T>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 825802648423525485L;
 
-    /** Static instance */
-    @SuppressWarnings("rawtypes") // the static instance works for all types
+    /**
+     * Static instance
+     */
+    // the static instance works for all types
+    @SuppressWarnings("rawtypes")
     public static final DefaultEquator INSTANCE = new DefaultEquator<>();
 
     /**
@@ -41,14 +45,8 @@ public class DefaultEquator<T> implements Equator<T>, Serializable {
      */
     public static final int HASHCODE_NULL = -1;
 
-    /**
-     * Factory returning the typed singleton instance.
-     *
-     * @param <T>  the object type
-     * @return the singleton instance
-     */
     public static <T> DefaultEquator<T> defaultEquator() {
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -57,23 +55,14 @@ public class DefaultEquator<T> implements Equator<T>, Serializable {
     private DefaultEquator() {
     }
 
-    /**
-     * {@inheritDoc} Delegates to {@link Objects#equals(Object, Object)}.
-     */
     @Override
     public boolean equate(final T o1, final T o2) {
-        return Objects.equals(o1, o2);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @return {@code o.hashCode()} if {@code o} is non-
-     *         {@code null}, else {@link #HASHCODE_NULL}.
-     */
     @Override
     public int hash(final T o) {
-        return o == null ? HASHCODE_NULL : o.hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -84,5 +73,4 @@ public class DefaultEquator<T> implements Equator<T>, Serializable {
     private Object readResolve() {
         return INSTANCE;
     }
-
 }

@@ -104,9 +104,7 @@ public final class ArrayCountingBloomFilter implements CountingBloomFilter {
 
     @Override
     public boolean add(final CellExtractor other) {
-        Objects.requireNonNull(other, "other");
-        other.processCells(this::add);
-        return isValid();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -123,151 +121,83 @@ public final class ArrayCountingBloomFilter implements CountingBloomFilter {
             cells[idx] = updated;
             return true;
         } catch (final IndexOutOfBoundsException e) {
-            throw new IllegalArgumentException(
-                    String.format("Filter only accepts values in the [0,%d) range", getShape().getNumberOfBits()), e);
+            throw new IllegalArgumentException(String.format("Filter only accepts values in the [0,%d) range", getShape().getNumberOfBits()), e);
         }
     }
 
     @Override
     public int[] asIndexArray() {
-        return IntStream.range(0, cells.length).filter(i -> cells[i] > 0).toArray();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int cardinality() {
-        return (int) IntStream.range(0, cells.length).filter(i -> cells[i] > 0).count();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int characteristics() {
-        return SPARSE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        Arrays.fill(cells, 0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean contains(final BitMapExtractor bitMapExtractor) {
-        return contains(IndexExtractor.fromBitMapExtractor(bitMapExtractor));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean contains(final IndexExtractor indexExtractor) {
-        return indexExtractor.processIndices(idx -> cells[idx] != 0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a new instance of this {@link ArrayCountingBloomFilter} with the same properties as the current one.
-     *
-     * @return a copy of this BloomFilter.
-     */
     @Override
     public ArrayCountingBloomFilter copy() {
-        return new ArrayCountingBloomFilter(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int getMaxCell() {
-        return Integer.MAX_VALUE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int getMaxInsert(final CellExtractor cellExtractor) {
-        final int[] max = { Integer.MAX_VALUE };
-        cellExtractor.processCells((x, y) -> {
-            final int count = cells[x] / y;
-            if (count < max[0]) {
-                max[0] = count;
-            }
-            return max[0] > 0;
-        });
-        return max[0];
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Shape getShape() {
-        return shape;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * <p>
-     * <em>Implementation note</em>
-     * </p>
-     *
-     * <p>
-     * The state transition to invalid is permanent.
-     * </p>
-     *
-     * <p>
-     * This implementation does not correct negative cells to zero or integer overflow cells to {@link Integer#MAX_VALUE}. Thus the operation that generated
-     * invalid cells can be reversed by using the complement of the original operation with the same Bloom filter. This will restore the cells to the state
-     * prior to the invalid operation. Cells can then be extracted using {@link #processCells(CellPredicate)}.
-     * </p>
-     */
     @Override
     public boolean isValid() {
-        return state >= 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean processBitMaps(final LongPredicate consumer) {
-        Objects.requireNonNull(consumer, "consumer");
-        final int blocksm1 = BitMaps.numberOfBitMaps(cells.length) - 1;
-        int i = 0;
-        long value;
-        // must break final block separate as the number of bits may not fall on the long boundary
-        for (int j = 0; j < blocksm1; j++) {
-            value = 0;
-            for (int k = 0; k < Long.SIZE; k++) {
-                if (cells[i++] != 0) {
-                    value |= BitMaps.getLongBit(k);
-                }
-            }
-            if (!consumer.test(value)) {
-                return false;
-            }
-        }
-        // Final block
-        value = 0;
-        for (int k = 0; i < cells.length; k++) {
-            if (cells[i++] != 0) {
-                value |= BitMaps.getLongBit(k);
-            }
-        }
-        return consumer.test(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean processCells(final CellPredicate consumer) {
-        Objects.requireNonNull(consumer, "consumer");
-        for (int i = 0; i < cells.length; i++) {
-            if (cells[i] != 0 && !consumer.test(i, cells[i])) {
-                return false;
-            }
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean processIndices(final IntPredicate consumer) {
-        Objects.requireNonNull(consumer, "consumer");
-        for (int i = 0; i < cells.length; i++) {
-            if (cells[i] != 0 && !consumer.test(i)) {
-                return false;
-            }
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean subtract(final CellExtractor other) {
-        Objects.requireNonNull(other, "other");
-        other.processCells(this::subtract);
-        return isValid();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -284,8 +214,7 @@ public final class ArrayCountingBloomFilter implements CountingBloomFilter {
             cells[idx] = updated;
             return true;
         } catch (final IndexOutOfBoundsException e) {
-            throw new IllegalArgumentException(
-                    String.format("Filter only accepts values in the [0,%d) range", getShape().getNumberOfBits()), e);
+            throw new IllegalArgumentException(String.format("Filter only accepts values in the [0,%d) range", getShape().getNumberOfBits()), e);
         }
     }
 }

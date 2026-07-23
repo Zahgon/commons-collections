@@ -19,7 +19,6 @@ package org.apache.commons.collections4.iterators;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Objects;
-
 import org.apache.commons.collections4.ResettableListIterator;
 
 /**
@@ -40,11 +39,19 @@ import org.apache.commons.collections4.ResettableListIterator;
  */
 public class ReverseListIterator<E> implements ResettableListIterator<E> {
 
-    /** The list being wrapped. */
+    /**
+     * The list being wrapped.
+     */
     private final List<E> list;
-    /** The list iterator being wrapped. */
+
+    /**
+     * The list iterator being wrapped.
+     */
     private ListIterator<E> iterator;
-    /** Flag to indicate if updating is possible at the moment. */
+
+    /**
+     * Flag to indicate if updating is possible at the moment.
+     */
     private boolean validForUpdate = true;
 
     /**
@@ -58,127 +65,53 @@ public class ReverseListIterator<E> implements ResettableListIterator<E> {
         iterator = list.listIterator(list.size());
     }
 
-    /**
-     * Adds a new element to the list between the next and previous elements.
-     *
-     * @param obj  the object to add
-     * @throws UnsupportedOperationException if the list is unmodifiable
-     * @throws IllegalStateException if the iterator is not in a valid state for set
-     */
     @Override
     public void add(final E obj) {
-        // the validForUpdate flag is needed as the necessary previous()
-        // method call re-enables remove and add
-        if (!validForUpdate) {
-            throw new IllegalStateException("Cannot add to list until next() or previous() called");
-        }
-        validForUpdate = false;
-        iterator.add(obj);
-        iterator.previous();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Checks whether there is another element.
-     *
-     * @return true if there is another element
-     */
     @Override
     public boolean hasNext() {
-        return iterator.hasPrevious();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Checks whether there is a previous element.
-     *
-     * @return true if there is a previous element
-     */
     @Override
     public boolean hasPrevious() {
-        return iterator.hasNext();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the next element.
-     * The next element is the previous in the list.
-     *
-     * @return the next element in the iterator
-     */
     @Override
     public E next() {
-        final E obj = iterator.previous();
-        validForUpdate = true;
-        return obj;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the index of the next element.
-     *
-     * @return the index of the next element in the iterator
-     */
     @Override
     public int nextIndex() {
-        return iterator.previousIndex();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the previous element.
-     * The next element is the previous in the list.
-     *
-     * @return the previous element in the iterator
-     */
     @Override
     public E previous() {
-        final E obj = iterator.next();
-        validForUpdate = true;
-        return obj;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the index of the previous element.
-     *
-     * @return the index of the previous element in the iterator
-     */
     @Override
     public int previousIndex() {
-        return iterator.nextIndex();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes the last returned element.
-     *
-     * @throws UnsupportedOperationException if the list is unmodifiable
-     * @throws IllegalStateException if there is no element to remove
-     */
     @Override
     public void remove() {
-        if (!validForUpdate) {
-            throw new IllegalStateException("Cannot remove from list until next() or previous() called");
-        }
-        iterator.remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Resets the iterator back to the start (which is the
-     * end of the list as this is a reversed iterator)
-     */
     @Override
     public void reset() {
-        iterator = list.listIterator(list.size());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Replaces the last returned element.
-     *
-     * @param obj  the object to set
-     * @throws UnsupportedOperationException if the list is unmodifiable
-     * @throws IllegalStateException if the iterator is not in a valid state for set
-     */
     @Override
     public void set(final E obj) {
-        if (!validForUpdate) {
-            throw new IllegalStateException("Cannot set to list until next() or previous() called");
-        }
-        iterator.set(obj);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -25,7 +25,6 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Set;
-
 import org.apache.commons.collections4.KeyValue;
 
 /**
@@ -109,44 +108,23 @@ import org.apache.commons.collections4.KeyValue;
 public final class StaticBucketMap<K, V> extends AbstractIterableMap<K, V> {
 
     class BaseIterator {
+
         private final ArrayList<Map.Entry<K, V>> current = new ArrayList<>();
+
         private int bucket;
+
         private Map.Entry<K, V> last;
 
         public boolean hasNext() {
-            if (!current.isEmpty()) {
-                return true;
-            }
-            while (bucket < buckets.length) {
-                synchronized (locks[bucket]) {
-                    Node<K, V> n = buckets[bucket];
-                    while (n != null) {
-                        current.add(n);
-                        n = n.next;
-                    }
-                    bucket++;
-                    if (!current.isEmpty()) {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         protected Map.Entry<K, V> nextEntry() {
-            if (!hasNext()) {
-                throw new NoSuchElementException();
-            }
-            last = current.remove(current.size() - 1);
-            return last;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public void remove() {
-            if (last == null) {
-                throw new IllegalStateException();
-            }
-            StaticBucketMap.this.remove(last.getKey());
-            last = null;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -154,114 +132,79 @@ public final class StaticBucketMap<K, V> extends AbstractIterableMap<K, V> {
 
         @Override
         public Map.Entry<K, V> next() {
-            return nextEntry();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     private final class EntrySet extends AbstractSet<Map.Entry<K, V>> {
 
         @Override
         public void clear() {
-            StaticBucketMap.this.clear();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean contains(final Object obj) {
-            final Map.Entry<?, ?> entry = (Map.Entry<?, ?>) obj;
-            final int hash = getHash(entry.getKey());
-            synchronized (locks[hash]) {
-                for (Node<K, V> n = buckets[hash]; n != null; n = n.next) {
-                    if (n.equals(entry)) {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<Map.Entry<K, V>> iterator() {
-            return new EntryIterator();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean remove(final Object obj) {
-            if (!(obj instanceof Map.Entry<?, ?>)) {
-                return false;
-            }
-            final Map.Entry<?, ?> entry = (Map.Entry<?, ?>) obj;
-            final int hash = getHash(entry.getKey());
-            synchronized (locks[hash]) {
-                for (Node<K, V> n = buckets[hash]; n != null; n = n.next) {
-                    if (n.equals(entry)) {
-                        StaticBucketMap.this.remove(n.getKey());
-                        return true;
-                    }
-                }
-            }
-            return false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return StaticBucketMap.this.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     private final class KeyIterator extends BaseIterator implements Iterator<K> {
 
         @Override
         public K next() {
-            return nextEntry().getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     private final class KeySet extends AbstractSet<K> {
 
         @Override
         public void clear() {
-            StaticBucketMap.this.clear();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean contains(final Object obj) {
-            return StaticBucketMap.this.containsKey(obj);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<K> iterator() {
-            return new KeyIterator();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean remove(final Object obj) {
-            final int hash = getHash(obj);
-            synchronized (locks[hash]) {
-                for (Node<K, V> n = buckets[hash]; n != null; n = n.next) {
-                    final Object k = n.getKey();
-                    if (Objects.equals(k, obj)) {
-                        StaticBucketMap.this.remove(k);
-                        return true;
-                    }
-                }
-            }
-            return false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return StaticBucketMap.this.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
      * The lock object, which also includes a count of the nodes in this lock.
      */
     private static final class Lock {
+
         public int size;
     }
 
@@ -269,45 +212,36 @@ public final class StaticBucketMap<K, V> extends AbstractIterableMap<K, V> {
      * The Map.Entry for the StaticBucketMap.
      */
     private static final class Node<K, V> implements Map.Entry<K, V>, KeyValue<K, V> {
+
         protected K key;
+
         protected V value;
+
         protected Node<K, V> next;
 
         @Override
         public boolean equals(final Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof Map.Entry<?, ?>)) {
-                return false;
-            }
-
-            final Map.Entry<?, ?> e2 = (Map.Entry<?, ?>) obj;
-            return Objects.equals(key, e2.getKey()) &&
-                   Objects.equals(value, e2.getValue());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K getKey() {
-            return key;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V getValue() {
-            return value;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int hashCode() {
-            return (key == null ? 0 : key.hashCode()) ^
-                    (value == null ? 0 : value.hashCode());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V setValue(final V value) {
-            final V old = this.value;
-            this.value = value;
-            return old;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -315,37 +249,41 @@ public final class StaticBucketMap<K, V> extends AbstractIterableMap<K, V> {
 
         @Override
         public V next() {
-            return nextEntry().getValue();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     private final class Values extends AbstractCollection<V> {
 
         @Override
         public void clear() {
-            StaticBucketMap.this.clear();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<V> iterator() {
-            return new ValueIterator();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return StaticBucketMap.this.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
-    /** The default number of buckets to use */
+    /**
+     * The default number of buckets to use
+     */
     private static final int DEFAULT_BUCKETS = 255;
 
-    /** The array of buckets, where the actual data is held */
+    /**
+     * The array of buckets, where the actual data is held
+     */
     private final Node<K, V>[] buckets;
 
-    /** The matching array of locks */
+    /**
+     * The matching array of locks
+     */
     private final Lock[] locks;
 
     /**
@@ -368,53 +306,19 @@ public final class StaticBucketMap<K, V> extends AbstractIterableMap<K, V> {
     @SuppressWarnings("unchecked")
     public StaticBucketMap(final int numBuckets) {
         int size = Math.max(17, numBuckets);
-
         // Ensure that bucketSize is never a power of 2 (to ensure maximal distribution)
         if (size % 2 == 0) {
             size--;
         }
-
         buckets = new Node[size];
         locks = new Lock[size];
-
         for (int i = 0; i < size; i++) {
             locks[i] = new Lock();
         }
     }
 
-    /**
-     * Prevents any operations from occurring on this map while the given {@link Runnable} executes. This method can be used, for instance, to execute a bulk
-     * operation atomically:
-     * <pre>
-     * staticBucketMapInstance.atomic(new Runnable() {
-     *     public void run() {
-     *         staticBucketMapInstance.putAll(map);
-     *     }
-     * });
-     * </pre>
-     * <p>
-     * It can also be used if you need a reliable iterator:
-     * </p>
-     *
-     * <pre>
-     *    staticBucketMapInstance.atomic(new Runnable() {
-     *        public void run() {
-     *            Iterator iterator = staticBucketMapInstance.iterator();
-     *            while (iterator.hasNext()) {
-     *                foo(iterator.next();
-     *            }
-     *        }
-     *    });
-     * </pre>
-     * <p>
-     * <strong>Implementation note:</strong> This method requires a lot of time and a ton of stack space. Essentially a recursive algorithm is used to enter each bucket's
-     * monitor. If you have twenty thousand buckets in your map, then the recursive method will be invoked twenty thousand times. You have been warned.
-     * </p>
-     *
-     * @param runnable the code to execute atomically
-     */
     public void atomic(final Runnable runnable) {
-        atomic(Objects.requireNonNull(runnable, "runnable"), 0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void atomic(final Runnable r, final int bucket) {
@@ -427,118 +331,34 @@ public final class StaticBucketMap<K, V> extends AbstractIterableMap<K, V> {
         }
     }
 
-    /**
-     * Clears the map of all entries.
-     */
     @Override
     public void clear() {
-        for (int i = 0; i < buckets.length; i++) {
-            final Lock lock = locks[i];
-            synchronized (lock) {
-                buckets[i] = null;
-                lock.size = 0;
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Checks if the map contains the specified key.
-     *
-     * @param key  the key to check
-     * @return true if found
-     */
     @Override
     public boolean containsKey(final Object key) {
-        final int hash = getHash(key);
-
-        synchronized (locks[hash]) {
-            Node<K, V> n = buckets[hash];
-
-            while (n != null) {
-                if (Objects.equals(n.key, key)) {
-                    return true;
-                }
-
-                n = n.next;
-            }
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Checks if the map contains the specified value.
-     *
-     * @param value  the value to check
-     * @return true if found
-     */
     @Override
     public boolean containsValue(final Object value) {
-        for (int i = 0; i < buckets.length; i++) {
-            synchronized (locks[i]) {
-                Node<K, V> n = buckets[i];
-
-                while (n != null) {
-                    if (Objects.equals(n.value, value)) {
-                        return true;
-                    }
-
-                    n = n.next;
-                }
-            }
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the entry set.
-     *
-     * @return the entry set
-     */
     @Override
     public Set<Map.Entry<K, V>> entrySet() {
-        return new EntrySet();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Compares this map to another, as per the Map specification.
-     *
-     * @param obj  the object to compare to
-     * @return true if equal
-     */
     @Override
     public boolean equals(final Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof Map<?, ?>)) {
-            return false;
-        }
-        final Map<?, ?> other = (Map<?, ?>) obj;
-        return entrySet().equals(other.entrySet());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the value associated with the key.
-     *
-     * @param key  the key to retrieve
-     * @return the associated value
-     */
     @Override
     public V get(final Object key) {
-        final int hash = getHash(key);
-
-        synchronized (locks[hash]) {
-            Node<K, V> n = buckets[hash];
-
-            while (n != null) {
-                if (Objects.equals(n.key, key)) {
-                    return n.value;
-                }
-
-                n = n.next;
-            }
-        }
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -569,169 +389,43 @@ public final class StaticBucketMap<K, V> extends AbstractIterableMap<K, V> {
         return hash < 0 ? hash * -1 : hash;
     }
 
-    /**
-     * Gets the hash code, as per the Map specification.
-     *
-     * @return the hash code
-     */
     @Override
     public int hashCode() {
-        int hashCode = 0;
-
-        for (int i = 0; i < buckets.length; i++) {
-            synchronized (locks[i]) {
-                Node<K, V> n = buckets[i];
-
-                while (n != null) {
-                    hashCode += n.hashCode();
-                    n = n.next;
-                }
-            }
-        }
-        return hashCode;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Checks if the size is currently zero.
-     *
-     * @return true if empty
-     */
     @Override
     public boolean isEmpty() {
-        return size() == 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the key set.
-     *
-     * @return the key set
-     */
     @Override
     public Set<K> keySet() {
-        return new KeySet();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Puts a new key value mapping into the map.
-     *
-     * @param key  the key to use
-     * @param value  the value to use
-     * @return the previous mapping for the key
-     */
     @Override
     public V put(final K key, final V value) {
-        final int hash = getHash(key);
-
-        synchronized (locks[hash]) {
-            Node<K, V> n = buckets[hash];
-
-            if (n == null) {
-                n = new Node<>();
-                n.key = key;
-                n.value = value;
-                buckets[hash] = n;
-                locks[hash].size++;
-                return null;
-            }
-
-            // Set n to the last node in the linked list.  Check each key along the way
-            //  If the key is found, then change the value of that node and return
-            //  the old value.
-            for (Node<K, V> next = n; next != null; next = next.next) {
-                n = next;
-
-                if (Objects.equals(n.key, key)) {
-                    final V returnVal = n.value;
-                    n.value = value;
-                    return returnVal;
-                }
-            }
-
-            // The key was not found in the current list of nodes, add it to the end
-            //  in a new node.
-            final Node<K, V> newNode = new Node<>();
-            newNode.key = key;
-            newNode.value = value;
-            n.next = newNode;
-            locks[hash].size++;
-        }
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Puts all the entries from the specified map into this map.
-     * This operation is <strong>not atomic</strong> and may have undesired effects.
-     *
-     * @param map  the map of entries to add
-     */
     @Override
     public void putAll(final Map<? extends K, ? extends V> map) {
-        for (final Map.Entry<? extends K, ? extends V> entry : map.entrySet()) {
-            put(entry.getKey(), entry.getValue());
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes the specified key from the map.
-     *
-     * @param key  the key to remove
-     * @return the previous value at this key
-     */
     @Override
     public V remove(final Object key) {
-        final int hash = getHash(key);
-
-        synchronized (locks[hash]) {
-            Node<K, V> n = buckets[hash];
-            Node<K, V> prev = null;
-
-            while (n != null) {
-                if (Objects.equals(n.key, key)) {
-                    // Remove this node from the linked list of nodes.
-                    if (null == prev) {
-                        // This node was the head, set the next node to be the new head.
-                        buckets[hash] = n.next;
-                    } else {
-                        // Set the next node of the previous node to be the node after this one.
-                        prev.next = n.next;
-                    }
-                    locks[hash].size--;
-                    return n.value;
-                }
-
-                prev = n;
-                n = n.next;
-            }
-        }
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the current size of the map.
-     * The value is computed fresh each time the method is called.
-     *
-     * @return the current size
-     */
     @Override
     public int size() {
-        int cnt = 0;
-
-        for (int i = 0; i < buckets.length; i++) {
-            synchronized (locks[i]) {
-                cnt += locks[i].size;
-            }
-        }
-        return cnt;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the values.
-     *
-     * @return the values
-     */
     @Override
     public Collection<V> values() {
-        return new Values();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -18,7 +18,6 @@ package org.apache.commons.collections4.set;
 
 import java.util.Comparator;
 import java.util.SortedSet;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -46,26 +45,13 @@ import org.apache.commons.collections4.Predicate;
  */
 public class PredicatedSortedSet<E> extends PredicatedSet<E> implements SortedSet<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -9110948148132275052L;
 
-    /**
-     * Factory method to create a predicated (validating) sorted set.
-     * <p>
-     * If there are any elements already in the set being decorated, they
-     * are validated.
-     *
-     * @param <E> the element type
-     * @param set  the set to decorate, must not be null
-     * @param predicate  the predicate to use for validation, must not be null
-     * @return a new predicated sorted set.
-     * @throws NullPointerException if set or predicate is null
-     * @throws IllegalArgumentException if the set contains invalid elements
-     * @since 4.0
-     */
-    public static <E> PredicatedSortedSet<E> predicatedSortedSet(final SortedSet<E> set,
-                                                                 final Predicate<? super E> predicate) {
-        return new PredicatedSortedSet<>(set, predicate);
+    public static <E> PredicatedSortedSet<E> predicatedSortedSet(final SortedSet<E> set, final Predicate<? super E> predicate) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -85,45 +71,36 @@ public class PredicatedSortedSet<E> extends PredicatedSet<E> implements SortedSe
 
     @Override
     public Comparator<? super E> comparator() {
-        return decorated().comparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the sorted set being decorated.
-     *
-     * @return the decorated sorted set
-     */
     @Override
     protected SortedSet<E> decorated() {
-        return (SortedSet<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E first() {
-        return decorated().first();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedSet<E> headSet(final E toElement) {
-        final SortedSet<E> head = decorated().headSet(toElement);
-        return new PredicatedSortedSet<>(head, predicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E last() {
-        return decorated().last();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedSet<E> subSet(final E fromElement, final E toElement) {
-        final SortedSet<E> sub = decorated().subSet(fromElement, toElement);
-        return new PredicatedSortedSet<>(sub, predicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedSet<E> tailSet(final E fromElement) {
-        final SortedSet<E> tail = decorated().tailSet(fromElement);
-        return new PredicatedSortedSet<>(tail, predicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

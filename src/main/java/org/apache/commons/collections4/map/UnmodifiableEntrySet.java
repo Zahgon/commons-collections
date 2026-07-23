@@ -22,7 +22,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
-
 import org.apache.commons.collections4.Unmodifiable;
 import org.apache.commons.collections4.iterators.AbstractIteratorDecorator;
 import org.apache.commons.collections4.keyvalue.AbstractMapEntryDecorator;
@@ -38,8 +37,7 @@ import org.apache.commons.collections4.set.AbstractSetDecorator;
  * @param <V> the type of the values in the map
  * @since 3.0
  */
-public final class UnmodifiableEntrySet<K, V>
-        extends AbstractSetDecorator<Map.Entry<K, V>> implements Unmodifiable {
+public final class UnmodifiableEntrySet<K, V> extends AbstractSetDecorator<Map.Entry<K, V>> implements Unmodifiable {
 
     /**
      * Implements a map entry that is unmodifiable.
@@ -52,7 +50,7 @@ public final class UnmodifiableEntrySet<K, V>
 
         @Override
         public V setValue(final V value) {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -67,33 +65,22 @@ public final class UnmodifiableEntrySet<K, V>
 
         @Override
         public Map.Entry<K, V> next() {
-            return new UnmodifiableEntry(getIterator().next());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void remove() {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 1678353579659253473L;
 
-    /**
-     * Factory method to create an unmodifiable set of Map Entry objects.
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param set  the set to decorate, must not be null
-     * @return a new unmodifiable entry set
-     * @throws NullPointerException if set is null
-     * @since 4.0
-     */
     public static <K, V> Set<Map.Entry<K, V>> unmodifiableEntrySet(final Set<Map.Entry<K, V>> set) {
-        if (set instanceof Unmodifiable) {
-            return set;
-        }
-        return new UnmodifiableEntrySet<>(set);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -108,82 +95,53 @@ public final class UnmodifiableEntrySet<K, V>
 
     @Override
     public boolean add(final Map.Entry<K, V> object) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final Collection<? extends Map.Entry<K, V>> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<Map.Entry<K, V>> iterator() {
-        return new UnmodifiableEntrySetIterator(decorated().iterator());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean remove(final Object object) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean removeAll(final Collection<?> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * @since 4.4
-     */
     @Override
     public boolean removeIf(final Predicate<? super Map.Entry<K, V>> filter) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean retainAll(final Collection<?> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public Object[] toArray() {
-        final Object[] array = decorated().toArray();
-        for (int i = 0; i < array.length; i++) {
-            array[i] = new UnmodifiableEntry((Map.Entry<K, V>) array[i]);
-        }
-        return array;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public <T> T[] toArray(final T[] array) {
-        Object[] result = array;
-        if (array.length > 0) {
-            // we must create a new array to handle multithreaded situations
-            // where another thread could access data before we decorate it
-            result = (Object[]) Array.newInstance(array.getClass().getComponentType(), 0);
-        }
-        result = decorated().toArray(result);
-        for (int i = 0; i < result.length; i++) {
-            result[i] = new UnmodifiableEntry((Map.Entry<K, V>) result[i]);
-        }
-
-        // check to see if result should be returned straight
-        if (result.length > array.length) {
-            return (T[]) result;
-        }
-
-        // copy back into input array to fulfill the method contract
-        System.arraycopy(result, 0, array, 0, result.length);
-        if (array.length > result.length) {
-            array[result.length] = null;
-        }
-        return array;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

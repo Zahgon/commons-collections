@@ -27,7 +27,6 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
-
 import org.apache.commons.collections4.BidiMap;
 import org.apache.commons.collections4.OrderedBidiMap;
 import org.apache.commons.collections4.OrderedMap;
@@ -56,8 +55,7 @@ import org.apache.commons.collections4.map.AbstractSortedMapDecorator;
  * @param <V> the type of the values in this map
  * @since 3.0
  */
-public class DualTreeBidiMap<K, V> extends AbstractDualBidiMap<K, V>
-        implements SortedBidiMap<K, V>, Serializable {
+public class DualTreeBidiMap<K, V> extends AbstractDualBidiMap<K, V> implements SortedBidiMap<K, V>, Serializable {
 
     /**
      * Inner class MapIterator.
@@ -67,13 +65,19 @@ public class DualTreeBidiMap<K, V> extends AbstractDualBidiMap<K, V>
      */
     protected static class BidiOrderedMapIterator<K, V> implements OrderedMapIterator<K, V>, ResettableIterator<K> {
 
-        /** The parent map */
+        /**
+         * The parent map
+         */
         private final AbstractDualBidiMap<K, V> parent;
 
-        /** The iterator being decorated */
+        /**
+         * The iterator being decorated
+         */
         private ListIterator<Map.Entry<K, V>> iterator;
 
-        /** The last returned entry */
+        /**
+         * The last returned entry
+         */
         private Map.Entry<K, V> last;
 
         /**
@@ -87,81 +91,52 @@ public class DualTreeBidiMap<K, V> extends AbstractDualBidiMap<K, V>
 
         @Override
         public K getKey() {
-            if (last == null) {
-                throw new IllegalStateException(
-                        "Iterator getKey() can only be called after next() and before remove()");
-            }
-            return last.getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V getValue() {
-            if (last == null) {
-                throw new IllegalStateException(
-                        "Iterator getValue() can only be called after next() and before remove()");
-            }
-            return last.getValue();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean hasNext() {
-            return iterator.hasNext();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean hasPrevious() {
-            return iterator.hasPrevious();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K next() {
-            last = iterator.next();
-            return last.getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K previous() {
-            last = iterator.previous();
-            return last.getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void remove() {
-            iterator.remove();
-            parent.remove(last.getKey());
-            last = null;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void reset() {
-            iterator = new ArrayList<>(parent.entrySet()).listIterator();
-            last = null;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V setValue(final V value) {
-            if (last == null) {
-                throw new IllegalStateException(
-                        "Iterator setValue() can only be called after next() and before remove()");
-            }
-            if (parent.reverseMap.containsKey(value) &&
-                parent.reverseMap.get(value) != last.getKey()) {
-                throw new IllegalArgumentException(
-                        "Cannot use setValue() when the object being set is already in the map");
-            }
-            final V oldValue = parent.put(last.getKey(), value);
-            // Map.Entry specifies that the behavior is undefined when the backing map
-            // has been modified (as we did with the put), so we also set the value
-            last.setValue(value);
-            return oldValue;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public String toString() {
-            if (last != null) {
-                return "MapIterator[" + getKey() + "=" + getValue() + "]";
-            }
-            return "MapIterator[]";
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -172,6 +147,7 @@ public class DualTreeBidiMap<K, V> extends AbstractDualBidiMap<K, V>
      * @param <V> the type of the values.
      */
     protected static class ViewMap<K, V> extends AbstractSortedMapDecorator<K, V> {
+
         /**
          * Constructs a new instance.
          * @param bidi  the parent bidi map
@@ -186,57 +162,58 @@ public class DualTreeBidiMap<K, V> extends AbstractDualBidiMap<K, V>
 
         @Override
         public void clear() {
-            // override as default implementation uses reverseMap
-            for (final Iterator<K> it = keySet().iterator(); it.hasNext();) {
-                it.next();
-                it.remove();
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean containsValue(final Object value) {
-            // override as default implementation uses reverseMap
-            return decorated().normalMap.containsValue(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         protected DualTreeBidiMap<K, V> decorated() {
-            return (DualTreeBidiMap<K, V>) super.decorated();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public SortedMap<K, V> headMap(final K toKey) {
-            return new ViewMap<>(decorated(), super.headMap(toKey));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K nextKey(final K key) {
-            return decorated().nextKey(key);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K previousKey(final K key) {
-            return decorated().previousKey(key);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public SortedMap<K, V> subMap(final K fromKey, final K toKey) {
-            return new ViewMap<>(decorated(), super.subMap(fromKey, toKey));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public SortedMap<K, V> tailMap(final K fromKey) {
-            return new ViewMap<>(decorated(), super.tailMap(fromKey));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /** Ensure serialization compatibility */
+    /**
+     * Ensure serialization compatibility
+     */
     private static final long serialVersionUID = 721969328361809L;
 
-    /** The key comparator to use */
+    /**
+     * The key comparator to use
+     */
     private final Comparator<? super K> comparator;
 
-    /** The value comparator to use */
+    /**
+     * The value comparator to use
+     */
     private final Comparator<? super V> valueComparator;
 
     /**
@@ -280,8 +257,7 @@ public class DualTreeBidiMap<K, V> extends AbstractDualBidiMap<K, V>
      * @param reverseMap  the reverse direction map
      * @param inverseBidiMap  the inverse BidiMap
      */
-    protected DualTreeBidiMap(final Map<K, V> normalMap, final Map<V, K> reverseMap,
-                              final BidiMap<V, K> inverseBidiMap) {
+    protected DualTreeBidiMap(final Map<K, V> normalMap, final Map<V, K> reverseMap, final BidiMap<V, K> inverseBidiMap) {
         super(normalMap, reverseMap, inverseBidiMap);
         this.comparator = ((SortedMap<K, V>) normalMap).comparator();
         this.valueComparator = ((SortedMap<V, K>) reverseMap).comparator();
@@ -289,107 +265,55 @@ public class DualTreeBidiMap<K, V> extends AbstractDualBidiMap<K, V>
 
     @Override
     public Comparator<? super K> comparator() {
-        return ((SortedMap<K, V>) normalMap).comparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a new instance of this object.
-     *
-     * @param normalMap  the normal direction map
-     * @param reverseMap  the reverse direction map
-     * @param inverseMap  the inverse BidiMap
-     * @return new bidi map
-     */
     @Override
-    protected DualTreeBidiMap<V, K> createBidiMap(final Map<V, K> normalMap, final Map<K, V> reverseMap,
-                                                  final BidiMap<K, V> inverseMap) {
-        return new DualTreeBidiMap<>(normalMap, reverseMap, inverseMap);
+    protected DualTreeBidiMap<V, K> createBidiMap(final Map<V, K> normalMap, final Map<K, V> reverseMap, final BidiMap<K, V> inverseMap) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K firstKey() {
-        return ((SortedMap<K, V>) normalMap).firstKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> headMap(final K toKey) {
-        final SortedMap<K, V> sub = ((SortedMap<K, V>) normalMap).headMap(toKey);
-        return new ViewMap<>(this, sub);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedBidiMap<V, K> inverseBidiMap() {
-        return (SortedBidiMap<V, K>) super.inverseBidiMap();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Defaults to {@link #inverseBidiMap()}.
-     *
-     * @return Defaults to {@link #inverseBidiMap()}.
-     */
     public OrderedBidiMap<V, K> inverseOrderedBidiMap() {
-        return inverseBidiMap();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Defaults to {@link #inverseBidiMap()}.
-     *
-     * @return Defaults to {@link #inverseBidiMap()}.
-     */
     public SortedBidiMap<V, K> inverseSortedBidiMap() {
-        return inverseBidiMap();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K lastKey() {
-        return ((SortedMap<K, V>) normalMap).lastKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Obtains an ordered map iterator.
-     * <p>
-     * This implementation copies the elements to an ArrayList in order to
-     * provide the forward/backward behavior.
-     * </p>
-     *
-     * @return a new ordered map iterator
-     */
     @Override
     public OrderedMapIterator<K, V> mapIterator() {
-        return new BidiOrderedMapIterator<>(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K nextKey(final K key) {
-        if (isEmpty()) {
-            return null;
-        }
-        if (normalMap instanceof OrderedMap) {
-            return ((OrderedMap<K, ?>) normalMap).nextKey(key);
-        }
-        final SortedMap<K, V> sm = (SortedMap<K, V>) normalMap;
-        final Iterator<K> it = sm.tailMap(key).keySet().iterator();
-        it.next();
-        if (it.hasNext()) {
-            return it.next();
-        }
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K previousKey(final K key) {
-        if (isEmpty()) {
-            return null;
-        }
-        if (normalMap instanceof OrderedMap) {
-            return ((OrderedMap<K, V>) normalMap).previousKey(key);
-        }
-        final SortedMap<K, V> sm = (SortedMap<K, V>) normalMap;
-        final SortedMap<K, V> hm = sm.headMap(key);
-        if (hm.isEmpty()) {
-            return null;
-        }
-        return hm.lastKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -403,26 +327,25 @@ public class DualTreeBidiMap<K, V> extends AbstractDualBidiMap<K, V>
         in.defaultReadObject();
         normalMap = new TreeMap<>(comparator);
         reverseMap = new TreeMap<>(valueComparator);
-        @SuppressWarnings("unchecked") // will fail at runtime if the stream is incorrect
+        // will fail at runtime if the stream is incorrect
+        @SuppressWarnings("unchecked")
         final Map<K, V> map = (Map<K, V>) in.readObject();
         putAll(map);
     }
 
     @Override
     public SortedMap<K, V> subMap(final K fromKey, final K toKey) {
-        final SortedMap<K, V> sub = ((SortedMap<K, V>) normalMap).subMap(fromKey, toKey);
-        return new ViewMap<>(this, sub);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> tailMap(final K fromKey) {
-        final SortedMap<K, V> sub = ((SortedMap<K, V>) normalMap).tailMap(fromKey);
-        return new ViewMap<>(this, sub);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Comparator<? super V> valueComparator() {
-        return ((SortedMap<V, K>) reverseMap).comparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -435,5 +358,4 @@ public class DualTreeBidiMap<K, V> extends AbstractDualBidiMap<K, V>
         out.defaultWriteObject();
         out.writeObject(normalMap);
     }
-
 }

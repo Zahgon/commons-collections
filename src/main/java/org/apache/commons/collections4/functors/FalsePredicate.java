@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -28,22 +27,20 @@ import org.apache.commons.collections4.Predicate;
  */
 public final class FalsePredicate<T> extends AbstractPredicate<T> implements Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 7533784454832764388L;
 
-    /** Singleton predicate instance */
-    @SuppressWarnings("rawtypes") // the static instance works for all types
+    /**
+     * Singleton predicate instance
+     */
+    // the static instance works for all types
+    @SuppressWarnings("rawtypes")
     public static final Predicate INSTANCE = new FalsePredicate<>();
 
-    /**
-     * Gets a typed instance.
-     *
-     * @param <T> the type that the predicate queries
-     * @return the singleton instance
-     * @since 4.0
-     */
     public static <T> Predicate<T> falsePredicate() {
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -61,15 +58,8 @@ public final class FalsePredicate<T> extends AbstractPredicate<T> implements Ser
         return INSTANCE;
     }
 
-    /**
-     * Evaluates the predicate returning false always.
-     *
-     * @param object  the input object
-     * @return false always
-     */
     @Override
     public boolean test(final T object) {
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

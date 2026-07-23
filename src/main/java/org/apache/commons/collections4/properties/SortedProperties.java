@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.collections4.properties;
 
 import java.util.AbstractMap;
@@ -26,7 +25,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import org.apache.commons.collections4.iterators.IteratorEnumeration;
 
 /**
@@ -51,13 +49,12 @@ public class SortedProperties extends Properties {
 
     @Override
     public Set<Map.Entry<Object, Object>> entrySet() {
-        final Stream<SimpleEntry<Object, Object>> stream = sortedKeys().map(k -> new AbstractMap.SimpleEntry<>(k, getProperty(k)));
-        return stream.collect(Collectors.toCollection(LinkedHashSet::new));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized Enumeration<Object> keys() {
-        return new IteratorEnumeration<>(sortedKeys().collect(Collectors.toList()).iterator());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private Stream<String> sortedKeys() {

@@ -46,13 +46,19 @@ import java.util.List;
  */
 public class EditScript<T> {
 
-    /** Container for the commands. */
+    /**
+     * Container for the commands.
+     */
     private final List<EditCommand<T>> commands;
 
-    /** Length of the longest common subsequence. */
+    /**
+     * Length of the longest common subsequence.
+     */
     private int lcsLength;
 
-    /** Number of modifications. */
+    /**
+     * Number of modifications.
+     */
     private int modifications;
 
     /**
@@ -64,71 +70,27 @@ public class EditScript<T> {
         modifications = 0;
     }
 
-    /**
-     * Add a delete command to the script.
-     *
-     * @param command  command to add
-     */
     public void append(final DeleteCommand<T> command) {
-        commands.add(command);
-        ++modifications;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Add an insert command to the script.
-     *
-     * @param command  command to add
-     */
     public void append(final InsertCommand<T> command) {
-        commands.add(command);
-        ++modifications;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Add a keep command to the script.
-     *
-     * @param command  command to add
-     */
     public void append(final KeepCommand<T> command) {
-        commands.add(command);
-        ++lcsLength;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the length of the Longest Common Subsequence (LCS). The length of the
-     * longest common subsequence is the number of {@link KeepCommand keep
-     * commands} in the script.
-     *
-     * @return length of the Longest Common Subsequence
-     */
     public int getLCSLength() {
-        return lcsLength;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the number of effective modifications. The number of effective
-     * modification is the number of {@link DeleteCommand delete} and
-     * {@link InsertCommand insert} commands in the script.
-     *
-     * @return number of effective modifications
-     */
     public int getModifications() {
-        return modifications;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Visit the script. The script implements the <em>visitor</em> design
-     * pattern, this method is the entry point to which the user supplies its
-     * own visitor, the script will be responsible to drive it through the
-     * commands in order and call the appropriate method as each command is
-     * encountered.
-     *
-     * @param visitor  the visitor that will visit all commands in turn
-     */
     public void visit(final CommandVisitor<T> visitor) {
-        for (final EditCommand<T> command : commands) {
-            command.accept(visitor);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

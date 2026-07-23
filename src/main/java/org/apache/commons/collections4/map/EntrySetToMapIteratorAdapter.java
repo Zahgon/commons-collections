@@ -19,7 +19,6 @@ package org.apache.commons.collections4.map;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-
 import org.apache.commons.collections4.MapIterator;
 import org.apache.commons.collections4.ResettableIterator;
 
@@ -32,13 +31,19 @@ import org.apache.commons.collections4.ResettableIterator;
  */
 public class EntrySetToMapIteratorAdapter<K, V> implements MapIterator<K, V>, ResettableIterator<K> {
 
-    /** The adapted Map entry Set. */
+    /**
+     * The adapted Map entry Set.
+     */
     final Set<Map.Entry<K, V>> entrySet;
 
-    /** The resettable iterator in use. */
+    /**
+     * The resettable iterator in use.
+     */
     transient Iterator<Map.Entry<K, V>> iterator;
 
-    /** The currently positioned Map entry. */
+    /**
+     * The currently positioned Map entry.
+     */
     transient Map.Entry<K, V> entry;
 
     /**
@@ -50,72 +55,42 @@ public class EntrySetToMapIteratorAdapter<K, V> implements MapIterator<K, V>, Re
         reset();
     }
 
-    /**
-     * Gets the currently active entry.
-     * @return Map.Entry&lt;K, V&gt;
-     */
     protected synchronized Map.Entry<K, V> current() {
-        if (entry == null) {
-            throw new IllegalStateException();
-        }
-        return entry;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public K getKey() {
-        return current().getKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public V getValue() {
-        return current().getValue();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean hasNext() {
-        return iterator.hasNext();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public K next() {
-        entry = iterator.next();
-        return getKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void remove() {
-        iterator.remove();
-        entry = null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public synchronized void reset() {
-        iterator = entrySet.iterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public V setValue(final V value) {
-        return current().setValue(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

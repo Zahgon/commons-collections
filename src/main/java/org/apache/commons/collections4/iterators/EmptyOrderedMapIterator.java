@@ -25,8 +25,7 @@ import org.apache.commons.collections4.OrderedMapIterator;
  * @param <V> the type of mapped values
  * @since 3.1
  */
-public class EmptyOrderedMapIterator<K, V> extends AbstractEmptyMapIterator<K, V>
-        implements OrderedMapIterator<K, V> {
+public class EmptyOrderedMapIterator<K, V> extends AbstractEmptyMapIterator<K, V> implements OrderedMapIterator<K, V> {
 
     /**
      * Singleton instance of the iterator.
@@ -35,14 +34,8 @@ public class EmptyOrderedMapIterator<K, V> extends AbstractEmptyMapIterator<K, V
     @SuppressWarnings("rawtypes")
     public static final OrderedMapIterator INSTANCE = new EmptyOrderedMapIterator<>();
 
-    /**
-     * Gets a typed instance of the iterator.
-     * @param <K> the key type
-     * @param <V> the value type
-     * @return {@link OrderedMapIterator}&lt;K, V&gt;
-     */
     public static <K, V> OrderedMapIterator<K, V> emptyOrderedMapIterator() {
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -50,5 +43,4 @@ public class EmptyOrderedMapIterator<K, V> extends AbstractEmptyMapIterator<K, V
      */
     protected EmptyOrderedMapIterator() {
     }
-
 }

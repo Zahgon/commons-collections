@@ -23,7 +23,6 @@ import java.lang.reflect.Array;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.Map;
-
 import org.apache.commons.collections4.MultiSet;
 import org.apache.commons.collections4.iterators.AbstractIteratorDecorator;
 
@@ -48,7 +47,9 @@ public abstract class AbstractMapMultiSet<E> extends AbstractMultiSet<E> {
      */
     protected static class EntrySetIterator<E> implements Iterator<Entry<E>> {
 
-        /** The parent map */
+        /**
+         * The parent map
+         */
         protected final AbstractMapMultiSet<E> parent;
 
         /**
@@ -56,10 +57,14 @@ public abstract class AbstractMapMultiSet<E> extends AbstractMultiSet<E> {
          */
         protected final Iterator<Map.Entry<E, MutableInteger>> decorated;
 
-        /** The last returned entry */
+        /**
+         * The last returned entry
+         */
         protected Entry<E> last;
 
-        /** Whether remove is allowed at present */
+        /**
+         * Whether remove is allowed at present
+         */
         protected boolean canRemove;
 
         /**
@@ -67,43 +72,42 @@ public abstract class AbstractMapMultiSet<E> extends AbstractMultiSet<E> {
          * @param decorated  the iterator to decorate
          * @param parent  the parent multiset
          */
-        protected EntrySetIterator(final Iterator<Map.Entry<E, MutableInteger>> decorated,
-                                   final AbstractMapMultiSet<E> parent) {
+        protected EntrySetIterator(final Iterator<Map.Entry<E, MutableInteger>> decorated, final AbstractMapMultiSet<E> parent) {
             this.decorated = decorated;
             this.parent = parent;
         }
 
         @Override
         public boolean hasNext() {
-            return decorated.hasNext();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Entry<E> next() {
-            last = new MultiSetEntry<>(decorated.next());
-            canRemove = true;
-            return last;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void remove() {
-            if (!canRemove) {
-                throw new IllegalStateException("Iterator remove() can only be called once after next()");
-            }
-            decorated.remove();
-            last = null;
-            canRemove = false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
+
     /**
      * Inner class iterator for the MultiSet.
      */
     private static final class MapBasedMultiSetIterator<E> implements Iterator<E> {
+
         private final AbstractMapMultiSet<E> parent;
+
         private final Iterator<Map.Entry<E, MutableInteger>> entryIterator;
+
         private Map.Entry<E, MutableInteger> current;
+
         private int itemCount;
+
         private final int mods;
+
         private boolean canRemove;
 
         /**
@@ -119,44 +123,19 @@ public abstract class AbstractMapMultiSet<E> extends AbstractMultiSet<E> {
             this.canRemove = false;
         }
 
-        /** {@inheritDoc} */
         @Override
         public boolean hasNext() {
-            return itemCount > 0 || entryIterator.hasNext();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /** {@inheritDoc} */
         @Override
         public E next() {
-            if (parent.modCount != mods) {
-                throw new ConcurrentModificationException();
-            }
-            if (itemCount == 0) {
-                current = entryIterator.next();
-                itemCount = current.getValue().value;
-            }
-            canRemove = true;
-            itemCount--;
-            return current.getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /** {@inheritDoc} */
         @Override
         public void remove() {
-            if (parent.modCount != mods) {
-                throw new ConcurrentModificationException();
-            }
-            if (!canRemove) {
-                throw new IllegalStateException();
-            }
-            final MutableInteger mut = current.getValue();
-            if (mut.value > 1) {
-                mut.value--;
-            } else {
-                entryIterator.remove();
-            }
-            parent.size--;
-            canRemove = false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -182,12 +161,12 @@ public abstract class AbstractMapMultiSet<E> extends AbstractMultiSet<E> {
 
         @Override
         public int getCount() {
-            return parentEntry.getValue().value;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public E getElement() {
-            return parentEntry.getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -195,7 +174,10 @@ public abstract class AbstractMapMultiSet<E> extends AbstractMultiSet<E> {
      * Mutable integer class for storing the data.
      */
     protected static class MutableInteger {
-        /** The value of this mutable. */
+
+        /**
+         * The value of this mutable.
+         */
         protected int value;
 
         /**
@@ -208,15 +190,12 @@ public abstract class AbstractMapMultiSet<E> extends AbstractMultiSet<E> {
 
         @Override
         public boolean equals(final Object obj) {
-            if (!(obj instanceof MutableInteger)) {
-                return false;
-            }
-            return ((MutableInteger) obj).value == value;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int hashCode() {
-            return value;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -227,13 +206,19 @@ public abstract class AbstractMapMultiSet<E> extends AbstractMultiSet<E> {
      */
     protected static class UniqueSetIterator<E> extends AbstractIteratorDecorator<E> {
 
-        /** The parent multiset */
+        /**
+         * The parent multiset
+         */
         protected final AbstractMapMultiSet<E> parent;
 
-        /** The last returned element */
+        /**
+         * The last returned element
+         */
         protected E lastElement;
 
-        /** Whether remove is allowed at present */
+        /**
+         * Whether remove is allowed at present
+         */
         protected boolean canRemove;
 
         /**
@@ -248,31 +233,28 @@ public abstract class AbstractMapMultiSet<E> extends AbstractMultiSet<E> {
 
         @Override
         public E next() {
-            lastElement = super.next();
-            canRemove = true;
-            return lastElement;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void remove() {
-            if (!canRemove) {
-                throw new IllegalStateException("Iterator remove() can only be called once after next()");
-            }
-            final int count = parent.getCount(lastElement);
-            super.remove();
-            parent.remove(lastElement, count);
-            lastElement = null;
-            canRemove = false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /** The map to use to store the data */
+    /**
+     * The map to use to store the data
+     */
     private transient Map<E, MutableInteger> map;
 
-    /** The current total size of the multiset */
+    /**
+     * The current total size of the multiset
+     */
     private transient int size;
 
-    /** The modification count for fail fast iterators */
+    /**
+     * The modification count for fail fast iterators
+     */
     private transient int modCount;
 
     /**
@@ -293,277 +275,94 @@ public abstract class AbstractMapMultiSet<E> extends AbstractMultiSet<E> {
 
     @Override
     public int add(final E object, final int occurrences) {
-        if (occurrences < 0) {
-            throw new IllegalArgumentException("Occurrences must not be negative.");
-        }
-
-        final MutableInteger mut = map.get(object);
-        final int oldCount = mut != null ? mut.value : 0;
-
-        if (occurrences > 0) {
-            modCount++;
-            size += occurrences;
-            if (mut == null) {
-                map.put(object, new MutableInteger(occurrences));
-            } else {
-                mut.value += occurrences;
-            }
-        }
-        return oldCount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Clears the multiset by clearing the underlying map.
-     */
     @Override
     public void clear() {
-        modCount++;
-        map.clear();
-        size = 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Determines if the multiset contains the given element by checking if the
-     * underlying map contains the element as a key.
-     *
-     * @param object the object to search for
-     * @return true if the multiset contains the given element
-     */
     @Override
     public boolean contains(final Object object) {
-        return map.containsKey(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     protected Iterator<Entry<E>> createEntrySetIterator() {
-        return new EntrySetIterator<>(map.entrySet().iterator(), this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     protected Iterator<E> createUniqueSetIterator() {
-        return new UniqueSetIterator<>(getMap().keySet().iterator(), this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Reads the multiset in using a custom routine.
-     *
-     * @param in the input stream
-     * @throws IOException any of the usual I/O related exceptions
-     * @throws ClassNotFoundException if the stream contains an object which class cannot be loaded
-     * @throws ClassCastException if the stream does not contain the correct objects
-     */
     @Override
-    protected void doReadObject(final ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        final int entrySize = in.readInt();
-        for (int i = 0; i < entrySize; i++) {
-            @SuppressWarnings("unchecked") // This will fail at runtime if the stream is incorrect
-            final E obj = (E) in.readObject();
-            final int count = in.readInt();
-            map.put(obj, new MutableInteger(count));
-            size += count;
-        }
+    protected void doReadObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Writes the multiset out using a custom routine.
-     *
-     * @param out the output stream
-     * @throws IOException any of the usual I/O related exceptions
-     */
     @Override
     protected void doWriteObject(final ObjectOutputStream out) throws IOException {
-        out.writeInt(map.size());
-        for (final Map.Entry<E, MutableInteger> entry : map.entrySet()) {
-            out.writeObject(entry.getKey());
-            out.writeInt(entry.getValue().value);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object object) {
-        if (object == this) {
-            return true;
-        }
-        if (!(object instanceof MultiSet)) {
-            return false;
-        }
-        final MultiSet<?> other = (MultiSet<?>) object;
-        if (other.size() != size()) {
-            return false;
-        }
-        for (final E element : map.keySet()) {
-            if (other.getCount(element) != getCount(element)) {
-                return false;
-            }
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the number of occurrence of the given element in this multiset by
-     * looking up its count in the underlying map.
-     *
-     * @param object the object to search for
-     * @return the number of occurrences of the object, zero if not found
-     */
     @Override
     public int getCount(final Object object) {
-        final MutableInteger count = map.get(object);
-        if (count != null) {
-            return count.value;
-        }
-        return 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the map that backs this multiset.
-     * Not intended for interactive use outside of subclasses.
-     *
-     * @return the map being used by the MultiSet
-     */
     protected Map<E, MutableInteger> getMap() {
-        return map;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        int total = 0;
-        for (final Map.Entry<E, MutableInteger> entry : map.entrySet()) {
-            final E element = entry.getKey();
-            final MutableInteger count = entry.getValue();
-            total += (element == null ? 0 : element.hashCode()) ^ count.value;
-        }
-        return total;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns true if the underlying map is empty.
-     *
-     * @return true if multiset is empty
-     */
     @Override
     public boolean isEmpty() {
-        return map.isEmpty();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets an iterator over the multiset elements. Elements present in the
-     * MultiSet more than once will be returned repeatedly.
-     *
-     * @return the iterator
-     */
     @Override
     public Iterator<E> iterator() {
-        return new MapBasedMultiSetIterator<>(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int remove(final Object object, final int occurrences) {
-        if (occurrences < 0) {
-            throw new IllegalArgumentException("Occurrences must not be negative.");
-        }
-
-        final MutableInteger mut = map.get(object);
-        if (mut == null) {
-            return 0;
-        }
-        final int oldCount = mut.value;
-        if (occurrences > 0) {
-            modCount++;
-            if (occurrences < mut.value) {
-                mut.value -= occurrences;
-                size -= occurrences;
-            } else {
-                map.remove(object);
-                size -= mut.value;
-                mut.value = 0;
-            }
-        }
-        return oldCount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the map being wrapped.
-     * <p>
-     * <strong>Note:</strong> this method should only be used during deserialization
-     * </p>
-     *
-     * @param map the map to wrap
-     */
     protected void setMap(final Map<E, MutableInteger> map) {
-        this.map = map;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the number of elements in this multiset.
-     *
-     * @return current size of the multiset
-     */
     @Override
     public int size() {
-        return size;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns an array of all of this multiset's elements.
-     *
-     * @return an array of all of this multiset's elements
-     */
     @Override
     public Object[] toArray() {
-        final Object[] result = new Object[size()];
-        int i = 0;
-        for (final Map.Entry<E, MutableInteger> entry : map.entrySet()) {
-            final E current = entry.getKey();
-            final MutableInteger count = entry.getValue();
-            for (int index = count.value; index > 0; index--) {
-                result[i++] = current;
-            }
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns an array of all of this multiset's elements.
-     * If the input array has more elements than are in the multiset,
-     * trailing elements will be set to null.
-     *
-     * @param <T> the type of the array elements
-     * @param array the array to populate
-     * @return an array of all of this multiset's elements
-     * @throws ArrayStoreException if the runtime type of the specified array is not
-     *   a supertype of the runtime type of the elements in this list
-     * @throws NullPointerException if the specified array is null
-     */
     @Override
     public <T> T[] toArray(T[] array) {
-        final int size = size();
-        if (array.length < size) {
-            @SuppressWarnings("unchecked") // safe as both are of type T
-            final T[] unchecked = (T[]) Array.newInstance(array.getClass().getComponentType(), size);
-            array = unchecked;
-        }
-
-        int i = 0;
-        for (final Map.Entry<E, MutableInteger> entry : map.entrySet()) {
-            final E current = entry.getKey();
-            final MutableInteger count = entry.getValue();
-            for (int index = count.value; index > 0; index--) {
-                // unsafe, will throw ArrayStoreException if types are not compatible, see Javadoc
-                @SuppressWarnings("unchecked")
-                final T unchecked = (T) current;
-                array[i++] = unchecked;
-            }
-        }
-        while (i < array.length) {
-            array[i++] = null;
-        }
-        return array;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     protected int uniqueElements() {
-        return map.size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

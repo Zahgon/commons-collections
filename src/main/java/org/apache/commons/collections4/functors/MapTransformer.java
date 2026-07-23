@@ -18,7 +18,6 @@ package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
 import java.util.Map;
-
 import org.apache.commons.collections4.Transformer;
 
 /**
@@ -31,27 +30,18 @@ import org.apache.commons.collections4.Transformer;
  */
 public final class MapTransformer<T, R> implements Transformer<T, R>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 862391807045468939L;
 
-    /**
-     * Creates the transformer.
-     * <p>
-     * If the map is null, a transformer that always returns null is returned.
-     *
-     * @param <I>  the input type
-     * @param <O>  the output type
-     * @param map the map, not cloned
-     * @return the transformer
-     */
     public static <I, O> Transformer<I, O> mapTransformer(final Map<? super I, ? extends O> map) {
-        if (map == null) {
-            return ConstantTransformer.<I, O>nullTransformer();
-        }
-        return new MapTransformer<>(map);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The map of data to lookup in */
+    /**
+     * The map of data to lookup in
+     */
     private final Map<? super T, ? extends R> iMap;
 
     /**
@@ -64,25 +54,12 @@ public final class MapTransformer<T, R> implements Transformer<T, R>, Serializab
         iMap = map;
     }
 
-    /**
-     * Gets the map to lookup in.
-     *
-     * @return the map
-     * @since 3.1
-     */
     public Map<? super T, ? extends R> getMap() {
-        return iMap;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Transforms the input to result by looking it up in a {@code Map}.
-     *
-     * @param input  the input object to transform
-     * @return the transformed result
-     */
     @Override
     public R transform(final T input) {
-        return iMap.get(input);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

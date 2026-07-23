@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.bag;
 
 import java.util.Set;
-
 import org.apache.commons.collections4.Bag;
 import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.collection.PredicatedCollection;
@@ -45,25 +44,13 @@ import org.apache.commons.collections4.collection.PredicatedCollection;
  */
 public class PredicatedBag<E> extends PredicatedCollection<E> implements Bag<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -2575833140344736876L;
 
-    /**
-     * Factory method to create a predicated (validating) bag.
-     * <p>
-     * If there are any elements already in the bag being decorated, they
-     * are validated.
-     *
-     * @param <E> the type of the elements in the bag
-     * @param bag  the bag to decorate, must not be null
-     * @param predicate  the predicate to use for validation, must not be null
-     * @return a new predicated Bag
-     * @throws NullPointerException if bag or predicate is null
-     * @throws IllegalArgumentException if the bag contains invalid elements
-     * @since 4.0
-     */
     public static <E> PredicatedBag<E> predicatedBag(final Bag<E> bag, final Predicate<? super E> predicate) {
-        return new PredicatedBag<>(bag, predicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -83,43 +70,36 @@ public class PredicatedBag<E> extends PredicatedCollection<E> implements Bag<E> 
 
     @Override
     public boolean add(final E object, final int count) {
-        validate(object);
-        return decorated().add(object, count);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the decorated bag.
-     *
-     * @return the decorated bag
-     */
     @Override
     protected Bag<E> decorated() {
-        return (Bag<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object object) {
-        return object == this || decorated().equals(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int getCount(final Object object) {
-        return decorated().getCount(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return decorated().hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean remove(final Object object, final int count) {
-        return decorated().remove(object, count);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<E> uniqueSet() {
-        return decorated().uniqueSet();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

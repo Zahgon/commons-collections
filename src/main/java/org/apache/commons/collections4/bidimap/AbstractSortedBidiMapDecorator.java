@@ -18,7 +18,6 @@ package org.apache.commons.collections4.bidimap;
 
 import java.util.Comparator;
 import java.util.SortedMap;
-
 import org.apache.commons.collections4.SortedBidiMap;
 
 /**
@@ -39,8 +38,7 @@ import org.apache.commons.collections4.SortedBidiMap;
  * @param <V> the type of the values in this map
  * @since 3.0
  */
-public abstract class AbstractSortedBidiMapDecorator<K, V>
-        extends AbstractOrderedBidiMapDecorator<K, V> implements SortedBidiMap<K, V> {
+public abstract class AbstractSortedBidiMapDecorator<K, V> extends AbstractOrderedBidiMapDecorator<K, V> implements SortedBidiMap<K, V> {
 
     /**
      * Constructor that wraps (not copies).
@@ -54,42 +52,36 @@ public abstract class AbstractSortedBidiMapDecorator<K, V>
 
     @Override
     public Comparator<? super K> comparator() {
-        return decorated().comparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the map being decorated.
-     *
-     * @return the decorated map
-     */
     @Override
     protected SortedBidiMap<K, V> decorated() {
-        return (SortedBidiMap<K, V>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> headMap(final K toKey) {
-        return decorated().headMap(toKey);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedBidiMap<V, K> inverseBidiMap() {
-        return decorated().inverseBidiMap();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> subMap(final K fromKey, final K toKey) {
-        return decorated().subMap(fromKey, toKey);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> tailMap(final K fromKey) {
-        return decorated().tailMap(fromKey);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Comparator<? super V> valueComparator() {
-        return decorated().valueComparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

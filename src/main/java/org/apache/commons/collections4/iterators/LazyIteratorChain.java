@@ -52,13 +52,19 @@ import java.util.Iterator;
  */
 public abstract class LazyIteratorChain<E> implements Iterator<E> {
 
-    /** The number of times {@link #next()} was already called. */
+    /**
+     * The number of times {@link #next()} was already called.
+     */
     private int callCounter;
 
-    /** Indicates that the Iterator chain has been exhausted. */
+    /**
+     * Indicates that the Iterator chain has been exhausted.
+     */
     private boolean chainExhausted;
 
-    /** The current iterator. */
+    /**
+     * The current iterator.
+     */
     private Iterator<? extends E> currentIterator;
 
     /**
@@ -74,29 +80,14 @@ public abstract class LazyIteratorChain<E> implements Iterator<E> {
         // empty
     }
 
-    /**
-     * Return true if any Iterator in the chain has a remaining element.
-     *
-     * @return true if elements remain
-     */
     @Override
     public boolean hasNext() {
-        updateCurrentIterator();
-        lastUsedIterator = currentIterator;
-        return currentIterator.hasNext();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the next element of the current Iterator
-     *
-     * @return element from the current Iterator
-     * @throws java.util.NoSuchElementException if all the Iterators are exhausted
-     */
     @Override
     public E next() {
-        updateCurrentIterator();
-        lastUsedIterator = currentIterator;
-        return currentIterator.next();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -110,25 +101,9 @@ public abstract class LazyIteratorChain<E> implements Iterator<E> {
      */
     protected abstract Iterator<? extends E> nextIterator(int count);
 
-    /**
-     * Removes from the underlying collection the last element returned by the Iterator.
-     * <p>
-     * As with next() and hasNext(), this method calls remove() on the underlying Iterator.
-     * Therefore, this method may throw an UnsupportedOperationException if the underlying
-     * Iterator does not support this method.
-     * </p>
-     *
-     * @throws UnsupportedOperationException if the remove operator is not
-     *   supported by the underlying Iterator
-     * @throws IllegalStateException if the next method has not yet been called,
-     *   or the remove method has already been called after the last call to the next method.
-     */
     @Override
     public void remove() {
-        if (currentIterator == null) {
-            updateCurrentIterator();
-        }
-        lastUsedIterator.remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -155,5 +130,4 @@ public abstract class LazyIteratorChain<E> implements Iterator<E> {
             }
         }
     }
-
 }

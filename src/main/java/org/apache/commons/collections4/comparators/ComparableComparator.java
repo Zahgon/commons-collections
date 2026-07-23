@@ -43,26 +43,19 @@ import java.util.Comparator;
  */
 public class ComparableComparator<E extends Comparable<? super E>> implements Comparator<E>, Serializable {
 
-    /** Serialization version. */
+    /**
+     * Serialization version.
+     */
     private static final long serialVersionUID = -291439688585137865L;
 
-    /** The singleton instance. */
+    /**
+     * The singleton instance.
+     */
     @SuppressWarnings("rawtypes")
     public static final ComparableComparator INSTANCE = new ComparableComparator();
 
-    /**
-     * Gets the singleton instance of a ComparableComparator.
-     * <p>
-     * Developers are encouraged to use the comparator returned from this method
-     * instead of constructing a new instance to reduce allocation and GC overhead
-     * when multiple comparable comparators may be used in the same VM.
-     *
-     * @param <E>  the element type
-     * @return the singleton ComparableComparator
-     * @since 4.0
-     */
     public static <E extends Comparable<? super E>> ComparableComparator<E> comparableComparator() {
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -73,53 +66,18 @@ public class ComparableComparator<E extends Comparable<? super E>> implements Co
     public ComparableComparator() {
     }
 
-    /**
-     * Compare the two {@link Comparable Comparable} arguments.
-     * This method is equivalent to:
-     * <pre>((Comparable)obj1).compareTo(obj2)</pre>
-     *
-     * @param obj1  the first object to compare
-     * @param obj2  the second object to compare
-     * @return negative if obj1 is less, positive if greater, zero if equal
-     * @throws NullPointerException if <em>obj1</em> is {@code null},
-     *         or when {@code ((Comparable)obj1).compareTo(obj2)} does
-     * @throws ClassCastException if <em>obj1</em> is not a {@code Comparable},
-     *         or when {@code ((Comparable)obj1).compareTo(obj2)} does
-     */
     @Override
     public int compare(final E obj1, final E obj2) {
-        return obj1.compareTo(obj2);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns {@code true} iff <em>that</em> Object is a {@link Comparator Comparator}
-     * whose ordering is known to be equivalent to mine.
-     * <p>
-     * This implementation returns {@code true} iff
-     * {@code <em>object</em>.{@link Object#getClass() getClass()}} equals
-     * {@code this.getClass()}. Subclasses may want to override this behavior to remain
-     * consistent with the {@link Comparator#equals(Object)} contract.
-     *
-     * @param object  the object to compare with
-     * @return {@code true} if equal
-     * @since 3.0
-     */
     @Override
     public boolean equals(final Object object) {
-        return this == object ||
-               null != object && object.getClass().equals(this.getClass());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Implement a hash code for this comparator that is consistent with
-     * {@link #equals(Object) equals}.
-     *
-     * @return a hash code for this comparator.
-     * @since 3.0
-     */
     @Override
     public int hashCode() {
-        return "ComparableComparator".hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -18,7 +18,6 @@ package org.apache.commons.collections4.map;
 
 import java.util.Comparator;
 import java.util.SortedMap;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -55,28 +54,13 @@ import org.apache.commons.collections4.Predicate;
  */
 public class PredicatedSortedMap<K, V> extends PredicatedMap<K, V> implements SortedMap<K, V> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 3359846175935304332L;
 
-    /**
-     * Factory method to create a predicated (validating) sorted map.
-     * <p>
-     * If there are any elements already in the list being decorated, they
-     * are validated.
-     * </p>
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @param keyPredicate  the predicate to validate the keys, null means no check
-     * @param valuePredicate  the predicate to validate to values, null means no check
-     * @return a new predicated sorted map
-     * @throws NullPointerException if the map is null
-     * @since 4.0
-     */
-    public static <K, V> PredicatedSortedMap<K, V> predicatedSortedMap(final SortedMap<K, V> map,
-            final Predicate<? super K> keyPredicate, final Predicate<? super V> valuePredicate) {
-        return new PredicatedSortedMap<>(map, keyPredicate, valuePredicate);
+    public static <K, V> PredicatedSortedMap<K, V> predicatedSortedMap(final SortedMap<K, V> map, final Predicate<? super K> keyPredicate, final Predicate<? super V> valuePredicate) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -87,51 +71,41 @@ public class PredicatedSortedMap<K, V> extends PredicatedMap<K, V> implements So
      * @param valuePredicate  the predicate to validate to values, null means no check
      * @throws NullPointerException if the map is null
      */
-    protected PredicatedSortedMap(final SortedMap<K, V> map, final Predicate<? super K> keyPredicate,
-            final Predicate<? super V> valuePredicate) {
+    protected PredicatedSortedMap(final SortedMap<K, V> map, final Predicate<? super K> keyPredicate, final Predicate<? super V> valuePredicate) {
         super(map, keyPredicate, valuePredicate);
     }
 
     @Override
     public Comparator<? super K> comparator() {
-        return getSortedMap().comparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K firstKey() {
-        return getSortedMap().firstKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the map being decorated.
-     *
-     * @return the decorated map
-     */
     protected SortedMap<K, V> getSortedMap() {
-        return (SortedMap<K, V>) map;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> headMap(final K toKey) {
-        final SortedMap<K, V> map = getSortedMap().headMap(toKey);
-        return new PredicatedSortedMap<>(map, keyPredicate, valuePredicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K lastKey() {
-        return getSortedMap().lastKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> subMap(final K fromKey, final K toKey) {
-        final SortedMap<K, V> map = getSortedMap().subMap(fromKey, toKey);
-        return new PredicatedSortedMap<>(map, keyPredicate, valuePredicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> tailMap(final K fromKey) {
-        final SortedMap<K, V> map = getSortedMap().tailMap(fromKey);
-        return new PredicatedSortedMap<>(map, keyPredicate, valuePredicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

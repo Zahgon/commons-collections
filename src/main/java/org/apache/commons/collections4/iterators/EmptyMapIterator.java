@@ -25,8 +25,7 @@ import org.apache.commons.collections4.MapIterator;
  * @param <V> the type of mapped values
  * @since 3.1
  */
-public class EmptyMapIterator<K, V> extends AbstractEmptyMapIterator<K, V> implements
-        MapIterator<K, V> {
+public class EmptyMapIterator<K, V> extends AbstractEmptyMapIterator<K, V> implements MapIterator<K, V> {
 
     /**
      * Singleton instance of the iterator.
@@ -35,14 +34,8 @@ public class EmptyMapIterator<K, V> extends AbstractEmptyMapIterator<K, V> imple
     @SuppressWarnings("rawtypes")
     public static final MapIterator INSTANCE = new EmptyMapIterator<>();
 
-    /**
-     * Gets a typed instance of the iterator.
-     * @param <K> the key type
-     * @param <V> the value type
-     * @return {@link MapIterator}&lt;K, V&gt;
-     */
     public static <K, V> MapIterator<K, V> emptyMapIterator() {
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -50,5 +43,4 @@ public class EmptyMapIterator<K, V> extends AbstractEmptyMapIterator<K, V> imple
      */
     protected EmptyMapIterator() {
     }
-
 }

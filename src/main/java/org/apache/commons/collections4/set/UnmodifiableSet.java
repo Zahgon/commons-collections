@@ -20,7 +20,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.function.Predicate;
-
 import org.apache.commons.collections4.Unmodifiable;
 import org.apache.commons.collections4.iterators.UnmodifiableIterator;
 
@@ -36,29 +35,15 @@ import org.apache.commons.collections4.iterators.UnmodifiableIterator;
  * @param <E> the type of the elements in this set
  * @since 3.0
  */
-public final class UnmodifiableSet<E>
-        extends AbstractSerializableSetDecorator<E>
-        implements Unmodifiable {
-
-    /** Serialization version */
-    private static final long serialVersionUID = 6499119872185240161L;
+public final class UnmodifiableSet<E> extends AbstractSerializableSetDecorator<E> implements Unmodifiable {
 
     /**
-     * Factory method to create an unmodifiable set.
-     *
-     * @param <E> the element type
-     * @param set  the set to decorate, must not be null
-     * @return a new unmodifiable set
-     * @throws NullPointerException if set is null
-     * @since 4.0
+     * Serialization version
      */
+    private static final long serialVersionUID = 6499119872185240161L;
+
     public static <E> Set<E> unmodifiableSet(final Set<? extends E> set) {
-        if (set instanceof Unmodifiable) {
-            @SuppressWarnings("unchecked") // safe to upcast
-            final Set<E> tmpSet = (Set<E>) set;
-            return tmpSet;
-        }
-        return new UnmodifiableSet<>(set);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -67,52 +52,49 @@ public final class UnmodifiableSet<E>
      * @param set  the set to decorate, must not be null
      * @throws NullPointerException if set is null
      */
-    @SuppressWarnings("unchecked") // safe to upcast
+    // safe to upcast
+    @SuppressWarnings("unchecked")
     private UnmodifiableSet(final Set<? extends E> set) {
         super((Set<E>) set);
     }
 
     @Override
     public boolean add(final E object) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final Collection<? extends E> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<E> iterator() {
-        return UnmodifiableIterator.unmodifiableIterator(decorated().iterator());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean remove(final Object object) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean removeAll(final Collection<?> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * @since 4.4
-     */
     @Override
     public boolean removeIf(final Predicate<? super E> filter) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean retainAll(final Collection<?> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -23,7 +23,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
-
 import org.apache.commons.collections4.BoundedMap;
 import org.apache.commons.collections4.collection.UnmodifiableCollection;
 import org.apache.commons.collections4.set.UnmodifiableSet;
@@ -57,25 +56,15 @@ import org.apache.commons.collections4.set.UnmodifiableSet;
  * @param <V> the type of the values in this map
  * @since 3.0
  */
-public class FixedSizeMap<K, V>
-        extends AbstractMapDecorator<K, V>
-        implements BoundedMap<K, V>, Serializable {
-
-    /** Serialization version */
-    private static final long serialVersionUID = 7450927208116179316L;
+public class FixedSizeMap<K, V> extends AbstractMapDecorator<K, V> implements BoundedMap<K, V>, Serializable {
 
     /**
-     * Factory method to create a fixed size map.
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @return a new fixed size map
-     * @throws NullPointerException if map is null
-     * @since 4.0
+     * Serialization version
      */
+    private static final long serialVersionUID = 7450927208116179316L;
+
     public static <K, V> FixedSizeMap<K, V> fixedSizeMap(final Map<K, V> map) {
-        return new FixedSizeMap<>(map);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -90,48 +79,37 @@ public class FixedSizeMap<K, V>
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Map is fixed size");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<Map.Entry<K, V>> entrySet() {
-        final Set<Map.Entry<K, V>> set = map.entrySet();
-        // unmodifiable set will still allow modification via Map.Entry objects
-        return UnmodifiableSet.unmodifiableSet(set);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean isFull() {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<K> keySet() {
-        final Set<K> set = map.keySet();
-        return UnmodifiableSet.unmodifiableSet(set);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int maxSize() {
-        return size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public V put(final K key, final V value) {
-        if (!map.containsKey(key)) {
-            throw new IllegalArgumentException("Cannot put new key/value pair - Map is fixed size");
-        }
-        return map.put(key, value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void putAll(final Map<? extends K, ? extends V> mapToCopy) {
-        for (final K key : mapToCopy.keySet()) {
-            if (!containsKey(key)) {
-                throw new IllegalArgumentException("Cannot put new key/value pair - Map is fixed size");
-            }
-        }
-        map.putAll(mapToCopy);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -142,21 +120,22 @@ public class FixedSizeMap<K, V>
      * @throws ClassNotFoundException if an object read from the stream cannot be loaded
      * @since 3.1
      */
-    @SuppressWarnings("unchecked") // (1) should only fail if input stream is incorrect
+    // (1) should only fail if input stream is incorrect
+    @SuppressWarnings("unchecked")
     private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
-        map = (Map<K, V>) in.readObject(); // (1)
+        // (1)
+        map = (Map<K, V>) in.readObject();
     }
 
     @Override
     public V remove(final Object key) {
-        throw new UnsupportedOperationException("Map is fixed size");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Collection<V> values() {
-        final Collection<V> coll = map.values();
-        return UnmodifiableCollection.unmodifiableCollection(coll);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -170,5 +149,4 @@ public class FixedSizeMap<K, V>
         out.defaultWriteObject();
         out.writeObject(map);
     }
-
 }

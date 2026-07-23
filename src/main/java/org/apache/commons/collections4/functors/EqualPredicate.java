@@ -18,7 +18,6 @@ package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Equator;
 import org.apache.commons.collections4.Predicate;
 
@@ -31,43 +30,27 @@ import org.apache.commons.collections4.Predicate;
  */
 public final class EqualPredicate<T> extends AbstractPredicate<T> implements Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 5633766978029907089L;
 
-    /**
-     * Creates the predicate.
-     *
-     * @param <T> the type that the predicate queries
-     * @param object  the object to compare to
-     * @return the predicate
-     */
     public static <T> Predicate<T> equalPredicate(final T object) {
-        if (object == null) {
-            return NullPredicate.nullPredicate();
-        }
-        return new EqualPredicate<>(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public static <T> Predicate<T> equalPredicate(final T object, final Equator<T> equator) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
-     * Creates the identity predicate.
-     *
-     * @param <T> the type that the predicate queries
-     * @param object  the object to compare to
-     * @param equator  the equator to use for comparison
-     * @return the predicate
-     * @since 4.0
+     * The value to compare to
      */
-    public static <T> Predicate<T> equalPredicate(final T object, final Equator<T> equator) {
-        if (object == null) {
-            return NullPredicate.nullPredicate();
-        }
-        return new EqualPredicate<>(object, equator);
-    }
-
-    /** The value to compare to */
     private final T test;
 
-    /** The equator to use for comparison */
+    /**
+     * The equator to use for comparison
+     */
     private final Equator<T> equator;
 
     /**
@@ -95,28 +78,12 @@ public final class EqualPredicate<T> extends AbstractPredicate<T> implements Ser
         this.equator = equator;
     }
 
-    /**
-     * Gets the value.
-     *
-     * @return the value
-     * @since 3.1
-     */
     public Object getValue() {
-        return test;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Evaluates the predicate returning true if the input equals the stored value.
-     *
-     * @param object  the input object
-     * @return true if input object equals stored value
-     */
     @Override
     public boolean test(final T object) {
-        if (equator != null) {
-            return equator.equate(test, object);
-        }
-        return Objects.equals(test, object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

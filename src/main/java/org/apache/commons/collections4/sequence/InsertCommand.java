@@ -42,16 +42,8 @@ public class InsertCommand<T> extends EditCommand<T> {
         super(object);
     }
 
-    /**
-     * Accept a visitor. When an {@code InsertCommand} accepts a visitor,
-     * it calls its {@link CommandVisitor#visitInsertCommand visitInsertCommand}
-     * method.
-     *
-     * @param visitor  the visitor to be accepted
-     */
     @Override
     public void accept(final CommandVisitor<T> visitor) {
-        visitor.visitInsertCommand(getObject());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

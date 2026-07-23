@@ -23,7 +23,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-
 import org.apache.commons.collections4.MultiValuedMap;
 
 /**
@@ -41,10 +40,11 @@ import org.apache.commons.collections4.MultiValuedMap;
  * @param <V> the type of the values in this map
  * @since 4.1
  */
-public class HashSetValuedHashMap<K, V> extends AbstractSetValuedMap<K, V>
-    implements Serializable {
+public class HashSetValuedHashMap<K, V> extends AbstractSetValuedMap<K, V> implements Serializable {
 
-    /** Serialization Version */
+    /**
+     * Serialization Version
+     */
     private static final long serialVersionUID = 20151118L;
 
     /**
@@ -114,7 +114,7 @@ public class HashSetValuedHashMap<K, V> extends AbstractSetValuedMap<K, V>
 
     @Override
     protected HashSet<V> createCollection() {
-        return new HashSet<>(initialSetCapacity);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -140,5 +140,4 @@ public class HashSetValuedHashMap<K, V> extends AbstractSetValuedMap<K, V>
         out.defaultWriteObject();
         doWriteObject(out);
     }
-
 }

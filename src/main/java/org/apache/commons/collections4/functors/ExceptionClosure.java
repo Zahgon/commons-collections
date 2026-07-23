@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
-
 import org.apache.commons.collections4.Closure;
 import org.apache.commons.collections4.FunctorException;
 
@@ -29,22 +28,20 @@ import org.apache.commons.collections4.FunctorException;
  */
 public final class ExceptionClosure<T> implements Closure<T>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 7179106032121985545L;
 
-    /** Singleton predicate instance */
-    @SuppressWarnings("rawtypes") // the static instance works for all types
+    /**
+     * Singleton predicate instance
+     */
+    // the static instance works for all types
+    @SuppressWarnings("rawtypes")
     public static final Closure INSTANCE = new ExceptionClosure<>();
 
-    /**
-     * Factory returning the singleton instance.
-     *
-     * @param <T> the type of the input to the operation.
-     * @return the singleton instance
-     * @since 3.1
-     */
     public static <T> Closure<T> exceptionClosure() {
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -53,15 +50,9 @@ public final class ExceptionClosure<T> implements Closure<T>, Serializable {
     private ExceptionClosure() {
     }
 
-    /**
-     * Always throw an exception.
-     *
-     * @param input  the input object
-     * @throws FunctorException always
-     */
     @Override
     public void execute(final T input) {
-        throw new FunctorException("ExceptionClosure invoked");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -72,5 +63,4 @@ public final class ExceptionClosure<T> implements Closure<T>, Serializable {
     private Object readResolve() {
         return INSTANCE;
     }
-
 }

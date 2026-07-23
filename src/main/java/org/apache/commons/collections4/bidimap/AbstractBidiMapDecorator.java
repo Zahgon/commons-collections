@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.bidimap;
 
 import java.util.Set;
-
 import org.apache.commons.collections4.BidiMap;
 import org.apache.commons.collections4.MapIterator;
 import org.apache.commons.collections4.map.AbstractMapDecorator;
@@ -40,8 +39,7 @@ import org.apache.commons.collections4.map.AbstractMapDecorator;
  * @param <V> the type of the values in this map
  * @since 3.0
  */
-public abstract class AbstractBidiMapDecorator<K, V>
-        extends AbstractMapDecorator<K, V> implements BidiMap<K, V> {
+public abstract class AbstractBidiMapDecorator<K, V> extends AbstractMapDecorator<K, V> implements BidiMap<K, V> {
 
     /**
      * Constructor that wraps (not copies).
@@ -53,39 +51,33 @@ public abstract class AbstractBidiMapDecorator<K, V>
         super(map);
     }
 
-    /**
-     * Gets the map being decorated.
-     *
-     * @return the decorated map
-     */
     @Override
     protected BidiMap<K, V> decorated() {
-        return (BidiMap<K, V>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K getKey(final Object value) {
-        return decorated().getKey(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public BidiMap<V, K> inverseBidiMap() {
-        return decorated().inverseBidiMap();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public MapIterator<K, V> mapIterator() {
-        return decorated().mapIterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K removeValue(final Object value) {
-        return decorated().removeValue(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<V> values() {
-        return decorated().values();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

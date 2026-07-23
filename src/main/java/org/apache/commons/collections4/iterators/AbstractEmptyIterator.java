@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.iterators;
 
 import java.util.NoSuchElementException;
-
 import org.apache.commons.collections4.ResettableIterator;
 
 /**
@@ -45,87 +44,43 @@ abstract class AbstractEmptyIterator<E> implements ResettableIterator<E> {
         throw new UnsupportedOperationException("add() not supported for empty Iterator");
     }
 
-    /**
-     * Always returns false, this iterator contains no elements.
-     *
-     * @return Always false.
-     */
     @Override
     public boolean hasNext() {
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Always returns false, this iterator contains no elements.
-     *
-     * @return Always false.
-     */
     public boolean hasPrevious() {
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Always throws IllegalStateException, this iterator contains no elements.
-     *
-     * @return Always throws IllegalStateException.
-     * @throws IllegalStateException Always thrown.
-     */
     @Override
     public E next() {
-        throw new NoSuchElementException("Iterator contains no elements");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Always returns 0, this iterator contains no elements.
-     *
-     * @return Always returns 0.
-     */
     public int nextIndex() {
-        return 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Always throws IllegalStateException, this iterator contains no elements.
-     *
-     * @return Always throws IllegalStateException.
-     * @throws IllegalStateException Always thrown.
-     */
     public E previous() {
-        throw new NoSuchElementException("Iterator contains no elements");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Always returns -1, this iterator contains no elements.
-     *
-     * @return Always returns -1.
-     */
     public int previousIndex() {
-        return -1;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Always throws IllegalStateException, this iterator contains no elements.
-     *
-     * @throws IllegalStateException Always thrown.
-     */
     @Override
     public void remove() {
-        throw new IllegalStateException("Iterator contains no elements");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void reset() {
-        // do nothing
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Always throws IllegalStateException, this iterator contains no elements.
-     *
-     * @param ignored ignored.
-     * @throws IllegalStateException Always thrown.
-     */
     public void set(final E ignored) {
-        throw new IllegalStateException("Iterator contains no elements");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

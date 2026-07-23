@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.keyvalue;
 
 import java.util.Map;
-
 import org.apache.commons.collections4.KeyValue;
 import org.apache.commons.collections4.Unmodifiable;
 
@@ -61,16 +60,8 @@ public final class UnmodifiableMapEntry<K, V> extends AbstractMapEntry<K, V> imp
         super(entry.getKey(), entry.getValue());
     }
 
-    /**
-     * Throws UnsupportedOperationException.
-     *
-     * @param value  the new value
-     * @return the previous value
-     * @throws UnsupportedOperationException always
-     */
     @Override
     public V setValue(final V value) {
-        throw new UnsupportedOperationException("setValue() is not supported");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

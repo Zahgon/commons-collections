@@ -23,7 +23,6 @@ import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
-
 import org.apache.commons.collections4.MultiValuedMap;
 
 /**
@@ -41,10 +40,11 @@ import org.apache.commons.collections4.MultiValuedMap;
  * @param <V> the type of the values in this map
  * @since 4.5.0-M3
  */
-public class LinkedHashSetValuedLinkedHashMap<K, V> extends AbstractSetValuedMap<K, V>
-    implements Serializable {
+public class LinkedHashSetValuedLinkedHashMap<K, V> extends AbstractSetValuedMap<K, V> implements Serializable {
 
-    /** Serialization Version */
+    /**
+     * Serialization Version
+     */
     private static final long serialVersionUID = 20241020L;
 
     /**
@@ -114,7 +114,7 @@ public class LinkedHashSetValuedLinkedHashMap<K, V> extends AbstractSetValuedMap
 
     @Override
     protected LinkedHashSet<V> createCollection() {
-        return new LinkedHashSet<>(initialSetCapacity);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -140,5 +140,4 @@ public class LinkedHashSetValuedLinkedHashMap<K, V> extends AbstractSetValuedMap
         out.defaultWriteObject();
         doWriteObject(out);
     }
-
 }

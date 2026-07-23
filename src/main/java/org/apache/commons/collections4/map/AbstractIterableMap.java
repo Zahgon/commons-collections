@@ -35,11 +35,8 @@ public abstract class AbstractIterableMap<K, V> implements IterableMap<K, V> {
         // empty
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public MapIterator<K, V> mapIterator() {
-        return new EntrySetToMapIteratorAdapter<>(entrySet());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

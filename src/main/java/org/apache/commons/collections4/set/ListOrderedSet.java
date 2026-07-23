@@ -24,7 +24,6 @@ import java.util.ListIterator;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.OrderedIterator;
 import org.apache.commons.collections4.functors.UniquePredicate;
@@ -57,20 +56,21 @@ import org.apache.commons.collections4.list.UnmodifiableList;
  * @param <E> the type of the elements in this set
  * @since 3.0
  */
-public class ListOrderedSet<E>
-    extends AbstractSerializableSetDecorator<E> {
+public class ListOrderedSet<E> extends AbstractSerializableSetDecorator<E> {
 
     /**
      * Internal iterator handle remove.
      */
-    static class OrderedSetIterator<E>
-        extends AbstractIteratorDecorator<E>
-        implements OrderedIterator<E> {
+    static class OrderedSetIterator<E> extends AbstractIteratorDecorator<E> implements OrderedIterator<E> {
 
-        /** Object we iterate on */
+        /**
+         * Object we iterate on
+         */
         private final Collection<E> set;
 
-        /** Last object retrieved */
+        /**
+         * Last object retrieved
+         */
         private E last;
 
         private OrderedSetIterator(final ListIterator<E> iterator, final Collection<E> set) {
@@ -80,96 +80,45 @@ public class ListOrderedSet<E>
 
         @Override
         public boolean hasPrevious() {
-            return ((ListIterator<E>) getIterator()).hasPrevious();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public E next() {
-            last = getIterator().next();
-            return last;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public E previous() {
-            last = ((ListIterator<E>) getIterator()).previous();
-            return last;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void remove() {
-            set.remove(last);
-            getIterator().remove();
-            last = null;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -228664372470420141L;
 
-    /**
-     * Factory method to create an ordered set using the supplied list to retain order.
-     * <p>
-     * A {@code HashSet} is used for the set behavior.
-     * </p>
-     * <p>
-     * NOTE: If the list contains duplicates, the duplicates are removed,
-     * altering the specified list.
-     * </p>
-     *
-     * @param <E> the element type
-     * @param list the list to decorate, must not be null
-     * @return a new ordered set
-     * @throws NullPointerException if list is null
-     * @since 4.0
-     */
     public static <E> ListOrderedSet<E> listOrderedSet(final List<E> list) {
-        Objects.requireNonNull(list, "list");
-        CollectionUtils.filter(list, UniquePredicate.uniquePredicate());
-        final Set<E> set = new HashSet<>(list);
-
-        return new ListOrderedSet<>(set, list);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Factory method to create an ordered set.
-     * <p>
-     * An {@code ArrayList} is used to retain order.
-     * </p>
-     *
-     * @param <E> the element type
-     * @param set the set to decorate, must not be null
-     * @return a new ordered set
-     * @throws NullPointerException if set is null
-     * @since 4.0
-     */
     public static <E> ListOrderedSet<E> listOrderedSet(final Set<E> set) {
-        return new ListOrderedSet<>(set);
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public static <E> ListOrderedSet<E> listOrderedSet(final Set<E> set, final List<E> list) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
-     * Factory method to create an ordered set specifying the list and set to use.
-     * <p>
-     * The list and set must both be empty.
-     * </p>
-     *
-     * @param <E> the element type
-     * @param set the set to decorate, must be empty and not null
-     * @param list the list to decorate, must be empty and not null
-     * @return a new ordered set
-     * @throws NullPointerException if set or list is null
-     * @throws IllegalArgumentException if either the set or list is not empty
-     * @since 4.0
+     * Internal list to hold the sequence of objects
      */
-    public static <E> ListOrderedSet<E> listOrderedSet(final Set<E> set, final List<E> list) {
-        Objects.requireNonNull(set, "set");
-        Objects.requireNonNull(list, "list");
-        if (!set.isEmpty() || !list.isEmpty()) {
-            throw new IllegalArgumentException("Set and List must be empty");
-        }
-        return new ListOrderedSet<>(set, list);
-    }
-
-    /** Internal list to hold the sequence of objects */
     private final List<E> setOrder;
 
     /**
@@ -212,192 +161,76 @@ public class ListOrderedSet<E>
 
     @Override
     public boolean add(final E object) {
-        if (decorated().add(object)) {
-            setOrder.add(object);
-            return true;
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Inserts the specified element at the specified position if it is not yet
-     * contained in this ordered set (optional operation). Shifts the element
-     * currently at this position and any subsequent elements to the right.
-     *
-     * @param index the index at which the element is to be inserted
-     * @param object the element to be inserted
-     * @see List#add(int, Object)
-     */
     public void add(final int index, final E object) {
-        if (!contains(object)) {
-            decorated().add(object);
-            setOrder.add(index, object);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final Collection<? extends E> coll) {
-        boolean result = false;
-        for (final E e : coll) {
-            result |= add(e);
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Inserts all elements in the specified collection not yet contained in the
-     * ordered set at the specified position (optional operation). Shifts the
-     * element currently at the position and all subsequent elements to the
-     * right.
-     *
-     * @param index the position to insert the elements
-     * @param coll the collection containing the elements to be inserted
-     * @return {@code true} if this ordered set changed as a result of the call
-     * @see List#addAll(int, Collection)
-     */
     public boolean addAll(final int index, final Collection<? extends E> coll) {
-        boolean changed = false;
-        // collect all elements to be added for performance reasons
-        final List<E> toAdd = new ArrayList<>();
-        for (final E e : coll) {
-            if (contains(e)) {
-                continue;
-            }
-            decorated().add(e);
-            toAdd.add(e);
-            changed = true;
-        }
-
-        if (changed) {
-            setOrder.addAll(index, toAdd);
-        }
-
-        return changed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets an unmodifiable view of the order of the Set.
-     *
-     * @return an unmodifiable list view
-     */
     public List<E> asList() {
-        return UnmodifiableList.unmodifiableList(setOrder);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        decorated().clear();
-        setOrder.clear();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the element at the specified position in this ordered set.
-     *
-     * @param index the position of the element in the ordered {@link Set}.
-     * @return the element at position {@code index}
-     * @see List#get(int)
-     */
     public E get(final int index) {
-        return setOrder.get(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the index of the first occurrence of the specified element in
-     * ordered set.
-     *
-     * @param object the element to search for
-     * @return the index of the first occurrence of the object, or {@code -1} if
-     *         this ordered set does not contain this object
-     * @see List#indexOf(Object)
-     */
     public int indexOf(final Object object) {
-        return setOrder.indexOf(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public OrderedIterator<E> iterator() {
-        return new OrderedSetIterator<>(setOrder.listIterator(), decorated());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes the element at the specified position from the ordered set.
-     * Shifts any subsequent elements to the left.
-     *
-     * @param index the index of the element to be removed
-     * @return the element that has been remove from the ordered set
-     * @see List#remove(int)
-     */
     public E remove(final int index) {
-        final E obj = setOrder.remove(index);
-        remove(obj);
-        return obj;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean remove(final Object object) {
-        final boolean result = decorated().remove(object);
-        if (result) {
-            setOrder.remove(object);
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean removeAll(final Collection<?> coll) {
-        boolean result = false;
-        for (final Object name : coll) {
-            result |= remove(name);
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * @since 4.4
-     */
     @Override
     public boolean removeIf(final Predicate<? super E> filter) {
-        if (Objects.isNull(filter)) {
-            return false;
-        }
-        final boolean result = decorated().removeIf(filter);
-        if (result) {
-            setOrder.removeIf(filter);
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     * <p>
-     * This implementation iterates over the elements of this set, checking
-     * each element in turn to see if it's contained in {@code coll}.
-     * If it's not contained, it's removed from this set. As a consequence,
-     * it is advised to use a collection type for {@code coll} that provides
-     * a fast (for example O(1)) implementation of {@link Collection#contains(Object)}.
-     * </p>
-     */
     @Override
     public boolean retainAll(final Collection<?> coll) {
-        final boolean result = decorated().retainAll(coll);
-        if (!result) {
-            return false;
-        }
-        if (decorated().isEmpty()) {
-            setOrder.clear();
-        } else {
-            setOrder.removeIf(e -> !decorated().contains(e));
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Object[] toArray() {
-        return setOrder.toArray();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public <T> T[] toArray(final T[] a) {
-        return setOrder.toArray(a);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -410,7 +243,6 @@ public class ListOrderedSet<E>
     // Fortunately List.toString and Set.toString look the same
     @Override
     public String toString() {
-        return setOrder.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

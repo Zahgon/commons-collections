@@ -23,7 +23,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
-
 import org.apache.commons.collections4.OrderedMap;
 import org.apache.commons.collections4.OrderedMapIterator;
 import org.apache.commons.collections4.Unmodifiable;
@@ -44,29 +43,15 @@ import org.apache.commons.collections4.set.UnmodifiableSet;
  * @param <V> the type of the values in this map
  * @since 3.0
  */
-public final class UnmodifiableOrderedMap<K, V> extends AbstractOrderedMapDecorator<K, V> implements
-        Unmodifiable, Serializable {
-
-    /** Serialization version */
-    private static final long serialVersionUID = 8136428161720526266L;
+public final class UnmodifiableOrderedMap<K, V> extends AbstractOrderedMapDecorator<K, V> implements Unmodifiable, Serializable {
 
     /**
-     * Factory method to create an unmodifiable sorted map.
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @return a new ordered map
-     * @throws NullPointerException if map is null
-     * @since 4.0
+     * Serialization version
      */
+    private static final long serialVersionUID = 8136428161720526266L;
+
     public static <K, V> OrderedMap<K, V> unmodifiableOrderedMap(final OrderedMap<? extends K, ? extends V> map) {
-        if (map instanceof Unmodifiable) {
-            @SuppressWarnings("unchecked") // safe to upcast
-            final OrderedMap<K, V> tmpMap = (OrderedMap<K, V>) map;
-            return tmpMap;
-        }
-        return new UnmodifiableOrderedMap<>(map);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -75,42 +60,40 @@ public final class UnmodifiableOrderedMap<K, V> extends AbstractOrderedMapDecora
      * @param map  the map to decorate, must not be null
      * @throws NullPointerException if map is null
      */
-    @SuppressWarnings("unchecked") // safe to upcast
+    // safe to upcast
+    @SuppressWarnings("unchecked")
     private UnmodifiableOrderedMap(final OrderedMap<? extends K, ? extends V> map) {
         super((OrderedMap<K, V>) map);
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<Map.Entry<K, V>> entrySet() {
-        final Set<Map.Entry<K, V>> set = super.entrySet();
-        return UnmodifiableEntrySet.unmodifiableEntrySet(set);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<K> keySet() {
-        final Set<K> set = super.keySet();
-        return UnmodifiableSet.unmodifiableSet(set);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public OrderedMapIterator<K, V> mapIterator() {
-        final OrderedMapIterator<K, V> it = decorated().mapIterator();
-        return UnmodifiableOrderedMapIterator.unmodifiableOrderedMapIterator(it);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public V put(final K key, final V value) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void putAll(final Map<? extends K, ? extends V> mapToCopy) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -121,21 +104,22 @@ public final class UnmodifiableOrderedMap<K, V> extends AbstractOrderedMapDecora
      * @throws ClassNotFoundException if an object read from the stream cannot be loaded
      * @since 3.1
      */
-    @SuppressWarnings("unchecked") // (1) should only fail if input stream is incorrect
+    // (1) should only fail if input stream is incorrect
+    @SuppressWarnings("unchecked")
     private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
-        map = (Map<K, V>) in.readObject(); // (1)
+        // (1)
+        map = (Map<K, V>) in.readObject();
     }
 
     @Override
     public V remove(final Object key) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Collection<V> values() {
-        final Collection<V> coll = super.values();
-        return UnmodifiableCollection.unmodifiableCollection(coll);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -149,5 +133,4 @@ public final class UnmodifiableOrderedMap<K, V> extends AbstractOrderedMapDecora
         out.defaultWriteObject();
         out.writeObject(map);
     }
-
 }

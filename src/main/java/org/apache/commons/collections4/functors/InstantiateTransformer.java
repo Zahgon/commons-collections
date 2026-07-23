@@ -18,7 +18,6 @@ package org.apache.commons.collections4.functors;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-
 import org.apache.commons.collections4.FunctorException;
 import org.apache.commons.collections4.Transformer;
 
@@ -36,46 +35,28 @@ import org.apache.commons.collections4.Transformer;
  */
 public class InstantiateTransformer<T> implements Transformer<Class<? extends T>, T> {
 
-    /** Singleton instance that uses the no arg constructor */
+    /**
+     * Singleton instance that uses the no arg constructor
+     */
     @SuppressWarnings("rawtypes")
     private static final Transformer NO_ARG_INSTANCE = new InstantiateTransformer<>();
 
-    /**
-     * Gets a typed no-arg instance.
-     *
-     * @param <T>  the type of the objects to be created
-     * @return Transformer&lt;Class&lt;? extends T&gt;, T&gt;
-     */
     public static <T> Transformer<Class<? extends T>, T> instantiateTransformer() {
-        return NO_ARG_INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
+
+    public static <T> Transformer<Class<? extends T>, T> instantiateTransformer(final Class<?>[] paramTypes, final Object[] args) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
     /**
-     * Transformer method that performs validation.
-     *
-     * @param <T>  the type of the objects to be created
-     * @param paramTypes  the constructor parameter types
-     * @param args  the constructor arguments
-     * @return an instantiate transformer
-     * @throws IllegalArgumentException if paramTypes does not match args
+     * The constructor parameter types
      */
-    public static <T> Transformer<Class<? extends T>, T> instantiateTransformer(final Class<?>[] paramTypes,
-                                                                                final Object[] args) {
-        if (paramTypes == null && args != null
-            || paramTypes != null && args == null
-            || paramTypes != null && args != null && paramTypes.length != args.length) {
-            throw new IllegalArgumentException("Parameter types must match the arguments");
-        }
-
-        if (paramTypes == null || paramTypes.length == 0) {
-            return new InstantiateTransformer<>();
-        }
-        return new InstantiateTransformer<>(paramTypes, args);
-    }
-
-    /** The constructor parameter types */
     private final Class<?>[] iParamTypes;
 
-    /** The constructor arguments */
+    /**
+     * The constructor arguments
+     */
     private final Object[] iArgs;
 
     /**
@@ -100,30 +81,8 @@ public class InstantiateTransformer<T> implements Transformer<Class<? extends T>
         iArgs = args != null ? args.clone() : null;
     }
 
-    /**
-     * Transforms the input Class object to a result by instantiation.
-     *
-     * @param input  the input object to transform
-     * @return the transformed result
-     */
     @Override
     public T transform(final Class<? extends T> input) {
-        try {
-            if (input == null) {
-                throw new FunctorException(
-                    "InstantiateTransformer: Input object was not an instanceof Class, it was a null object");
-            }
-            final Constructor<? extends T> con = input.getConstructor(iParamTypes);
-            return con.newInstance(iArgs);
-        } catch (final NoSuchMethodException ex) {
-            throw new FunctorException("InstantiateTransformer: The constructor must exist and be public ");
-        } catch (final InstantiationException ex) {
-            throw new FunctorException("InstantiateTransformer: InstantiationException", ex);
-        } catch (final IllegalAccessException ex) {
-            throw new FunctorException("InstantiateTransformer: Constructor must be public", ex);
-        } catch (final InvocationTargetException ex) {
-            throw new FunctorException("InstantiateTransformer: Constructor threw an exception", ex);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

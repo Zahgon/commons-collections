@@ -20,7 +20,6 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-
 import org.apache.commons.collections4.IterableGet;
 import org.apache.commons.collections4.MapIterator;
 import org.apache.commons.collections4.map.EntrySetToMapIteratorAdapter;
@@ -35,7 +34,9 @@ import org.apache.commons.collections4.map.EntrySetToMapIteratorAdapter;
  */
 public class AbstractIterableGetMapDecorator<K, V> implements IterableGet<K, V> {
 
-    /** The map to decorate */
+    /**
+     * The map to decorate
+     */
     transient Map<K, V> map;
 
     /**
@@ -55,83 +56,70 @@ public class AbstractIterableGetMapDecorator<K, V> implements IterableGet<K, V> 
 
     @Override
     public boolean containsKey(final Object key) {
-        return decorated().containsKey(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean containsValue(final Object value) {
-        return decorated().containsValue(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the map being decorated.
-     *
-     * @return the decorated map
-     */
     protected Map<K, V> decorated() {
-        return map;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<Map.Entry<K, V>> entrySet() {
-        return decorated().entrySet();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object object) {
-        if (object == this) {
-            return true;
-        }
-        return decorated().equals(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public V get(final Object key) {
-        return decorated().get(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return decorated().hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean isEmpty() {
-        return decorated().isEmpty();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<K> keySet() {
-        return decorated().keySet();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a MapIterator over this Get.
-     * @return MapIterator&lt;K, V&gt;
-     */
     @Override
     public MapIterator<K, V> mapIterator() {
-        return new EntrySetToMapIteratorAdapter<>(entrySet());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public V remove(final Object key) {
-        return decorated().remove(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int size() {
-        return decorated().size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return decorated().toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Collection<V> values() {
-        return decorated().values();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.iterators;
 
 import java.util.NoSuchElementException;
-
 import org.apache.commons.collections4.ResettableIterator;
 
 /**
@@ -36,13 +35,24 @@ import org.apache.commons.collections4.ResettableIterator;
  */
 public class ObjectArrayIterator<E> implements ResettableIterator<E> {
 
-    /** The array */
+    /**
+     * The array
+     */
     final E[] array;
-    /** The start index to loop from */
+
+    /**
+     * The start index to loop from
+     */
     final int startIndex;
-    /** The end index to loop to */
+
+    /**
+     * The end index to loop to
+     */
     final int endIndex;
-    /** The current iterator index */
+
+    /**
+     * The current iterator index
+     */
     int index;
 
     /**
@@ -99,74 +109,35 @@ public class ObjectArrayIterator<E> implements ResettableIterator<E> {
         index = start;
     }
 
-    /**
-     * Gets the array that this iterator is iterating over.
-     *
-     * @return the array this iterator iterates over
-     */
     public E[] getArray() {
-        return array;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the end index to loop to.
-     *
-     * @return the end index
-     */
     public int getEndIndex() {
-        return endIndex;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the start index to loop from.
-     *
-     * @return the start index
-     */
     public int getStartIndex() {
-        return startIndex;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns true if there are more elements to return from the array.
-     *
-     * @return true if there is a next element to return
-     */
     @Override
     public boolean hasNext() {
-        return index < endIndex;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the next element in the array.
-     *
-     * @return the next element in the array
-     * @throws NoSuchElementException if all the elements in the array
-     *    have already been returned
-     */
     @Override
     public E next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
-        return array[index++];
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Throws {@link UnsupportedOperationException}.
-     *
-     * @throws UnsupportedOperationException always
-     */
     @Override
     public void remove() {
-        throw new UnsupportedOperationException("remove() method is not supported for an ObjectArrayIterator");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Resets the iterator back to the start index.
-     */
     @Override
     public void reset() {
-        index = startIndex;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

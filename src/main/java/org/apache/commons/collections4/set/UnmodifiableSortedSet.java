@@ -23,7 +23,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.function.Predicate;
-
 import org.apache.commons.collections4.Unmodifiable;
 import org.apache.commons.collections4.iterators.UnmodifiableIterator;
 
@@ -39,27 +38,15 @@ import org.apache.commons.collections4.iterators.UnmodifiableIterator;
  * @param <E> the type of the elements in this set
  * @since 3.0
  */
-public final class UnmodifiableSortedSet<E>
-        extends AbstractSortedSetDecorator<E>
-        implements Unmodifiable {
-
-    /** Serialization version */
-    private static final long serialVersionUID = -725356885467962424L;
+public final class UnmodifiableSortedSet<E> extends AbstractSortedSetDecorator<E> implements Unmodifiable {
 
     /**
-     * Factory method to create an unmodifiable set.
-     *
-     * @param <E> the element type
-     * @param set  the set to decorate, must not be null
-     * @return a new unmodifiable {@link SortedSet}
-     * @throws NullPointerException if set is null
-     * @since 4.0
+     * Serialization version
      */
+    private static final long serialVersionUID = -725356885467962424L;
+
     public static <E> SortedSet<E> unmodifiableSortedSet(final SortedSet<E> set) {
-        if (set instanceof Unmodifiable) {
-            return set;
-        }
-        return new UnmodifiableSortedSet<>(set);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -74,28 +61,27 @@ public final class UnmodifiableSortedSet<E>
 
     @Override
     public boolean add(final E object) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final Collection<? extends E> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedSet<E> headSet(final E toElement) {
-        final SortedSet<E> head = decorated().headSet(toElement);
-        return unmodifiableSortedSet(head);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<E> iterator() {
-        return UnmodifiableIterator.unmodifiableIterator(decorated().iterator());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -105,45 +91,42 @@ public final class UnmodifiableSortedSet<E>
      * @throws IOException if an error occurs while reading from the stream
      * @throws ClassNotFoundException if an object read from the stream cannot be loaded
      */
-    @SuppressWarnings("unchecked") // (1) should only fail if input stream is incorrect
+    // (1) should only fail if input stream is incorrect
+    @SuppressWarnings("unchecked")
     private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
-        setCollection((Collection<E>) in.readObject()); // (1)
+        // (1)
+        setCollection((Collection<E>) in.readObject());
     }
 
     @Override
     public boolean remove(final Object object) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean removeAll(final Collection<?> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * @since 4.4
-     */
     @Override
     public boolean removeIf(final Predicate<? super E> filter) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean retainAll(final Collection<?> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedSet<E> subSet(final E fromElement, final E toElement) {
-        final SortedSet<E> sub = decorated().subSet(fromElement, toElement);
-        return unmodifiableSortedSet(sub);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedSet<E> tailSet(final E fromElement) {
-        final SortedSet<E> tail = decorated().tailSet(fromElement);
-        return unmodifiableSortedSet(tail);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -156,5 +139,4 @@ public final class UnmodifiableSortedSet<E>
         out.defaultWriteObject();
         out.writeObject(decorated());
     }
-
 }

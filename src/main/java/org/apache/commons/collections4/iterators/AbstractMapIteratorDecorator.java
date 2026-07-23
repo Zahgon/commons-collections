@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.iterators;
 
 import java.util.Objects;
-
 import org.apache.commons.collections4.MapIterator;
 
 /**
@@ -32,7 +31,9 @@ import org.apache.commons.collections4.MapIterator;
  */
 public class AbstractMapIteratorDecorator<K, V> implements MapIterator<K, V> {
 
-    /** The iterator being decorated */
+    /**
+     * The iterator being decorated
+     */
     private final MapIterator<K, V> iterator;
 
     /**
@@ -45,49 +46,37 @@ public class AbstractMapIteratorDecorator<K, V> implements MapIterator<K, V> {
         this.iterator = Objects.requireNonNull(iterator, "iterator");
     }
 
-    /** {@inheritDoc} */
     @Override
     public K getKey() {
-        return iterator.getKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the iterator being decorated.
-     *
-     * @return the decorated iterator
-     */
     protected MapIterator<K, V> getMapIterator() {
-        return iterator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc} */
     @Override
     public V getValue() {
-        return iterator.getValue();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasNext() {
-        return iterator.hasNext();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc} */
     @Override
     public K next() {
-        return iterator.next();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc} */
     @Override
     public void remove() {
-        iterator.remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc} */
     @Override
     public V setValue(final V value) {
-        return iterator.setValue(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

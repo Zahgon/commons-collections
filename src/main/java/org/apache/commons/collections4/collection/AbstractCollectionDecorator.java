@@ -56,13 +56,16 @@ import java.util.function.Predicate;
  * @param <E> the type of the elements in the collection
  * @since 3.0
  */
-public abstract class AbstractCollectionDecorator<E>
-        implements Collection<E>, Serializable {
+public abstract class AbstractCollectionDecorator<E> implements Collection<E>, Serializable {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 6249888059822088500L;
 
-    /** The collection being decorated */
+    /**
+     * The collection being decorated
+     */
     private Collection<E> collection;
 
     /**
@@ -84,101 +87,84 @@ public abstract class AbstractCollectionDecorator<E>
 
     @Override
     public boolean add(final E object) {
-        return decorated().add(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final Collection<? extends E> coll) {
-        return decorated().addAll(coll);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        decorated().clear();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean contains(final Object object) {
-        return decorated().contains(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean containsAll(final Collection<?> coll) {
-        return decorated().containsAll(coll);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the collection being decorated.
-     * All access to the decorated collection goes via this method.
-     *
-     * @return the decorated collection
-     */
     protected Collection<E> decorated() {
-        return collection;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean isEmpty() {
-        return decorated().isEmpty();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<E> iterator() {
-        return decorated().iterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean remove(final Object object) {
-        return decorated().remove(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean removeAll(final Collection<?> coll) {
-        return decorated().removeAll(coll);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * @since 4.4
-     */
     @Override
     public boolean removeIf(final Predicate<? super E> filter) {
-        return decorated().removeIf(filter);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean retainAll(final Collection<?> coll) {
-        return decorated().retainAll(coll);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the collection being decorated.
-     * <p>
-     * <strong>NOTE:</strong> this method should only be used during deserialization
-     *
-     * @param collection  the decorated collection
-     */
     protected void setCollection(final Collection<E> collection) {
-        this.collection = collection;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int size() {
-        return decorated().size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Object[] toArray() {
-        return decorated().toArray();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public <T> T[] toArray(final T[] object) {
-        return decorated().toArray(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return decorated().toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

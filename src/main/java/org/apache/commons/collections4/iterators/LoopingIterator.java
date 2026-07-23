@@ -20,7 +20,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-
 import org.apache.commons.collections4.ResettableIterator;
 
 /**
@@ -40,9 +39,14 @@ import org.apache.commons.collections4.ResettableIterator;
  */
 public class LoopingIterator<E> implements ResettableIterator<E> {
 
-    /** The collection to base the iterator on */
+    /**
+     * The collection to base the iterator on
+     */
     private final Collection<? extends E> collection;
-    /** The current iterator */
+
+    /**
+     * The current iterator
+     */
     private Iterator<? extends E> iterator;
 
     /**
@@ -60,75 +64,27 @@ public class LoopingIterator<E> implements ResettableIterator<E> {
         reset();
     }
 
-    /**
-     * Has the iterator any more elements.
-     * <p>
-     * Returns false only if the collection originally had zero elements, or
-     * all the elements have been {@link #remove removed}.
-     * </p>
-     *
-     * @return {@code true} if there are more elements
-     */
     @Override
     public boolean hasNext() {
-        return !collection.isEmpty();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the next object in the collection.
-     * <p>
-     * If at the end of the collection, return the first element.
-     * </p>
-     *
-     * @return the next object
-     * @throws NoSuchElementException if there are no elements
-     *         at all.  Use {@link #hasNext} to avoid this error.
-     */
     @Override
     public E next() {
-        if (collection.isEmpty()) {
-            throw new NoSuchElementException("There are no elements for this iterator to loop on");
-        }
-        if (!iterator.hasNext()) {
-            reset();
-        }
-        return iterator.next();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes the previously retrieved item from the underlying collection.
-     * <p>
-     * This feature is only supported if the underlying collection's
-     * {@link Collection#iterator()} method returns an implementation
-     * that supports it.
-     * </p>
-     * <p>
-     * This method can only be called after at least one {@link #next} method call.
-     * After a removal, the remove method may not be called again until another
-     * next has been performed. If the {@link #reset} is called, then remove may
-     * not be called until {@link #next} is called again.
-     * </p>
-     */
     @Override
     public void remove() {
-        iterator.remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Resets the iterator back to the start of the collection.
-     */
     @Override
     public void reset() {
-        iterator = collection.iterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the size of the collection underlying the iterator.
-     *
-     * @return the current collection size
-     */
     public int size() {
-        return collection.size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

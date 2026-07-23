@@ -29,7 +29,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Set;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.MapIterator;
@@ -63,36 +62,32 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
      * Inner class that provides the AsMap view.
      */
     private final class AsMap extends AbstractMap<K, Collection<V>> {
+
         final class AsMapEntrySet extends AbstractSet<Map.Entry<K, Collection<V>>> {
 
             @Override
             public void clear() {
-                AsMap.this.clear();
+                throw new UnsupportedOperationException("STUB: not implemented");
             }
 
             @Override
             public boolean contains(final Object o) {
-                return map.entrySet().contains(o);
+                throw new UnsupportedOperationException("STUB: not implemented");
             }
 
             @Override
             public Iterator<Map.Entry<K, Collection<V>>> iterator() {
-                return new AsMapEntrySetIterator(map.entrySet().iterator());
+                throw new UnsupportedOperationException("STUB: not implemented");
             }
 
             @Override
             public boolean remove(final Object o) {
-                if (!contains(o)) {
-                    return false;
-                }
-                final Map.Entry<?, ?> entry = (Map.Entry<?, ?>) o;
-                AbstractMultiValuedMap.this.remove(entry.getKey());
-                return true;
+                throw new UnsupportedOperationException("STUB: not implemented");
             }
 
             @Override
             public int size() {
-                return AsMap.this.size();
+                throw new UnsupportedOperationException("STUB: not implemented");
             }
         }
 
@@ -107,9 +102,7 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
 
             @Override
             public Map.Entry<K, Collection<V>> next() {
-                final Map.Entry<K, Collection<V>> entry = super.next();
-                final K key = entry.getKey();
-                return new UnmodifiableMapEntry<>(key, wrappedCollection(key));
+                throw new UnsupportedOperationException("STUB: not implemented");
             }
         }
 
@@ -121,66 +114,52 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
 
         @Override
         public void clear() {
-            AbstractMultiValuedMap.this.clear();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean containsKey(final Object key) {
-            return map.containsKey(key);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Set<Map.Entry<K, Collection<V>>> entrySet() {
-            return new AsMapEntrySet();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean equals(final Object object) {
-            return this == object || map.equals(object);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Collection<V> get(final Object key) {
-            final Collection<V> collection = map.get(key);
-            if (collection == null) {
-                return null;
-            }
-            @SuppressWarnings("unchecked")
-            final K k = (K) key;
-            return wrappedCollection(k);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int hashCode() {
-            return map.hashCode();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Set<K> keySet() {
-            return AbstractMultiValuedMap.this.keySet();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Collection<V> remove(final Object key) {
-            final Collection<V> collection = map.remove(key);
-            if (collection == null) {
-                return null;
-            }
-
-            final Collection<V> output = createCollection();
-            output.addAll(collection);
-            collection.clear();
-            return output;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return map.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public String toString() {
-            return map.toString();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -191,28 +170,13 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
 
         @Override
         public Iterator<Entry<K, V>> iterator() {
-            return new LazyIteratorChain<Entry<K, V>>() {
-
-                final Collection<K> keysCol = new ArrayList<>(getMap().keySet());
-                final Iterator<K> keyIterator = keysCol.iterator();
-
-                @Override
-                protected Iterator<? extends Entry<K, V>> nextIterator(final int count) {
-                    if (!keyIterator.hasNext()) {
-                        return null;
-                    }
-                    final K key = keyIterator.next();
-                    final Transformer<V, Entry<K, V>> entryTransformer = input -> new MultiValuedMapEntry(key, input);
-                    return new TransformIterator<>(new ValuesIterator(key), entryTransformer);
-                }
-            };
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return AbstractMultiValuedMap.this.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -224,55 +188,38 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
 
             @Override
             public MultiSet.Entry<K> transform(final Map.Entry<K, Collection<V>> mapEntry) {
-                return new AbstractMultiSet.AbstractEntry<K>() {
-
-                    @Override
-                    public int getCount() {
-                        return mapEntry.getValue().size();
-                    }
-
-                    @Override
-                    public K getElement() {
-                        return mapEntry.getKey();
-                    }
-                };
+                throw new UnsupportedOperationException("STUB: not implemented");
             }
         }
 
         @Override
         public boolean contains(final Object o) {
-            return getMap().containsKey(o);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         protected Iterator<MultiSet.Entry<K>> createEntrySetIterator() {
-            final MapEntryTransformer transformer = new MapEntryTransformer();
-            return IteratorUtils.transformedIterator(map.entrySet().iterator(), transformer);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int getCount(final Object object) {
-            int count = 0;
-            final Collection<V> col = AbstractMultiValuedMap.this.getMap().get(object);
-            if (col != null) {
-                count = col.size();
-            }
-            return count;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean isEmpty() {
-            return getMap().isEmpty();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return AbstractMultiValuedMap.this.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         protected int uniqueElements() {
-            return getMap().size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -287,9 +234,8 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
 
         @Override
         public V setValue(final V value) {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -307,67 +253,53 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
 
         @Override
         public K getKey() {
-            if (current == null) {
-                throw new IllegalStateException();
-            }
-            return current.getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V getValue() {
-            if (current == null) {
-                throw new IllegalStateException();
-            }
-            return current.getValue();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean hasNext() {
-            return it.hasNext();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K next() {
-            current = it.next();
-            return current.getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void remove() {
-            it.remove();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V setValue(final V value) {
-            if (current == null) {
-                throw new IllegalStateException();
-            }
-            return current.setValue(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
      * Inner class that provides the values view.
      */
     private final class Values extends AbstractCollection<V> {
+
         @Override
         public void clear() {
-            AbstractMultiValuedMap.this.clear();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<V> iterator() {
-            final IteratorChain<V> chain = new IteratorChain<>();
-            for (final K k : keySet()) {
-                chain.addIterator(new ValuesIterator(k));
-            }
-            return chain;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return AbstractMultiValuedMap.this.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -375,8 +307,11 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
      * Inner class that provides the values iterator.
      */
     private final class ValuesIterator implements Iterator<V> {
+
         private final Object key;
+
         private final Collection<V> values;
+
         private final Iterator<V> iterator;
 
         ValuesIterator(final Object key) {
@@ -387,20 +322,17 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
 
         @Override
         public boolean hasNext() {
-            return iterator.hasNext();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V next() {
-            return iterator.next();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void remove() {
-            iterator.remove();
-            if (values.isEmpty()) {
-                AbstractMultiValuedMap.this.remove(key);
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -424,155 +356,103 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
 
         @Override
         public boolean add(final V value) {
-            Collection<V> coll = getMapping();
-            if (coll == null) {
-                coll = createCollection();
-                AbstractMultiValuedMap.this.map.put(key, coll);
-            }
-            return coll.add(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean addAll(final Collection<? extends V> other) {
-            Collection<V> coll = getMapping();
-            if (coll == null) {
-                coll = createCollection();
-                AbstractMultiValuedMap.this.map.put(key, coll);
-            }
-            return coll.addAll(other);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void clear() {
-            final Collection<V> coll = getMapping();
-            if (coll != null) {
-                coll.clear();
-                AbstractMultiValuedMap.this.remove(key);
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean contains(final Object obj) {
-            final Collection<V> coll = getMapping();
-            return coll != null && coll.contains(obj);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean containsAll(final Collection<?> other) {
-            final Collection<V> coll = getMapping();
-            return coll != null && coll.containsAll(other);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         protected Collection<V> getMapping() {
-            return getMap().get(key);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean isEmpty() {
-            final Collection<V> coll = getMapping();
-            return coll == null || coll.isEmpty();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<V> iterator() {
-            final Collection<V> coll = getMapping();
-            if (coll == null) {
-                return IteratorUtils.EMPTY_ITERATOR;
-            }
-            return new ValuesIterator(key);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean remove(final Object item) {
-            final Collection<V> coll = getMapping();
-            if (coll == null) {
-                return false;
-            }
-
-            final boolean result = coll.remove(item);
-            if (coll.isEmpty()) {
-                AbstractMultiValuedMap.this.remove(key);
-            }
-            return result;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean removeAll(final Collection<?> c) {
-            final Collection<V> coll = getMapping();
-            if (coll == null) {
-                return false;
-            }
-
-            final boolean result = coll.removeAll(c);
-            if (coll.isEmpty()) {
-                AbstractMultiValuedMap.this.remove(key);
-            }
-            return result;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean retainAll(final Collection<?> c) {
-            final Collection<V> coll = getMapping();
-            if (coll == null) {
-                return false;
-            }
-
-            final boolean result = coll.retainAll(c);
-            if (coll.isEmpty()) {
-                AbstractMultiValuedMap.this.remove(key);
-            }
-            return result;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            final Collection<V> coll = getMapping();
-            return coll == null ? 0 : coll.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Object[] toArray() {
-            final Collection<V> coll = getMapping();
-            if (coll == null) {
-                return CollectionUtils.EMPTY_COLLECTION.toArray();
-            }
-            return coll.toArray();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         @SuppressWarnings("unchecked")
         public <T> T[] toArray(final T[] a) {
-            final Collection<V> coll = getMapping();
-            if (coll == null) {
-                return (T[]) CollectionUtils.EMPTY_COLLECTION.toArray(a);
-            }
-            return coll.toArray(a);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public String toString() {
-            final Collection<V> coll = getMapping();
-            if (coll == null) {
-                return CollectionUtils.EMPTY_COLLECTION.toString();
-            }
-            return coll.toString();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
-    /** The values view */
+    /**
+     * The values view
+     */
     private transient Collection<V> valuesView;
 
-    /** The EntryValues view */
+    /**
+     * The EntryValues view
+     */
     private transient EntryValues entryValuesView;
 
-    /** The KeyMultiSet view */
+    /**
+     * The KeyMultiSet view
+     */
     private transient MultiSet<K> keysMultiSetView;
 
-    /** The AsMap view */
+    /**
+     * The AsMap view
+     */
     private transient AsMap asMapView;
 
-    /** The map used to store the data */
+    /**
+     * The map used to store the data
+     */
     private transient Map<K, Collection<V>> map;
 
     /**
@@ -594,28 +474,27 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
 
     @Override
     public Map<K, Collection<V>> asMap() {
-        return asMapView != null ? asMapView : (asMapView = new AsMap(map));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        getMap().clear();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean containsKey(final Object key) {
-        return getMap().containsKey(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean containsMapping(final Object key, final Object value) {
-        final Collection<V> coll = getMap().get(key);
-        return coll != null && coll.contains(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean containsValue(final Object value) {
-        return values().contains(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -625,305 +504,109 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
      */
     protected abstract Collection<V> createCollection();
 
-    /**
-     * Reads the map in using a custom routine.
-     *
-     * @param in the input stream
-     * @throws IOException any of the usual I/O related exceptions
-     * @throws ClassNotFoundException if the stream contains an object which class cannot be loaded
-     * @throws ClassCastException if the stream does not contain the correct objects
-     */
-    protected void doReadObject(final ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        final int entrySize = in.readInt();
-        for (int i = 0; i < entrySize; i++) {
-            @SuppressWarnings("unchecked") // This will fail at runtime if the stream is incorrect
-            final K key = (K) in.readObject();
-            final Collection<V> values = get(key);
-            final int valueSize = in.readInt();
-            for (int j = 0; j < valueSize; j++) {
-                @SuppressWarnings("unchecked") // see above
-                final V value = (V) in.readObject();
-                values.add(value);
-            }
-        }
+    protected void doReadObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Writes the map out using a custom routine.
-     *
-     * @param out the output stream
-     * @throws IOException any of the usual I/O related exceptions
-     */
     protected void doWriteObject(final ObjectOutputStream out) throws IOException {
-        out.writeInt(map.size());
-        for (final Map.Entry<K, Collection<V>> entry : map.entrySet()) {
-            out.writeObject(entry.getKey());
-            out.writeInt(entry.getValue().size());
-            for (final V value : entry.getValue()) {
-                out.writeObject(value);
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Collection<Entry<K, V>> entries() {
-        return entryValuesView != null ? entryValuesView : (entryValuesView = new EntryValues());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof MultiValuedMap) {
-            return asMap().equals(((MultiValuedMap<?, ?>) obj).asMap());
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the collection of values associated with the specified key. This
-     * would return an empty collection in case the mapping is not present
-     *
-     * @param key the key to retrieve
-     * @return the {@code Collection} of values, will return an empty {@code Collection} for no mapping
-     */
     @Override
     public Collection<V> get(final K key) {
-        return wrappedCollection(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the map being wrapped.
-     *
-     * @return the wrapped map
-     */
     protected Map<K, ? extends Collection<V>> getMap() {
-        return map;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return getMap().hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean isEmpty() {
-        return getMap().isEmpty();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns a {@link MultiSet} view of the key mapping contained in this map.
-     * <p>
-     * Returns a MultiSet of keys with its values count as the count of the MultiSet.
-     * This multiset is backed by the map, so any changes in the map is reflected here.
-     * Any method which modifies this multiset like {@code add}, {@code remove},
-     * {@link Iterator#remove()} etc throws {@code UnsupportedOperationException}.
-     *
-     * @return a bag view of the key mapping contained in this map
-     */
     @Override
     public MultiSet<K> keys() {
-        if (keysMultiSetView == null) {
-            keysMultiSetView = UnmodifiableMultiSet.unmodifiableMultiSet(new KeysMultiSet());
-        }
-        return keysMultiSetView;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<K> keySet() {
-        return getMap().keySet();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public MapIterator<K, V> mapIterator() {
-        if (isEmpty()) {
-            return EmptyMapIterator.emptyMapIterator();
-        }
-        return new MultiValuedMapIterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Adds the value to the collection associated with the specified key.
-     * <p>
-     * Unlike a normal {@code Map} the previous value is not replaced.
-     * Instead the new value is added to the collection stored against the key.
-     *
-     * @param key the key to store against
-     * @param value the value to add to the collection at the key
-     * @return the value added if the map changed and null if the map did not change
-     */
     @Override
     public boolean put(final K key, final V value) {
-        Collection<V> coll = getMap().get(key);
-        if (coll == null) {
-            coll = createCollection();
-            if (coll.add(value)) {
-                map.put(key, coll);
-                return true;
-            }
-            return false;
-        }
-        return coll.add(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Adds Iterable values to the collection associated with the specified key.
-     *
-     * @param key the key to store against
-     * @param values the values to add to the collection at the key, may not be null
-     * @return true if this map changed
-     * @throws NullPointerException if values is null
-     */
     @Override
     public boolean putAll(final K key, final Iterable<? extends V> values) {
-        Objects.requireNonNull(values, "values");
-
-        if (values instanceof Collection<?>) {
-            final Collection<? extends V> valueCollection = (Collection<? extends V>) values;
-            return !valueCollection.isEmpty() && get(key).addAll(valueCollection);
-        }
-        final Iterator<? extends V> it = values.iterator();
-        return it.hasNext() && CollectionUtils.addAll(get(key), it);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Copies all of the mappings from the specified map to this map. The effect
-     * of this call is equivalent to that of calling {@link #put(Object,Object)
-     * put(k, v)} on this map once for each mapping from key {@code k} to value
-     * {@code v} in the specified map. The behavior of this operation is
-     * undefined if the specified map is modified while the operation is in
-     * progress.
-     *
-     * @param map mappings to be stored in this map, may not be null
-     * @return true if the map changed as a result of this operation
-     * @throws NullPointerException if map is null
-     */
     @Override
     public boolean putAll(final Map<? extends K, ? extends V> map) {
-        Objects.requireNonNull(map, "map");
-        boolean changed = false;
-        for (final Map.Entry<? extends K, ? extends V> entry : map.entrySet()) {
-            changed |= put(entry.getKey(), entry.getValue());
-        }
-        return changed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Copies all of the mappings from the specified MultiValuedMap to this map.
-     * The effect of this call is equivalent to that of calling
-     * {@link #put(Object,Object) put(k, v)} on this map once for each mapping
-     * from key {@code k} to value {@code v} in the specified map. The
-     * behavior of this operation is undefined if the specified map is modified
-     * while the operation is in progress.
-     *
-     * @param map mappings to be stored in this map, may not be null
-     * @return true if the map changed as a result of this operation
-     * @throws NullPointerException if map is null
-     */
     @Override
     public boolean putAll(final MultiValuedMap<? extends K, ? extends V> map) {
-        Objects.requireNonNull(map, "map");
-        boolean changed = false;
-        for (final Map.Entry<? extends K, ? extends V> entry : map.entries()) {
-            changed |= put(entry.getKey(), entry.getValue());
-        }
-        return changed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes all values associated with the specified key.
-     * <p>
-     * A subsequent {@code get(Object)} would return an empty collection.
-     *
-     * @param key  the key to remove values from
-     * @return the {@code Collection} of values removed, will return an
-     *   empty, unmodifiable collection for no mapping found
-     */
     @Override
     public Collection<V> remove(final Object key) {
-        return CollectionUtils.emptyIfNull(getMap().remove(key));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes a specific key/value mapping from the multivalued map.
-     * <p>
-     * The value is removed from the collection mapped to the specified key.
-     * Other values attached to that key are unaffected.
-     * <p>
-     * If the last value for a key is removed, an empty collection would be
-     * returned from a subsequent {@link #get(Object)}.
-     *
-     * @param key the key to remove from
-     * @param value the value to remove
-     * @return true if the mapping was removed, false otherwise
-     */
     @Override
     public boolean removeMapping(final Object key, final Object value) {
-        final Collection<V> coll = getMap().get(key);
-        if (coll == null) {
-            return false;
-        }
-        final boolean changed = coll.remove(value);
-        if (coll.isEmpty()) {
-            getMap().remove(key);
-        }
-        return changed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the map being wrapped.
-     * <p>
-     * <strong>NOTE:</strong> this method should only be used during deserialization
-     *
-     * @param map the map to wrap
-     */
     @SuppressWarnings("unchecked")
     protected void setMap(final Map<K, ? extends Collection<V>> map) {
-        this.map = (Map<K, Collection<V>>) map;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     * <p>
-     * This implementation does <strong>not</strong> cache the total size
-     * of the multivalued map, but rather calculates it by iterating
-     * over the entries of the underlying map.
-     */
     @Override
     public int size() {
-        // the total size should be cached to improve performance
-        // but this requires that all modifications of the multimap
-        // (including the wrapped collections and entry/value
-        // collections) are tracked.
-        int size = 0;
-        for (final Collection<V> col : getMap().values()) {
-            size += col.size();
-        }
-        return size;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return getMap().toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a collection containing all the values in the map.
-     * <p>
-     * Returns a collection containing all the values from all keys.
-     *
-     * @return a collection view of the values contained in this map
-     */
     @Override
     public Collection<V> values() {
-        final Collection<V> vs = valuesView;
-        return vs != null ? vs : (valuesView = new Values());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     Collection<V> wrappedCollection(final K key) {
-        return new WrappedCollection(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -42,42 +42,27 @@ import java.util.function.Predicate;
  */
 public final class MapBackedSet<E, V> implements Set<E>, Serializable {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 6723912213766056587L;
 
-    /**
-     * Factory method to create a set from a map.
-     *
-     * @param <E> the element type
-     * @param <V> the dummy value type in the map
-     * @param map  the map to decorate, must not be null
-     * @return a new map backed set
-     * @throws NullPointerException if map is null
-     * @since 4.0
-     */
     public static <E, V> MapBackedSet<E, V> mapBackedSet(final Map<E, ? super V> map) {
-        return mapBackedSet(map, null);
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public static <E, V> MapBackedSet<E, V> mapBackedSet(final Map<E, ? super V> map, final V dummyValue) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
-     * Factory method to create a set from a map.
-     *
-     * @param <E> the element type
-     * @param <V> the dummy value type in the map
-     * @param map  the map to decorate, must not be null
-     * @param dummyValue  the dummy value to use
-     * @return a new map backed set
-     * @throws NullPointerException if map is null
-     * @since 4.0
+     * The map being used as the backing store
      */
-    public static <E, V> MapBackedSet<E, V> mapBackedSet(final Map<E, ? super V> map, final V dummyValue) {
-        return new MapBackedSet<>(map, dummyValue);
-    }
-
-    /** The map being used as the backing store */
     private final Map<E, ? super V> map;
 
-    /** The dummyValue to use */
+    /**
+     * The dummyValue to use
+     */
     private final V dummyValue;
 
     /**
@@ -94,93 +79,81 @@ public final class MapBackedSet<E, V> implements Set<E>, Serializable {
 
     @Override
     public boolean add(final E obj) {
-        final int size = map.size();
-        map.put(obj, dummyValue);
-        return map.size() != size;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final Collection<? extends E> coll) {
-        final int size = map.size();
-        for (final E e : coll) {
-            map.put(e, dummyValue);
-        }
-        return map.size() != size;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        map.clear();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean contains(final Object obj) {
-        return map.containsKey(obj);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean containsAll(final Collection<?> coll) {
-        return map.keySet().containsAll(coll);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object obj) {
-        return map.keySet().equals(obj);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return map.keySet().hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean isEmpty() {
-        return map.isEmpty();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<E> iterator() {
-        return map.keySet().iterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean remove(final Object obj) {
-        final int size = map.size();
-        map.remove(obj);
-        return map.size() != size;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean removeAll(final Collection<?> coll) {
-        return map.keySet().removeAll(coll);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * @since 4.4
-     */
     @Override
     public boolean removeIf(final Predicate<? super E> filter) {
-        return map.keySet().removeIf(filter);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean retainAll(final Collection<?> coll) {
-        return map.keySet().retainAll(coll);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int size() {
-        return map.size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Object[] toArray() {
-        return map.keySet().toArray();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public <T> T[] toArray(final T[] array) {
-        return map.keySet().toArray(array);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

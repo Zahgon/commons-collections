@@ -30,8 +30,11 @@ import java.util.function.Predicate;
  * @param <T> the type of object being compared.
  */
 class CountingPredicate<T> implements Predicate<T> {
+
     private int idx;
+
     private final T[] ary;
+
     private final BiPredicate<T, T> func;
 
     /**
@@ -48,27 +51,12 @@ class CountingPredicate<T> implements Predicate<T> {
         this.func = func;
     }
 
-    /**
-     * Call {@code BiPredicate<T, T>} for each remaining unpaired {@code <T>} in the
-     * input array. This method should be invoked after the predicate has been
-     * passed to a {@code Extractor.forEach<T>(BiPredicate<T, T>)} to consume any
-     * unpaired {@code <T>}s. The second argument to the BiPredicate will be {@code null}.
-     *
-     * @return true if all calls to the predicate were successful
-     */
     boolean processRemaining() {
-        // uses local references for optimization benefit.
-        int i = idx;
-        final T[] a = ary;
-        final int limit = a.length;
-        while (i != limit && func.test(a[i], null)) {
-            i++;
-        }
-        return i == limit;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean test(final T other) {
-        return func.test(idx == ary.length ? null : ary[idx++], other);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

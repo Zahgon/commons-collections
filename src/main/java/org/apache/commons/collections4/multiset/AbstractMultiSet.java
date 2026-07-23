@@ -25,7 +25,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
-
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.MultiSet;
 import org.apache.commons.collections4.Transformer;
@@ -55,26 +54,17 @@ public abstract class AbstractMultiSet<E> extends AbstractCollection<E> implemen
 
         @Override
         public boolean equals(final Object object) {
-            if (object instanceof Entry) {
-                final Entry<?> other = (Entry<?>) object;
-                final E element = getElement();
-                final Object otherElement = other.getElement();
-
-                return this.getCount() == other.getCount() &&
-                       Objects.equals(element, otherElement);
-            }
-            return false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int hashCode() {
-            final E element = getElement();
-            return (element == null ? 0 : element.hashCode()) ^ getCount();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public String toString() {
-            return String.format("%s:%d", getElement(), getCount());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -98,39 +88,22 @@ public abstract class AbstractMultiSet<E> extends AbstractCollection<E> implemen
 
         @Override
         public boolean contains(final Object obj) {
-            if (!(obj instanceof Entry<?>)) {
-                return false;
-            }
-            final Entry<?> entry = (Entry<?>) obj;
-            final Object element = entry.getElement();
-            return parent.getCount(element) == entry.getCount();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<Entry<E>> iterator() {
-            return parent.createEntrySetIterator();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean remove(final Object obj) {
-            if (!(obj instanceof Entry<?>)) {
-                return false;
-            }
-            final Entry<?> entry = (Entry<?>) obj;
-            final Object element = entry.getElement();
-            if (parent.contains(element)) {
-                final int count = parent.getCount(element);
-                if (entry.getCount() == count) {
-                    parent.remove(element, count);
-                    return true;
-                }
-            }
-            return false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return parent.uniqueElements();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -138,10 +111,15 @@ public abstract class AbstractMultiSet<E> extends AbstractCollection<E> implemen
      * Inner class iterator for the MultiSet.
      */
     private static final class MultiSetIterator<E> implements Iterator<E> {
+
         private final AbstractMultiSet<E> parent;
+
         private final Iterator<Entry<E>> entryIterator;
+
         private Entry<E> current;
+
         private int itemCount;
+
         private boolean canRemove;
 
         /**
@@ -156,37 +134,19 @@ public abstract class AbstractMultiSet<E> extends AbstractCollection<E> implemen
             this.canRemove = false;
         }
 
-        /** {@inheritDoc} */
         @Override
         public boolean hasNext() {
-            return itemCount > 0 || entryIterator.hasNext();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /** {@inheritDoc} */
         @Override
         public E next() {
-            if (itemCount == 0) {
-                current = entryIterator.next();
-                itemCount = current.getCount();
-            }
-            canRemove = true;
-            itemCount--;
-            return current.getElement();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /** {@inheritDoc} */
         @Override
         public void remove() {
-            if (!canRemove) {
-                throw new IllegalStateException();
-            }
-            final int count = current.getCount();
-            if (count > 1) {
-                parent.remove(current.getElement());
-            } else {
-                entryIterator.remove();
-            }
-            canRemove = false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -197,7 +157,9 @@ public abstract class AbstractMultiSet<E> extends AbstractCollection<E> implemen
      */
     protected static class UniqueSet<E> extends AbstractSet<E> {
 
-        /** The parent multiset */
+        /**
+         * The parent multiset
+         */
         protected final AbstractMultiSet<E> parent;
 
         /**
@@ -211,39 +173,43 @@ public abstract class AbstractMultiSet<E> extends AbstractCollection<E> implemen
 
         @Override
         public void clear() {
-            parent.clear();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean contains(final Object key) {
-            return parent.contains(key);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean containsAll(final Collection<?> coll) {
-            return parent.containsAll(coll);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<E> iterator() {
-            return parent.createUniqueSetIterator();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean remove(final Object key) {
-            return parent.remove(key, parent.getCount(key)) != 0;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return parent.uniqueElements();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /** View of the elements */
+    /**
+     * View of the elements
+     */
     private transient Set<E> uniqueSet;
 
-    /** View of the entries */
+    /**
+     * View of the entries
+     */
     private transient Set<Entry<E>> entrySet;
 
     /**
@@ -254,45 +220,26 @@ public abstract class AbstractMultiSet<E> extends AbstractCollection<E> implemen
 
     @Override
     public boolean add(final E object) {
-        add(object, 1);
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int add(final E object, final int occurrences) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Clears the multiset removing all elements from the entrySet.
-     */
     @Override
     public void clear() {
-        final Iterator<Entry<E>> it = entrySet().iterator();
-        while (it.hasNext()) {
-            it.next();
-            it.remove();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Determines if the multiset contains the given element.
-     *
-     * @param object the object to search for
-     * @return true if the multiset contains the given element
-     */
     @Override
     public boolean contains(final Object object) {
-        return getCount(object) > 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Create a new view for the set of entries in this multiset.
-     *
-     * @return a view of the set of entries
-     */
     protected Set<Entry<E>> createEntrySet() {
-        return new EntrySet<>(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -303,183 +250,75 @@ public abstract class AbstractMultiSet<E> extends AbstractCollection<E> implemen
      */
     protected abstract Iterator<Entry<E>> createEntrySetIterator();
 
-    /**
-     * Create a new view for the set of unique elements in this multiset.
-     *
-     * @return a view of the set of unique elements
-     */
     protected Set<E> createUniqueSet() {
-        return new UniqueSet<>(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a unique set iterator.
-     * Subclasses can override this to return iterators with different properties.
-     *
-     * @return the uniqueSet iterator
-     */
     protected Iterator<E> createUniqueSetIterator() {
-        final Transformer<Entry<E>, E> transformer = Entry::getElement;
-        return IteratorUtils.transformedIterator(entrySet().iterator(), transformer);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Reads the multiset in using a custom routine.
-     *
-     * @param in the input stream
-     * @throws IOException any of the usual I/O related exceptions
-     * @throws ClassNotFoundException if the stream contains an object which class cannot be loaded
-     * @throws ClassCastException if the stream does not contain the correct objects
-     */
-    protected void doReadObject(final ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        final int entrySize = in.readInt();
-        for (int i = 0; i < entrySize; i++) {
-            @SuppressWarnings("unchecked") // This will fail at runtime if the stream is incorrect
-            final E obj = (E) in.readObject();
-            final int count = in.readInt();
-            setCount(obj, count);
-        }
+    protected void doReadObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Writes the multiset out using a custom routine.
-     *
-     * @param out the output stream
-     * @throws IOException any of the usual I/O related exceptions
-     */
     protected void doWriteObject(final ObjectOutputStream out) throws IOException {
-        out.writeInt(entrySet().size());
-        for (final Entry<E> entry : entrySet()) {
-            out.writeObject(entry.getElement());
-            out.writeInt(entry.getCount());
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns an unmodifiable view of the entries of this multiset.
-     *
-     * @return the set of entries in this multiset
-     */
     @Override
     public Set<Entry<E>> entrySet() {
-        if (entrySet == null) {
-            entrySet = createEntrySet();
-        }
-        return entrySet;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object object) {
-        if (object == this) {
-            return true;
-        }
-        if (!(object instanceof MultiSet)) {
-            return false;
-        }
-        final MultiSet<?> other = (MultiSet<?>) object;
-        if (other.size() != size()) {
-            return false;
-        }
-        for (final Entry<E> entry : entrySet()) {
-            if (other.getCount(entry.getElement()) != getCount(entry.getElement())) {
-                return false;
-            }
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the number of occurrence of the given element in this multiset by
-     * iterating over its entrySet.
-     *
-     * @param object the object to search for
-     * @return the number of occurrences of the object, zero if not found
-     */
     @Override
     public int getCount(final Object object) {
-        for (final Entry<E> entry : entrySet()) {
-            final E element = entry.getElement();
-            if (Objects.equals(element, object)) {
-                return entry.getCount();
-            }
-        }
-        return 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return entrySet().hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets an iterator over the multiset elements. Elements present in the
-     * MultiSet more than once will be returned repeatedly.
-     *
-     * @return the iterator
-     */
     @Override
     public Iterator<E> iterator() {
-        return new MultiSetIterator<>(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean remove(final Object object) {
-        return remove(object, 1) != 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int remove(final Object object, final int occurrences) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean removeAll(final Collection<?> coll) {
-        boolean result = false;
-        for (final Object obj : coll) {
-            final boolean changed = remove(obj, getCount(obj)) != 0;
-            result = result || changed;
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int setCount(final E object, final int count) {
-        if (count < 0) {
-            throw new IllegalArgumentException("Count must not be negative.");
-        }
-
-        final int oldCount = getCount(object);
-        if (oldCount < count) {
-            add(object, count - oldCount);
-        } else {
-            remove(object, oldCount - count);
-        }
-        return oldCount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the number of elements in this multiset.
-     *
-     * @return current size of the multiset
-     */
     @Override
     public int size() {
-        int totalSize = 0;
-        for (final Entry<E> entry : entrySet()) {
-            totalSize += entry.getCount();
-        }
-        return totalSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Implement a toString() method suitable for debugging.
-     *
-     * @return a debugging toString
-     */
     @Override
     public String toString() {
-        return entrySet().toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -489,17 +328,8 @@ public abstract class AbstractMultiSet<E> extends AbstractCollection<E> implemen
      */
     protected abstract int uniqueElements();
 
-    /**
-     * Returns a view of the unique elements of this multiset.
-     *
-     * @return the set of unique elements in this multiset
-     */
     @Override
     public Set<E> uniqueSet() {
-        if (uniqueSet == null) {
-            uniqueSet = createUniqueSet();
-        }
-        return uniqueSet;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

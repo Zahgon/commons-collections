@@ -108,49 +108,18 @@ public class CartesianProductIterator<E> implements Iterator<List<E>> {
         }
     }
 
-    /**
-     * Returns {@code true} if the iteration has more elements.
-     *
-     * @return true if there are more tuples, otherwise false
-     */
     @Override
     public boolean hasNext() {
-        return iterators.stream().anyMatch(Iterator::hasNext);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the next tuple of the input iterables.
-     *
-     * @return a list of the input iterables' elements
-     * @throws NoSuchElementException if there are no more tuples
-     */
     @Override
     public List<E> next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
-        if (previousTuple == null) {
-            previousTuple = new ArrayList<>(iterables.size());
-            for (final Iterator<? extends E> iterator : iterators) {
-                previousTuple.add(iterator.next());
-            }
-            return new ArrayList<>(previousTuple);
-        }
-        for (int i = iterators.size() - 1; i >= 0; i--) {
-            Iterator<? extends E> iterator = iterators.get(i);
-            if (iterator.hasNext()) {
-                previousTuple.set(i, iterator.next());
-                return new ArrayList<>(previousTuple);
-            }
-            iterator = iterables.get(i).iterator();
-            iterators.set(i, iterator);
-            previousTuple.set(i, iterator.next());
-        }
-        throw new IllegalStateException("reached unreachable code");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void remove() {
-        throw new UnsupportedOperationException("remove");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

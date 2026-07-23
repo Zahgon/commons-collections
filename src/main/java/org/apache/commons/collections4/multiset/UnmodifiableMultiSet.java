@@ -23,7 +23,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.function.Predicate;
-
 import org.apache.commons.collections4.MultiSet;
 import org.apache.commons.collections4.Unmodifiable;
 import org.apache.commons.collections4.iterators.UnmodifiableIterator;
@@ -38,30 +37,15 @@ import org.apache.commons.collections4.set.UnmodifiableSet;
  * @param <E> the type held in the multiset
  * @since 4.1
  */
-public final class UnmodifiableMultiSet<E>
-        extends AbstractMultiSetDecorator<E> implements Unmodifiable {
-
-    /** Serialization version */
-    private static final long serialVersionUID = 20150611L;
+public final class UnmodifiableMultiSet<E> extends AbstractMultiSetDecorator<E> implements Unmodifiable {
 
     /**
-     * Factory method to create an unmodifiable multiset.
-     * <p>
-     * If the multiset passed in is already unmodifiable, it is returned.
-     * </p>
-     *
-     * @param <E>  the type of the elements in the multiset
-     * @param multiset  the multiset to decorate, may not be null
-     * @return an unmodifiable MultiSet
-     * @throws NullPointerException if multiset is null
+     * Serialization version
      */
+    private static final long serialVersionUID = 20150611L;
+
     public static <E> MultiSet<E> unmodifiableMultiSet(final MultiSet<? extends E> multiset) {
-        if (multiset instanceof Unmodifiable) {
-            @SuppressWarnings("unchecked") // safe to upcast
-            final MultiSet<E> tmpMultiSet = (MultiSet<E>) multiset;
-            return tmpMultiSet;
-        }
-        return new UnmodifiableMultiSet<>(multiset);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -70,40 +54,40 @@ public final class UnmodifiableMultiSet<E>
      * @param multiset  the multiset to decorate, may not be null
      * @throws NullPointerException if multiset is null
      */
-    @SuppressWarnings("unchecked") // safe to upcast
+    // safe to upcast
+    @SuppressWarnings("unchecked")
     private UnmodifiableMultiSet(final MultiSet<? extends E> multiset) {
         super((MultiSet<E>) multiset);
     }
 
     @Override
     public boolean add(final E object) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int add(final E object, final int count) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final Collection<? extends E> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<MultiSet.Entry<E>> entrySet() {
-        final Set<MultiSet.Entry<E>> set = decorated().entrySet();
-        return UnmodifiableSet.unmodifiableSet(set);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<E> iterator() {
-        return UnmodifiableIterator.<E>unmodifiableIterator(decorated().iterator());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -114,7 +98,8 @@ public final class UnmodifiableMultiSet<E>
      * @throws ClassNotFoundException if an object read from the stream cannot be loaded
      * @throws ClassCastException if deserialized object has wrong type
      */
-    @SuppressWarnings("unchecked") // will throw CCE, see Javadoc
+    // will throw CCE, see Javadoc
+    @SuppressWarnings("unchecked")
     private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
         setCollection((Collection<E>) in.readObject());
@@ -122,41 +107,37 @@ public final class UnmodifiableMultiSet<E>
 
     @Override
     public boolean remove(final Object object) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int remove(final Object object, final int count) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean removeAll(final Collection<?> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * @since 4.4
-     */
     @Override
     public boolean removeIf(final Predicate<? super E> filter) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean retainAll(final Collection<?> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int setCount(final E object, final int count) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<E> uniqueSet() {
-        final Set<E> set = decorated().uniqueSet();
-        return UnmodifiableSet.unmodifiableSet(set);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -169,5 +150,4 @@ public final class UnmodifiableMultiSet<E>
         out.defaultWriteObject();
         out.writeObject(decorated());
     }
-
 }

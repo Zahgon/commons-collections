@@ -21,7 +21,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Map;
-
 import org.apache.commons.collections4.BoundedMap;
 
 /**
@@ -63,17 +62,26 @@ import org.apache.commons.collections4.BoundedMap;
  * @param <V> the type of the values in this map
  * @since 3.0 (previously in main package v1.0)
  */
-public class LRUMap<K, V>
-        extends AbstractLinkedMap<K, V> implements BoundedMap<K, V>, Serializable, Cloneable {
+public class LRUMap<K, V> extends AbstractLinkedMap<K, V> implements BoundedMap<K, V>, Serializable, Cloneable {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -612114643488955218L;
-    /** Default maximum size */
+
+    /**
+     * Default maximum size
+     */
     protected static final int DEFAULT_MAX_SIZE = 100;
 
-    /** Maximum size */
+    /**
+     * Maximum size
+     */
     private transient int maxSize;
-    /** Scan behavior */
+
+    /**
+     * Scan behavior
+     */
     private final boolean scanUntilRemovable;
 
     /**
@@ -173,11 +181,7 @@ public class LRUMap<K, V>
      * @throws IllegalArgumentException if the load factor is less than zero
      * @since 4.1
      */
-    public LRUMap(final int maxSize,
-                  final int initialSize,
-                  final float loadFactor,
-                  final boolean scanUntilRemovable) {
-
+    public LRUMap(final int maxSize, final int initialSize, final float loadFactor, final boolean scanUntilRemovable) {
         super(initialSize, loadFactor);
         if (maxSize < 1) {
             throw new IllegalArgumentException("LRUMap max size must be greater than 0");
@@ -219,194 +223,51 @@ public class LRUMap<K, V>
         putAll(map);
     }
 
-    /**
-     * Adds a new key-value mapping into this map.
-     * <p>
-     * This implementation checks the LRU size and determines whether to
-     * discard an entry or not using {@link #removeLRU(AbstractLinkedMap.LinkEntry)}.
-     * </p>
-     * <p>
-     * From Commons Collections 3.1 this method uses {@link #isFull()} rather
-     * than accessing {@code size} and {@code maxSize} directly.
-     * It also handles the scanUntilRemovable functionality.
-     * </p>
-     *
-     * @param hashIndex  the index into the data array to store at
-     * @param hashCode  the hash code of the key to add
-     * @param key  the key to add
-     * @param value  the value to add
-     */
     @Override
     protected void addMapping(final int hashIndex, final int hashCode, final K key, final V value) {
-        if (isFull()) {
-            LinkEntry<K, V> reuse = header.after;
-            boolean removeLRUEntry = false;
-            if (scanUntilRemovable) {
-                while (reuse != header && reuse != null) {
-                    if (removeLRU(reuse)) {
-                        removeLRUEntry = true;
-                        break;
-                    }
-                    reuse = reuse.after;
-                }
-                if (reuse == null) {
-                    throw new IllegalStateException(
-                        "Entry.after=null, header.after=" + header.after + " header.before=" + header.before +
-                        " key=" + key + " value=" + value + " size=" + size + " maxSize=" + maxSize +
-                        " This should not occur if your keys are immutable and you used synchronization properly.");
-                }
-            } else {
-                removeLRUEntry = removeLRU(reuse);
-            }
-
-            if (removeLRUEntry) {
-                if (reuse == null) {
-                    throw new IllegalStateException(
-                        "reuse=null, header.after=" + header.after + " header.before=" + header.before +
-                        " key=" + key + " value=" + value + " size=" + size + " maxSize=" + maxSize +
-                        " This should not occur if your keys are immutable and you used synchronization properly.");
-                }
-                reuseMapping(reuse, hashIndex, hashCode, key, value);
-            } else {
-                super.addMapping(hashIndex, hashCode, key, value);
-            }
-        } else {
-            super.addMapping(hashIndex, hashCode, key, value);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Clones the map without cloning the keys or values.
-     *
-     * @return a shallow clone
-     */
     @Override
     public LRUMap<K, V> clone() {
-        return (LRUMap<K, V>) super.clone();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Reads the data necessary for {@code put()} to work in the superclass.
-     *
-     * @param in  the input stream
-     * @throws IOException if an error occurs while reading from the stream
-     * @throws ClassNotFoundException if an object read from the stream cannot be loaded
-     */
     @Override
     protected void doReadObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
-        maxSize = in.readInt();
-        super.doReadObject(in);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Writes the data necessary for {@code put()} to work in deserialization.
-     *
-     * @param out  the output stream
-     * @throws IOException if an error occurs while writing to the stream
-     */
     @Override
     protected void doWriteObject(final ObjectOutputStream out) throws IOException {
-        out.writeInt(maxSize);
-        super.doWriteObject(out);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the value mapped to the key specified.
-     * <p>
-     * This operation changes the position of the key in the map to the
-     * most recently used position (last).
-     *
-     * @param key  the key
-     * @return the mapped value, null if no match
-     */
     @Override
     public V get(final Object key) {
-        return get(key, true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the value mapped to the key specified.
-     * <p>
-     * If {@code updateToMRU} is {@code true}, the position of the key in the map
-     * is changed to the most recently used position (last), otherwise the iteration
-     * order is not changed by this operation.
-     * </p>
-     *
-     * @param key  the key
-     * @param updateToMRU  whether the key shall be updated to the
-     *   most recently used position
-     * @return the mapped value, null if no match
-     * @since 4.1
-     */
     public V get(final Object key, final boolean updateToMRU) {
-        final LinkEntry<K, V> entry = getEntry(key);
-        if (entry == null) {
-            return null;
-        }
-        if (updateToMRU) {
-            moveToMRU(entry);
-        }
-        return entry.getValue();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns true if this map is full and no new mappings can be added.
-     *
-     * @return {@code true} if the map is full
-     */
     @Override
     public boolean isFull() {
-        return size >= maxSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Tests whether this LRUMap will scan until a removable entry is found when the
-     * map is full.
-     *
-     * @return true if this map scans
-     * @since 3.1
-     */
     public boolean isScanUntilRemovable() {
-        return scanUntilRemovable;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the maximum size of the map (the bound).
-     *
-     * @return the maximum number of elements the map can hold
-     */
     @Override
     public int maxSize() {
-        return maxSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Moves an entry to the MRU position at the end of the list.
-     * <p>
-     * This implementation moves the updated entry to the end of the list.
-     * </p>
-     *
-     * @param entry  the entry to update
-     */
     protected void moveToMRU(final LinkEntry<K, V> entry) {
-        if (entry.after != header) {
-            modCount++;
-            // remove
-            if (entry.before == null) {
-                throw new IllegalStateException("Entry.before is null." +
-                    " This should not occur if your keys are immutable, and you have used synchronization properly.");
-            }
-            entry.before.after = entry.after;
-            entry.after.before = entry.before;
-            // add first
-            entry.after = header;
-            entry.before = header.before;
-            header.before.after = entry;
-            header.before = entry;
-        } else if (entry == header) {
-            throw new IllegalStateException("Can't move header to MRU" +
-                    " This should not occur if your keys are immutable, and you have used synchronization properly.");
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -421,106 +282,17 @@ public class LRUMap<K, V>
         doReadObject(in);
     }
 
-    /**
-     * Subclass method to control removal of the least recently used entry from the map.
-     * <p>
-     * This method exists for subclasses to override. A subclass may wish to
-     * provide cleanup of resources when an entry is removed. For example:
-     * </p>
-     * <pre>
-     * protected boolean removeLRU(LinkEntry entry) {
-     *   releaseResources(entry.getValue());  // release resources held by entry
-     *   return true;  // actually delete entry
-     * }
-     * </pre>
-     * <p>
-     * Alternatively, a subclass may choose to not remove the entry or selectively
-     * keep certain LRU entries. For example:
-     * </p>
-     * <pre>
-     * protected boolean removeLRU(LinkEntry entry) {
-     *   if (entry.getKey().toString().startsWith("System.")) {
-     *     return false;  // entry not removed from LRUMap
-     *   } else {
-     *     return true;  // actually delete entry
-     *   }
-     * }
-     * </pre>
-     * <p>
-     * The effect of returning false is dependent on the scanUntilRemovable flag.
-     * If the flag is true, the next LRU entry will be passed to this method and so on
-     * until one returns false and is removed, or every entry in the map has been passed.
-     * If the scanUntilRemovable flag is false, the map will exceed the maximum size.
-     * </p>
-     * <p>
-     * Note: Commons Collections 3.0 passed the wrong entry to this method.
-     * This is fixed in version 3.1 onwards.
-     * </p>
-     *
-     * @param entry  the entry to be removed
-     * @return {@code true}
-     */
     protected boolean removeLRU(final LinkEntry<K, V> entry) {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Reuses an entry by removing it and moving it to a new place in the map.
-     * <p>
-     * This method uses {@link #removeEntry}, {@link #reuseEntry} and {@link #addEntry}.
-     *
-     * @param entry  the entry to reuse
-     * @param hashIndex  the index into the data array to store at
-     * @param hashCode  the hash code of the key to add
-     * @param key  the key to add
-     * @param value  the value to add
-     */
-    protected void reuseMapping(final LinkEntry<K, V> entry, final int hashIndex, final int hashCode,
-                                final K key, final V value) {
-        // find the entry before the entry specified in the hash table
-        // remember that the parameters (except the first) refer to the new entry,
-        // not the old one
-        try {
-            final int removeIndex = hashIndex(entry.hashCode, data.length);
-            final HashEntry<K, V>[] tmp = data;  // may protect against some sync issues
-            HashEntry<K, V> loop = tmp[removeIndex];
-            HashEntry<K, V> previous = null;
-            while (loop != entry && loop != null) {
-                previous = loop;
-                loop = loop.next;
-            }
-            if (loop == null) {
-                throw new IllegalStateException(
-                    "Entry.next=null, data[removeIndex]=" + data[removeIndex] + " previous=" + previous +
-                    " key=" + key + " value=" + value + " size=" + size + " maxSize=" + maxSize +
-                    " This should not occur if your keys are immutable, and you have used synchronization properly.");
-            }
-
-            // reuse the entry
-            modCount++;
-            removeEntry(entry, removeIndex, previous);
-            reuseEntry(entry, hashIndex, hashCode, key, value);
-            addEntry(entry, hashIndex);
-        } catch (final NullPointerException ex) {
-            throw new IllegalStateException("NPE, entry=" + entry + " entryIsHeader=" + (entry == header) + " key=" + key + " value=" + value + " size=" + size
-                    + " maxSize=" + maxSize + " This should not occur if your keys are immutable, and you have used synchronization properly.");
-        }
+    protected void reuseMapping(final LinkEntry<K, V> entry, final int hashIndex, final int hashCode, final K key, final V value) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Updates an existing key-value mapping.
-     * <p>
-     * This implementation moves the updated entry to the end of the list
-     * using {@link #moveToMRU(AbstractLinkedMap.LinkEntry)}.
-     * </p>
-     *
-     * @param entry  the entry to update
-     * @param newValue  the new value to store
-     */
     @Override
     protected void updateEntry(final HashEntry<K, V> entry, final V newValue) {
-        moveToMRU((LinkEntry<K, V>) entry);  // handles modCount
-        entry.setValue(newValue);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -533,5 +305,4 @@ public class LRUMap<K, V>
         out.defaultWriteObject();
         doWriteObject(out);
     }
-
 }

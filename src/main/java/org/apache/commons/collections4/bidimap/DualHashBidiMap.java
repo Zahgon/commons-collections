@@ -22,7 +22,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.apache.commons.collections4.BidiMap;
 
 /**
@@ -44,7 +43,9 @@ import org.apache.commons.collections4.BidiMap;
  */
 public class DualHashBidiMap<K, V> extends AbstractDualBidiMap<K, V> implements Serializable {
 
-    /** Ensure serialization compatibility */
+    /**
+     * Ensure serialization compatibility
+     */
     private static final long serialVersionUID = 721969328361808L;
 
     /**
@@ -72,23 +73,13 @@ public class DualHashBidiMap<K, V> extends AbstractDualBidiMap<K, V> implements 
      * @param reverseMap  the reverse direction map
      * @param inverseBidiMap  the inverse BidiMap
      */
-    protected DualHashBidiMap(final Map<K, V> normalMap, final Map<V, K> reverseMap,
-                              final BidiMap<V, K> inverseBidiMap) {
+    protected DualHashBidiMap(final Map<K, V> normalMap, final Map<V, K> reverseMap, final BidiMap<V, K> inverseBidiMap) {
         super(normalMap, reverseMap, inverseBidiMap);
     }
 
-    /**
-     * Creates a new instance of this object.
-     *
-     * @param normalMap  the normal direction map
-     * @param reverseMap  the reverse direction map
-     * @param inverseBidiMap  the inverse BidiMap
-     * @return new bidi map
-     */
     @Override
-    protected BidiMap<V, K> createBidiMap(final Map<V, K> normalMap, final Map<K, V> reverseMap,
-                                          final BidiMap<K, V> inverseBidiMap) {
-        return new DualHashBidiMap<>(normalMap, reverseMap, inverseBidiMap);
+    protected BidiMap<V, K> createBidiMap(final Map<V, K> normalMap, final Map<K, V> reverseMap, final BidiMap<K, V> inverseBidiMap) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -102,7 +93,8 @@ public class DualHashBidiMap<K, V> extends AbstractDualBidiMap<K, V> implements 
         in.defaultReadObject();
         normalMap = new HashMap<>();
         reverseMap = new HashMap<>();
-        @SuppressWarnings("unchecked") // will fail at runtime if stream is incorrect
+        // will fail at runtime if stream is incorrect
+        @SuppressWarnings("unchecked")
         final Map<K, V> map = (Map<K, V>) in.readObject();
         putAll(map);
     }
@@ -117,5 +109,4 @@ public class DualHashBidiMap<K, V> extends AbstractDualBidiMap<K, V> implements 
         out.defaultWriteObject();
         out.writeObject(normalMap);
     }
-
 }

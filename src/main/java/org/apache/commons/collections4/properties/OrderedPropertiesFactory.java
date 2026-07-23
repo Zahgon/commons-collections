@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.collections4.properties;
 
 /**
@@ -37,14 +36,8 @@ public class OrderedPropertiesFactory extends AbstractPropertiesFactory<OrderedP
         // There is only one instance.
     }
 
-    /**
-     * Subclasses override to provide customized properties instances.
-     *
-     * @return a new Properties instance.
-     */
     @Override
     protected OrderedProperties createProperties() {
-        return new OrderedProperties();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

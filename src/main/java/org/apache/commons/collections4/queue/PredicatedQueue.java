@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.queue;
 
 import java.util.Queue;
-
 import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.collection.PredicatedCollection;
 
@@ -39,25 +38,13 @@ import org.apache.commons.collections4.collection.PredicatedCollection;
  */
 public class PredicatedQueue<E> extends PredicatedCollection<E> implements Queue<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 2307609000539943581L;
 
-    /**
-     * Factory method to create a predicated (validating) queue.
-     * <p>
-     * If there are any elements already in the queue being decorated, they
-     * are validated.
-     *
-     * @param <E> the type of the elements in the queue
-     * @param Queue  the queue to decorate, must not be null
-     * @param predicate  the predicate to use for validation, must not be null
-     * @return a new predicated queue
-     * @throws NullPointerException if queue or predicate is null
-     * @throws IllegalArgumentException if the queue contains invalid elements
-     */
-    public static <E> PredicatedQueue<E> predicatedQueue(final Queue<E> Queue,
-                                                          final Predicate<? super E> predicate) {
-        return new PredicatedQueue<>(Queue, predicate);
+    public static <E> PredicatedQueue<E> predicatedQueue(final Queue<E> Queue, final Predicate<? super E> predicate) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -75,48 +62,33 @@ public class PredicatedQueue<E> extends PredicatedCollection<E> implements Queue
         super(queue, predicate);
     }
 
-    /**
-     * Gets the queue being decorated.
-     *
-     * @return the decorated queue
-     */
     @Override
     protected Queue<E> decorated() {
-        return (Queue<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E element() {
-        return decorated().element();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Override to validate the object being added to ensure it matches
-     * the predicate.
-     *
-     * @param object  the object being added
-     * @return the result of adding to the underlying queue
-     * @throws IllegalArgumentException if the add is invalid
-     */
     @Override
     public boolean offer(final E object) {
-        validate(object);
-        return decorated().offer(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E peek() {
-        return decorated().peek();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E poll() {
-        return decorated().poll();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E remove() {
-        return decorated().remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

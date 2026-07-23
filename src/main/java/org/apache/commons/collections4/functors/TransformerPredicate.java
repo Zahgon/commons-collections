@@ -18,7 +18,6 @@ package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
 import java.util.Objects;
-
 import org.apache.commons.collections4.FunctorException;
 import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.Transformer;
@@ -31,22 +30,18 @@ import org.apache.commons.collections4.Transformer;
  */
 public final class TransformerPredicate<T> extends AbstractPredicate<T> implements Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = -2407966402920578741L;
 
-    /**
-     * Creates the predicate.
-     *
-     * @param <T> the type that the predicate queries
-     * @param transformer  the transformer to decorate
-     * @return the predicate
-     * @throws NullPointerException if the transformer is null
-     */
     public static <T> Predicate<T> transformerPredicate(final Transformer<? super T, Boolean> transformer) {
-        return new TransformerPredicate<>(Objects.requireNonNull(transformer, "transformer"));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The transformer to call */
+    /**
+     * The transformer to call
+     */
     private final Transformer<? super T, Boolean> iTransformer;
 
     /**
@@ -59,31 +54,12 @@ public final class TransformerPredicate<T> extends AbstractPredicate<T> implemen
         iTransformer = transformer;
     }
 
-    /**
-     * Gets the transformer.
-     *
-     * @return the transformer
-     * @since 3.1
-     */
     public Transformer<? super T, Boolean> getTransformer() {
-        return iTransformer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Evaluates the predicate returning the result of the decorated transformer.
-     *
-     * @param object  the input object
-     * @return true if decorated transformer returns Boolean.TRUE
-     * @throws FunctorException if the transformer returns an invalid type
-     */
     @Override
     public boolean test(final T object) {
-        final Boolean result = iTransformer.apply(object);
-        if (result == null) {
-            throw new FunctorException(
-                    "Transformer must return an instanceof Boolean, it was a null object");
-        }
-        return result.booleanValue();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

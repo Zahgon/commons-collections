@@ -20,7 +20,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Predicate;
-
 import org.apache.commons.collections4.BoundedCollection;
 import org.apache.commons.collections4.Unmodifiable;
 import org.apache.commons.collections4.iterators.UnmodifiableIterator;
@@ -45,63 +44,20 @@ import org.apache.commons.collections4.iterators.UnmodifiableIterator;
  * @param <E> the type of elements in this collection
  * @since 3.0
  */
-public final class UnmodifiableBoundedCollection<E> extends AbstractCollectionDecorator<E>
-        implements BoundedCollection<E>, Unmodifiable {
+public final class UnmodifiableBoundedCollection<E> extends AbstractCollectionDecorator<E> implements BoundedCollection<E>, Unmodifiable {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -7112672385450340330L;
 
-    /**
-     * Factory method to create an unmodifiable bounded collection.
-     *
-     * @param <E> the type of the elements in the collection
-     * @param coll  the {@code BoundedCollection} to decorate, must not be null
-     * @return a new unmodifiable bounded collection
-     * @throws NullPointerException if {@code coll} is {@code null}
-     * @since 4.0
-     */
     public static <E> BoundedCollection<E> unmodifiableBoundedCollection(final BoundedCollection<? extends E> coll) {
-        if (coll instanceof Unmodifiable) {
-            @SuppressWarnings("unchecked") // safe to upcast
-            final BoundedCollection<E> tmpColl = (BoundedCollection<E>) coll;
-            return tmpColl;
-        }
-        return new UnmodifiableBoundedCollection<>(coll);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Factory method to create an unmodifiable bounded collection.
-     * <p>
-     * This method is capable of drilling down through up to 1000 other decorators
-     * to find a suitable BoundedCollection.
-     *
-     * @param <E> the type of the elements in the collection
-     * @param collection  the {@code BoundedCollection} to decorate, must not be null
-     * @return a new unmodifiable bounded collection
-     * @throws NullPointerException if coll is null
-     * @throws IllegalArgumentException if coll is not a {@code BoundedCollection}
-     * @since 4.0
-     */
     @SuppressWarnings("unchecked")
     public static <E> BoundedCollection<E> unmodifiableBoundedCollection(Collection<? extends E> collection) {
-        Objects.requireNonNull(collection, "collection");
-
-        // handle decorators
-        for (int i = 0; i < 1000; i++) {  // counter to prevent infinite looping
-            if (collection instanceof BoundedCollection) {
-                break;  // normal loop exit
-            }
-            if (collection instanceof AbstractCollectionDecorator) {
-                collection = ((AbstractCollectionDecorator<E>) collection).decorated();
-            } else if (collection instanceof SynchronizedCollection) {
-                collection = ((SynchronizedCollection<E>) collection).decorated();
-            }
-        }
-
-        if (!(collection instanceof BoundedCollection)) {
-            throw new IllegalArgumentException("Collection is not a bounded collection.");
-        }
-        return new UnmodifiableBoundedCollection<>((BoundedCollection<E>) collection);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -110,66 +66,64 @@ public final class UnmodifiableBoundedCollection<E> extends AbstractCollectionDe
      * @param coll  the collection to decorate, must not be null
      * @throws NullPointerException if coll is null
      */
-    @SuppressWarnings("unchecked") // safe to upcast
+    // safe to upcast
+    @SuppressWarnings("unchecked")
     private UnmodifiableBoundedCollection(final BoundedCollection<? extends E> coll) {
         super((BoundedCollection<E>) coll);
     }
 
     @Override
     public boolean add(final E object) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final Collection<? extends E> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     protected BoundedCollection<E> decorated() {
-        return (BoundedCollection<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean isFull() {
-        return decorated().isFull();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<E> iterator() {
-        return UnmodifiableIterator.unmodifiableIterator(decorated().iterator());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int maxSize() {
-        return decorated().maxSize();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean remove(final Object object) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean removeAll(final Collection<?> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * @since 4.4
-     */
     @Override
     public boolean removeIf(final Predicate<? super E> filter) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean retainAll(final Collection<?> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -23,7 +23,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Queue;
 import java.util.function.Predicate;
-
 import org.apache.commons.collections4.Unmodifiable;
 import org.apache.commons.collections4.iterators.UnmodifiableIterator;
 
@@ -36,30 +35,15 @@ import org.apache.commons.collections4.iterators.UnmodifiableIterator;
  * @param <E> the type of elements held in this queue
  * @since 4.0
  */
-public final class UnmodifiableQueue<E>
-        extends AbstractQueueDecorator<E>
-        implements Unmodifiable {
-
-    /** Serialization version */
-    private static final long serialVersionUID = 1832948656215393357L;
+public final class UnmodifiableQueue<E> extends AbstractQueueDecorator<E> implements Unmodifiable {
 
     /**
-     * Factory method to create an unmodifiable queue.
-     * <p>
-     * If the queue passed in is already unmodifiable, it is returned.
-     *
-     * @param <E> the type of the elements in the queue
-     * @param queue  the queue to decorate, must not be null
-     * @return an unmodifiable Queue
-     * @throws NullPointerException if queue is null
+     * Serialization version
      */
+    private static final long serialVersionUID = 1832948656215393357L;
+
     public static <E> Queue<E> unmodifiableQueue(final Queue<? extends E> queue) {
-        if (queue instanceof Unmodifiable) {
-            @SuppressWarnings("unchecked") // safe to upcast
-            final Queue<E> tmpQueue = (Queue<E>) queue;
-            return tmpQueue;
-        }
-        return new UnmodifiableQueue<>(queue);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -68,39 +52,40 @@ public final class UnmodifiableQueue<E>
      * @param queue  the queue to decorate, must not be null
      * @throws NullPointerException if queue is null
      */
-    @SuppressWarnings("unchecked") // safe to upcast
+    // safe to upcast
+    @SuppressWarnings("unchecked")
     private UnmodifiableQueue(final Queue<? extends E> queue) {
         super((Queue<E>) queue);
     }
 
     @Override
     public boolean add(final Object object) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final Collection<? extends E> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<E> iterator() {
-        return UnmodifiableIterator.unmodifiableIterator(decorated().iterator());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean offer(final E obj) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E poll() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -118,30 +103,27 @@ public final class UnmodifiableQueue<E>
 
     @Override
     public E remove() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean remove(final Object object) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean removeAll(final Collection<?> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * @since 4.4
-     */
     @Override
     public boolean removeIf(final Predicate<? super E> filter) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean retainAll(final Collection<?> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -154,5 +136,4 @@ public final class UnmodifiableQueue<E>
         out.defaultWriteObject();
         out.writeObject(decorated());
     }
-
 }

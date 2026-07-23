@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
-
 import org.apache.commons.collections4.Factory;
 import org.apache.commons.collections4.FunctorException;
 
@@ -29,22 +28,20 @@ import org.apache.commons.collections4.FunctorException;
  */
 public final class ExceptionFactory<T> implements Factory<T>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 7179106032121985545L;
 
-    /** Singleton predicate instance */
-    @SuppressWarnings("rawtypes") // the static instance works for all types
+    /**
+     * Singleton predicate instance
+     */
+    // the static instance works for all types
+    @SuppressWarnings("rawtypes")
     public static final Factory INSTANCE = new ExceptionFactory<>();
 
-    /**
-     * Factory returning the singleton instance.
-     *
-     * @param <T>  the type the factory creates
-     * @return the singleton instance
-     * @since 3.1
-     */
     public static <T> Factory<T> exceptionFactory() {
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -53,15 +50,9 @@ public final class ExceptionFactory<T> implements Factory<T>, Serializable {
     private ExceptionFactory() {
     }
 
-    /**
-     * Always throws an exception.
-     *
-     * @return never
-     * @throws FunctorException always
-     */
     @Override
     public T create() {
-        throw new FunctorException("ExceptionFactory invoked");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -72,5 +63,4 @@ public final class ExceptionFactory<T> implements Factory<T>, Serializable {
     private Object readResolve() {
         return INSTANCE;
     }
-
 }

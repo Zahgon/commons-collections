@@ -44,7 +44,7 @@ public interface Transformer<T, R> extends Function<T, R> {
 
     @Override
     default R apply(final T t) {
-        return transform(t);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -60,5 +60,4 @@ public interface Transformer<T, R> extends Function<T, R> {
      * @throws FunctorException (runtime) if the transform cannot be completed
      */
     R transform(T input);
-
 }

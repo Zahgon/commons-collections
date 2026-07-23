@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
-
 import org.apache.commons.collections4.Closure;
 
 /**
@@ -28,22 +27,19 @@ import org.apache.commons.collections4.Closure;
  */
 public final class NOPClosure<T> implements Closure<T>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 3518477308466486130L;
 
-    /** Singleton predicate instance */
+    /**
+     * Singleton predicate instance
+     */
     @SuppressWarnings("rawtypes")
     public static final Closure INSTANCE = new NOPClosure<>();
 
-    /**
-     * Factory returning the singleton instance.
-     *
-     * @param <E> the type that the closure acts on
-     * @return the singleton instance
-     * @since 3.1
-     */
     public static <E> Closure<E> nopClosure() {
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -52,14 +48,9 @@ public final class NOPClosure<T> implements Closure<T>, Serializable {
     private NOPClosure() {
     }
 
-    /**
-     * Do nothing.
-     *
-     * @param input  the input object
-     */
     @Override
     public void execute(final T input) {
-        // do nothing
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -70,5 +61,4 @@ public final class NOPClosure<T> implements Closure<T>, Serializable {
     private Object readResolve() {
         return INSTANCE;
     }
-
 }

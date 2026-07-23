@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.functors;
 
 import java.util.Objects;
-
 import org.apache.commons.collections4.Closure;
 import org.apache.commons.collections4.Predicate;
 
@@ -36,27 +35,23 @@ import org.apache.commons.collections4.Predicate;
  */
 public class WhileClosure<T> implements Closure<T> {
 
-    /**
-     * Factory method that performs validation.
-     *
-     * @param <E> the type that the closure acts on
-     * @param predicate  the predicate used to evaluate when the loop terminates, not null
-     * @param closure  the closure to execute, not null
-     * @param doLoop  true to act as a do-while loop, always executing the closure once
-     * @return the {@code while} closure
-     * @throws NullPointerException if the predicate or closure is null
-     */
-    public static <E> Closure<E> whileClosure(final Predicate<? super E> predicate,
-                                              final Closure<? super E> closure, final boolean doLoop) {
-        return new WhileClosure<>(Objects.requireNonNull(predicate, "predicate"),
-                Objects.requireNonNull(closure, "closure"), doLoop);
+    public static <E> Closure<E> whileClosure(final Predicate<? super E> predicate, final Closure<? super E> closure, final boolean doLoop) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    /** The test condition */
+
+    /**
+     * The test condition
+     */
     private final Predicate<? super T> iPredicate;
-    /** The closure to call */
+
+    /**
+     * The closure to call
+     */
     private final Closure<? super T> iClosure;
 
-    /** The flag, true is a do loop, false is a while */
+    /**
+     * The flag, true is a do loop, false is a while
+     */
     private final boolean iDoLoop;
 
     /**
@@ -73,49 +68,20 @@ public class WhileClosure<T> implements Closure<T> {
         iDoLoop = doLoop;
     }
 
-    /**
-     * Executes the closure until the predicate is false.
-     *
-     * @param input  the input object
-     */
     @Override
     public void execute(final T input) {
-        if (iDoLoop) {
-            iClosure.accept(input);
-        }
-        while (iPredicate.test(input)) {
-            iClosure.accept(input);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the closure.
-     *
-     * @return the closure
-     * @since 3.1
-     */
     public Closure<? super T> getClosure() {
-        return iClosure;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the predicate in use.
-     *
-     * @return the predicate
-     * @since 3.1
-     */
     public Predicate<? super T> getPredicate() {
-        return iPredicate;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Is the loop a do-while loop.
-     *
-     * @return true is do-while, false if while
-     * @since 3.1
-     */
     public boolean isDoLoop() {
-        return iDoLoop;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -19,9 +19,7 @@ package org.apache.commons.collections4.functors;
 import static org.apache.commons.collections4.functors.FunctorUtils.coerce;
 import static org.apache.commons.collections4.functors.FunctorUtils.validate;
 import static org.apache.commons.collections4.functors.TruePredicate.truePredicate;
-
 import java.util.Collection;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -38,56 +36,17 @@ import org.apache.commons.collections4.Predicate;
  */
 public final class AllPredicate<T> extends AbstractQuantifierPredicate<T> {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = -3094696765038308799L;
 
-    /**
-     * Creates the predicate.
-     * <p>
-     * If the collection is size zero, the predicate always returns true.
-     * If the collection is size one, then that predicate is returned.
-     * </p>
-     *
-     * @param <T> the type that the predicate queries
-     * @param predicates  the predicates to check, cloned, not null
-     * @return the {@code all} predicate
-     * @throws NullPointerException if the predicates array is null
-     * @throws NullPointerException if any predicate in the array is null
-     */
     public static <T> Predicate<T> allPredicate(final Collection<? extends Predicate<? super T>> predicates) {
-        final Predicate<? super T>[] preds = validate(predicates);
-        if (preds.length == 0) {
-            return truePredicate();
-        }
-        if (preds.length == 1) {
-            return coerce(preds[0]);
-        }
-        return new AllPredicate<>(preds);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates the predicate.
-     * <p>
-     * If the array is size zero, the predicate always returns true.
-     * If the array is size one, then that predicate is returned.
-     * </p>
-     *
-     * @param <T> the type that the predicate queries
-     * @param predicates  the predicates to check, cloned, not null
-     * @return the {@code all} predicate
-     * @throws NullPointerException if the predicates array is null
-     * @throws NullPointerException if any predicate in the array is null
-     */
     public static <T> Predicate<T> allPredicate(final Predicate<? super T>... predicates) {
-        validate(predicates);
-        if (predicates.length == 0) {
-            return truePredicate();
-        }
-        if (predicates.length == 1) {
-            return coerce(predicates[0]);
-        }
-        // <T> not needed in Eclipse but needed by the command line compiler
-        return new AllPredicate<T>(FunctorUtils.copy(predicates));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -100,20 +59,8 @@ public final class AllPredicate<T> extends AbstractQuantifierPredicate<T> {
         super(predicates);
     }
 
-    /**
-     * Evaluates the predicate returning true if all predicates return true.
-     *
-     * @param object  the input object
-     * @return true if all decorated predicates return true
-     */
     @Override
     public boolean test(final T object) {
-        for (final Predicate<? super T> iPredicate : iPredicates) {
-            if (!iPredicate.test(object)) {
-                return false;
-            }
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

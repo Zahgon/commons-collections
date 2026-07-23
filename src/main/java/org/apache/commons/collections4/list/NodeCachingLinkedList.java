@@ -46,7 +46,9 @@ import java.util.Collection;
 @Deprecated
 public class NodeCachingLinkedList<E> extends AbstractLinkedList<E> implements Serializable {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 6897789178562232073L;
 
     /**
@@ -95,81 +97,29 @@ public class NodeCachingLinkedList<E> extends AbstractLinkedList<E> implements S
      */
     public NodeCachingLinkedList(final int maximumCacheSize) {
         this.maximumCacheSize = maximumCacheSize;
-        init();  // must call init() as use super();
+        // must call init() as use super();
+        init();
     }
 
-    /**
-     * Adds a node to the cache, if the cache isn't full.
-     * The node's contents are cleared, so they can be garbage collected.
-     *
-     * @param node  the node to add to the cache
-     */
     protected void addNodeToCache(final Node<E> node) {
-        if (isCacheFull()) {
-            // don't cache the node.
-            return;
-        }
-        // clear the node's contents and add it to the cache.
-        final Node<E> nextCachedNode = firstCachedNode;
-        node.previous = null;
-        node.next = nextCachedNode;
-        node.setValue(null);
-        firstCachedNode = node;
-        cacheSize++;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a new node, either by reusing one from the cache or creating
-     * a new one.
-     *
-     * @param value  value of the new node
-     * @return the newly created node
-     */
     @Override
     protected Node<E> createNode(final E value) {
-        final Node<E> cachedNode = getNodeFromCache();
-        if (cachedNode == null) {
-            return super.createNode(value);
-        }
-        cachedNode.setValue(value);
-        return cachedNode;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the maximum size of the cache.
-     *
-     * @return the maximum cache size
-     */
     protected int getMaximumCacheSize() {
-        return maximumCacheSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a node from the cache. If a node is returned, then the value of
-     * {@link #cacheSize} is decreased accordingly. The node that is returned
-     * will have {@code null} values for next, previous and element.
-     *
-     * @return a node, or {@code null} if there are no nodes in the cache.
-     */
     protected Node<E> getNodeFromCache() {
-        if (cacheSize == 0) {
-            return null;
-        }
-        final Node<E> cachedNode = firstCachedNode;
-        firstCachedNode = cachedNode.next;
-        cachedNode.next = null; // This should be changed anyway, but defensively
-                                // set it to null.
-        cacheSize--;
-        return cachedNode;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Checks whether the cache is full.
-     *
-     * @return true if the cache is full
-     */
     protected boolean isCacheFull() {
-        return cacheSize >= maximumCacheSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -184,56 +134,22 @@ public class NodeCachingLinkedList<E> extends AbstractLinkedList<E> implements S
         doReadObject(in);
     }
 
-    /**
-     * Removes all the nodes from the list, storing as many as required in the
-     * cache for reuse.
-     */
     @Override
     protected void removeAllNodes() {
-        // Add the removed nodes to the cache, then remove the rest.
-        // We can add them to the cache before removing them, since
-        // {@link AbstractLinkedList.removeAllNodes()} removes the
-        // nodes by removing references directly from {@link #header}.
-        final int numberOfNodesToCache = Math.min(size, maximumCacheSize - cacheSize);
-        Node<E> node = header.next;
-        for (int currentIndex = 0; currentIndex < numberOfNodesToCache; currentIndex++) {
-            final Node<E> oldNode = node;
-            node = node.next;
-            addNodeToCache(oldNode);
-        }
-        super.removeAllNodes();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes the node from the list, storing it in the cache for reuse
-     * if the cache is not yet full.
-     *
-     * @param node  the node to remove
-     */
     @Override
     protected void removeNode(final Node<E> node) {
-        super.removeNode(node);
-        addNodeToCache(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the maximum size of the cache.
-     *
-     * @param maximumCacheSize  the new maximum cache size
-     */
     protected void setMaximumCacheSize(final int maximumCacheSize) {
-        this.maximumCacheSize = maximumCacheSize;
-        shrinkCacheToMaximumSize();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Reduce the size of the cache to the maximum, if necessary.
-     */
     protected void shrinkCacheToMaximumSize() {
-        // Rich Dougherty: This could be more efficient.
-        while (cacheSize > maximumCacheSize) {
-            getNodeFromCache();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -246,5 +162,4 @@ public class NodeCachingLinkedList<E> extends AbstractLinkedList<E> implements S
         out.defaultWriteObject();
         doWriteObject(out);
     }
-
 }

@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.iterators;
 
 import java.util.ListIterator;
-
 import org.apache.commons.collections4.ResettableListIterator;
 
 /**
@@ -49,24 +48,12 @@ public class EmptyListIterator<E> extends AbstractEmptyIterator<E> implements Re
     @SuppressWarnings("rawtypes")
     public static final ListIterator INSTANCE = RESETTABLE_INSTANCE;
 
-    /**
-     * Gets a typed instance of the iterator.
-     *
-     * @param <E> the element type
-     * @return {@link ListIterator}&lt;E&gt;
-     */
     public static <E> ListIterator<E> emptyListIterator() {
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a typed instance of the iterator.
-     *
-     * @param <E> the element type
-     * @return {@link ResettableListIterator}&lt;E&gt;
-     */
     public static <E> ResettableListIterator<E> resettableEmptyListIterator() {
-        return RESETTABLE_INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -74,5 +61,4 @@ public class EmptyListIterator<E> extends AbstractEmptyIterator<E> implements Re
      */
     protected EmptyListIterator() {
     }
-
 }

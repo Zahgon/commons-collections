@@ -23,7 +23,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Factory;
 import org.apache.commons.collections4.Transformer;
 import org.apache.commons.collections4.functors.ConstantTransformer;
@@ -70,68 +69,26 @@ import org.apache.commons.collections4.functors.FactoryTransformer;
  */
 public class DefaultedMap<K, V> extends AbstractMapDecorator<K, V> implements Serializable {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 19698628745827L;
 
-    /**
-     * Factory method to create a defaulting map.
-     * <p>
-     * The factory specified is called when a missing key is found.
-     * The result will be returned as the result of the map get(key) method.
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @param factory  the factory to use to create entries, must not be null
-     * @return a new defaulting map
-     * @throws NullPointerException if map or factory is null
-     * @since 4.0
-     */
     public static <K, V> DefaultedMap<K, V> defaultedMap(final Map<K, V> map, final Factory<? extends V> factory) {
-        return new DefaultedMap<>(map, FactoryTransformer.factoryTransformer(
-                Objects.requireNonNull(factory, "Factory must not be null")));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Factory method to create a defaulting map.
-     * <p>
-     * The transformer specified is called when a missing key is found.
-     * The key is passed to the transformer as the input, and the result
-     * will be returned as the result of the map get(key) method.
-     * </p>
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @param transformer  the transformer to use as a factory to create entries, must not be null
-     * @return a new defaulting map
-     * @throws NullPointerException if map or transformer is null
-     * @since 4.0
-     */
-    public static <K, V> Map<K, V> defaultedMap(final Map<K, V> map,
-                                                final Transformer<? super K, ? extends V> transformer) {
-        return new DefaultedMap<>(map, Objects.requireNonNull(transformer, "Transformer must not be null"));
+    public static <K, V> Map<K, V> defaultedMap(final Map<K, V> map, final Transformer<? super K, ? extends V> transformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Factory method to create a defaulting map.
-     * <p>
-     * The value specified is returned when a missing key is found.
-     * </p>
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @param defaultValue  the default value to return when the key is not found
-     * @return a new defaulting map
-     * @throws NullPointerException if map is null
-     * @since 4.0
-     */
     public static <K, V> DefaultedMap<K, V> defaultedMap(final Map<K, V> map, final V defaultValue) {
-        return new DefaultedMap<>(map, ConstantTransformer.constantTransformer(defaultValue));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The transformer to use if the map does not contain a key */
+    /**
+     * The transformer to use if the map does not contain a key
+     */
     private final Transformer<? super K, ? extends V> value;
 
     /**
@@ -172,10 +129,7 @@ public class DefaultedMap<K, V> extends AbstractMapDecorator<K, V> implements Se
     @Override
     @SuppressWarnings("unchecked")
     public V get(final Object key) {
-        final V v;
-        return (v = map.get(key)) != null || map.containsKey(key)
-            ? v
-            : value.apply((K) key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -201,7 +155,6 @@ public class DefaultedMap<K, V> extends AbstractMapDecorator<K, V> implements Se
         out.defaultWriteObject();
         out.writeObject(map);
     }
-
     // no need to wrap keySet, entrySet or values as they are views of
     // existing map entries - you can't do a map-style get on them.
 }

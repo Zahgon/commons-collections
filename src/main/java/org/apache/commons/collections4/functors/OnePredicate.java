@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.functors;
 
 import java.util.Collection;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -34,47 +33,18 @@ import org.apache.commons.collections4.Predicate;
  */
 public final class OnePredicate<T> extends AbstractQuantifierPredicate<T> {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = -8125389089924745785L;
 
-    /**
-     * Creates the predicate.
-     *
-     * @param <T> the type that the predicate queries
-     * @param predicates  the predicates to check, cloned, not null
-     * @return the {@code one} predicate
-     * @throws NullPointerException if the predicates array is null
-     * @throws NullPointerException if any predicate in the array is null
-     */
     public static <T> Predicate<T> onePredicate(final Collection<? extends Predicate<? super T>> predicates) {
-        final Predicate<? super T>[] preds = FunctorUtils.validate(predicates);
-        return new OnePredicate<>(preds);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates the predicate.
-     * <p>
-     * If the array is size zero, the predicate always returns false.
-     * If the array is size one, then that predicate is returned.
-     * </p>
-     *
-     * @param <T> the type that the predicate queries
-     * @param predicates  the predicates to check, cloned, not null
-     * @return the {@code any} predicate
-     * @throws NullPointerException if the predicates array is null
-     * @throws NullPointerException if any predicate in the array is null
-     */
     @SuppressWarnings("unchecked")
     public static <T> Predicate<T> onePredicate(final Predicate<? super T>... predicates) {
-        FunctorUtils.validate(predicates);
-        if (predicates.length == 0) {
-            return FalsePredicate.<T>falsePredicate();
-        }
-        if (predicates.length == 1) {
-            return (Predicate<T>) predicates[0];
-        }
-        // <T> not needed in Eclipse but needed by the command line compiler
-        return new OnePredicate<T>(FunctorUtils.copy(predicates));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -87,25 +57,8 @@ public final class OnePredicate<T> extends AbstractQuantifierPredicate<T> {
         super(predicates);
     }
 
-    /**
-     * Evaluates the predicate returning true if only one decorated predicate
-     * returns true.
-     *
-     * @param object  the input object
-     * @return true if only one decorated predicate returns true
-     */
     @Override
     public boolean test(final T object) {
-        boolean match = false;
-        for (final Predicate<? super T> iPredicate : iPredicates) {
-            if (iPredicate.test(object)) {
-                if (match) {
-                    return false;
-                }
-                match = true;
-            }
-        }
-        return match;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

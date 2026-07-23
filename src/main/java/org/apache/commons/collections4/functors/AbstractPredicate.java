@@ -35,6 +35,6 @@ public abstract class AbstractPredicate<T> implements Predicate<T> {
 
     @Override
     public boolean evaluate(final T object) {
-        return test(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

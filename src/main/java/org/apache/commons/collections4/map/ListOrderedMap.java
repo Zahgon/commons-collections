@@ -31,7 +31,6 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
-
 import org.apache.commons.collections4.OrderedMap;
 import org.apache.commons.collections4.OrderedMapIterator;
 import org.apache.commons.collections4.ResettableIterator;
@@ -81,13 +80,14 @@ import org.apache.commons.collections4.list.UnmodifiableList;
  * @param <V> the type of the values in this map
  * @since 3.0
  */
-public class ListOrderedMap<K, V>
-        extends AbstractMapDecorator<K, V>
-        implements OrderedMap<K, V>, Serializable {
+public class ListOrderedMap<K, V> extends AbstractMapDecorator<K, V> implements OrderedMap<K, V>, Serializable {
 
     static class EntrySetView<K, V> extends AbstractSet<Map.Entry<K, V>> {
+
         private final ListOrderedMap<K, V> parent;
+
         private final List<K> insertOrder;
+
         private Set<Map.Entry<K, V>> entrySet;
 
         EntrySetView(final ListOrderedMap<K, V> parent, final List<K> insertOrder) {
@@ -97,24 +97,22 @@ public class ListOrderedMap<K, V>
 
         @Override
         public void clear() {
-            parent.clear();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean contains(final Object obj) {
-            return getEntrySet().contains(obj);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
+
         @Override
         public boolean containsAll(final Collection<?> coll) {
-            return getEntrySet().containsAll(coll);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean equals(final Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            return getEntrySet().equals(obj);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private Set<Map.Entry<K, V>> getEntrySet() {
@@ -126,45 +124,38 @@ public class ListOrderedMap<K, V>
 
         @Override
         public int hashCode() {
-            return getEntrySet().hashCode();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean isEmpty() {
-            return parent.isEmpty();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<Map.Entry<K, V>> iterator() {
-            return new ListOrderedIterator<>(parent, insertOrder);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         @SuppressWarnings("unchecked")
         public boolean remove(final Object obj) {
-            if (!(obj instanceof Map.Entry)) {
-                return false;
-            }
-            if (getEntrySet().contains(obj)) {
-                final Object key = ((Map.Entry<K, V>) obj).getKey();
-                parent.remove(key);
-                return true;
-            }
-            return false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return parent.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public String toString() {
-            return getEntrySet().toString();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     static class KeySetView<K> extends AbstractSet<K> {
+
         private final ListOrderedMap<K, Object> parent;
 
         @SuppressWarnings("unchecked")
@@ -174,32 +165,29 @@ public class ListOrderedMap<K, V>
 
         @Override
         public void clear() {
-            parent.clear();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean contains(final Object value) {
-            return parent.containsKey(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<K> iterator() {
-            return new AbstractUntypedIteratorDecorator<Map.Entry<K, Object>, K>(parent.entrySet().iterator()) {
-                @Override
-                public K next() {
-                    return getIterator().next().getKey();
-                }
-            };
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return parent.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     static class ListOrderedIterator<K, V> extends AbstractUntypedIteratorDecorator<K, Map.Entry<K, V>> {
+
         private final ListOrderedMap<K, V> parent;
+
         private K last;
 
         ListOrderedIterator(final ListOrderedMap<K, V> parent, final List<K> insertOrder) {
@@ -209,18 +197,17 @@ public class ListOrderedMap<K, V>
 
         @Override
         public Map.Entry<K, V> next() {
-            last = getIterator().next();
-            return new ListOrderedMapEntry<>(parent, last);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void remove() {
-            super.remove();
-            parent.decorated().remove(last);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     static class ListOrderedMapEntry<K, V> extends AbstractMapEntry<K, V> {
+
         private final ListOrderedMap<K, V> parent;
 
         ListOrderedMapEntry(final ListOrderedMap<K, V> parent, final K key) {
@@ -230,19 +217,23 @@ public class ListOrderedMap<K, V>
 
         @Override
         public V getValue() {
-            return parent.get(getKey());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V setValue(final V value) {
-            return parent.decorated().put(getKey(), value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     static class ListOrderedMapIterator<K, V> implements OrderedMapIterator<K, V>, ResettableIterator<K> {
+
         private final ListOrderedMap<K, V> parent;
+
         private ListIterator<K> iterator;
+
         private K last;
+
         private boolean readable;
 
         ListOrderedMapIterator(final ListOrderedMap<K, V> parent) {
@@ -252,79 +243,57 @@ public class ListOrderedMap<K, V>
 
         @Override
         public K getKey() {
-            if (!readable) {
-                throw new IllegalStateException(AbstractHashedMap.GETKEY_INVALID);
-            }
-            return last;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V getValue() {
-            if (!readable) {
-                throw new IllegalStateException(AbstractHashedMap.GETVALUE_INVALID);
-            }
-            return parent.get(last);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean hasNext() {
-            return iterator.hasNext();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean hasPrevious() {
-            return iterator.hasPrevious();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K next() {
-            last = iterator.next();
-            readable = true;
-            return last;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K previous() {
-            last = iterator.previous();
-            readable = true;
-            return last;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void remove() {
-            if (!readable) {
-                throw new IllegalStateException(AbstractHashedMap.REMOVE_INVALID);
-            }
-            iterator.remove();
-            parent.map.remove(last);
-            readable = false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void reset() {
-            iterator = parent.insertOrder.listIterator();
-            last = null;
-            readable = false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V setValue(final V value) {
-            if (!readable) {
-                throw new IllegalStateException(AbstractHashedMap.SETVALUE_INVALID);
-            }
-            return parent.map.put(last, value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public String toString() {
-            if (readable) {
-                return "Iterator[" + getKey() + "=" + getValue() + "]";
-            }
-            return "Iterator[]";
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     static class ValuesView<V> extends AbstractList<V> {
+
         private final ListOrderedMap<Object, V> parent;
 
         @SuppressWarnings("unchecked")
@@ -334,66 +303,52 @@ public class ListOrderedMap<K, V>
 
         @Override
         public void clear() {
-            parent.clear();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean contains(final Object value) {
-            return parent.containsValue(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V get(final int index) {
-            return parent.getValue(index);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<V> iterator() {
-            return new AbstractUntypedIteratorDecorator<Map.Entry<Object, V>, V>(parent.entrySet().iterator()) {
-                @Override
-                public V next() {
-                    return getIterator().next().getValue();
-                }
-            };
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V remove(final int index) {
-            return parent.remove(index);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V set(final int index, final V value) {
-            return parent.setValue(index, value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return parent.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 2728177751851003750L;
 
-    /**
-     * Factory method to create an ordered map.
-     * <p>
-     * An {@code ArrayList} is used to retain order.
-     * </p>
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @return a new list ordered map
-     * @throws NullPointerException if map is null
-     * @since 4.0
-     */
     public static <K, V> ListOrderedMap<K, V> listOrderedMap(final Map<K, V> map) {
-        return new ListOrderedMap<>(map);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** Internal list to hold the sequence of objects */
+    /**
+     * Internal list to hold the sequence of objects
+     */
     private final List<K> insertOrder = new ArrayList<>();
 
     /**
@@ -417,262 +372,82 @@ public class ListOrderedMap<K, V>
         insertOrder.addAll(decorated().keySet());
     }
 
-    /**
-     * Gets an unmodifiable List view of the keys which changes as the map changes.
-     * <p>
-     * The returned list is unmodifiable because changes to the values of
-     * the list (using {@link java.util.ListIterator#set(Object)}) will
-     * effectively remove the value from the list and reinsert that value at
-     * the end of the list, which is an unexpected side effect of changing the
-     * value of a list.  This occurs because changing the key, changes when the
-     * mapping is added to the map and thus where it appears in the list.
-     * </p>
-     * <p>
-     * An alternative to this method is to use the better named
-     * {@link #keyList()} or {@link #keySet()}.
-     * </p>
-     *
-     * @see #keyList()
-     * @see #keySet()
-     * @return The ordered list of keys.
-     */
     public List<K> asList() {
-        return keyList();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        decorated().clear();
-        insertOrder.clear();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a view over the entries in the map.
-     * <p>
-     * The Set will be ordered by object insertion into the map.
-     * </p>
-     *
-     * @return the fully modifiable set view over the entries
-     */
     @Override
     public Set<Map.Entry<K, V>> entrySet() {
-        return new EntrySetView<>(this, insertOrder);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the first key in this map by insert order.
-     *
-     * @return the first key currently in this map
-     * @throws NoSuchElementException if this map is empty
-     */
     @Override
     public K firstKey() {
-        if (isEmpty()) {
-            throw new NoSuchElementException("Map is empty");
-        }
-        return insertOrder.get(0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the key at the specified index.
-     *
-     * @param index  the index to retrieve
-     * @return the key at the specified index
-     * @throws IndexOutOfBoundsException if the index is invalid
-     */
     public K get(final int index) {
-        return insertOrder.get(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the value at the specified index.
-     *
-     * @param index  the index to retrieve
-     * @return the key at the specified index
-     * @throws IndexOutOfBoundsException if the index is invalid
-     */
     public V getValue(final int index) {
-        return get(insertOrder.get(index));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the index of the specified key.
-     *
-     * @param key  the key to find the index of
-     * @return the index, or -1 if not found
-     */
     public int indexOf(final Object key) {
-        return insertOrder.indexOf(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a view over the keys in the map as a List.
-     * <p>
-     * The List will be ordered by object insertion into the map.
-     * The List is unmodifiable.
-     * </p>
-     *
-     * @see #keySet()
-     * @return the unmodifiable list view over the keys
-     * @since 3.2
-     */
     public List<K> keyList() {
-        return UnmodifiableList.unmodifiableList(insertOrder);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a view over the keys in the map.
-     * <p>
-     * The Collection will be ordered by object insertion into the map.
-     * </p>
-     *
-     * @see #keyList()
-     * @return the fully modifiable collection view over the keys
-     */
     @Override
     public Set<K> keySet() {
-        return new KeySetView<>(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the last key in this map by insert order.
-     *
-     * @return the last key currently in this map
-     * @throws NoSuchElementException if this map is empty
-     */
     @Override
     public K lastKey() {
-        if (isEmpty()) {
-            throw new NoSuchElementException("Map is empty");
-        }
-        return insertOrder.get(size() - 1);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public OrderedMapIterator<K, V> mapIterator() {
-        return new ListOrderedMapIterator<>(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the next key to the one specified using insert order.
-     * This method performs a list search to find the key and is O(n).
-     *
-     * @param key  the key to find previous for
-     * @return the next key, null if no match or at start
-     */
     @Override
     public K nextKey(final Object key) {
-        final int index = insertOrder.indexOf(key);
-        if (index >= 0 && index < size() - 1) {
-            return insertOrder.get(index + 1);
-        }
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the previous key to the one specified using insert order.
-     * This method performs a list search to find the key and is O(n).
-     *
-     * @param key  the key to find previous for
-     * @return the previous key, null if no match or at start
-     */
     @Override
     public K previousKey(final Object key) {
-        final int index = insertOrder.indexOf(key);
-        if (index > 0) {
-            return insertOrder.get(index - 1);
-        }
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Puts a key-value mapping into the map at the specified index.
-     * <p>
-     * If the map already contains the key, then the original mapping
-     * is removed and the new mapping added at the specified index.
-     * The remove may change the effect of the index. The index is
-     * always calculated relative to the original state of the map.
-     * </p>
-     * <p>
-     * Thus, the steps are: (1) remove the existing key-value mapping,
-     * then (2) insert the new key-value mapping at the position it
-     * would have been inserted had the remove not occurred.
-     * </p>
-     *
-     * @param index  the index at which the mapping should be inserted
-     * @param key  the key
-     * @param value  the value
-     * @return the value previously mapped to the key
-     * @throws IndexOutOfBoundsException if the index is out of range [0, size]
-     * @since 3.2
-     */
     public V put(int index, final K key, final V value) {
-        if (index < 0 || index > insertOrder.size()) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + insertOrder.size());
-        }
-
-        final Map<K, V> m = decorated();
-        if (m.containsKey(key)) {
-            final V result = m.remove(key);
-            final int pos = insertOrder.indexOf(key);
-            insertOrder.remove(pos);
-            if (pos < index) {
-                index--;
-            }
-            insertOrder.add(index, key);
-            m.put(key, value);
-            return result;
-        }
-        insertOrder.add(index, key);
-        m.put(key, value);
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public V put(final K key, final V value) {
-        if (decorated().containsKey(key)) {
-            // re-adding doesn't change order
-            return decorated().put(key, value);
-        }
-        // first add, so add to both map and list
-        final V result = decorated().put(key, value);
-        insertOrder.add(key);
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Puts the values contained in a supplied Map into the Map starting at
-     * the specified index.
-     *
-     * @param index the index in the Map to start at.
-     * @param map the Map containing the entries to be added.
-     * @throws IndexOutOfBoundsException if the index is out of range [0, size]
-     */
     public void putAll(int index, final Map<? extends K, ? extends V> map) {
-        if (index < 0 || index > insertOrder.size()) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + insertOrder.size());
-        }
-        for (final Map.Entry<? extends K, ? extends V> entry : map.entrySet()) {
-            final K key = entry.getKey();
-            final boolean contains = containsKey(key);
-            // The return value of put is null if the key did not exist OR the value was null
-            // so it cannot be used to determine whether the key was added
-            put(index, entry.getKey(), entry.getValue());
-            if (!contains) {
-                // if no key was replaced, increment the index
-                index++;
-            } else {
-                // otherwise put the next item after the currently inserted key
-                index = indexOf(entry.getKey()) + 1;
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void putAll(final Map<? extends K, ? extends V> map) {
-        for (final Map.Entry<? extends K, ? extends V> entry : map.entrySet()) {
-            put(entry.getKey(), entry.getValue());
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -683,107 +458,39 @@ public class ListOrderedMap<K, V>
      * @throws ClassNotFoundException if an object read from the stream cannot be loaded
      * @since 3.1
      */
-    @SuppressWarnings("unchecked") // (1) should only fail if input stream is incorrect
+    // (1) should only fail if input stream is incorrect
+    @SuppressWarnings("unchecked")
     private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
-        map = (Map<K, V>) in.readObject(); // (1)
+        // (1)
+        map = (Map<K, V>) in.readObject();
     }
 
-    /**
-     * Removes the element at the specified index.
-     *
-     * @param index  the index of the object to remove
-     * @return the removed value, or {@code null} if none existed
-     * @throws IndexOutOfBoundsException if the index is invalid
-     */
     public V remove(final int index) {
-        return remove(get(index));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public V remove(final Object key) {
-        V result = null;
-        if (decorated().containsKey(key)) {
-            result = decorated().remove(key);
-            insertOrder.remove(key);
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the value at the specified index.
-     *
-     * @param index  the index of the value to set
-     * @param value  the new value to set
-     * @return the previous value at that index
-     * @throws IndexOutOfBoundsException if the index is invalid
-     * @since 3.2
-     */
     public V setValue(final int index, final V value) {
-        final K key = insertOrder.get(index);
-        return put(key, value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the Map as a string.
-     *
-     * @return the Map as a String
-     */
     @Override
     public String toString() {
-        if (isEmpty()) {
-            return "{}";
-        }
-        final StringBuilder buf = new StringBuilder();
-        buf.append('{');
-        boolean first = true;
-        for (final Map.Entry<K, V> entry : entrySet()) {
-            final K key = entry.getKey();
-            final V value = entry.getValue();
-            if (first) {
-                first = false;
-            } else {
-                buf.append(", ");
-            }
-            buf.append(key == this ? "(this Map)" : key);
-            buf.append('=');
-            buf.append(value == this ? "(this Map)" : value);
-        }
-        buf.append('}');
-        return buf.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a view over the values in the map as a List.
-     * <p>
-     * The List will be ordered by object insertion into the map.
-     * The List supports remove and set, but does not support add.
-     * </p>
-     *
-     * @see #values()
-     * @return the partially modifiable list view over the values
-     * @since 3.2
-     */
     public List<V> valueList() {
-        return new ValuesView<>(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a view over the values in the map.
-     * <p>
-     * The Collection will be ordered by object insertion into the map.
-     * </p>
-     * <p>
-     * From Commons Collections 3.2, this Collection can be cast
-     * to a list, see {@link #valueList()}
-     * </p>
-     *
-     * @see #valueList()
-     * @return the fully modifiable collection view over the values
-     */
     @Override
     public Collection<V> values() {
-        return new ValuesView<>(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -797,5 +504,4 @@ public class ListOrderedMap<K, V>
         out.defaultWriteObject();
         out.writeObject(map);
     }
-
 }

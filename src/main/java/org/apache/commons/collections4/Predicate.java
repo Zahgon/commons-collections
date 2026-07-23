@@ -50,7 +50,6 @@ public interface Predicate<T> extends java.util.function.Predicate<T> {
 
     @Override
     default boolean test(final T t) {
-        return evaluate(t);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

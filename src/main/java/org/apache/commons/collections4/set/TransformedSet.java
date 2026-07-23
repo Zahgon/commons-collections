@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.set;
 
 import java.util.Set;
-
 import org.apache.commons.collections4.Transformer;
 import org.apache.commons.collections4.collection.TransformedCollection;
 
@@ -38,54 +37,17 @@ import org.apache.commons.collections4.collection.TransformedCollection;
  */
 public class TransformedSet<E> extends TransformedCollection<E> implements Set<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 306127383500410386L;
 
-    /**
-     * Factory method to create a transforming set that will transform
-     * existing contents of the specified set.
-     * <p>
-     * If there are any elements already in the set being decorated, they
-     * will be transformed by this method.
-     * Contrast this with {@link #transformingSet(Set, Transformer)}.
-     *
-     * @param <E> the element type
-     * @param set  the set to decorate, must not be null
-     * @param transformer  the transformer to use for conversion, must not be null
-     * @return a new transformed set
-     * @throws NullPointerException if set or transformer is null
-     * @since 4.0
-     */
     public static <E> Set<E> transformedSet(final Set<E> set, final Transformer<? super E, ? extends E> transformer) {
-        final TransformedSet<E> decorated = new TransformedSet<>(set, transformer);
-        if (!set.isEmpty()) {
-            @SuppressWarnings("unchecked") // set is type E
-            final E[] values = (E[]) set.toArray(); // NOPMD - false positive for generics
-            set.clear();
-            for (final E value : values) {
-                decorated.decorated().add(transformer.apply(value));
-            }
-        }
-        return decorated;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Factory method to create a transforming set.
-     * <p>
-     * If there are any elements already in the set being decorated, they
-     * are NOT transformed.
-     * Contrast this with {@link #transformedSet(Set, Transformer)}.
-     *
-     * @param <E> the element type
-     * @param set  the set to decorate, must not be null
-     * @param transformer  the transformer to use for conversion, must not be null
-     * @return a new transformed set
-     * @throws NullPointerException if set or transformer is null
-     * @since 4.0
-     */
-    public static <E> TransformedSet<E> transformingSet(final Set<E> set,
-            final Transformer<? super E, ? extends E> transformer) {
-        return new TransformedSet<>(set, transformer);
+    public static <E> TransformedSet<E> transformingSet(final Set<E> set, final Transformer<? super E, ? extends E> transformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -104,12 +66,11 @@ public class TransformedSet<E> extends TransformedCollection<E> implements Set<E
 
     @Override
     public boolean equals(final Object object) {
-        return object == this || decorated().equals(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return decorated().hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

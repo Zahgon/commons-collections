@@ -52,10 +52,14 @@ import java.util.List;
 public class ReplacementsFinder<T> implements CommandVisitor<T> {
 
     private final List<T> pendingInsertions;
+
     private final List<T> pendingDeletions;
+
     private int skipped;
 
-    /** Handler to call when synchronized sequences are found. */
+    /**
+     * Handler to call when synchronized sequences are found.
+     */
     private final ReplacementsHandler<T> handler;
 
     /**
@@ -70,44 +74,18 @@ public class ReplacementsFinder<T> implements CommandVisitor<T> {
         this.handler = handler;
     }
 
-    /**
-     * Add an object to the pending deletions set.
-     *
-     * @param object  object to delete
-     */
     @Override
     public void visitDeleteCommand(final T object) {
-        pendingDeletions.add(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Add an object to the pending insertions set.
-     *
-     * @param object  object to insert
-     */
     @Override
     public void visitInsertCommand(final T object) {
-        pendingInsertions.add(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Handle a synchronization object.
-     * <p>
-     * When a synchronization object is identified, the pending insertions and
-     * pending deletions sets are provided to the user handler as subsequences.
-     *
-     * @param object  synchronization object detected
-     */
     @Override
     public void visitKeepCommand(final T object) {
-        if (pendingDeletions.isEmpty() && pendingInsertions.isEmpty()) {
-            ++skipped;
-        } else {
-            handler.handleReplacement(skipped, pendingDeletions, pendingInsertions);
-            pendingDeletions.clear();
-            pendingInsertions.clear();
-            skipped = 1;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

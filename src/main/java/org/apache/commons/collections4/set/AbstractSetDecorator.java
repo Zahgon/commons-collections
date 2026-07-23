@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.set;
 
 import java.util.Set;
-
 import org.apache.commons.collections4.collection.AbstractCollectionDecorator;
 
 /**
@@ -29,10 +28,11 @@ import org.apache.commons.collections4.collection.AbstractCollectionDecorator;
  * @param <E> the type of the elements in this set
  * @since 3.0
  */
-public abstract class AbstractSetDecorator<E> extends AbstractCollectionDecorator<E> implements
-        Set<E> {
+public abstract class AbstractSetDecorator<E> extends AbstractCollectionDecorator<E> implements Set<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -4678668309576958546L;
 
     /**
@@ -52,24 +52,18 @@ public abstract class AbstractSetDecorator<E> extends AbstractCollectionDecorato
         super(set);
     }
 
-    /**
-     * Gets the set being decorated.
-     *
-     * @return the decorated set
-     */
     @Override
     protected Set<E> decorated() {
-        return (Set<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object object) {
-        return object == this || decorated().equals(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return decorated().hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

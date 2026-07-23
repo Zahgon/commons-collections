@@ -42,115 +42,110 @@ public abstract class WrappedBloomFilter<T extends WrappedBloomFilter<T, W>, W e
 
     @Override
     public long[] asBitMapArray() {
-        return wrapped.asBitMapArray();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int[] asIndexArray() {
-        return wrapped.asIndexArray();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int cardinality() {
-        return wrapped.cardinality();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int characteristics() {
-        return wrapped.characteristics();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        wrapped.clear();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean contains(final BitMapExtractor bitMapExtractor) {
-        return wrapped.contains(bitMapExtractor);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean contains(final BloomFilter<?> other) {
-        return wrapped.contains(other);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean contains(final Hasher hasher) {
-        return wrapped.contains(hasher);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean contains(final IndexExtractor indexExtractor) {
-        return wrapped.contains(indexExtractor);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int estimateIntersection(final BloomFilter<?> other) {
-        return wrapped.estimateIntersection(other);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int estimateN() {
-        return wrapped.estimateN();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int estimateUnion(final BloomFilter<?> other) {
-        return wrapped.estimateUnion(other);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Shape getShape() {
-        return wrapped.getShape();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the wrapped BloomFilter.
-     *
-     * @return the wrapped BloomFilter.
-     */
     protected W getWrapped() {
-        return wrapped;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean isFull() {
-        return wrapped.isFull();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean merge(final BitMapExtractor bitMapExtractor) {
-        return wrapped.merge(bitMapExtractor);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean merge(final BloomFilter<?> other) {
-        return wrapped.merge(other);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean merge(final Hasher hasher) {
-        return wrapped.merge(hasher);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean merge(final IndexExtractor indexExtractor) {
-        return wrapped.merge(indexExtractor);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean processBitMapPairs(final BitMapExtractor other, final LongBiPredicate func) {
-        return wrapped.processBitMapPairs(other, func);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean processBitMaps(final LongPredicate predicate) {
-        return wrapped.processBitMaps(predicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean processIndices(final IntPredicate predicate) {
-        return wrapped.processIndices(predicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

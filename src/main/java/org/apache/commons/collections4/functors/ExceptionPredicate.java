@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
-
 import org.apache.commons.collections4.FunctorException;
 import org.apache.commons.collections4.Predicate;
 
@@ -29,22 +28,20 @@ import org.apache.commons.collections4.Predicate;
  */
 public final class ExceptionPredicate<T> extends AbstractPredicate<T> implements Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 7179106032121985545L;
 
-    /** Singleton predicate instance */
-    @SuppressWarnings("rawtypes") // the static instance works for all types
+    /**
+     * Singleton predicate instance
+     */
+    // the static instance works for all types
+    @SuppressWarnings("rawtypes")
     public static final Predicate INSTANCE = new ExceptionPredicate<>();
 
-    /**
-     * Factory returning the singleton instance.
-     *
-     * @param <T>  the object type
-     * @return the singleton instance
-     * @since 3.1
-     */
     public static <T> Predicate<T> exceptionPredicate() {
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -62,16 +59,8 @@ public final class ExceptionPredicate<T> extends AbstractPredicate<T> implements
         return INSTANCE;
     }
 
-    /**
-     * Evaluates the predicate always throwing an exception.
-     *
-     * @param object  the input object
-     * @return never
-     * @throws FunctorException always
-     */
     @Override
     public boolean test(final T object) {
-        throw new FunctorException("ExceptionPredicate invoked");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

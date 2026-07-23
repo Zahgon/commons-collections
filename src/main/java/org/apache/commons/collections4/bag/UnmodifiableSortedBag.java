@@ -23,7 +23,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.function.Predicate;
-
 import org.apache.commons.collections4.SortedBag;
 import org.apache.commons.collections4.Unmodifiable;
 import org.apache.commons.collections4.iterators.UnmodifiableIterator;
@@ -41,28 +40,15 @@ import org.apache.commons.collections4.set.UnmodifiableSet;
  * @param <E> the type of elements in this bag
  * @since 3.0
  */
-public final class UnmodifiableSortedBag<E>
-        extends AbstractSortedBagDecorator<E> implements Unmodifiable {
-
-    /** Serialization version */
-    private static final long serialVersionUID = -3190437252665717841L;
+public final class UnmodifiableSortedBag<E> extends AbstractSortedBagDecorator<E> implements Unmodifiable {
 
     /**
-     * Factory method to create an unmodifiable bag.
-     * <p>
-     * If the bag passed in is already unmodifiable, it is returned.
-     *
-     * @param <E> the type of the elements in the bag
-     * @param bag  the bag to decorate, must not be null
-     * @return an unmodifiable SortedBag
-     * @throws NullPointerException if bag is null
-     * @since 4.0
+     * Serialization version
      */
+    private static final long serialVersionUID = -3190437252665717841L;
+
     public static <E> SortedBag<E> unmodifiableSortedBag(final SortedBag<E> bag) {
-        if (bag instanceof Unmodifiable) {
-            return bag;
-        }
-        return new UnmodifiableSortedBag<>(bag);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -77,27 +63,27 @@ public final class UnmodifiableSortedBag<E>
 
     @Override
     public boolean add(final E object) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean add(final E object, final int count) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final Collection<? extends E> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<E> iterator() {
-        return UnmodifiableIterator.unmodifiableIterator(decorated().iterator());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -108,7 +94,8 @@ public final class UnmodifiableSortedBag<E>
      * @throws ClassNotFoundException if an object read from the stream cannot be loaded
      * @throws ClassCastException if deserialized object has wrong type
      */
-    @SuppressWarnings("unchecked") // will throw CCE, see Javadoc
+    // will throw CCE, see Javadoc
+    @SuppressWarnings("unchecked")
     private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
         setCollection((Collection<E>) in.readObject());
@@ -116,36 +103,32 @@ public final class UnmodifiableSortedBag<E>
 
     @Override
     public boolean remove(final Object object) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean remove(final Object object, final int count) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean removeAll(final Collection<?> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * @since 4.4
-     */
     @Override
     public boolean removeIf(final Predicate<? super E> filter) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean retainAll(final Collection<?> coll) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<E> uniqueSet() {
-        final Set<E> set = decorated().uniqueSet();
-        return UnmodifiableSet.unmodifiableSet(set);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -158,5 +141,4 @@ public final class UnmodifiableSortedBag<E>
         out.defaultWriteObject();
         out.writeObject(decorated());
     }
-
 }

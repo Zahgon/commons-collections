@@ -31,7 +31,9 @@ import java.util.Objects;
  */
 public abstract class AbstractUntypedIteratorDecorator<I, O> implements Iterator<O> {
 
-    /** The iterator being decorated */
+    /**
+     * The iterator being decorated
+     */
     private final Iterator<I> iterator;
 
     /**
@@ -44,23 +46,17 @@ public abstract class AbstractUntypedIteratorDecorator<I, O> implements Iterator
         this.iterator = Objects.requireNonNull(iterator, "iterator");
     }
 
-    /**
-     * Gets the iterator being decorated.
-     *
-     * @return the decorated iterator
-     */
     protected Iterator<I> getIterator() {
-        return iterator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean hasNext() {
-        return iterator.hasNext();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void remove() {
-        iterator.remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

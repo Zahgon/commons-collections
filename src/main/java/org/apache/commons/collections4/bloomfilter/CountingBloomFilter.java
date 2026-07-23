@@ -57,7 +57,6 @@ import java.util.Objects;
 public interface CountingBloomFilter extends BloomFilter<CountingBloomFilter>, CellExtractor {
 
     // Query Operations
-
     /**
      * Adds the specified CellExtractor to this Bloom filter.
      *
@@ -81,35 +80,12 @@ public interface CountingBloomFilter extends BloomFilter<CountingBloomFilter>, C
      */
     int getMaxCell();
 
-    /**
-     * Determines the maximum number of times the BitMapExtractor could have been merged into this counting filter.
-     *
-     * @param bitMapExtractor the BitMapExtractor to provide the indices.
-     * @return the maximum number of times the BitMapExtractor could have been inserted.
-     */
     default int getMaxInsert(final BitMapExtractor bitMapExtractor) {
-        if (!contains(bitMapExtractor)) {
-            return 0;
-        }
-        final long[] bitMaps = bitMapExtractor.asBitMapArray();
-        final int[] max = { Integer.MAX_VALUE };
-        processCells((x, y) -> {
-            if ((bitMaps[BitMaps.getLongIndex(x)] & BitMaps.getLongBit(x)) != 0) {
-                max[0] = max[0] <= y ? max[0] : y;
-            }
-            return true;
-        });
-        return max[0];
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Determines the maximum number of times the Bloom filter could have been merged into this counting filter.
-     *
-     * @param bloomFilter the Bloom filter the check for.
-     * @return the maximum number of times the Bloom filter could have been inserted.
-     */
     default int getMaxInsert(final BloomFilter<?> bloomFilter) {
-        return getMaxInsert((BitMapExtractor) bloomFilter);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -120,28 +96,12 @@ public interface CountingBloomFilter extends BloomFilter<CountingBloomFilter>, C
      */
     int getMaxInsert(CellExtractor cellExtractor);
 
-    /**
-     * Determines the maximum number of times the Hasher could have been merged into this counting filter.
-     *
-     * @param hasher the Hasher to provide the indices.
-     * @return the maximum number of times the hasher could have been inserted.
-     */
     default int getMaxInsert(final Hasher hasher) {
-        return getMaxInsert(hasher.indices(getShape()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Determines the maximum number of times the IndexExtractor could have been merged into this counting filter.
-     * <p>
-     * To determine how many times an indexExtractor could have been added create a CellExtractor from the indexExtractor and check that
-     * </p>
-     *
-     * @param indexExtractor the extractor to drive the count check.
-     * @return the maximum number of times the IndexExtractor could have been inserted.
-     * @see #getMaxInsert(CellExtractor)
-     */
     default int getMaxInsert(final IndexExtractor indexExtractor) {
-        return getMaxInsert(CellExtractor.from(indexExtractor.uniqueIndices()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -165,169 +125,40 @@ public interface CountingBloomFilter extends BloomFilter<CountingBloomFilter>, C
      */
     boolean isValid();
 
-    /**
-     * Merges the specified BitMap extractor into this Bloom filter.
-     *
-     * <p>Specifically: all cells for the indexes identified by the {@code bitMapExtractor} will be incremented by 1.</p>
-     *
-     * <p>This method will return {@code true} if the filter is valid after the operation.</p>
-     *
-     * @param bitMapExtractor the BitMapExtractor
-     * @return {@code true} if the removal was successful and the state is valid
-     * @see #isValid()
-     * @see #add(CellExtractor)
-     */
     @Override
     default boolean merge(final BitMapExtractor bitMapExtractor) {
-        return merge(IndexExtractor.fromBitMapExtractor(bitMapExtractor));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Merges the specified Bloom filter into this Bloom filter.
-     *
-     * <p>Specifically: all cells for the indexes identified by the {@code other} filter will be incremented by 1.</p>
-     *
-     * <p>Note: If the other filter is a counting Bloom filter the other filter's cells are ignored and it is treated as an
-     * IndexExtractor.</p>
-     *
-     * <p>This method will return {@code true} if the filter is valid after the operation.</p>
-     *
-     * @param other the other Bloom filter
-     * @return {@code true} if the removal was successful and the state is valid
-     * @see #isValid()
-     * @see #add(CellExtractor)
-     */
     @Override
     default boolean merge(final BloomFilter<?> other) {
-        Objects.requireNonNull(other, "other");
-        return merge((IndexExtractor) other);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Merges the specified Hasher into this Bloom filter.
-     *
-     * <p>Specifically: all cells for the unique indexes identified by the {@code hasher} will be incremented by 1.</p>
-     *
-     * <p>This method will return {@code true} if the filter is valid after the operation.</p>
-     *
-     * @param hasher the hasher
-     * @return {@code true} if the removal was successful and the state is valid
-     * @see #isValid()
-     * @see #add(CellExtractor)
-     */
     @Override
     default boolean merge(final Hasher hasher) {
-        Objects.requireNonNull(hasher, "hasher");
-        return merge(hasher.indices(getShape()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Merges the specified index extractor into this Bloom filter.
-     *
-     * <p>Specifically: all unique cells for the indices identified by the {@code indexExtractor} will be incremented by 1.</p>
-     *
-     * <p>This method will return {@code true} if the filter is valid after the operation.</p>
-     *
-     * <p>Notes:</p>
-     * <ul>
-     * <li>If indices that are returned multiple times should be incremented multiple times convert the IndexExtractor
-     * to a CellExtractor and add that.</li>
-     * <li>Implementations should throw {@code IllegalArgumentException} and no other exception on bad input.</li>
-     * </ul>
-     * @param indexExtractor the IndexExtractor
-     * @return {@code true} if the removal was successful and the state is valid
-     * @see #isValid()
-     * @see #add(CellExtractor)
-     */
     @Override
     default boolean merge(final IndexExtractor indexExtractor) {
-        Objects.requireNonNull(indexExtractor, "indexExtractor");
-        try {
-            return add(CellExtractor.from(indexExtractor.uniqueIndices()));
-        } catch (final IndexOutOfBoundsException e) {
-            throw new IllegalArgumentException(
-                    String.format("Filter only accepts values in the [0,%d) range", getShape().getNumberOfBits()), e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes the specified BitMapExtractor from this Bloom filter.
-     *
-     * <p>Specifically all cells for the indices produced by the {@code bitMapExtractor} will be
-     * decremented by 1.</p>
-     *
-     * <p>This method will return {@code true} if the filter is valid after the operation.</p>
-     *
-     * @param bitMapExtractor the BitMapExtractor to provide the indexes
-     * @return {@code true} if the removal was successful and the state is valid
-     * @see #isValid()
-     * @see #subtract(CellExtractor)
-     */
     default boolean remove(final BitMapExtractor bitMapExtractor) {
-        return remove(IndexExtractor.fromBitMapExtractor(bitMapExtractor));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes the specified Bloom filter from this Bloom filter.
-     *
-     * <p>Specifically: all cells for the indexes identified by the {@code other} filter will be decremented by 1.</p>
-     *
-     * <p>Note: If the other filter is a counting Bloom filter the other filter's cells are ignored and it is treated as an
-     * IndexExtractor.</p>
-     *
-     * <p>This method will return {@code true} if the filter is valid after the operation.</p>
-     *
-     * @param other the other Bloom filter
-     * @return {@code true} if the removal was successful and the state is valid
-     * @see #isValid()
-     * @see #subtract(CellExtractor)
-     */
     default boolean remove(final BloomFilter<?> other) {
-        return remove((IndexExtractor) other);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes the unique values from the specified hasher from this Bloom filter.
-     *
-     * <p>Specifically all cells for the unique indices produced by the {@code hasher} will be
-     * decremented by 1.</p>
-     *
-     * <p>This method will return {@code true} if the filter is valid after the operation.</p>
-     *
-     * @param hasher the hasher to provide the indexes
-     * @return {@code true} if the removal was successful and the state is valid
-     * @see #isValid()
-     * @see #subtract(CellExtractor)
-     */
     default boolean remove(final Hasher hasher) {
-        Objects.requireNonNull(hasher, "hasher");
-        return remove(hasher.indices(getShape()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes the values from the specified IndexExtractor from the Bloom filter from this Bloom filter.
-     *
-     * <p>Specifically all cells for the unique indices produced by the {@code hasher} will be
-     * decremented by 1.</p>
-     *
-     * <p>This method will return {@code true} if the filter is valid after the operation.</p>
-     *
-     * <p>Note: If indices that are returned multiple times should be decremented multiple times convert the IndexExtractor
-     * to a CellExtractor and subtract that.</p>
-     *
-     * @param indexExtractor the IndexExtractor to provide the indexes
-     * @return {@code true} if the removal was successful and the state is valid
-     * @see #isValid()
-     * @see #subtract(CellExtractor)
-     */
     default boolean remove(final IndexExtractor indexExtractor) {
-        Objects.requireNonNull(indexExtractor, "indexExtractor");
-        try {
-            return subtract(CellExtractor.from(indexExtractor.uniqueIndices()));
-        } catch (final IndexOutOfBoundsException e) {
-            throw new IllegalArgumentException(
-                    String.format("Filter only accepts values in the [0,%d) range", getShape().getNumberOfBits()));
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -346,12 +177,8 @@ public interface CountingBloomFilter extends BloomFilter<CountingBloomFilter>, C
      */
     boolean subtract(CellExtractor other);
 
-    /**
-     * The default implementation is a no-op since the counting bloom filter returns an unique IndexExtractor by default.
-     * @return this counting Bloom filter.
-     */
     @Override
     default IndexExtractor uniqueIndices() {
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

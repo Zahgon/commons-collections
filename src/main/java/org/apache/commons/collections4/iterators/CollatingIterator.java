@@ -24,7 +24,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-
 import org.apache.commons.collections4.list.UnmodifiableList;
 
 /**
@@ -41,16 +40,24 @@ import org.apache.commons.collections4.list.UnmodifiableList;
  */
 public class CollatingIterator<E> implements Iterator<E> {
 
-    /** The {@link Comparator} used to evaluate order. */
+    /**
+     * The {@link Comparator} used to evaluate order.
+     */
     private Comparator<? super E> comparator;
 
-    /** The list of {@link Iterator}s to evaluate. */
+    /**
+     * The list of {@link Iterator}s to evaluate.
+     */
     private final List<Iterator<? extends E>> iterators;
 
-    /** {@link Iterator#next Next} objects peeked from each iterator. */
+    /**
+     * {@link Iterator#next Next} objects peeked from each iterator.
+     */
     private List<E> values;
 
-    /** Whether or not each {@link #values} element has been set. */
+    /**
+     * Whether or not each {@link #values} element has been set.
+     */
     private BitSet valueSet;
 
     /**
@@ -128,8 +135,7 @@ public class CollatingIterator<E> implements Iterator<E> {
      * @param b the second child ordered iterator
      * @throws NullPointerException if either iterator is null
      */
-    public CollatingIterator(final Comparator<? super E> comp, final Iterator<? extends E> a,
-                             final Iterator<? extends E> b) {
+    public CollatingIterator(final Comparator<? super E> comp, final Iterator<? extends E> a, final Iterator<? extends E> b) {
         this(comp, 2);
         addIterator(a);
         addIterator(b);
@@ -152,17 +158,8 @@ public class CollatingIterator<E> implements Iterator<E> {
         }
     }
 
-    /**
-     * Adds the given {@link Iterator} to the iterators being collated.
-     *
-     * @param iterator the iterator to add to the collation, must not be null
-     * @throws IllegalStateException if iteration has started
-     * @throws NullPointerException if the iterator is null
-     */
     public void addIterator(final Iterator<? extends E> iterator) {
-        checkNotStarted();
-        Objects.requireNonNull(iterator, "iterator");
-        iterators.add(iterator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -212,47 +209,21 @@ public class CollatingIterator<E> implements Iterator<E> {
         valueSet.clear(i);
     }
 
-    /**
-     * Gets the {@link Comparator} by which collation occurs.
-     *
-     * @return the {@link Comparator}
-     */
     public Comparator<? super E> getComparator() {
-        return comparator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the index of the iterator that returned the last element.
-     *
-     * @return the index of the iterator that returned the last element
-     * @throws IllegalStateException if there is no last returned element
-     */
     public int getIteratorIndex() {
-        if (lastReturned == -1) {
-            throw new IllegalStateException("No value has been returned yet");
-        }
-
-        return lastReturned;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the list of Iterators (unmodifiable).
-     *
-     * @return the unmodifiable list of iterators added
-     */
     public List<Iterator<? extends E>> getIterators() {
-        return UnmodifiableList.unmodifiableList(iterators);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns {@code true} if any child iterator has remaining elements.
-     *
-     * @return true if this iterator has remaining elements
-     */
     @Override
     public boolean hasNext() {
-        start();
-        return anyValueSet(valueSet) || anyHasNext(iterators);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -285,39 +256,14 @@ public class CollatingIterator<E> implements Iterator<E> {
         return leastIndex;
     }
 
-    /**
-     * Returns the next ordered element from a child iterator.
-     *
-     * @return the next ordered element
-     * @throws NoSuchElementException if no child iterator has any more elements
-     */
     @Override
     public E next() throws NoSuchElementException {
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
-        final int leastIndex = least();
-        if (leastIndex == -1) {
-            throw new NoSuchElementException();
-        }
-        final E val = values.get(leastIndex);
-        clear(leastIndex);
-        lastReturned = leastIndex;
-        return val;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes the last returned element from the child iterator that produced it.
-     *
-     * @throws IllegalStateException if there is no last returned element, or if
-     * the last returned element has already been removed
-     */
     @Override
     public void remove() {
-        if (lastReturned == -1) {
-            throw new IllegalStateException("No value can be removed at present");
-        }
-        iterators.get(lastReturned).remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -340,34 +286,12 @@ public class CollatingIterator<E> implements Iterator<E> {
         return false;
     }
 
-    /**
-     * Sets the {@link Comparator} by which collation occurs. If you
-     * would like to use the natural sort order (or, in other words,
-     * if the elements in the iterators are implementing the
-     * {@link Comparable} interface), then use the
-     * {@link org.apache.commons.collections4.comparators.ComparableComparator}.
-     *
-     * @param comp the {@link Comparator} to set
-     * @throws IllegalStateException if iteration has started
-     */
     public void setComparator(final Comparator<? super E> comp) {
-        checkNotStarted();
-        comparator = comp;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the iterator at the given index.
-     *
-     * @param index index of the Iterator to replace
-     * @param iterator Iterator to place at the given index
-     * @throws IndexOutOfBoundsException if index &lt; 0 or index &gt;= size()
-     * @throws IllegalStateException if iteration has started
-     * @throws NullPointerException if the iterator is null
-     */
     public void setIterator(final int index, final Iterator<? extends E> iterator) {
-        checkNotStarted();
-        Objects.requireNonNull(iterator, "iterator");
-        iterators.set(index, iterator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -383,5 +307,4 @@ public class CollatingIterator<E> implements Iterator<E> {
             }
         }
     }
-
 }

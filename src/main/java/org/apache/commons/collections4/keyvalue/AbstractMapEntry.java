@@ -39,52 +39,18 @@ public abstract class AbstractMapEntry<K, V> extends AbstractKeyValue<K, V> impl
         super(key, value);
     }
 
-    /**
-     * Compares this {@code Map.Entry} with another {@code Map.Entry}.
-     * <p>
-     * Implemented per API documentation of {@link java.util.Map.Entry#equals(Object)}
-     *
-     * @param obj  the object to compare to
-     * @return true if equal key and value
-     */
     @Override
     public boolean equals(final Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof Map.Entry)) {
-            return false;
-        }
-        final Map.Entry<?, ?> other = (Map.Entry<?, ?>) obj;
-        return Objects.equals(getKey(), other.getKey()) &&
-               Objects.equals(getValue(), other.getValue());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a hashCode compatible with the equals method.
-     * <p>
-     * Implemented per API documentation of {@link java.util.Map.Entry#hashCode()}
-     *
-     * @return a suitable hash code
-     */
     @Override
     public int hashCode() {
-        return (getKey() == null ? 0 : getKey().hashCode()) ^
-               (getValue() == null ? 0 : getValue().hashCode());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the value stored in this {@code Map.Entry}.
-     * <p>
-     * This {@code Map.Entry} is not connected to a Map, so only the
-     * local data is changed.
-     *
-     * @param value  the new value
-     * @return the previous value
-     */
     @Override
-    public V setValue(final V value) { // NOPMD
-        return super.setValue(value);
+    public V setValue(final V value) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

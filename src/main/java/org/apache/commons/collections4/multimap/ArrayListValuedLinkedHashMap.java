@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 import org.apache.commons.collections4.MultiValuedMap;
 
 /**
@@ -42,10 +41,11 @@ import org.apache.commons.collections4.MultiValuedMap;
  * @param <V> the type of the values in this map
  * @since 4.5.0-M3
  */
-public class ArrayListValuedLinkedHashMap<K, V> extends AbstractListValuedMap<K, V>
-    implements Serializable {
+public class ArrayListValuedLinkedHashMap<K, V> extends AbstractListValuedMap<K, V> implements Serializable {
 
-    /** Serialization Version */
+    /**
+     * Serialization Version
+     */
     private static final long serialVersionUID = 20241014L;
 
     /**
@@ -115,7 +115,7 @@ public class ArrayListValuedLinkedHashMap<K, V> extends AbstractListValuedMap<K,
 
     @Override
     protected ArrayList<V> createCollection() {
-        return new ArrayList<>(initialListCapacity);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -131,14 +131,8 @@ public class ArrayListValuedLinkedHashMap<K, V> extends AbstractListValuedMap<K,
         doReadObject(in);
     }
 
-    /**
-     * Trims the capacity of all value collections to their current size.
-     */
     public void trimToSize() {
-        for (final Collection<V> coll : getMap().values()) {
-            final ArrayList<V> list = (ArrayList<V>) coll;
-            list.trimToSize();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -151,5 +145,4 @@ public class ArrayListValuedLinkedHashMap<K, V> extends AbstractListValuedMap<K,
         out.defaultWriteObject();
         doWriteObject(out);
     }
-
 }

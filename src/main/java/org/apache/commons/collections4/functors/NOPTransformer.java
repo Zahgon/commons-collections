@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
-
 import org.apache.commons.collections4.Transformer;
 
 /**
@@ -28,22 +27,19 @@ import org.apache.commons.collections4.Transformer;
  */
 public class NOPTransformer<T> implements Transformer<T, T>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 2133891748318574490L;
 
-    /** Singleton predicate instance */
+    /**
+     * Singleton predicate instance
+     */
     @SuppressWarnings("rawtypes")
     public static final Transformer INSTANCE = new NOPTransformer<>();
 
-    /**
-     * Factory returning the singleton instance.
-     *
-     * @param <T>  the input/output type
-     * @return the singleton instance
-     * @since 3.1
-     */
     public static <T> Transformer<T, T> nopTransformer() {
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -61,15 +57,8 @@ public class NOPTransformer<T> implements Transformer<T, T>, Serializable {
         return INSTANCE;
     }
 
-    /**
-     * Transforms the input to result by doing nothing.
-     *
-     * @param input  the input object to transform
-     * @return the transformed result which is the input
-     */
     @Override
     public T transform(final T input) {
-        return input;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -57,124 +57,76 @@ public class OrderedProperties extends Properties {
 
     @Override
     public synchronized void clear() {
-        orderedKeys.clear();
-        super.clear();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized Object compute(final Object key, final BiFunction<? super Object, ? super Object, ? extends Object> remappingFunction) {
-        final Object compute = super.compute(key, remappingFunction);
-        if (compute != null) {
-            orderedKeys.add(key);
-        }
-        return compute;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized Object computeIfAbsent(final Object key, final Function<? super Object, ? extends Object> mappingFunction) {
-        final Object computeIfAbsent = super.computeIfAbsent(key, mappingFunction);
-        if (computeIfAbsent != null) {
-            orderedKeys.add(key);
-        }
-        return computeIfAbsent;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<Map.Entry<Object, Object>> entrySet() {
-        return orderedKeys.stream().map(k -> new SimpleEntry<>(k, get(k))).collect(Collectors.toCollection(LinkedHashSet::new));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized void forEach(final BiConsumer<? super Object, ? super Object> action) {
-        Objects.requireNonNull(action);
-        orderedKeys.forEach(k -> action.accept(k, get(k)));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized Enumeration<Object> keys() {
-        return Collections.enumeration(orderedKeys);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<Object> keySet() {
-        return orderedKeys;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
-    public synchronized Object merge(final Object key, final Object value,
-            final BiFunction<? super Object, ? super Object, ? extends Object> remappingFunction) {
-        orderedKeys.add(key);
-        return super.merge(key, value, remappingFunction);
+    public synchronized Object merge(final Object key, final Object value, final BiFunction<? super Object, ? super Object, ? extends Object> remappingFunction) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Enumeration<?> propertyNames() {
-        return Collections.enumeration(orderedKeys);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized Object put(final Object key, final Object value) {
-        final Object put = super.put(key, value);
-        if (put == null) {
-            orderedKeys.add(key);
-        }
-        return put;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized void putAll(final Map<? extends Object, ? extends Object> t) {
-        orderedKeys.addAll(t.keySet());
-        super.putAll(t);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized Object putIfAbsent(final Object key, final Object value) {
-        final Object putIfAbsent = super.putIfAbsent(key, value);
-        if (putIfAbsent == null) {
-            orderedKeys.add(key);
-        }
-        return putIfAbsent;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized Object remove(final Object key) {
-        final Object remove = super.remove(key);
-        if (remove != null) {
-            orderedKeys.remove(key);
-        }
-        return remove;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized boolean remove(final Object key, final Object value) {
-        final boolean remove = super.remove(key, value);
-        if (remove) {
-            orderedKeys.remove(key);
-        }
-        return remove;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized String toString() {
-        // Must override for Java 17 to maintain order since the implementation is based on a map
-        final int max = size() - 1;
-        if (max == -1) {
-            return "{}";
-        }
-        final StringBuilder sb = new StringBuilder();
-        final Iterator<Map.Entry<Object, Object>> it = entrySet().iterator();
-        sb.append('{');
-        for (int i = 0;; i++) {
-            final Map.Entry<Object, Object> e = it.next();
-            final Object key = e.getKey();
-            final Object value = e.getValue();
-            sb.append(key == this ? "(this Map)" : key.toString());
-            sb.append('=');
-            sb.append(value == this ? "(this Map)" : value.toString());
-            if (i == max) {
-                return sb.append('}').toString();
-            }
-            sb.append(", ");
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

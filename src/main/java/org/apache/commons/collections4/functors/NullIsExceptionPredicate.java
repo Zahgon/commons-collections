@@ -18,7 +18,6 @@ package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
 import java.util.Objects;
-
 import org.apache.commons.collections4.FunctorException;
 import org.apache.commons.collections4.Predicate;
 
@@ -30,22 +29,18 @@ import org.apache.commons.collections4.Predicate;
  */
 public final class NullIsExceptionPredicate<T> extends AbstractPredicate<T> implements PredicateDecorator<T>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 3243449850504576071L;
 
-    /**
-     * Creates the null exception predicate.
-     *
-     * @param <T> the type that the predicate queries
-     * @param predicate  the predicate to decorate, not null
-     * @return the predicate
-     * @throws NullPointerException if the predicate is null
-     */
     public static <T> Predicate<T> nullIsExceptionPredicate(final Predicate<? super T> predicate) {
-        return new NullIsExceptionPredicate<>(Objects.requireNonNull(predicate, "predicate"));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The predicate to decorate */
+    /**
+     * The predicate to decorate
+     */
     private final Predicate<? super T> iPredicate;
 
     /**
@@ -58,32 +53,14 @@ public final class NullIsExceptionPredicate<T> extends AbstractPredicate<T> impl
         iPredicate = predicate;
     }
 
-    /**
-     * Gets the predicate being decorated.
-     *
-     * @return the predicate as the only element in an array
-     * @since 3.1
-     */
     @Override
     @SuppressWarnings("unchecked")
     public Predicate<? super T>[] getPredicates() {
-        return new Predicate[] { iPredicate };
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Evaluates the predicate returning the result of the decorated predicate
-     * once a null check is performed.
-     *
-     * @param object  the input object
-     * @return true if decorated predicate returns true
-     * @throws FunctorException if input is null
-     */
     @Override
     public boolean test(final T object) {
-        if (object == null) {
-            throw new FunctorException("Input Object must not be null");
-        }
-        return iPredicate.test(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

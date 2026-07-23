@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.collections4.properties;
 
 import java.io.File;
@@ -46,14 +45,17 @@ public abstract class AbstractPropertiesFactory<T extends Properties> {
      */
     public enum PropertyFormat {
 
-        /** Properties file format. */
+        /**
+         * Properties file format.
+         */
         PROPERTIES,
-
-        /** XML file format. */
+        /**
+         * XML file format.
+         */
         XML;
 
         static PropertyFormat toPropertyFormat(final String fileName) {
-            return Objects.requireNonNull(fileName, "fileName").endsWith(".xml") ? XML : PROPERTIES;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -71,141 +73,39 @@ public abstract class AbstractPropertiesFactory<T extends Properties> {
      */
     protected abstract T createProperties();
 
-    /**
-     * Creates and loads properties from the given file.
-     *
-     * @param classLoader the class loader to use to get the named resource.
-     * @param name        the location of the properties file.
-     * @return a new properties object.
-     * @throws IOException              Thrown if an error occurred reading the input stream.
-     * @throws IllegalArgumentException Thrown if the input contains a malformed Unicode escape sequence.
-     */
     public T load(final ClassLoader classLoader, final String name) throws IOException {
-        try (InputStream inputStream = classLoader.getResourceAsStream(name)) {
-            return load(inputStream, PropertyFormat.toPropertyFormat(name));
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates and loads properties from the given file.
-     *
-     * @param file the location of the properties file.
-     * @return a new properties object.
-     * @throws IOException              Thrown if an error occurred reading the input stream.
-     * @throws IllegalArgumentException Thrown if the input contains a malformed Unicode escape sequence.
-     * @throws FileNotFoundException    Thrown if the file does not exist, is a directory, or cannot be opened for
-     *                                  reading.
-     * @throws SecurityException        Thrown if a security manager's {@code checkRead} method denies read access to
-     *                                  the file.
-     */
     public T load(final File file) throws FileNotFoundException, IOException {
-        return load(file.toPath());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates and loads properties from the given input stream.
-     *
-     * @param inputStream the location of the properties file.
-     * @return a new properties object.
-     * @throws IOException              Thrown if an error occurred reading the input stream.
-     * @throws IllegalArgumentException Thrown if the input contains a malformed Unicode escape sequence.
-     */
     public T load(final InputStream inputStream) throws IOException {
-        if (inputStream == null) {
-            return null;
-        }
-        final T properties = createProperties();
-        properties.load(inputStream);
-        return properties;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates and loads properties from the given input stream.
-     *
-     * @param inputStream the location of the properties file.
-     * @param propertyFormat The format of the given file.
-     * @return a new properties object.
-     * @throws IOException              Thrown if an error occurred reading the input stream.
-     * @throws IllegalArgumentException Thrown if the input contains a malformed Unicode escape sequence.
-     * @since 4.5.0-M1
-     */
     public T load(final InputStream inputStream, final PropertyFormat propertyFormat) throws IOException {
-        if (inputStream == null) {
-            return null;
-        }
-        final T properties = createProperties();
-        if (propertyFormat == PropertyFormat.XML) {
-            properties.loadFromXML(inputStream);
-        } else {
-            properties.load(inputStream);
-        }
-        return properties;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates and loads properties from the given path.
-     *
-     * @param path the location of the properties file.
-     * @return a new properties object.
-     * @throws IOException              Thrown if an error occurred reading the input stream.
-     * @throws IllegalArgumentException Thrown if the input contains a malformed Unicode escape sequence.
-     */
     public T load(final Path path) throws IOException {
-        try (InputStream inputStream = Files.newInputStream(path)) {
-            return load(inputStream, PropertyFormat.toPropertyFormat(Objects.toString(path.getFileName(), null)));
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates and loads properties from the given reader.
-     *
-     * @param reader the location of the properties file.
-     * @return a new properties object.
-     * @throws IOException              Thrown if an error occurred reading the input stream.
-     * @throws IllegalArgumentException Thrown if the input contains a malformed Unicode escape sequence.
-     */
     public T load(final Reader reader) throws IOException {
-        final T properties = createProperties();
-        properties.load(reader);
-        return properties;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates and loads properties from the given file name.
-     *
-     * @param name the location of the properties file.
-     * @return a new properties object.
-     * @throws IOException              Thrown if an error occurred reading the input stream.
-     * @throws IllegalArgumentException Thrown if the input contains a malformed Unicode escape sequence.
-     */
     public T load(final String name) throws IOException {
-        return load(Paths.get(name));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates and loads properties from the given URI.
-     *
-     * @param uri the location of the properties file.
-     * @return a new properties object.
-     * @throws IOException              Thrown if an error occurred reading the input stream.
-     * @throws IllegalArgumentException Thrown if the input contains a malformed Unicode escape sequence.
-     */
     public T load(final URI uri) throws IOException {
-        return load(Paths.get(uri));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates and loads properties from the given URL.
-     *
-     * @param url the location of the properties file.
-     * @return a new properties object.
-     * @throws IOException              Thrown if an error occurred reading the input stream.
-     * @throws IllegalArgumentException Thrown if the input contains a malformed Unicode escape sequence.
-     */
     public T load(final URL url) throws IOException {
-        try (InputStream inputStream = url.openStream()) {
-            return load(inputStream, PropertyFormat.toPropertyFormat(url.getFile()));
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -29,24 +28,18 @@ import org.apache.commons.collections4.Predicate;
  */
 public final class IdentityPredicate<T> extends AbstractPredicate<T> implements Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = -89901658494523293L;
 
-    /**
-     * Creates the identity predicate.
-     *
-     * @param <T> the type that the predicate queries
-     * @param object  the object to compare to
-     * @return the predicate
-     */
     public static <T> Predicate<T> identityPredicate(final T object) {
-        if (object == null) {
-            return NullPredicate.<T>nullPredicate();
-        }
-        return new IdentityPredicate<>(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The value to compare to */
+    /**
+     * The value to compare to
+     */
     private final T iValue;
 
     /**
@@ -59,26 +52,12 @@ public final class IdentityPredicate<T> extends AbstractPredicate<T> implements 
         iValue = object;
     }
 
-    /**
-     * Gets the value.
-     *
-     * @return the value
-     * @since 3.1
-     */
     public T getValue() {
-        return iValue;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Evaluates the predicate returning true if the input object is identical to
-     * the stored object.
-     *
-     * @param object  the input object
-     * @return true if input is the same object as the stored value
-     */
     @Override
     public boolean test(final T object) {
-        return iValue == object;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

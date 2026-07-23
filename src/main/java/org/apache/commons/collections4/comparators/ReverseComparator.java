@@ -18,7 +18,6 @@ package org.apache.commons.collections4.comparators;
 
 import java.io.Serializable;
 import java.util.Comparator;
-
 import org.apache.commons.collections4.ComparatorUtils;
 
 /**
@@ -31,10 +30,14 @@ import org.apache.commons.collections4.ComparatorUtils;
  */
 public class ReverseComparator<E> implements Comparator<E>, Serializable {
 
-    /** Serialization version from Collections 2.0. */
+    /**
+     * Serialization version from Collections 2.0.
+     */
     private static final long serialVersionUID = 2858887242028539265L;
 
-    /** The comparator being decorated. */
+    /**
+     * The comparator being decorated.
+     */
     private final Comparator<? super E> comparator;
 
     /**
@@ -61,59 +64,18 @@ public class ReverseComparator<E> implements Comparator<E>, Serializable {
         this.comparator = comparator == null ? ComparatorUtils.NATURAL_COMPARATOR : comparator;
     }
 
-    /**
-     * Compares two objects in reverse order.
-     *
-     * @param obj1  the first object to compare
-     * @param obj2  the second object to compare
-     * @return negative if obj1 is less, positive if greater, zero if equal
-     */
     @Override
     public int compare(final E obj1, final E obj2) {
-        return comparator.compare(obj2, obj1);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns {@code true} iff <em>that</em> Object is
-     * a {@link Comparator} whose ordering is known to be
-     * equivalent to mine.
-     * <p>
-     * This implementation returns {@code true}
-     * iff {@code <em>object</em>.{@link Object#getClass() getClass()}}
-     * equals {@code this.getClass()}, and the underlying
-     * comparators are equal.
-     * Subclasses may want to override this behavior to remain consistent
-     * with the {@link Comparator#equals(Object) equals} contract.
-     *
-     * @param object  the object to compare to
-     * @return true if equal
-     * @since 3.0
-     */
     @Override
     public boolean equals(final Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (null == object) {
-            return false;
-        }
-        if (object.getClass().equals(this.getClass())) {
-            final ReverseComparator<?> thatrc = (ReverseComparator<?>) object;
-            return comparator.equals(thatrc.comparator);
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Implement a hash code for this comparator that is consistent with
-     * {@link #equals(Object) equals}.
-     *
-     * @return a suitable hash code
-     * @since 3.0
-     */
     @Override
     public int hashCode() {
-        return "ReverseComparator".hashCode() ^ comparator.hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

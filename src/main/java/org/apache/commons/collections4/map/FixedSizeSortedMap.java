@@ -24,7 +24,6 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
-
 import org.apache.commons.collections4.BoundedMap;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.collection.UnmodifiableCollection;
@@ -59,25 +58,15 @@ import org.apache.commons.collections4.set.UnmodifiableSet;
  * @param <V> the type of the values in this map
  * @since 3.0
  */
-public class FixedSizeSortedMap<K, V>
-        extends AbstractSortedMapDecorator<K, V>
-        implements BoundedMap<K, V>, Serializable {
-
-    /** Serialization version */
-    private static final long serialVersionUID = 3126019624511683653L;
+public class FixedSizeSortedMap<K, V> extends AbstractSortedMapDecorator<K, V> implements BoundedMap<K, V>, Serializable {
 
     /**
-     * Factory method to create a fixed size sorted map.
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @return a new fixed size sorted map
-     * @throws NullPointerException if map is null
-     * @since 4.0
+     * Serialization version
      */
+    private static final long serialVersionUID = 3126019624511683653L;
+
     public static <K, V> FixedSizeSortedMap<K, V> fixedSizeSortedMap(final SortedMap<K, V> map) {
-        return new FixedSizeSortedMap<>(map);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -92,57 +81,46 @@ public class FixedSizeSortedMap<K, V>
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Map is fixed size");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<Map.Entry<K, V>> entrySet() {
-        return UnmodifiableSet.unmodifiableSet(map.entrySet());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the map being decorated.
-     *
-     * @return the decorated map
-     */
     protected SortedMap<K, V> getSortedMap() {
-        return (SortedMap<K, V>) map;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> headMap(final K toKey) {
-        return new FixedSizeSortedMap<>(getSortedMap().headMap(toKey));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean isFull() {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<K> keySet() {
-        return UnmodifiableSet.unmodifiableSet(map.keySet());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int maxSize() {
-        return size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public V put(final K key, final V value) {
-        if (!map.containsKey(key)) {
-            throw new IllegalArgumentException("Cannot put new key/value pair - Map is fixed size");
-        }
-        return map.put(key, value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void putAll(final Map<? extends K, ? extends V> mapToCopy) {
-        if (CollectionUtils.isSubCollection(mapToCopy.keySet(), keySet())) {
-            throw new IllegalArgumentException("Cannot put new key/value pair - Map is fixed size");
-        }
-        map.putAll(mapToCopy);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -152,30 +130,32 @@ public class FixedSizeSortedMap<K, V>
      * @throws IOException if an error occurs while reading from the stream
      * @throws ClassNotFoundException if an object read from the stream cannot be loaded
      */
-    @SuppressWarnings("unchecked") // (1) should only fail if input stream is incorrect
+    // (1) should only fail if input stream is incorrect
+    @SuppressWarnings("unchecked")
     private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
-        map = (Map<K, V>) in.readObject(); // (1)
+        // (1)
+        map = (Map<K, V>) in.readObject();
     }
 
     @Override
     public V remove(final Object key) {
-        throw new UnsupportedOperationException("Map is fixed size");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> subMap(final K fromKey, final K toKey) {
-        return new FixedSizeSortedMap<>(getSortedMap().subMap(fromKey, toKey));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> tailMap(final K fromKey) {
-        return new FixedSizeSortedMap<>(getSortedMap().tailMap(fromKey));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Collection<V> values() {
-        return UnmodifiableCollection.unmodifiableCollection(map.values());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -188,5 +168,4 @@ public class FixedSizeSortedMap<K, V>
         out.defaultWriteObject();
         out.writeObject(map);
     }
-
 }

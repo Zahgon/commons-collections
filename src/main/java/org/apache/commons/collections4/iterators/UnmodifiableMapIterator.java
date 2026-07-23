@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.iterators;
 
 import java.util.Objects;
-
 import org.apache.commons.collections4.MapIterator;
 import org.apache.commons.collections4.Unmodifiable;
 
@@ -33,27 +32,13 @@ import org.apache.commons.collections4.Unmodifiable;
  */
 public final class UnmodifiableMapIterator<K, V> implements MapIterator<K, V>, Unmodifiable {
 
-    /**
-     * Decorates the specified iterator such that it cannot be modified.
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param iterator  the iterator to decorate
-     * @return a new unmodifiable map iterator
-     * @throws NullPointerException if the iterator is null
-     */
-    public static <K, V> MapIterator<K, V> unmodifiableMapIterator(
-            final MapIterator<? extends K, ? extends V> iterator) {
-        Objects.requireNonNull(iterator, "iterator");
-        if (iterator instanceof Unmodifiable) {
-            @SuppressWarnings("unchecked") // safe to upcast
-            final MapIterator<K, V> tmpIterator = (MapIterator<K, V>) iterator;
-            return tmpIterator;
-        }
-        return new UnmodifiableMapIterator<>(iterator);
+    public static <K, V> MapIterator<K, V> unmodifiableMapIterator(final MapIterator<? extends K, ? extends V> iterator) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The iterator being decorated */
+    /**
+     * The iterator being decorated
+     */
     private final MapIterator<? extends K, ? extends V> iterator;
 
     /**
@@ -67,32 +52,31 @@ public final class UnmodifiableMapIterator<K, V> implements MapIterator<K, V>, U
 
     @Override
     public K getKey() {
-        return iterator.getKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public V getValue() {
-        return iterator.getValue();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean hasNext() {
-        return iterator.hasNext();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K next() {
-        return iterator.next();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void remove() {
-        throw new UnsupportedOperationException("remove() is not supported");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public V setValue(final V value) {
-        throw new UnsupportedOperationException("setValue() is not supported");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.queue;
 
 import java.util.Queue;
-
 import org.apache.commons.collections4.collection.AbstractCollectionDecorator;
 
 /**
@@ -36,10 +35,11 @@ import org.apache.commons.collections4.collection.AbstractCollectionDecorator;
  * @param <E> the type of the elements in the queue
  * @since 4.0
  */
-public abstract class AbstractQueueDecorator<E> extends AbstractCollectionDecorator<E>
-        implements Queue<E> {
+public abstract class AbstractQueueDecorator<E> extends AbstractCollectionDecorator<E> implements Queue<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -2629815475789577029L;
 
     /**
@@ -58,39 +58,33 @@ public abstract class AbstractQueueDecorator<E> extends AbstractCollectionDecora
         super(queue);
     }
 
-    /**
-     * Gets the queue being decorated.
-     *
-     * @return the decorated queue
-     */
     @Override
     protected Queue<E> decorated() {
-        return (Queue<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E element() {
-        return decorated().element();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean offer(final E obj) {
-        return decorated().offer(obj);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E peek() {
-        return decorated().peek();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E poll() {
-        return decorated().poll();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E remove() {
-        return decorated().remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

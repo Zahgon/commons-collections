@@ -37,31 +37,18 @@ import java.util.Objects;
  */
 public class PushbackIterator<E> implements Iterator<E> {
 
-    /**
-     * Decorates the specified iterator to support one-element lookahead.
-     * <p>
-     * If the iterator is already a {@link PushbackIterator} it is returned directly.
-     * </p>
-     *
-     * @param <E>  the element type
-     * @param iterator  the iterator to decorate
-     * @return a new peeking iterator
-     * @throws NullPointerException if the iterator is null
-     */
     public static <E> PushbackIterator<E> pushbackIterator(final Iterator<? extends E> iterator) {
-        Objects.requireNonNull(iterator, "iterator");
-        if (iterator instanceof PushbackIterator<?>) {
-            @SuppressWarnings("unchecked") // safe cast
-            final PushbackIterator<E> it = (PushbackIterator<E>) iterator;
-            return it;
-        }
-        return new PushbackIterator<>(iterator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The iterator being decorated. */
+    /**
+     * The iterator being decorated.
+     */
     private final Iterator<? extends E> iterator;
 
-    /** The LIFO queue containing the pushed back items. */
+    /**
+     * The LIFO queue containing the pushed back items.
+     */
     private final Deque<E> items = new ArrayDeque<>();
 
     /**
@@ -75,34 +62,20 @@ public class PushbackIterator<E> implements Iterator<E> {
 
     @Override
     public boolean hasNext() {
-        return !items.isEmpty() || iterator.hasNext();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E next() {
-        return !items.isEmpty() ? items.pop() : iterator.next();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Push back the given element to the iterator.
-     * <p>
-     * Calling {@link #next()} immediately afterwards will return exactly this element.
-     * </p>
-     *
-     * @param item  the element to push back to the iterator
-     */
     public void pushback(final E item) {
-        items.push(item);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * This iterator will always throw an {@link UnsupportedOperationException}.
-     *
-     * @throws UnsupportedOperationException always
-     */
     @Override
     public void remove() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

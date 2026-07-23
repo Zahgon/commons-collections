@@ -39,105 +39,20 @@ import java.util.function.LongPredicate;
 @FunctionalInterface
 public interface BitMapExtractor {
 
-    /**
-     * Creates a BitMapExtractor from an array of Long.
-     *
-     * @param bitMaps the bit maps to return.
-     * @return a BitMapExtractor.
-     */
     static BitMapExtractor fromBitMapArray(final long... bitMaps) {
-        return new BitMapExtractor() {
-            @Override
-            public long[] asBitMapArray() {
-                return Arrays.copyOf(bitMaps, bitMaps.length);
-            }
-
-            @Override
-            public boolean processBitMapPairs(final BitMapExtractor other, final LongBiPredicate func) {
-                final CountingLongPredicate p = new CountingLongPredicate(bitMaps, func);
-                return other.processBitMaps(p) && p.processRemaining();
-            }
-
-            @Override
-            public boolean processBitMaps(final LongPredicate predicate) {
-                for (final long word : bitMaps) {
-                    if (!predicate.test(word)) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-        };
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a BitMapExtractor from an IndexExtractor.
-     *
-     * @param extractor the IndexExtractor that specifies the indexes of the bits to enable.
-     * @param numberOfBits the number of bits in the Bloom filter.
-     * @return A BitMapExtractor that produces the bit maps equivalent of the Indices from the extractor.
-     */
     static BitMapExtractor fromIndexExtractor(final IndexExtractor extractor, final int numberOfBits) {
-        Objects.requireNonNull(extractor, "extractor");
-
-        final long[] result = BitMaps.newBitMap(numberOfBits);
-        extractor.processIndices(i -> {
-            BitMaps.set(result, i);
-            return true;
-        });
-        return fromBitMapArray(result);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Return a copy of the BitMapExtractor data as a bit map array.
-     * <p>
-     * The default implementation of this method is slow. It is recommended
-     * that implementing classes reimplement this method.
-     * </p>
-     * @return An array of bit map data.
-     */
     default long[] asBitMapArray() {
-        final class Bits {
-            private long[] data = new long[16];
-            private int size;
-
-            boolean add(final long bits) {
-                if (size == data.length) {
-                    // This will throw an out-of-memory error if there are too many bits.
-                    // Since bits are addressed using 32-bit signed integer indices
-                    // the maximum length should be ~2^31 / 2^6 = ~2^25.
-                    // Any more is a broken implementation.
-                    data = Arrays.copyOf(data, size * 2);
-                }
-                data[size++] = bits;
-                return true;
-            }
-
-            long[] toArray() {
-                // Edge case to avoid a large array copy
-                return size == data.length ? data : Arrays.copyOf(data, size);
-            }
-        }
-        final Bits bits = new Bits();
-        processBitMaps(bits::add);
-        return bits.toArray();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Applies the {@code func} to each bit map pair in order. Will apply all of the bit maps from the other BitMapExtractor to this extractor. If this
-     * extractor does not have as many bit maps it will provide 0 (zero) for all excess calls to the LongBiPredicate.
-     * <p>
-     * <em>The default implementation of this method uses {@code asBitMapArray()}. It is recommended that implementations of BitMapExtractor that have local
-     * arrays reimplement this method.</em>
-     * </p>
-     *
-     * @param other The other BitMapExtractor that provides the y values in the (x,y) pair.
-     * @param func  The function to apply.
-     * @return A LongPredicate that tests this BitMapExtractor's bitmap values in order.
-     */
     default boolean processBitMapPairs(final BitMapExtractor other, final LongBiPredicate func) {
-        final CountingLongPredicate p = new CountingLongPredicate(asBitMapArray(), func);
-        return other.processBitMaps(p) && p.processRemaining();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

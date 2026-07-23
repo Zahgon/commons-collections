@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.multiset;
 
 import java.util.Set;
-
 import org.apache.commons.collections4.MultiSet;
 import org.apache.commons.collections4.collection.SynchronizedCollection;
 
@@ -40,7 +39,10 @@ public class SynchronizedMultiSet<E> extends SynchronizedCollection<E> implement
      * @param <T> the type held in this Set.
      */
     static class SynchronizedSet<T> extends SynchronizedCollection<T> implements Set<T> {
-        /** Serialization version */
+
+        /**
+         * Serialization version
+         */
         private static final long serialVersionUID = 20150629L;
 
         /**
@@ -53,19 +55,13 @@ public class SynchronizedMultiSet<E> extends SynchronizedCollection<E> implement
         }
     }
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 20150629L;
 
-    /**
-     * Factory method to create a synchronized multiset.
-     *
-     * @param <E> the type of the elements in the multiset
-     * @param multiset  the multiset to decorate, must not be null
-     * @return a new synchronized MultiSet
-     * @throws NullPointerException if multiset is null
-     */
     public static <E> SynchronizedMultiSet<E> synchronizedMultiSet(final MultiSet<E> multiset) {
-        return new SynchronizedMultiSet<>(multiset);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -91,73 +87,46 @@ public class SynchronizedMultiSet<E> extends SynchronizedCollection<E> implement
 
     @Override
     public int add(final E object, final int count) {
-        synchronized (lock) {
-            return decorated().add(object, count);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the multiset being decorated.
-     *
-     * @return the decorated multiset
-     */
     @Override
     protected MultiSet<E> decorated() {
-        return (MultiSet<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<Entry<E>> entrySet() {
-        synchronized (lock) {
-            final Set<MultiSet.Entry<E>> set = decorated().entrySet();
-            return new SynchronizedSet<>(set, lock);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object object) {
-        if (object == this) {
-            return true;
-        }
-        synchronized (lock) {
-            return decorated().equals(object);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int getCount(final Object object) {
-        synchronized (lock) {
-            return decorated().getCount(object);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        synchronized (lock) {
-            return decorated().hashCode();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int remove(final Object object, final int count) {
-        synchronized (lock) {
-            return decorated().remove(object, count);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int setCount(final E object, final int count) {
-        synchronized (lock) {
-            return decorated().setCount(object, count);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<E> uniqueSet() {
-        synchronized (lock) {
-            final Set<E> set = decorated().uniqueSet();
-            return new SynchronizedSet<>(set, lock);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

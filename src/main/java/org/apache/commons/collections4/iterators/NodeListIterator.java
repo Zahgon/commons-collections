@@ -19,7 +19,6 @@ package org.apache.commons.collections4.iterators;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -35,9 +34,14 @@ import org.w3c.dom.NodeList;
  */
 public class NodeListIterator implements Iterator<Node> {
 
-    /** The original NodeList instance */
+    /**
+     * The original NodeList instance
+     */
     private final NodeList nodeList;
-    /** The current iterator index */
+
+    /**
+     * The current iterator index
+     */
     private int index;
 
     /**
@@ -65,24 +69,16 @@ public class NodeListIterator implements Iterator<Node> {
 
     @Override
     public boolean hasNext() {
-        return nodeList != null && index < nodeList.getLength();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Node next() {
-        if (nodeList != null && index < nodeList.getLength()) {
-            return nodeList.item(index++);
-        }
-        throw new NoSuchElementException("underlying nodeList has no more elements");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Throws {@link UnsupportedOperationException}.
-     *
-     * @throws UnsupportedOperationException always
-     */
     @Override
     public void remove() {
-        throw new UnsupportedOperationException("remove() method not supported for a NodeListIterator.");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

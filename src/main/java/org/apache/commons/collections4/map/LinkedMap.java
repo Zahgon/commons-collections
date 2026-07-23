@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.function.Predicate;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.iterators.UnmodifiableIterator;
 import org.apache.commons.collections4.iterators.UnmodifiableListIterator;
@@ -83,99 +82,98 @@ public class LinkedMap<K, V> extends AbstractLinkedMap<K, V> implements Serializ
 
         @Override
         public void clear() {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean contains(final Object obj) {
-            return parent.containsKey(obj);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean containsAll(final Collection<?> coll) {
-            return parent.keySet().containsAll(coll);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K get(final int index) {
-            return parent.get(index);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int indexOf(final Object obj) {
-            return parent.indexOf(obj);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<K> iterator() {
-            return UnmodifiableIterator.unmodifiableIterator(parent.keySet().iterator());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int lastIndexOf(final Object obj) {
-            return parent.indexOf(obj);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public ListIterator<K> listIterator() {
-            return UnmodifiableListIterator.unmodifiableListIterator(super.listIterator());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public ListIterator<K> listIterator(final int fromIndex) {
-            return UnmodifiableListIterator.unmodifiableListIterator(super.listIterator(fromIndex));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K remove(final int index) {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean remove(final Object obj) {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean removeAll(final Collection<?> coll) {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * @since 4.4
-         */
         @Override
         public boolean removeIf(final Predicate<? super K> filter) {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean retainAll(final Collection<?> coll) {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return parent.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public List<K> subList(final int fromIndexInclusive, final int toIndexExclusive) {
-            return UnmodifiableList.unmodifiableList(super.subList(fromIndexInclusive, toIndexExclusive));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Object[] toArray() {
-            return parent.keySet().toArray();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public <T> T[] toArray(final T[] array) {
-            return parent.keySet().toArray(array);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 9077234323521161066L;
 
     /**
@@ -218,74 +216,25 @@ public class LinkedMap<K, V> extends AbstractLinkedMap<K, V> implements Serializ
         super(map);
     }
 
-    /**
-     * Gets an unmodifiable List view of the keys.
-     * <p>
-     * The returned list is unmodifiable because changes to the values of
-     * the list (using {@link java.util.ListIterator#set(Object)}) will
-     * effectively remove the value from the list and reinsert that value at
-     * the end of the list, which is an unexpected side effect of changing the
-     * value of a list.  This occurs because changing the key, changes when the
-     * mapping is added to the map and thus where it appears in the list.
-     * </p>
-     * <p>
-     * An alternative to this method is to use {@link #keySet()}.
-     * </p>
-     *
-     * @see #keySet()
-     * @return The ordered list of keys.
-     */
     public List<K> asList() {
-        return new LinkedMapList<>(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Clones the map without cloning the keys or values.
-     *
-     * @return a shallow clone
-     */
     @Override
     public LinkedMap<K, V> clone() {
-        return (LinkedMap<K, V>) super.clone();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the key at the specified index.
-     *
-     * @param index  the index to retrieve
-     * @return the key at the specified index
-     * @throws IndexOutOfBoundsException if the index is invalid
-     */
     public K get(final int index) {
-        return getEntry(index).getKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the value at the specified index.
-     *
-     * @param index  the index to retrieve
-     * @return the value at the specified index
-     * @throws IndexOutOfBoundsException if the index is invalid
-     */
     public V getValue(final int index) {
-        return getEntry(index).getValue();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the index of the specified key.
-     *
-     * @param key  the key to find the index of
-     * @return the index, or -1 if not found
-     */
     public int indexOf(Object key) {
-        key = convertKey(key);
-        int i = 0;
-        for (LinkEntry<K, V> entry = header.after; entry != header; entry = entry.after, i++) {
-            if (isEqualKey(key, entry.key)) {
-                return i;
-            }
-        }
-        return CollectionUtils.INDEX_NOT_FOUND;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -300,16 +249,8 @@ public class LinkedMap<K, V> extends AbstractLinkedMap<K, V> implements Serializ
         doReadObject(in);
     }
 
-    /**
-     * Removes the element at the specified index.
-     *
-     * @param index  the index of the object to remove
-     * @return the previous value corresponding the {@code key},
-     *  or {@code null} if none existed
-     * @throws IndexOutOfBoundsException if the index is invalid
-     */
     public V remove(final int index) {
-        return remove(get(index));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -322,5 +263,4 @@ public class LinkedMap<K, V> extends AbstractLinkedMap<K, V> implements Serializ
         out.defaultWriteObject();
         doWriteObject(out);
     }
-
 }

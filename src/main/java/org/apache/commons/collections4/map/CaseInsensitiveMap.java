@@ -73,7 +73,9 @@ import java.util.Map;
  */
 public class CaseInsensitiveMap<K, V> extends AbstractHashedMap<K, V> implements Serializable, Cloneable {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -7074655917369299456L;
 
     /**
@@ -120,35 +122,14 @@ public class CaseInsensitiveMap<K, V> extends AbstractHashedMap<K, V> implements
         super(map);
     }
 
-    /**
-     * Clones the map without cloning the keys or values.
-     *
-     * @return a shallow clone
-     */
     @Override
     public CaseInsensitiveMap<K, V> clone() {
-        return (CaseInsensitiveMap<K, V>) super.clone();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Overrides convertKey() from {@link AbstractHashedMap} to convert keys to
-     * lower case.
-     * <p>
-     * Returns {@link AbstractHashedMap#NULL} if key is null.
-     *
-     * @param key  the key convert
-     * @return the converted key
-     */
     @Override
     protected Object convertKey(final Object key) {
-        if (key != null) {
-            final char[] chars = key.toString().toCharArray();
-            for (int i = chars.length - 1; i >= 0; i--) {
-                chars[i] = Character.toLowerCase(Character.toUpperCase(chars[i]));
-            }
-            return new String(chars);
-        }
-        return NULL;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -173,5 +154,4 @@ public class CaseInsensitiveMap<K, V> extends AbstractHashedMap<K, V> implements
         out.defaultWriteObject();
         doWriteObject(out);
     }
-
 }

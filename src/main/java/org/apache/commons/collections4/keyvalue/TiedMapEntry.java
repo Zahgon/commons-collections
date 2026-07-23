@@ -19,7 +19,6 @@ package org.apache.commons.collections4.keyvalue;
 import java.io.Serializable;
 import java.util.Map;
 import java.util.Objects;
-
 import org.apache.commons.collections4.KeyValue;
 
 /**
@@ -35,13 +34,19 @@ import org.apache.commons.collections4.KeyValue;
  */
 public class TiedMapEntry<K, V> implements Map.Entry<K, V>, KeyValue<K, V>, Serializable {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -8453869361373831205L;
 
-    /** The map underlying the entry/iterator */
+    /**
+     * The map underlying the entry/iterator
+     */
     private final Map<K, V> map;
 
-    /** The key */
+    /**
+     * The key
+     */
     private final K key;
 
     /**
@@ -55,85 +60,33 @@ public class TiedMapEntry<K, V> implements Map.Entry<K, V>, KeyValue<K, V>, Seri
         this.key = key;
     }
 
-    /**
-     * Compares this {@code Map.Entry} with another {@code Map.Entry}.
-     * <p>
-     * Implemented per API documentation of {@link java.util.Map.Entry#equals(Object)}
-     *
-     * @param obj  the object to compare to
-     * @return true if equal key and value
-     */
     @Override
     public boolean equals(final Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof Map.Entry)) {
-            return false;
-        }
-        final Map.Entry<?, ?> other = (Map.Entry<?, ?>) obj;
-        return
-            Objects.equals(key, other.getKey()) &&
-            Objects.equals(getValue(), other.getValue());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the key of this entry
-     *
-     * @return the key
-     */
     @Override
     public K getKey() {
-        return key;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the value of this entry direct from the map.
-     *
-     * @return the value
-     */
     @Override
     public V getValue() {
-        return map.get(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a hashCode compatible with the equals method.
-     * <p>
-     * Implemented per API documentation of {@link java.util.Map.Entry#hashCode()}
-     *
-     * @return a suitable hash code
-     */
     @Override
     public int hashCode() {
-        final Object value = getValue();
-        return (getKey() == null ? 0 : getKey().hashCode()) ^
-               (value == null ? 0 : value.hashCode());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the value associated with the key direct onto the map.
-     *
-     * @param value  the new value
-     * @return the old value
-     * @throws IllegalArgumentException if the value is set to this map entry
-     */
     @Override
     public V setValue(final V value) {
-        if (value == this) {
-            throw new IllegalArgumentException("Cannot set value to this map entry");
-        }
-        return map.put(key, value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a string version of the entry.
-     *
-     * @return entry as a string
-     */
     @Override
     public String toString() {
-        return getKey() + "=" + getValue();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

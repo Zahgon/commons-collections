@@ -19,7 +19,6 @@ package org.apache.commons.collections4.map;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.SortedMap;
-
 import org.apache.commons.collections4.Transformer;
 
 /**
@@ -45,65 +44,19 @@ import org.apache.commons.collections4.Transformer;
  * @param <V> the type of the values in this map
  * @since 3.0
  */
-public class TransformedSortedMap<K, V>
-        extends TransformedMap<K, V>
-        implements SortedMap<K, V> {
+public class TransformedSortedMap<K, V> extends TransformedMap<K, V> implements SortedMap<K, V> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -8751771676410385778L;
 
-    /**
-     * Factory method to create a transforming sorted map that will transform
-     * existing contents of the specified map.
-     * <p>
-     * If there are any elements already in the map being decorated, they
-     * will be transformed by this method.
-     * Contrast this with {@link #transformingSortedMap(SortedMap, Transformer, Transformer)}.
-     * </p>
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @param keyTransformer  the transformer to use for key conversion, null means no transformation
-     * @param valueTransformer  the transformer to use for value conversion, null means no transformation
-     * @return a new transformed sorted map
-     * @throws NullPointerException if map is null
-     * @since 4.0
-     */
-    public static <K, V> TransformedSortedMap<K, V> transformedSortedMap(final SortedMap<K, V> map,
-            final Transformer<? super K, ? extends K> keyTransformer,
-            final Transformer<? super V, ? extends V> valueTransformer) {
-
-        final TransformedSortedMap<K, V> decorated =
-                new TransformedSortedMap<>(map, keyTransformer, valueTransformer);
-        if (!map.isEmpty()) {
-            final Map<K, V> transformed = decorated.transformMap(map);
-            decorated.clear();
-            decorated.decorated().putAll(transformed);  // avoids double transformation
-        }
-        return decorated;
+    public static <K, V> TransformedSortedMap<K, V> transformedSortedMap(final SortedMap<K, V> map, final Transformer<? super K, ? extends K> keyTransformer, final Transformer<? super V, ? extends V> valueTransformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Factory method to create a transforming sorted map.
-     * <p>
-     * If there are any elements already in the map being decorated, they are NOT transformed.
-     * Contrast this with {@link #transformedSortedMap(SortedMap, Transformer, Transformer)}.
-     * </p>
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @param keyTransformer  the predicate to validate the keys, null means no transformation
-     * @param valueTransformer  the predicate to validate to values, null means no transformation
-     * @return a new transformed sorted map
-     * @throws NullPointerException if the map is null
-     * @since 4.0
-     */
-    public static <K, V> TransformedSortedMap<K, V> transformingSortedMap(final SortedMap<K, V> map,
-            final Transformer<? super K, ? extends K> keyTransformer,
-            final Transformer<? super V, ? extends V> valueTransformer) {
-        return new TransformedSortedMap<>(map, keyTransformer, valueTransformer);
+    public static <K, V> TransformedSortedMap<K, V> transformingSortedMap(final SortedMap<K, V> map, final Transformer<? super K, ? extends K> keyTransformer, final Transformer<? super V, ? extends V> valueTransformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -118,52 +71,41 @@ public class TransformedSortedMap<K, V>
      * @param valueTransformer  the predicate to validate to values, null means no transformation
      * @throws NullPointerException if the map is null
      */
-    protected TransformedSortedMap(final SortedMap<K, V> map,
-            final Transformer<? super K, ? extends K> keyTransformer,
-            final Transformer<? super V, ? extends V> valueTransformer) {
+    protected TransformedSortedMap(final SortedMap<K, V> map, final Transformer<? super K, ? extends K> keyTransformer, final Transformer<? super V, ? extends V> valueTransformer) {
         super(map, keyTransformer, valueTransformer);
     }
 
     @Override
     public Comparator<? super K> comparator() {
-        return getSortedMap().comparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K firstKey() {
-        return getSortedMap().firstKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the map being decorated.
-     *
-     * @return the decorated map
-     */
     protected SortedMap<K, V> getSortedMap() {
-        return (SortedMap<K, V>) map;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> headMap(final K toKey) {
-        final SortedMap<K, V> map = getSortedMap().headMap(toKey);
-        return new TransformedSortedMap<>(map, keyTransformer, valueTransformer);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K lastKey() {
-        return getSortedMap().lastKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> subMap(final K fromKey, final K toKey) {
-        final SortedMap<K, V> map = getSortedMap().subMap(fromKey, toKey);
-        return new TransformedSortedMap<>(map, keyTransformer, valueTransformer);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> tailMap(final K fromKey) {
-        final SortedMap<K, V> map = getSortedMap().tailMap(fromKey);
-        return new TransformedSortedMap<>(map, keyTransformer, valueTransformer);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

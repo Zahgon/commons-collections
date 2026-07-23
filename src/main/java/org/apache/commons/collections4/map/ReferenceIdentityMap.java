@@ -77,7 +77,9 @@ import java.lang.ref.Reference;
  */
 public class ReferenceIdentityMap<K, V> extends AbstractReferenceMap<K, V> implements Serializable {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -1266190134568365852L;
 
     /**
@@ -85,8 +87,7 @@ public class ReferenceIdentityMap<K, V> extends AbstractReferenceMap<K, V> imple
      * use hard references to keys and soft references to values.
      */
     public ReferenceIdentityMap() {
-        super(ReferenceStrength.HARD, ReferenceStrength.SOFT, DEFAULT_CAPACITY,
-                DEFAULT_LOAD_FACTOR, false);
+        super(ReferenceStrength.HARD, ReferenceStrength.SOFT, DEFAULT_CAPACITY, DEFAULT_LOAD_FACTOR, false);
     }
 
     /**
@@ -121,8 +122,7 @@ public class ReferenceIdentityMap<K, V> extends AbstractReferenceMap<K, V> imple
      * @param purgeValues should the value be automatically purged when the
      *   key is garbage collected
      */
-    public ReferenceIdentityMap(final ReferenceStrength keyType, final ReferenceStrength valueType,
-            final boolean purgeValues) {
+    public ReferenceIdentityMap(final ReferenceStrength keyType, final ReferenceStrength valueType, final boolean purgeValues) {
         super(keyType, valueType, DEFAULT_CAPACITY, DEFAULT_LOAD_FACTOR, purgeValues);
     }
 
@@ -141,8 +141,7 @@ public class ReferenceIdentityMap<K, V> extends AbstractReferenceMap<K, V> imple
      * @param capacity  the initial capacity for the map
      * @param loadFactor  the load factor for the map
      */
-    public ReferenceIdentityMap(final ReferenceStrength keyType, final ReferenceStrength valueType,
-            final int capacity, final float loadFactor) {
+    public ReferenceIdentityMap(final ReferenceStrength keyType, final ReferenceStrength valueType, final int capacity, final float loadFactor) {
         super(keyType, valueType, capacity, loadFactor, false);
     }
 
@@ -163,71 +162,28 @@ public class ReferenceIdentityMap<K, V> extends AbstractReferenceMap<K, V> imple
      * @param purgeValues  should the value be automatically purged when the
      *   key is garbage collected
      */
-    public ReferenceIdentityMap(final ReferenceStrength keyType, final ReferenceStrength valueType,
-            final int capacity, final float loadFactor, final boolean purgeValues) {
+    public ReferenceIdentityMap(final ReferenceStrength keyType, final ReferenceStrength valueType, final int capacity, final float loadFactor, final boolean purgeValues) {
         super(keyType, valueType, capacity, loadFactor, purgeValues);
     }
 
-    /**
-     * Gets the hash code for the key specified.
-     * <p>
-     * This implementation uses the identity hash code.
-     * </p>
-     *
-     * @param key  the key to get a hash code for
-     * @return the hash code
-     */
     @Override
     protected int hash(final Object key) {
-        return System.identityHashCode(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the hash code for a MapEntry.
-     * <p>
-     * This implementation uses the identity hash code.
-     * </p>
-     *
-     * @param key  the key to get a hash code for, may be null
-     * @param value  the value to get a hash code for, may be null
-     * @return the hash code, as per the MapEntry specification
-     */
     @Override
     protected int hashEntry(final Object key, final Object value) {
-        return System.identityHashCode(key) ^
-               System.identityHashCode(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Compares two keys for equals.
-     * <p>
-     * This implementation converts the key from the entry to a real reference
-     * before comparison and uses {@code ==}.
-     * </p>
-     *
-     * @param key1  the first key to compare passed in from outside
-     * @param key2  the second key extracted from the entry via {@code entry.key}
-     * @return true if equal by identity
-     */
     @Override
     protected boolean isEqualKey(final Object key1, Object key2) {
-        key2 = isKeyType(ReferenceStrength.HARD) ? key2 : ((Reference<?>) key2).get();
-        return key1 == key2;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Compares two values for equals.
-     * <p>
-     * This implementation uses {@code ==}.
-     * </p>
-     *
-     * @param value1  the first value to compare passed in from outside
-     * @param value2  the second value extracted from the entry via {@code getValue()}
-     * @return true if equal by identity
-     */
     @Override
     protected boolean isEqualValue(final Object value1, final Object value2) {
-        return value1 == value2;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -252,5 +208,4 @@ public class ReferenceIdentityMap<K, V> extends AbstractReferenceMap<K, V> imple
         out.defaultWriteObject();
         doWriteObject(out);
     }
-
 }

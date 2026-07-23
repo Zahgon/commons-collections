@@ -18,7 +18,6 @@ package org.apache.commons.collections4.map;
 
 import java.util.Comparator;
 import java.util.SortedMap;
-
 import org.apache.commons.collections4.Factory;
 import org.apache.commons.collections4.Transformer;
 
@@ -65,39 +64,17 @@ import org.apache.commons.collections4.Transformer;
  */
 public class LazySortedMap<K, V> extends LazyMap<K, V> implements SortedMap<K, V> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 2715322183617658933L;
 
-    /**
-     * Factory method to create a lazily instantiated sorted map.
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @param factory  the factory to use, must not be null
-     * @return a new lazy sorted map
-     * @throws NullPointerException if map or factory is null
-     * @since 4.0
-     */
-    public static <K, V> LazySortedMap<K, V> lazySortedMap(final SortedMap<K, V> map,
-                                                           final Factory<? extends V> factory) {
-        return new LazySortedMap<>(map, factory);
+    public static <K, V> LazySortedMap<K, V> lazySortedMap(final SortedMap<K, V> map, final Factory<? extends V> factory) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Factory method to create a lazily instantiated sorted map.
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @param factory  the factory to use, must not be null
-     * @return a new lazy sorted map
-     * @throws NullPointerException if map or factory is null
-     * @since 4.0
-     */
-    public static <K, V> LazySortedMap<K, V> lazySortedMap(final SortedMap<K, V> map,
-                                                           final Transformer<? super K, ? extends V> factory) {
-        return new LazySortedMap<>(map, factory);
+    public static <K, V> LazySortedMap<K, V> lazySortedMap(final SortedMap<K, V> map, final Transformer<? super K, ? extends V> factory) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -124,44 +101,35 @@ public class LazySortedMap<K, V> extends LazyMap<K, V> implements SortedMap<K, V
 
     @Override
     public Comparator<? super K> comparator() {
-        return getSortedMap().comparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K firstKey() {
-        return getSortedMap().firstKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the map being decorated.
-     *
-     * @return the decorated map
-     */
     protected SortedMap<K, V> getSortedMap() {
-        return (SortedMap<K, V>) map;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> headMap(final K toKey) {
-        final SortedMap<K, V> map = getSortedMap().headMap(toKey);
-        return new LazySortedMap<>(map, factory);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K lastKey() {
-        return getSortedMap().lastKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> subMap(final K fromKey, final K toKey) {
-        final SortedMap<K, V> map = getSortedMap().subMap(fromKey, toKey);
-        return new LazySortedMap<>(map, factory);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> tailMap(final K fromKey) {
-        final SortedMap<K, V> map = getSortedMap().tailMap(fromKey);
-        return new LazySortedMap<>(map, factory);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

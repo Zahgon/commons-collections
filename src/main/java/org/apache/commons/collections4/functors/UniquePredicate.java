@@ -19,7 +19,6 @@ package org.apache.commons.collections4.functors;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -29,23 +28,20 @@ import org.apache.commons.collections4.Predicate;
  * @param <T> the type of the input to the predicate.
  * @since 3.0
  */
-public final class UniquePredicate<T>  extends AbstractPredicate<T> implements Serializable {
-
-    /** Serial version UID */
-    private static final long serialVersionUID = -3319417438027438040L;
+public final class UniquePredicate<T> extends AbstractPredicate<T> implements Serializable {
 
     /**
-     * Creates the predicate.
-     *
-     * @param <T> the type that the predicate queries
-     * @return the predicate
-     * @throws IllegalArgumentException if the predicate is null
+     * Serial version UID
      */
+    private static final long serialVersionUID = -3319417438027438040L;
+
     public static <T> Predicate<T> uniquePredicate() {
-        return new UniquePredicate<>();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The set of previously seen objects */
+    /**
+     * The set of previously seen objects
+     */
     private final Set<T> iSet = new HashSet<>();
 
     /**
@@ -55,16 +51,8 @@ public final class UniquePredicate<T>  extends AbstractPredicate<T> implements S
     public UniquePredicate() {
     }
 
-    /**
-     * Evaluates the predicate returning true if the input object hasn't been
-     * received yet.
-     *
-     * @param object  the input object
-     * @return true if this is the first time the object is seen
-     */
     @Override
     public boolean test(final T object) {
-        return iSet.add(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.set;
 
 import java.util.Set;
-
 import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.collection.PredicatedCollection;
 
@@ -42,25 +41,13 @@ import org.apache.commons.collections4.collection.PredicatedCollection;
  */
 public class PredicatedSet<E> extends PredicatedCollection<E> implements Set<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -684521469108685117L;
 
-    /**
-     * Factory method to create a predicated (validating) set.
-     * <p>
-     * If there are any elements already in the set being decorated, they
-     * are validated.
-     *
-     * @param <E> the element type
-     * @param set  the set to decorate, must not be null
-     * @param predicate  the predicate to use for validation, must not be null
-     * @return a decorated set
-     * @throws NullPointerException if set or predicate is null
-     * @throws IllegalArgumentException if the set contains invalid elements
-     * @since 4.0
-     */
     public static <E> PredicatedSet<E> predicatedSet(final Set<E> set, final Predicate<? super E> predicate) {
-        return new PredicatedSet<>(set, predicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -78,24 +65,18 @@ public class PredicatedSet<E> extends PredicatedCollection<E> implements Set<E> 
         super(set, predicate);
     }
 
-    /**
-     * Gets the set being decorated.
-     *
-     * @return the decorated set
-     */
     @Override
     protected Set<E> decorated() {
-        return (Set<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object object) {
-        return object == this || decorated().equals(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return decorated().hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

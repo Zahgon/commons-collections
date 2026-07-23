@@ -18,7 +18,6 @@ package org.apache.commons.collections4.iterators;
 
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -33,10 +32,14 @@ import org.apache.commons.collections4.Predicate;
  */
 public class FilterListIterator<E> implements ListIterator<E> {
 
-    /** The iterator being used */
+    /**
+     * The iterator being used
+     */
     private ListIterator<? extends E> iterator;
 
-    /** The predicate being used */
+    /**
+     * The predicate being used
+     */
     private Predicate<? super E> predicate;
 
     /**
@@ -107,13 +110,9 @@ public class FilterListIterator<E> implements ListIterator<E> {
         this.predicate = predicate;
     }
 
-    /**
-     * Not supported.
-     * @param o the element to insert
-     */
     @Override
     public void add(final E o) {
-        throw new UnsupportedOperationException("FilterListIterator.add(Object) is not supported.");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void clearNextObject() {
@@ -126,90 +125,56 @@ public class FilterListIterator<E> implements ListIterator<E> {
         previousObjectSet = false;
     }
 
-    /**
-     * Gets the iterator this iterator is using.
-     *
-     * @return the iterator.
-     */
     public ListIterator<? extends E> getListIterator() {
-        return iterator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the predicate this iterator is using.
-     *
-     * @return the predicate.
-     */
     public Predicate<? super E> getPredicate() {
-        return predicate;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean hasNext() {
-        return nextObjectSet || setNextObject();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean hasPrevious() {
-        return previousObjectSet || setPreviousObject();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E next() {
-        if (!nextObjectSet && !setNextObject()) {
-            throw new NoSuchElementException();
-        }
-        nextIndex++;
-        final E temp = nextObject;
-        clearNextObject();
-        return temp;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int nextIndex() {
-        return nextIndex;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E previous() {
-        if (!previousObjectSet && !setPreviousObject()) {
-            throw new NoSuchElementException();
-        }
-        nextIndex--;
-        final E temp = previousObject;
-        clearPreviousObject();
-        return temp;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int previousIndex() {
-        return nextIndex - 1;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** Not supported. */
     @Override
     public void remove() {
-        throw new UnsupportedOperationException("FilterListIterator.remove() is not supported.");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Not supported.
-     * @param ignored the element with which to replace the last element returned by
-     *          {@code next} or {@code previous}
-     */
     @Override
     public void set(final E ignored) {
-        throw new UnsupportedOperationException("FilterListIterator.set(Object) is not supported.");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the iterator for this iterator to use.
-     * If iteration has started, this effectively resets the iterator.
-     *
-     * @param iterator  the iterator to use
-     */
     public void setListIterator(final ListIterator<? extends E> iterator) {
-        this.iterator = iterator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private boolean setNextObject() {
@@ -224,7 +189,6 @@ public class FilterListIterator<E> implements ListIterator<E> {
             }
             clearNextObject();
         }
-
         if (iterator == null) {
             return false;
         }
@@ -239,13 +203,8 @@ public class FilterListIterator<E> implements ListIterator<E> {
         return false;
     }
 
-    /**
-     * Sets the predicate this the iterator to use.
-     *
-     * @param predicate  the transformer to use
-     */
     public void setPredicate(final Predicate<? super E> predicate) {
-        this.predicate = predicate;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private boolean setPreviousObject() {
@@ -260,7 +219,6 @@ public class FilterListIterator<E> implements ListIterator<E> {
             }
             clearPreviousObject();
         }
-
         if (iterator == null) {
             return false;
         }
@@ -274,5 +232,4 @@ public class FilterListIterator<E> implements ListIterator<E> {
         }
         return false;
     }
-
 }

@@ -21,7 +21,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-
 import org.apache.commons.collections4.OrderedIterator;
 import org.apache.commons.collections4.OrderedMap;
 import org.apache.commons.collections4.OrderedMapIterator;
@@ -75,8 +74,7 @@ public abstract class AbstractLinkedMap<K, V> extends AbstractHashedMap<K, V> im
      * @param <K> the key type.
      * @param <V> the value type.
      */
-    protected static class EntrySetIterator<K, V> extends LinkIterator<K, V> implements
-            OrderedIterator<Map.Entry<K, V>>, ResettableIterator<Map.Entry<K, V>> {
+    protected static class EntrySetIterator<K, V> extends LinkIterator<K, V> implements OrderedIterator<Map.Entry<K, V>>, ResettableIterator<Map.Entry<K, V>> {
 
         /**
          * Constructs a new instance.
@@ -89,12 +87,12 @@ public abstract class AbstractLinkedMap<K, V> extends AbstractHashedMap<K, V> im
 
         @Override
         public Map.Entry<K, V> next() {
-            return super.nextEntry();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Map.Entry<K, V> previous() {
-            return super.previousEntry();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -103,8 +101,7 @@ public abstract class AbstractLinkedMap<K, V> extends AbstractHashedMap<K, V> im
      *
      * @param <K> the key type.
      */
-    protected static class KeySetIterator<K> extends LinkIterator<K, Object> implements
-            OrderedIterator<K>, ResettableIterator<K> {
+    protected static class KeySetIterator<K> extends LinkIterator<K, Object> implements OrderedIterator<K>, ResettableIterator<K> {
 
         /**
          * Constructs a new instance.
@@ -118,12 +115,12 @@ public abstract class AbstractLinkedMap<K, V> extends AbstractHashedMap<K, V> im
 
         @Override
         public K next() {
-            return super.nextEntry().getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K previous() {
-            return super.previousEntry().getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -140,9 +137,15 @@ public abstract class AbstractLinkedMap<K, V> extends AbstractHashedMap<K, V> im
      * @param <V> the value type.
      */
     protected static class LinkEntry<K, V> extends HashEntry<K, V> {
-        /** The entry before this one in the order */
+
+        /**
+         * The entry before this one in the order
+         */
         protected LinkEntry<K, V> before;
-        /** The entry after this one in the order */
+
+        /**
+         * The entry after this one in the order
+         */
         protected LinkEntry<K, V> after;
 
         /**
@@ -166,16 +169,24 @@ public abstract class AbstractLinkedMap<K, V> extends AbstractHashedMap<K, V> im
      */
     protected abstract static class LinkIterator<K, V> {
 
-        /** The parent map */
+        /**
+         * The parent map
+         */
         protected final AbstractLinkedMap<K, V> parent;
 
-        /** The current (last returned) entry */
+        /**
+         * The current (last returned) entry
+         */
         protected LinkEntry<K, V> last;
 
-        /** The next entry */
+        /**
+         * The next entry
+         */
         protected LinkEntry<K, V> next;
 
-        /** The modification count expected */
+        /**
+         * The modification count expected
+         */
         protected int expectedModCount;
 
         /**
@@ -189,97 +200,37 @@ public abstract class AbstractLinkedMap<K, V> extends AbstractHashedMap<K, V> im
             this.expectedModCount = parent.modCount;
         }
 
-        /**
-         * Gets the current entry.
-         *
-         * @return the current entry.
-         */
         protected LinkEntry<K, V> currentEntry() {
-            return last;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Tests whether there is another entry.
-         *
-         * @return whether there is another entry.
-         */
         public boolean hasNext() {
-            return next != parent.header;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Tests whether there is a previous entry.
-         *
-         * @return whether there is a previous entry.
-         */
         public boolean hasPrevious() {
-            return next.before != parent.header;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Gets the next entry.
-         *
-         * @return the next entry.
-         */
         protected LinkEntry<K, V> nextEntry() {
-            if (parent.modCount != expectedModCount) {
-                throw new ConcurrentModificationException();
-            }
-            if (next == parent.header)  {
-                throw new NoSuchElementException(NO_NEXT_ENTRY);
-            }
-            last = next;
-            next = next.after;
-            return last;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Gets the previous entry.
-         *
-         * @return the previous entry.
-         */
         protected LinkEntry<K, V> previousEntry() {
-            if (parent.modCount != expectedModCount) {
-                throw new ConcurrentModificationException();
-            }
-            final LinkEntry<K, V> previous = next.before;
-            if (previous == parent.header)  {
-                throw new NoSuchElementException(NO_PREVIOUS_ENTRY);
-            }
-            next = previous;
-            last = previous;
-            return last;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Removes the current entry.
-         */
         public void remove() {
-            if (last == null) {
-                throw new IllegalStateException(REMOVE_INVALID);
-            }
-            if (parent.modCount != expectedModCount) {
-                throw new ConcurrentModificationException();
-            }
-            parent.remove(last.getKey());
-            last = null;
-            expectedModCount = parent.modCount;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Resets the state to the end.
-         */
         public void reset() {
-            last = null;
-            next = parent.header.after;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public String toString() {
-            if (last != null) {
-                return "Iterator[" + last.getKey() + "=" + last.getValue() + "]";
-            }
-            return "Iterator[]";
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -289,8 +240,7 @@ public abstract class AbstractLinkedMap<K, V> extends AbstractHashedMap<K, V> im
      * @param <K> the key type.
      * @param <V> the value type.
      */
-    protected static class LinkMapIterator<K, V> extends LinkIterator<K, V> implements
-            OrderedMapIterator<K, V>, ResettableIterator<K> {
+    protected static class LinkMapIterator<K, V> extends LinkIterator<K, V> implements OrderedMapIterator<K, V>, ResettableIterator<K> {
 
         /**
          * Constructs a new instance.
@@ -303,39 +253,27 @@ public abstract class AbstractLinkedMap<K, V> extends AbstractHashedMap<K, V> im
 
         @Override
         public K getKey() {
-            final LinkEntry<K, V> current = currentEntry();
-            if (current == null) {
-                throw new IllegalStateException(GETKEY_INVALID);
-            }
-            return current.getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V getValue() {
-            final LinkEntry<K, V> current = currentEntry();
-            if (current == null) {
-                throw new IllegalStateException(GETVALUE_INVALID);
-            }
-            return current.getValue();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K next() {
-            return super.nextEntry().getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K previous() {
-            return super.previousEntry().getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V setValue(final V value) {
-            final LinkEntry<K, V> current = currentEntry();
-            if (current == null) {
-                throw new IllegalStateException(SETVALUE_INVALID);
-            }
-            return current.setValue(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -344,8 +282,7 @@ public abstract class AbstractLinkedMap<K, V> extends AbstractHashedMap<K, V> im
      *
      * @param <V> the value type.
      */
-    protected static class ValuesIterator<V> extends LinkIterator<Object, V> implements
-            OrderedIterator<V>, ResettableIterator<V> {
+    protected static class ValuesIterator<V> extends LinkIterator<Object, V> implements OrderedIterator<V>, ResettableIterator<V> {
 
         /**
          * Constructs a new instance.
@@ -359,16 +296,18 @@ public abstract class AbstractLinkedMap<K, V> extends AbstractHashedMap<K, V> im
 
         @Override
         public V next() {
-            return super.nextEntry().getValue();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V previous() {
-            return super.previousEntry().getValue();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /** Header in the linked list */
+    /**
+     * Header in the linked list
+     */
     transient LinkEntry<K, V> header;
 
     /**
@@ -421,277 +360,90 @@ public abstract class AbstractLinkedMap<K, V> extends AbstractHashedMap<K, V> im
         super(map);
     }
 
-    /**
-     * Adds an entry into this map, maintaining insertion order.
-     * <p>
-     * This implementation adds the entry to the data storage table and
-     * to the end of the linked list.
-     * </p>
-     *
-     * @param entry  the entry to add
-     * @param hashIndex  the index into the data array to store at
-     */
     @Override
     protected void addEntry(final HashEntry<K, V> entry, final int hashIndex) {
-        final LinkEntry<K, V> link = (LinkEntry<K, V>) entry;
-        link.after  = header;
-        link.before = header.before;
-        header.before.after = link;
-        header.before = link;
-        data[hashIndex] = link;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Clears the map, resetting the size to zero and nullifying references
-     * to avoid garbage collection issues.
-     */
     @Override
     public void clear() {
-        // override to reset the linked list
-        super.clear();
-        header.before = header.after = header;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Checks whether the map contains the specified value.
-     *
-     * @param value  the value to search for
-     * @return true if the map contains the value
-     */
     @Override
     public boolean containsValue(final Object value) {
-        // override uses faster iterator
-        if (value == null) {
-            for (LinkEntry<K, V> entry = header.after; entry != header; entry = entry.after) {
-                if (entry.getValue() == null) {
-                    return true;
-                }
-            }
-        } else {
-            for (LinkEntry<K, V> entry = header.after; entry != header; entry = entry.after) {
-                if (isEqualValue(value, entry.getValue())) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates an entry to store the data.
-     * <p>
-     * This implementation creates a new LinkEntry instance.
-     * </p>
-     *
-     * @param next  the next entry in sequence
-     * @param hashCode  the hash code to use
-     * @param key  the key to store
-     * @param value  the value to store
-     * @return the newly created entry
-     */
     @Override
     protected LinkEntry<K, V> createEntry(final HashEntry<K, V> next, final int hashCode, final K key, final V value) {
-        return new LinkEntry<>(next, hashCode, convertKey(key), value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates an entry set iterator.
-     * Subclasses can override this to return iterators with different properties.
-     *
-     * @return the entrySet iterator
-     */
     @Override
     protected Iterator<Map.Entry<K, V>> createEntrySetIterator() {
-        if (isEmpty()) {
-            return EmptyOrderedIterator.<Map.Entry<K, V>>emptyOrderedIterator();
-        }
-        return new EntrySetIterator<>(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a key set iterator.
-     * Subclasses can override this to return iterators with different properties.
-     *
-     * @return the keySet iterator
-     */
     @Override
     protected Iterator<K> createKeySetIterator() {
-        if (isEmpty()) {
-            return EmptyOrderedIterator.<K>emptyOrderedIterator();
-        }
-        return new KeySetIterator<>(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a values iterator.
-     * Subclasses can override this to return iterators with different properties.
-     *
-     * @return the values iterator
-     */
     @Override
     protected Iterator<V> createValuesIterator() {
-        if (isEmpty()) {
-            return EmptyOrderedIterator.<V>emptyOrderedIterator();
-        }
-        return new ValuesIterator<>(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the {@code after} field from a {@code LinkEntry}.
-     * Used in subclasses that have no visibility of the field.
-     *
-     * @param entry  the entry to query, must not be null
-     * @return the {@code after} field of the entry
-     * @throws NullPointerException if the entry is null
-     * @since 3.1
-     */
     protected LinkEntry<K, V> entryAfter(final LinkEntry<K, V> entry) {
-        return entry.after;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the {@code before} field from a {@code LinkEntry}.
-     * Used in subclasses that have no visibility of the field.
-     *
-     * @param entry  the entry to query, must not be null
-     * @return the {@code before} field of the entry
-     * @throws NullPointerException if the entry is null
-     * @since 3.1
-     */
     protected LinkEntry<K, V> entryBefore(final LinkEntry<K, V> entry) {
-        return entry.before;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the first key in the map, which is the first inserted.
-     *
-     * @return the eldest key
-     */
     @Override
     public K firstKey() {
-        if (size == 0) {
-            throw new NoSuchElementException("Map is empty");
-        }
-        return header.after.getKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the key at the specified index.
-     *
-     * @param index  the index to retrieve
-     * @return the key at the specified index
-     * @throws IndexOutOfBoundsException if the index is invalid
-     */
     protected LinkEntry<K, V> getEntry(final int index) {
-        if (index < 0) {
-            throw new IndexOutOfBoundsException("Index " + index + " is less than zero");
-        }
-        if (index >= size) {
-            throw new IndexOutOfBoundsException("Index " + index + " is invalid for size " + size);
-        }
-        LinkEntry<K, V> entry;
-        if (index < size / 2) {
-            // Search forwards
-            entry = header.after;
-            for (int currentIndex = 0; currentIndex < index; currentIndex++) {
-                entry = entry.after;
-            }
-        } else {
-            // Search backwards
-            entry = header;
-            for (int currentIndex = size; currentIndex > index; currentIndex--) {
-                entry = entry.before;
-            }
-        }
-        return entry;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     protected LinkEntry<K, V> getEntry(final Object key) {
-        return (LinkEntry<K, V>) super.getEntry(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Initialize this subclass during construction.
-     * <p>
-     * Note: As from v3.2 this method calls
-     * {@link #createEntry(HashEntry, int, Object, Object)} to create
-     * the map entry object.
-     * </p>
-     */
     @Override
     protected void init() {
-        header = createEntry(null, -1, null, null);
-        header.before = header.after = header;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the last key in the map, which is the most recently inserted.
-     *
-     * @return the most recently inserted key
-     */
     @Override
     public K lastKey() {
-        if (size == 0) {
-            throw new NoSuchElementException("Map is empty");
-        }
-        return header.before.getKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public OrderedMapIterator<K, V> mapIterator() {
-        if (size == 0) {
-            return EmptyOrderedMapIterator.<K, V>emptyOrderedMapIterator();
-        }
-        return new LinkMapIterator<>(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the next key in sequence.
-     *
-     * @param key  the key to get after
-     * @return the next key
-     */
     @Override
     public K nextKey(final Object key) {
-        final LinkEntry<K, V> entry = getEntry(key);
-        return entry == null || entry.after == header ? null : entry.after.getKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the previous key in sequence.
-     *
-     * @param key  the key to get before
-     * @return the previous key
-     */
     @Override
     public K previousKey(final Object key) {
-        final LinkEntry<K, V> entry = getEntry(key);
-        return entry == null || entry.before == header ? null : entry.before.getKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes an entry from the map and the linked list.
-     * <p>
-     * This implementation removes the entry from the linked list chain, then
-     * calls the superclass implementation.
-     * </p>
-     *
-     * @param entry  the entry to remove
-     * @param hashIndex  the index into the data structure
-     * @param previous  the previous entry in the chain
-     */
     @Override
     protected void removeEntry(final HashEntry<K, V> entry, final int hashIndex, final HashEntry<K, V> previous) {
-        final LinkEntry<K, V> link = (LinkEntry<K, V>) entry;
-        link.before.after = link.after;
-        link.after.before = link.before;
-        link.after = null;
-        link.before = null;
-        super.removeEntry(entry, hashIndex, previous);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

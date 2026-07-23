@@ -19,7 +19,6 @@ package org.apache.commons.collections4.functors;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Transformer;
 
 /**
@@ -37,50 +36,22 @@ public class ChainedTransformer<T> implements Transformer<T, T>, Serializable {
     @SuppressWarnings("rawtypes")
     private static final Transformer[] EMPTY_TRANSFORMER_ARRAY = {};
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 3514945074733160196L;
 
-    /**
-     * Create a new Transformer that calls each transformer in turn, passing the
-     * result into the next transformer. The ordering is that of the iterator()
-     * method on the collection.
-     *
-     * @param <T>  the object type
-     * @param transformers  a collection of transformers to chain
-     * @return the {@code chained} transformer
-     * @throws NullPointerException if the transformers collection is null
-     * @throws NullPointerException if any transformer in the collection is null
-     */
-    public static <T> Transformer<T, T> chainedTransformer(
-            final Collection<? extends Transformer<? super T, ? extends T>> transformers) {
-        Objects.requireNonNull(transformers, "transformers");
-        if (transformers.isEmpty()) {
-            return NOPTransformer.<T>nopTransformer();
-        }
-        // convert to array like this to guarantee iterator() ordering
-        final Transformer<T, T>[] cmds = transformers.toArray(EMPTY_TRANSFORMER_ARRAY);
-        FunctorUtils.validate(cmds);
-        return new ChainedTransformer<>(false, cmds);
+    public static <T> Transformer<T, T> chainedTransformer(final Collection<? extends Transformer<? super T, ? extends T>> transformers) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Factory method that performs validation and copies the parameter array.
-     *
-     * @param <T>  the object type
-     * @param transformers  the transformers to chain, copied, no nulls
-     * @return the {@code chained} transformer
-     * @throws NullPointerException if the transformers array is null
-     * @throws NullPointerException if any transformer in the array is null
-     */
     public static <T> Transformer<T, T> chainedTransformer(final Transformer<? super T, ? extends T>... transformers) {
-        FunctorUtils.validate(transformers);
-        if (transformers.length == 0) {
-            return NOPTransformer.<T>nopTransformer();
-        }
-        return new ChainedTransformer<>(transformers);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The transformers to call in turn */
+    /**
+     * The transformers to call in turn
+     */
     private final Transformer<? super T, ? extends T>[] iTransformers;
 
     /**
@@ -103,28 +74,12 @@ public class ChainedTransformer<T> implements Transformer<T, T>, Serializable {
         this(true, transformers);
     }
 
-    /**
-     * Gets the transformers.
-     *
-     * @return a copy of the transformers
-     * @since 3.1
-     */
     public Transformer<? super T, ? extends T>[] getTransformers() {
-        return FunctorUtils.copy(iTransformers);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Transforms the input to result via each decorated transformer
-     *
-     * @param object  the input object passed to the first transformer
-     * @return the transformed result
-     */
     @Override
     public T transform(T object) {
-        for (final Transformer<? super T, ? extends T> iTransformer : iTransformers) {
-            object = iTransformer.apply(object);
-        }
-        return object;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

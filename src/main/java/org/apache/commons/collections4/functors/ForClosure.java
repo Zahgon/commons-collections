@@ -32,31 +32,19 @@ import org.apache.commons.collections4.Closure;
  */
 public class ForClosure<T> implements Closure<T> {
 
-    /**
-     * Factory method that performs validation.
-     * <p>
-     * A null closure or zero count returns the {@code NOPClosure}.
-     * A count of one returns the specified closure.
-     *
-     * @param <E> the type that the closure acts on
-     * @param count  the number of times to execute the closure
-     * @param closure  the closure to execute, not null
-     * @return the {@code for} closure
-     */
     @SuppressWarnings("unchecked")
     public static <E> Closure<E> forClosure(final int count, final Closure<? super E> closure) {
-        if (count <= 0 || closure == null) {
-            return NOPClosure.<E>nopClosure();
-        }
-        if (count == 1) {
-            return (Closure<E>) closure;
-        }
-        return new ForClosure<>(count, closure);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    /** The number of times to loop */
+
+    /**
+     * The number of times to loop
+     */
     private final int iCount;
 
-    /** The closure to call */
+    /**
+     * The closure to call
+     */
     private final Closure<? super T> iClosure;
 
     /**
@@ -71,36 +59,16 @@ public class ForClosure<T> implements Closure<T> {
         iClosure = closure;
     }
 
-    /**
-     * Executes the closure {@code count} times.
-     *
-     * @param input  the input object
-     */
     @Override
     public void execute(final T input) {
-        for (int i = 0; i < iCount; i++) {
-            iClosure.accept(input);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the closure.
-     *
-     * @return the closure
-     * @since 3.1
-     */
     public Closure<? super T> getClosure() {
-        return iClosure;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the count.
-     *
-     * @return the count
-     * @since 3.1
-     */
     public int getCount() {
-        return iCount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -116,107 +116,16 @@ public class EnhancedDoubleHasher implements Hasher {
         this.increment = increment;
     }
 
-    /**
-     * Gets the increment value for the hash calculation.
-     *
-     * @return the increment value for the hash calculation.
-     */
     long getIncrement() {
-        return increment;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the initial value for the hash calculation.
-     *
-     * @return the initial value for the hash calculation.
-     */
     long getInitial() {
-        return initial;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public IndexExtractor indices(final Shape shape) {
-        Objects.requireNonNull(shape, "shape");
-
-        return new IndexExtractor() {
-
-            @Override
-            public int[] asIndexArray() {
-                final int[] result = new int[shape.getNumberOfHashFunctions()];
-                final int[] idx = new int[1];
-
-                // This method needs to return duplicate indices
-
-                processIndices(i -> {
-                    result[idx[0]++] = i;
-                    return true;
-                });
-                return result;
-            }
-
-            @Override
-            public boolean processIndices(final IntPredicate consumer) {
-                Objects.requireNonNull(consumer, "consumer");
-                final int bits = shape.getNumberOfBits();
-                // Enhanced double hashing:
-                // hash[i] = ( h1(x) + i*h2(x) + (i*i*i - i)/6 ) mod bits
-                // See: https://en.wikipedia.org/wiki/Double_hashing#Enhanced_double_hashing
-                //
-                // Essentially this is computing a wrapped modulus from a start point and an
-                // increment and an additional term as a tetrahedral number.
-                // You only need two modulus operations before the loop. Within the loop
-                // the modulus is handled using the sign bit to detect wrapping to ensure:
-                // 0 <= index < bits
-                // 0 <= inc < bits
-                // The final hash is:
-                // hash[i] = ( h1(x) - i*h2(x) - (i*i*i - i)/6 ) wrapped in [0, bits)
-
-                int index = BitMaps.mod(initial, bits);
-                if (!consumer.test(index)) {
-                    return false;
-                }
-                int inc = BitMaps.mod(increment, bits);
-
-                final int k = shape.getNumberOfHashFunctions();
-
-                if (k >= bits) {
-                    // the tetraheadral incrementer.  We need to ensure that this
-                    // number does not exceed bits-1 or we may end up with an index > bits.
-                    int tet = 1;
-                    for (int i = 1; i < k; i++) {
-                        // Update index and handle wrapping
-                        index -= inc;
-                        index = index < 0 ? index + bits : index;
-                        if (!consumer.test(index)) {
-                            return false;
-                        }
-
-                        // Incorporate the counter into the increment to create a
-                        // tetrahedral number additional term, and handle wrapping.
-                        inc -= tet;
-                        inc = inc < 0 ? inc + bits : inc;
-                        if (++tet == bits) {
-                            tet = 0;
-                        }
-                    }
-                } else {
-                    for (int i = 1; i < k; i++) {
-                        // Update index and handle wrapping
-                        index -= inc;
-                        index = index < 0 ? index + bits : index;
-                        if (!consumer.test(index)) {
-                            return false;
-                        }
-
-                        // Incorporate the counter into the increment to create a
-                        // tetrahedral number additional term, and handle wrapping.
-                        inc -= i;
-                        inc = inc < 0 ? inc + bits : inc;
-                    }
-
-                }
-                return true;
-            }
-        };
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

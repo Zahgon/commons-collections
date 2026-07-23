@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.iterators;
 
 import java.util.Iterator;
-
 import org.apache.commons.collections4.Transformer;
 
 /**
@@ -29,9 +28,14 @@ import org.apache.commons.collections4.Transformer;
  */
 public class TransformIterator<I, O> implements Iterator<O> {
 
-    /** The iterator being used */
+    /**
+     * The iterator being used
+     */
     private Iterator<? extends I> iterator;
-    /** The transformer being used */
+
+    /**
+     * The transformer being used
+     */
     private Transformer<? super I, ? extends O> transformer;
 
     /**
@@ -60,81 +64,43 @@ public class TransformIterator<I, O> implements Iterator<O> {
      * @param iterator  the iterator to use
      * @param transformer  the transformer to use
      */
-    public TransformIterator(final Iterator<? extends I> iterator,
-                             final Transformer<? super I, ? extends O> transformer) {
+    public TransformIterator(final Iterator<? extends I> iterator, final Transformer<? super I, ? extends O> transformer) {
         this.iterator = iterator;
         this.transformer = transformer;
     }
 
-    /**
-     * Gets the iterator this iterator is using.
-     *
-     * @return the iterator.
-     */
     public Iterator<? extends I> getIterator() {
-        return iterator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the transformer this iterator is using.
-     *
-     * @return the transformer.
-     */
     public Transformer<? super I, ? extends O> getTransformer() {
-        return transformer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean hasNext() {
-        return iterator.hasNext();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the next object from the iteration, transforming it using the
-     * current transformer. If the transformer is null, no transformation
-     * occurs and the object from the iterator is returned directly.
-     *
-     * @return the next object
-     * @throws java.util.NoSuchElementException if there are no more elements
-     */
     @Override
     public O next() {
-        return transform(iterator.next());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void remove() {
-        iterator.remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the iterator for this iterator to use.
-     * If iteration has started, this effectively resets the iterator.
-     *
-     * @param iterator  the iterator to use
-     */
     public void setIterator(final Iterator<? extends I> iterator) {
-        this.iterator = iterator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the transformer this the iterator to use.
-     * A null transformer is a no-op transformer.
-     *
-     * @param transformer  the transformer to use
-     */
     public void setTransformer(final Transformer<? super I, ? extends O> transformer) {
-        this.transformer = transformer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Transforms the given object using the transformer.
-     * If the transformer is null, the original object is returned as-is.
-     *
-     * @param source  the object to transform
-     * @return the transformed object
-     */
     protected O transform(final I source) {
-        return transformer.apply(source);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

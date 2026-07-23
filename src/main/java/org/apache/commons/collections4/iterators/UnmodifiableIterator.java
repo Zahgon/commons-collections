@@ -18,7 +18,6 @@ package org.apache.commons.collections4.iterators;
 
 import java.util.Iterator;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Unmodifiable;
 
 /**
@@ -32,27 +31,13 @@ import org.apache.commons.collections4.Unmodifiable;
  */
 public final class UnmodifiableIterator<E> implements Iterator<E>, Unmodifiable {
 
-    /**
-     * Decorates the specified iterator such that it cannot be modified.
-     * <p>
-     * If the iterator is already unmodifiable it is returned directly.
-     *
-     * @param <E>  the element type
-     * @param iterator  the iterator to decorate
-     * @return a new unmodifiable iterator
-     * @throws NullPointerException if the iterator is null
-     */
     public static <E> Iterator<E> unmodifiableIterator(final Iterator<? extends E> iterator) {
-        Objects.requireNonNull(iterator, "iterator");
-        if (iterator instanceof Unmodifiable) {
-            @SuppressWarnings("unchecked") // safe to upcast
-            final Iterator<E> tmpIterator = (Iterator<E>) iterator;
-            return tmpIterator;
-        }
-        return new UnmodifiableIterator<>(iterator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The iterator being decorated */
+    /**
+     * The iterator being decorated
+     */
     private final Iterator<? extends E> iterator;
 
     /**
@@ -66,17 +51,16 @@ public final class UnmodifiableIterator<E> implements Iterator<E>, Unmodifiable 
 
     @Override
     public boolean hasNext() {
-        return iterator.hasNext();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E next() {
-        return iterator.next();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void remove() {
-        throw new UnsupportedOperationException("remove() is not supported");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

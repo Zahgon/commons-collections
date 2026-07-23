@@ -24,7 +24,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
 import org.apache.commons.collections4.Factory;
 import org.apache.commons.collections4.FunctorException;
 
@@ -49,9 +48,14 @@ public class PrototypeFactory {
      */
     static class PrototypeCloneFactory<T> implements Factory<T> {
 
-        /** The object to clone each time */
+        /**
+         * The object to clone each time
+         */
         private final T iPrototype;
-        /** The method used to clone */
+
+        /**
+         * The method used to clone
+         */
         private transient Method iCloneMethod;
 
         /**
@@ -62,26 +66,10 @@ public class PrototypeFactory {
             iCloneMethod = method;
         }
 
-        /**
-         * Creates an object by calling the clone method.
-         *
-         * @return the new object
-         */
         @Override
         @SuppressWarnings("unchecked")
         public T create() {
-            // needed for post-serialization
-            if (iCloneMethod == null) {
-                findCloneMethod();
-            }
-
-            try {
-                return (T) iCloneMethod.invoke(iPrototype, (Object[]) null);
-            } catch (final IllegalAccessException ex) {
-                throw new FunctorException("PrototypeCloneFactory: Clone method must be public", ex);
-            } catch (final InvocationTargetException ex) {
-                throw new FunctorException("PrototypeCloneFactory: Clone method threw an exception", ex);
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -103,7 +91,9 @@ public class PrototypeFactory {
      */
     static class PrototypeSerializationFactory<T extends Serializable> implements Factory<T> {
 
-        /** The object to clone via serialization each time */
+        /**
+         * The object to clone via serialization each time
+         */
         private final T iPrototype;
 
         /**
@@ -113,86 +103,16 @@ public class PrototypeFactory {
             iPrototype = prototype;
         }
 
-        /**
-         * Creates an object using serialization.
-         *
-         * @return the new object
-         */
         @Override
         @SuppressWarnings("unchecked")
         public T create() {
-            final ByteArrayOutputStream baos = new ByteArrayOutputStream(512);
-            ByteArrayInputStream bais = null;
-            try {
-                final ObjectOutputStream out = new ObjectOutputStream(baos);
-                out.writeObject(iPrototype);
-
-                bais = new ByteArrayInputStream(baos.toByteArray());
-                final ObjectInputStream in = new ObjectInputStream(bais);
-                return (T) in.readObject();
-
-            } catch (final ClassNotFoundException | IOException ex) {
-                throw new FunctorException(ex);
-            } finally {
-                try {
-                    if (bais != null) {
-                        bais.close();
-                    }
-                } catch (final IOException ex) { //NOPMD
-                    // ignore
-                }
-                try {
-                    baos.close();
-                } catch (final IOException ex) { //NOPMD
-                    // ignore
-                }
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /**
-     * Factory method that performs validation.
-     * <p>
-     * Creates a Factory that will return a clone of the same prototype object
-     * each time the factory is used. The prototype will be cloned using one of these
-     * techniques (in order):
-     * </p>
-     *
-     * <ul>
-     * <li>public clone method</li>
-     * <li>public copy constructor</li>
-     * <li>serialization clone</li>
-     * </ul>
-     *
-     * @param <T>  the type the factory creates
-     * @param prototype  the object to clone each time in the factory
-     * @return the {@code prototype} factory, or a {@link ConstantFactory#NULL_INSTANCE} if
-     * the {@code prototype} is {@code null}
-     * @throws IllegalArgumentException if the prototype cannot be cloned
-     */
     @SuppressWarnings("unchecked")
     public static <T> Factory<T> prototypeFactory(final T prototype) {
-        if (prototype == null) {
-            return ConstantFactory.<T>constantFactory(null);
-        }
-        try {
-            final Method method = prototype.getClass().getMethod("clone", (Class[]) null);
-            return new PrototypeCloneFactory<>(prototype, method);
-
-        } catch (final NoSuchMethodException ex) {
-            try {
-                prototype.getClass().getConstructor(prototype.getClass());
-                return new InstantiateFactory<>(
-                    (Class<T>) prototype.getClass(),
-                    new Class<?>[] { prototype.getClass() },
-                    new Object[] { prototype });
-            } catch (final NoSuchMethodException ex2) {
-                if (prototype instanceof Serializable) {
-                    return (Factory<T>) new PrototypeSerializationFactory<>((Serializable) prototype);
-                }
-            }
-        }
-        throw new IllegalArgumentException("The prototype must be cloneable via a public clone method");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -200,5 +120,4 @@ public class PrototypeFactory {
      */
     private PrototypeFactory() {
     }
-
 }

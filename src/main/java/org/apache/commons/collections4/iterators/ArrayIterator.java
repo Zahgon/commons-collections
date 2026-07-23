@@ -18,7 +18,6 @@ package org.apache.commons.collections4.iterators;
 
 import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
-
 import org.apache.commons.collections4.ResettableIterator;
 
 /**
@@ -39,13 +38,24 @@ import org.apache.commons.collections4.ResettableIterator;
  */
 public class ArrayIterator<E> implements ResettableIterator<E> {
 
-    /** The array to iterate over */
+    /**
+     * The array to iterate over
+     */
     final Object array;
-    /** The start index to loop from */
+
+    /**
+     * The start index to loop from
+     */
     final int startIndex;
-    /** The end index to loop to */
+
+    /**
+     * The end index to loop to
+     */
     final int endIndex;
-    /** The current iterator index */
+
+    /**
+     * The current iterator index
+     */
     int index;
 
     /**
@@ -90,7 +100,6 @@ public class ArrayIterator<E> implements ResettableIterator<E> {
         this.startIndex = startIndex;
         this.endIndex = endIndex;
         this.index = startIndex;
-
         final int len = Array.getLength(array);
         checkBound(startIndex, len, "start");
         checkBound(endIndex, len, "end");
@@ -99,94 +108,40 @@ public class ArrayIterator<E> implements ResettableIterator<E> {
         }
     }
 
-    /**
-     * Checks whether the index is valid or not.
-     *
-     * @param bound  the index to check
-     * @param len  the length of the array
-     * @param type  the index type (for error messages)
-     * @throws IndexOutOfBoundsException if the index is invalid
-     */
     protected void checkBound(final int bound, final int len, final String type) {
-        if (bound > len) {
-            throw new ArrayIndexOutOfBoundsException("Attempt to make an ArrayIterator that " + type + "s beyond the end of the array. ");
-        }
-        if (bound < 0) {
-            throw new ArrayIndexOutOfBoundsException("Attempt to make an ArrayIterator that " + type + "s before the start of the array. ");
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the array that this iterator is iterating over.
-     *
-     * @return the array this iterator iterates over.
-     */
     public Object getArray() {
-        return array;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the end index to loop to.
-     *
-     * @return the end index
-     * @since 4.0
-     */
     public int getEndIndex() {
-        return endIndex;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the start index to loop from.
-     *
-     * @return the start index
-     * @since 4.0
-     */
     public int getStartIndex() {
-        return startIndex;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns true if there are more elements to return from the array.
-     *
-     * @return true if there is a next element to return
-     */
     @Override
     public boolean hasNext() {
-        return index < endIndex;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the next element in the array.
-     *
-     * @return the next element in the array
-     * @throws NoSuchElementException if all the elements in the array
-     *  have already been returned
-     */
     @Override
     @SuppressWarnings("unchecked")
     public E next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
-        return (E) Array.get(array, index++);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Throws {@link UnsupportedOperationException}.
-     *
-     * @throws UnsupportedOperationException always
-     */
     @Override
     public void remove() {
-        throw new UnsupportedOperationException("remove() method is not supported");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Resets the iterator back to the start index.
-     */
     @Override
     public void reset() {
-        index = startIndex;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

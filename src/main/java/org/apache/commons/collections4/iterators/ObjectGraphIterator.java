@@ -20,7 +20,6 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
 import org.apache.commons.collections4.Transformer;
 
 /**
@@ -82,20 +81,39 @@ import org.apache.commons.collections4.Transformer;
  */
 public class ObjectGraphIterator<E> implements Iterator<E> {
 
-    /** The stack of iterators */
+    /**
+     * The stack of iterators
+     */
     private final Deque<Iterator<? extends E>> stack = new ArrayDeque<>(8);
-    /** The root object in the tree */
+
+    /**
+     * The root object in the tree
+     */
     private E root;
-    /** The transformer to use */
+
+    /**
+     * The transformer to use
+     */
     private final Transformer<? super E, ? extends E> transformer;
 
-    /** Whether there is another element in the iteration */
+    /**
+     * Whether there is another element in the iteration
+     */
     private boolean hasNext;
-    /** The current iterator */
+
+    /**
+     * The current iterator
+     */
     private Iterator<? extends E> currentIterator;
-    /** The current value */
+
+    /**
+     * The current value
+     */
     private E currentValue;
-    /** The last used iterator, needed for remove() */
+
+    /**
+     * The last used iterator, needed for remove()
+     */
     private Iterator<? extends E> lastUsedIterator;
 
     /**
@@ -133,126 +151,31 @@ public class ObjectGraphIterator<E> implements Iterator<E> {
         this.transformer = null;
     }
 
-    /**
-     * Finds the next object in the iteration given any start object.
-     *
-     * @param value  the value to start from
-     */
     @SuppressWarnings("unchecked")
     protected void findNext(final E value) {
-        if (value instanceof Iterator) {
-            // need to examine this iterator
-            findNextByIterator((Iterator<? extends E>) value);
-        } else {
-            // next value found
-            currentValue = value;
-            hasNext = true;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Finds the next object in the iteration given an iterator.
-     *
-     * @param iterator  the iterator to start from
-     */
     protected void findNextByIterator(final Iterator<? extends E> iterator) {
-        if (iterator != currentIterator) {
-            // recurse a level
-            if (currentIterator != null) {
-                stack.push(currentIterator);
-            }
-            currentIterator = iterator;
-        }
-
-        while (currentIterator.hasNext() && !hasNext) {
-            E next = currentIterator.next();
-            if (transformer != null) {
-                next = transformer.apply(next);
-            }
-            findNext(next);
-        }
-        // if we haven't found the next value and iterators are not yet exhausted
-        if (!hasNext && !stack.isEmpty()) {
-            // current iterator exhausted, go up a level
-            currentIterator = stack.pop();
-            findNextByIterator(currentIterator);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Checks whether there are any more elements in the iteration to obtain.
-     *
-     * @return true if elements remain in the iteration
-     */
     @Override
     public boolean hasNext() {
-        updateCurrentIterator();
-        return hasNext;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the next element of the iteration.
-     *
-     * @return the next element from the iteration
-     * @throws NoSuchElementException if all the Iterators are exhausted
-     */
     @Override
     public E next() {
-        updateCurrentIterator();
-        if (!hasNext) {
-            throw new NoSuchElementException("No more elements in the iteration");
-        }
-        lastUsedIterator = currentIterator;
-        final E result = currentValue;
-        currentValue = null;
-        hasNext = false;
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes from the underlying collection the last element returned.
-     * <p>
-     * This method calls remove() on the underlying Iterator, and it may
-     * throw an UnsupportedOperationException if the underlying Iterator
-     * does not support this method.
-     * </p>
-     *
-     * @throws UnsupportedOperationException
-     *   if the remove operator is not supported by the underlying Iterator
-     * @throws IllegalStateException
-     *   if the next method has not yet been called, or the remove method has
-     *   already been called after the last call to the next method.
-     */
     @Override
     public void remove() {
-        if (lastUsedIterator == null) {
-            throw new IllegalStateException("Iterator remove() cannot be called at this time");
-        }
-        lastUsedIterator.remove();
-        lastUsedIterator = null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Loops around the iterators to find the next value to return.
-     */
     protected void updateCurrentIterator() {
-        if (hasNext) {
-            return;
-        }
-        if (currentIterator == null) {
-            if (root == null) { // NOPMD
-                // do nothing, hasNext will be false
-            } else {
-                if (transformer == null) {
-                    findNext(root);
-                } else {
-                    findNext(transformer.apply(root));
-                }
-                root = null;
-            }
-        } else {
-            findNextByIterator(currentIterator);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -18,7 +18,6 @@ package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.Transformer;
 
@@ -32,52 +31,32 @@ import org.apache.commons.collections4.Transformer;
  */
 public class IfTransformer<T, R> implements Transformer<T, R>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 8069309411242014252L;
 
-    /**
-     * Factory method that performs validation.
-     *
-     * @param <I>  input type for the transformer
-     * @param <O>  output type for the transformer
-     * @param predicate  predicate to switch on
-     * @param trueTransformer  transformer used if true
-     * @param falseTransformer  transformer used if false
-     * @return the {@code if} transformer
-     * @throws NullPointerException if either argument is null
-     */
-    public static <I, O> Transformer<I, O> ifTransformer(final Predicate<? super I> predicate,
-                                                         final Transformer<? super I, ? extends O> trueTransformer,
-                                                         final Transformer<? super I, ? extends O> falseTransformer) {
-        return new IfTransformer<>(Objects.requireNonNull(predicate, "predicate"),
-                Objects.requireNonNull(trueTransformer, "trueTransformer"),
-                Objects.requireNonNull(falseTransformer, "falseTransformer"));
+    public static <I, O> Transformer<I, O> ifTransformer(final Predicate<? super I> predicate, final Transformer<? super I, ? extends O> trueTransformer, final Transformer<? super I, ? extends O> falseTransformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    /**
-     * Factory method that performs validation.
-     * <p>
-     * This factory creates a transformer that just returns the input object when
-     * the predicate is false.
-     *
-     * @param <T>  input and output type for the transformer
-     * @param predicate  predicate to switch on
-     * @param trueTransformer  transformer used if true
-     * @return the {@code if} transformer
-     * @throws NullPointerException if either argument is null
-     */
-    public static <T> Transformer<T, T> ifTransformer(
-            final Predicate<? super T> predicate,
-            final Transformer<? super T, ? extends T> trueTransformer) {
-        return new IfTransformer<>(Objects.requireNonNull(predicate, "predicate"),
-                Objects.requireNonNull(trueTransformer, "trueTransformer"), NOPTransformer.<T>nopTransformer());
+
+    public static <T> Transformer<T, T> ifTransformer(final Predicate<? super T> predicate, final Transformer<? super T, ? extends T> trueTransformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    /** The test */
+
+    /**
+     * The test
+     */
     private final Predicate<? super T> iPredicate;
 
-    /** The transformer to use if true */
+    /**
+     * The transformer to use if true
+     */
     private final Transformer<? super T, ? extends R> iTrueTransformer;
 
-    /** The transformer to use if false */
+    /**
+     * The transformer to use if false
+     */
     private final Transformer<? super T, ? extends R> iFalseTransformer;
 
     /**
@@ -88,53 +67,26 @@ public class IfTransformer<T, R> implements Transformer<T, R>, Serializable {
      * @param trueTransformer  transformer used if true, not null
      * @param falseTransformer  transformer used if false, not null
      */
-    public IfTransformer(final Predicate<? super T> predicate,
-        final Transformer<? super T, ? extends R> trueTransformer,
-        final Transformer<? super T, ? extends R> falseTransformer) {
-
+    public IfTransformer(final Predicate<? super T> predicate, final Transformer<? super T, ? extends R> trueTransformer, final Transformer<? super T, ? extends R> falseTransformer) {
         iPredicate = predicate;
         iTrueTransformer = trueTransformer;
         iFalseTransformer = falseTransformer;
     }
 
-    /**
-     * Gets the transformer used when false.
-     *
-     * @return the transformer
-     */
     public Transformer<? super T, ? extends R> getFalseTransformer() {
-        return iFalseTransformer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the predicate.
-     *
-     * @return the predicate
-     */
     public Predicate<? super T> getPredicate() {
-        return iPredicate;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the transformer used when true.
-     *
-     * @return the transformer
-     */
     public Transformer<? super T, ? extends R> getTrueTransformer() {
-        return iTrueTransformer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Transforms the input using the true or false transformer based to the result of the predicate.
-     *
-     * @param input  the input object to transform
-     * @return the transformed result
-     */
     @Override
     public R transform(final T input) {
-        if (iPredicate.test(input)) {
-            return iTrueTransformer.apply(input);
-        }
-        return iFalseTransformer.apply(input);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

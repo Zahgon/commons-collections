@@ -68,132 +68,76 @@ public final class SimpleBloomFilter implements BloomFilter<SimpleBloomFilter> {
 
     @Override
     public long[] asBitMapArray() {
-        return Arrays.copyOf(bitMap, bitMap.length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int cardinality() {
-        // Lazy evaluation with caching
-        int c = cardinality;
-        if (c < 0) {
-            cardinality = c = SetOperations.cardinality(this);
-        }
-        return c;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int characteristics() {
-        return 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        Arrays.fill(bitMap, 0L);
-        cardinality = 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean contains(final IndexExtractor indexExtractor) {
-        return indexExtractor.processIndices(idx -> BitMaps.contains(bitMap, idx));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a new instance of this {@link SimpleBloomFilter} with the same properties as the current one.
-     *
-     * @return a copy of this {@link SimpleBloomFilter}.
-     */
     @Override
     public SimpleBloomFilter copy() {
-        return new SimpleBloomFilter(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Shape getShape() {
-        return shape;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean isEmpty() {
-        return cardinality == 0 || processBitMaps(y -> y == 0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean merge(final BitMapExtractor bitMapExtractor) {
-        Objects.requireNonNull(bitMapExtractor, "bitMapExtractor");
-        try {
-            final int[] idx = new int[1];
-            bitMapExtractor.processBitMaps(value -> {
-                bitMap[idx[0]++] |= value;
-                return true;
-            });
-            // idx[0] will be limit+1 so decrement it
-            idx[0]--;
-            final int idxLimit = BitMaps.getLongIndex(shape.getNumberOfBits());
-            if (idxLimit == idx[0]) {
-                final long excess = bitMap[idxLimit] >> shape.getNumberOfBits();
-                if (excess != 0) {
-                    throw new IllegalArgumentException(
-                            String.format("BitMapExtractor set a bit higher than the limit for the shape: %s", shape.getNumberOfBits()));
-                }
-            }
-            cardinality = -1;
-        } catch (final IndexOutOfBoundsException e) {
-            throw new IllegalArgumentException(String.format("BitMapExtractor should send at most %s maps", bitMap.length), e);
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean merge(final BloomFilter<?> other) {
-        Objects.requireNonNull(other, "other");
-        if ((other.characteristics() & SPARSE) != 0) {
-            merge((IndexExtractor) other);
-        } else {
-            merge((BitMapExtractor) other);
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean merge(final Hasher hasher) {
-        Objects.requireNonNull(hasher, "hasher");
-        return merge(hasher.indices(shape));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean merge(final IndexExtractor indexExtractor) {
-        Objects.requireNonNull(indexExtractor, "indexExtractor");
-        indexExtractor.processIndices(idx -> {
-            if (idx < 0 || idx >= shape.getNumberOfBits()) {
-                throw new IllegalArgumentException(String.format("IndexExtractor should only send values in the range[0,%s)", shape.getNumberOfBits()));
-            }
-            BitMaps.set(bitMap, idx);
-            return true;
-        });
-        cardinality = -1;
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean processBitMapPairs(final BitMapExtractor other, final LongBiPredicate func) {
-        final CountingLongPredicate p = new CountingLongPredicate(bitMap, func);
-        return other.processBitMaps(p) && p.processRemaining();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean processBitMaps(final LongPredicate consumer) {
-        Objects.requireNonNull(consumer, "consumer");
-        for (final long l : bitMap) {
-            if (!consumer.test(l)) {
-                return false;
-            }
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean processIndices(final IntPredicate consumer) {
-        Objects.requireNonNull(consumer, "consumer");
-        return IndexExtractor.fromBitMapExtractor(this).processIndices(consumer);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

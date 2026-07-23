@@ -56,10 +56,14 @@ import java.util.Queue;
  */
 public class IteratorChain<E> implements Iterator<E> {
 
-    /** The chain of iterators */
+    /**
+     * The chain of iterators
+     */
     private final Queue<Iterator<? extends E>> iteratorQueue = new LinkedList<>();
 
-    /** The current iterator */
+    /**
+     * The current iterator
+     */
     private Iterator<? extends E> currentIterator;
 
     /**
@@ -154,16 +158,8 @@ public class IteratorChain<E> implements Iterator<E> {
         addIterator(second);
     }
 
-    /**
-     * Add an Iterator to the end of the chain
-     *
-     * @param iterator Iterator to add
-     * @throws IllegalStateException if I've already started iterating
-     * @throws NullPointerException if the iterator is null
-     */
     public void addIterator(final Iterator<? extends E> iterator) {
-        checkLocked();
-        iteratorQueue.add(Objects.requireNonNull(iterator, "iterator"));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -175,28 +171,13 @@ public class IteratorChain<E> implements Iterator<E> {
         }
     }
 
-    /**
-     * Return true if any Iterator in the IteratorChain has a remaining element.
-     *
-     * @return true if elements remain
-     */
     @Override
     public boolean hasNext() {
-        lockChain();
-        updateCurrentIterator();
-        lastUsedIterator = currentIterator;
-        return currentIterator.hasNext();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Determine if modifications can still be made to the IteratorChain.
-     * IteratorChains cannot be modified once they have executed a method from
-     * the Iterator interface.
-     *
-     * @return true if IteratorChain cannot be modified, false if it can
-     */
     public boolean isLocked() {
-        return isLocked;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -209,71 +190,21 @@ public class IteratorChain<E> implements Iterator<E> {
         }
     }
 
-    /**
-     * Returns the next Object of the current Iterator
-     *
-     * @return Object from the current Iterator
-     * @throws java.util.NoSuchElementException if all the Iterators are
-     * exhausted
-     */
     @Override
     public E next() {
-        lockChain();
-        updateCurrentIterator();
-        lastUsedIterator = currentIterator;
-
-        return currentIterator.next();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes from the underlying collection the last element returned by the
-     * Iterator. As with next() and hasNext(), this method calls remove() on the
-     * underlying Iterator. Therefore, this method may throw an
-     * UnsupportedOperationException if the underlying Iterator does not support
-     * this method.
-     *
-     * @throws UnsupportedOperationException if the remove operator is not
-     * supported by the underlying Iterator
-     * @throws IllegalStateException if the next method has not yet been called,
-     * or the remove method has already been called after the last call to the
-     * next method.
-     */
     @Override
     public void remove() {
-        lockChain();
-        if (currentIterator == null) {
-            updateCurrentIterator();
-        }
-        lastUsedIterator.remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the remaining number of Iterators in the current IteratorChain.
-     *
-     * @return Iterator count
-     */
     public int size() {
-        return iteratorQueue.size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Updates the current iterator field to ensure that the current Iterator is
-     * not exhausted
-     */
     protected void updateCurrentIterator() {
-        if (currentIterator == null) {
-            if (iteratorQueue.isEmpty()) {
-                currentIterator = EmptyIterator.<E>emptyIterator();
-            } else {
-                currentIterator = iteratorQueue.remove();
-            }
-            // set last used iterator here, in case the user calls remove
-            // before calling hasNext() or next() (although they shouldn't)
-            lastUsedIterator = currentIterator;
-        }
-        while (!currentIterator.hasNext() && !iteratorQueue.isEmpty()) {
-            currentIterator = iteratorQueue.remove();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

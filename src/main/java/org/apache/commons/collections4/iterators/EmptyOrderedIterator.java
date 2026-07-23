@@ -24,8 +24,7 @@ import org.apache.commons.collections4.OrderedIterator;
  * @param <E> the type of elements returned by this iterator.
  * @since 3.1
  */
-public class EmptyOrderedIterator<E> extends AbstractEmptyIterator<E>
-        implements OrderedIterator<E> {
+public class EmptyOrderedIterator<E> extends AbstractEmptyIterator<E> implements OrderedIterator<E> {
 
     /**
      * Singleton instance of the iterator.
@@ -35,14 +34,8 @@ public class EmptyOrderedIterator<E> extends AbstractEmptyIterator<E>
     @SuppressWarnings("rawtypes")
     public static final OrderedIterator INSTANCE = new EmptyOrderedIterator<>();
 
-    /**
-     * Typed instance of the iterator.
-     *
-     * @param <E> the element type
-     * @return OrderedIterator&lt;E&gt;
-     */
     public static <E> OrderedIterator<E> emptyOrderedIterator() {
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -50,5 +43,4 @@ public class EmptyOrderedIterator<E> extends AbstractEmptyIterator<E>
      */
     protected EmptyOrderedIterator() {
     }
-
 }

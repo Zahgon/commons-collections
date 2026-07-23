@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.iterators;
 
 import java.util.NoSuchElementException;
-
 import org.apache.commons.collections4.ResettableListIterator;
 
 /**
@@ -30,8 +29,11 @@ import org.apache.commons.collections4.ResettableListIterator;
 public class SingletonListIterator<E> implements ResettableListIterator<E> {
 
     private boolean beforeFirst = true;
+
     private boolean nextCalled;
+
     private boolean removed;
+
     private E object;
 
     /**
@@ -43,139 +45,53 @@ public class SingletonListIterator<E> implements ResettableListIterator<E> {
         this.object = object;
     }
 
-    /**
-     * Add always throws {@link UnsupportedOperationException}.
-     *
-     * @param obj  the object to add
-     * @throws UnsupportedOperationException always
-     */
     @Override
     public void add(final E obj) {
-        throw new UnsupportedOperationException("add() is not supported by this iterator");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Is another object available from the iterator?
-     * <p>
-     * This returns true if the single object hasn't been returned yet.
-     *
-     * @return true if the single object hasn't been returned yet
-     */
     @Override
     public boolean hasNext() {
-        return beforeFirst && !removed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Is a previous object available from the iterator?
-     * <p>
-     * This returns true if the single object has been returned.
-     *
-     * @return true if the single object has been returned
-     */
     @Override
     public boolean hasPrevious() {
-        return !beforeFirst && !removed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the next object from the iterator.
-     * <p>
-     * This returns the single object if it hasn't been returned yet.
-     *
-     * @return the single object
-     * @throws NoSuchElementException if the single object has already
-     *    been returned
-     */
     @Override
     public E next() {
-        if (!beforeFirst || removed) {
-            throw new NoSuchElementException();
-        }
-        beforeFirst = false;
-        nextCalled = true;
-        return object;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the index of the element that would be returned by a subsequent
-     * call to {@code next}.
-     *
-     * @return 0 or 1 depending on current state.
-     */
     @Override
     public int nextIndex() {
-        return beforeFirst ? 0 : 1;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the previous object from the iterator.
-     * <p>
-     * This returns the single object if it has been returned.
-     *
-     * @return the single object
-     * @throws NoSuchElementException if the single object has not already
-     *    been returned
-     */
     @Override
     public E previous() {
-        if (beforeFirst || removed) {
-            throw new NoSuchElementException();
-        }
-        beforeFirst = true;
-        return object;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the index of the element that would be returned by a subsequent
-     * call to {@code previous}. A return value of -1 indicates that the iterator is currently at
-     * the start.
-     *
-     * @return 0 or -1 depending on current state.
-     */
     @Override
     public int previousIndex() {
-        return beforeFirst ? -1 : 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Remove the object from this iterator.
-     * @throws IllegalStateException if the {@code next} or {@code previous}
-     *        method has not yet been called, or the {@code remove} method
-     *        has already been called after the last call to {@code next}
-     *        or {@code previous}.
-     */
     @Override
     public void remove() {
-        if (!nextCalled || removed) {
-            throw new IllegalStateException();
-        }
-        object = null;
-        removed = true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Reset the iterator back to the start.
-     */
     @Override
     public void reset() {
-        beforeFirst = true;
-        nextCalled = false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets sets the value of the singleton.
-     *
-     * @param object  the object to set
-     * @throws IllegalStateException if {@code next} has not been called
-     *          or the object has been removed
-     */
     @Override
     public void set(final E object) {
-        if (!nextCalled || removed) {
-            throw new IllegalStateException();
-        }
-        this.object = object;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

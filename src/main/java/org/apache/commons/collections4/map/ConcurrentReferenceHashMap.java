@@ -14,11 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /*
  * Copyright (c) 2008-2020, Hazelcast, Inc. All Rights Reserved.
  */
-
 package org.apache.commons.collections4.map;
 
 /*
@@ -26,7 +24,6 @@ package org.apache.commons.collections4.map;
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/licenses/publicdomain
  */
-
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
@@ -147,11 +144,17 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
         private static final Map<?, ?> DEFAULT_SOURCE_MAP = null;
 
         private int initialCapacity = DEFAULT_INITIAL_CAPACITY;
+
         private float loadFactor = DEFAULT_LOAD_FACTOR;
+
         private int concurrencyLevel = DEFAULT_CONCURRENCY_LEVEL;
+
         private ReferenceType keyReferenceType = DEFAULT_KEY_TYPE;
+
         private ReferenceType valueReferenceType = DEFAULT_VALUE_TYPE;
+
         private EnumSet<Option> options = DEFAULT_OPTIONS;
+
         @SuppressWarnings("unchecked")
         private Map<? extends K, ? extends V> sourceMap = (Map<? extends K, ? extends V>) DEFAULT_SOURCE_MAP;
 
@@ -162,191 +165,82 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
             // empty
         }
 
-        /**
-         * Builds a new {@link ConcurrentReferenceHashMap}.
-         * <p>
-         * By default, keys are weak, and values are strong.
-         * </p>
-         * <p>
-         * The default values are:
-         * </p>
-         * <ul>
-         * <li>concurrency level: {@value #DEFAULT_CONCURRENCY_LEVEL}</li>
-         * <li>initial capacity: {@value #DEFAULT_INITIAL_CAPACITY}</li>
-         * <li>key reference type: {@link ReferenceType#WEAK}</li>
-         * <li>load factor: {@value #DEFAULT_LOAD_FACTOR}</li>
-         * <li>options: {@code null}</li>
-         * <li>source map: {@code null}</li>
-         * <li>value reference type: {@link ReferenceType#STRONG}</li>
-         * </ul>
-         */
         @Override
         public ConcurrentReferenceHashMap<K, V> get() {
-            final ConcurrentReferenceHashMap<K, V> map = new ConcurrentReferenceHashMap<>(initialCapacity, loadFactor, concurrencyLevel, keyReferenceType,
-                    valueReferenceType, options);
-            if (sourceMap != null) {
-                map.putAll(sourceMap);
-            }
-            return map;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Sets the estimated number of concurrently updating threads. The implementation performs internal sizing to try to accommodate this many threads.
-         *
-         * @param concurrencyLevel estimated number of concurrently updating threads
-         * @return this instance.
-         */
         public Builder<K, V> setConcurrencyLevel(final int concurrencyLevel) {
-            this.concurrencyLevel = concurrencyLevel;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Sets the initial capacity. The implementation performs internal sizing to accommodate this many elements.
-         *
-         * @param initialCapacity the initial capacity.
-         * @return this instance.
-         */
         public Builder<K, V> setInitialCapacity(final int initialCapacity) {
-            this.initialCapacity = initialCapacity;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Sets the reference type to use for keys.
-         *
-         * @param keyReferenceType the reference type to use for keys.
-         * @return this instance.
-         */
         public Builder<K, V> setKeyReferenceType(final ReferenceType keyReferenceType) {
-            this.keyReferenceType = keyReferenceType;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Sets the load factor factor, used to control resizing. Resizing may be performed when the average number of elements per bin exceeds this threshold.
-         *
-         * @param loadFactor the load factor factor, used to control resizing
-         * @return this instance.
-         */
         public Builder<K, V> setLoadFactor(final float loadFactor) {
-            this.loadFactor = loadFactor;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Sets the behavioral options.
-         *
-         * @param options the behavioral options.
-         * @return this instance.
-         */
         public Builder<K, V> setOptions(final EnumSet<Option> options) {
-            this.options = options;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Sets the values to load into a new map.
-         *
-         * @param sourceMap the values to load into a new map.
-         * @return this instance.
-         */
         public Builder<K, V> setSourceMap(final Map<? extends K, ? extends V> sourceMap) {
-            this.sourceMap = sourceMap;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Sets the reference type to use for values.
-         *
-         * @param valueReferenceType the reference type to use for values.
-         * @return this instance.
-         */
         public Builder<K, V> setValueReferenceType(final ReferenceType valueReferenceType) {
-            this.valueReferenceType = valueReferenceType;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Sets key reference type to {@link ReferenceType#SOFT}.
-         *
-         * @return this instance.
-         */
         public Builder<K, V> softKeys() {
-            setKeyReferenceType(ReferenceType.SOFT);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Sets value reference type to {@link ReferenceType#SOFT}.
-         *
-         * @return this instance.
-         */
         public Builder<K, V> softValues() {
-            setValueReferenceType(ReferenceType.SOFT);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Sets key reference type to {@link ReferenceType#STRONG}.
-         *
-         * @return this instance.
-         */
         public Builder<K, V> strongKeys() {
-            setKeyReferenceType(ReferenceType.STRONG);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Sets value reference type to {@link ReferenceType#STRONG}.
-         *
-         * @return this instance.
-         */
         public Builder<K, V> strongValues() {
-            setValueReferenceType(ReferenceType.STRONG);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Sets key reference type to {@link ReferenceType#WEAK}.
-         *
-         * @return this instance.
-         */
         public Builder<K, V> weakKeys() {
-            setKeyReferenceType(ReferenceType.WEAK);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Sets value reference type to {@link ReferenceType#WEAK}.
-         *
-         * @return this instance.
-         */
         public Builder<K, V> weakValues() {
-            setValueReferenceType(ReferenceType.WEAK);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
      * The basic strategy is to subdivide the table among Segments, each of which itself is a concurrently readable hash table.
      */
     private final class CachedEntryIterator extends HashIterator implements Iterator<Entry<K, V>> {
+
         private final InitializableEntry<K, V> entry = new InitializableEntry<>();
 
         @Override
         public Entry<K, V> next() {
-            final HashEntry<K, V> e = super.nextEntry();
-            return entry.init(e.key(), e.value());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     private final class EntryIterator extends HashIterator implements Iterator<Entry<K, V>> {
+
         @Override
         public Entry<K, V> next() {
-            final HashEntry<K, V> e = super.nextEntry();
-            return new WriteThroughEntry(e.key(), e.value());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -360,40 +254,32 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 
         @Override
         public void clear() {
-            ConcurrentReferenceHashMap.this.clear();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean contains(final Object o) {
-            if (!(o instanceof Map.Entry)) {
-                return false;
-            }
-            final V v = ConcurrentReferenceHashMap.this.get(((Entry<?, ?>) o).getKey());
-            return Objects.equals(v, ((Entry<?, ?>) o).getValue());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean isEmpty() {
-            return ConcurrentReferenceHashMap.this.isEmpty();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<Entry<K, V>> iterator() {
-            return cached ? new CachedEntryIterator() : new EntryIterator();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean remove(final Object o) {
-            if (!(o instanceof Map.Entry)) {
-                return false;
-            }
-            final Entry<?, ?> e = (Entry<?, ?>) o;
-            return ConcurrentReferenceHashMap.this.remove(e.getKey(), e.getValue());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return ConcurrentReferenceHashMap.this.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -409,16 +295,18 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 
         @SuppressWarnings("unchecked")
         static <K, V> HashEntry<K, V>[] newArray(final int i) {
-            return new HashEntry[i];
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private final Object keyRef;
+
         private final int hash;
+
         private volatile Object valueRef;
+
         private final HashEntry<K, V> next;
 
-        HashEntry(final K key, final int hash, final HashEntry<K, V> next, final V value, final ReferenceType keyType, final ReferenceType valueType,
-                final ReferenceQueue<Object> refQueue) {
+        HashEntry(final K key, final int hash, final HashEntry<K, V> next, final V value, final ReferenceType keyType, final ReferenceType valueType, final ReferenceQueue<Object> refQueue) {
             this.hash = hash;
             this.next = next;
             this.keyRef = newKeyReference(key, keyType, refQueue);
@@ -427,57 +315,43 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 
         @SuppressWarnings("unchecked")
         V dereferenceValue(final Object value) {
-            if (value instanceof KeyReference) {
-                return ((Reference<V>) value).get();
-            }
-            return (V) value;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @SuppressWarnings("unchecked")
         K key() {
-            if (keyRef instanceof KeyReference) {
-                return ((Reference<K>) keyRef).get();
-            }
-            return (K) keyRef;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         Object newKeyReference(final K key, final ReferenceType keyType, final ReferenceQueue<Object> refQueue) {
-            if (keyType == ReferenceType.WEAK) {
-                return new WeakKeyReference<>(key, hash, refQueue);
-            }
-            if (keyType == ReferenceType.SOFT) {
-                return new SoftKeyReference<>(key, hash, refQueue);
-            }
-
-            return key;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         Object newValueReference(final V value, final ReferenceType valueType, final ReferenceQueue<Object> refQueue) {
-            if (valueType == ReferenceType.WEAK) {
-                return new WeakValueReference<>(value, keyRef, hash, refQueue);
-            }
-            if (valueType == ReferenceType.SOFT) {
-                return new SoftValueReference<>(value, keyRef, hash, refQueue);
-            }
-
-            return value;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         void setValue(final V value, final ReferenceType valueType, final ReferenceQueue<Object> refQueue) {
-            this.valueRef = newValueReference(value, valueType, refQueue);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         V value() {
-            return dereferenceValue(valueRef);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     private abstract class HashIterator {
+
         private int nextSegmentIndex;
+
         private int nextTableIndex;
+
         private HashEntry<K, V>[] currentTable;
+
         private HashEntry<K, V> nextEntry;
+
         private HashEntry<K, V> lastReturned;
+
         // Strong reference to weak key (prevents gc)
         private K currentKey;
 
@@ -488,136 +362,102 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
         }
 
         final void advance() {
-            if (nextEntry != null && (nextEntry = nextEntry.next) != null) {
-                return;
-            }
-            while (nextTableIndex >= 0) {
-                if ((nextEntry = currentTable[nextTableIndex--]) != null) {
-                    return;
-                }
-            }
-            while (nextSegmentIndex >= 0) {
-                final Segment<K, V> seg = segments[nextSegmentIndex--];
-                if (seg.count != 0) {
-                    currentTable = seg.table;
-                    for (int j = currentTable.length - 1; j >= 0; --j) {
-                        if ((nextEntry = currentTable[j]) != null) {
-                            nextTableIndex = j - 1;
-                            return;
-                        }
-                    }
-                }
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public boolean hasMoreElements() {
-            return hasNext();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public boolean hasNext() {
-            while (nextEntry != null) {
-                if (nextEntry.key() != null) {
-                    return true;
-                }
-                advance();
-            }
-            return false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         HashEntry<K, V> nextEntry() {
-            do {
-                if (nextEntry == null) {
-                    throw new NoSuchElementException();
-                }
-                lastReturned = nextEntry;
-                currentKey = lastReturned.key();
-                advance();
-            } while /* Skip GC'd keys */ (currentKey == null);
-            return lastReturned;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public void remove() {
-            if (lastReturned == null) {
-                throw new IllegalStateException();
-            }
-            ConcurrentReferenceHashMap.this.remove(currentKey);
-            lastReturned = null;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     private static final class InitializableEntry<K, V> implements Entry<K, V> {
+
         private K key;
+
         private V value;
 
         @Override
         public K getKey() {
-            return key;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V getValue() {
-            return value;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public Entry<K, V> init(final K key, final V value) {
-            this.key = key;
-            this.value = value;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V setValue(final V value) {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     private final class KeyIterator extends HashIterator implements Iterator<K>, Enumeration<K> {
+
         @Override
         public K next() {
-            return super.nextEntry().key();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K nextElement() {
-            return super.nextEntry().key();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     private interface KeyReference {
+
         int keyHash();
 
         Object keyRef();
     }
 
     private final class KeySet extends AbstractSet<K> {
+
         @Override
         public void clear() {
-            ConcurrentReferenceHashMap.this.clear();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean contains(final Object o) {
-            return ConcurrentReferenceHashMap.this.containsKey(o);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean isEmpty() {
-            return ConcurrentReferenceHashMap.this.isEmpty();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<K> iterator() {
-            return new KeyIterator();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean remove(final Object o) {
-            return ConcurrentReferenceHashMap.this.remove(o) != null;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return ConcurrentReferenceHashMap.this.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -625,6 +465,7 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
      * Behavior-changing configuration options for the map
      */
     public enum Option {
+
         /**
          * Indicates that referential-equality (== instead of .equals()) should be used when locating keys. This offers similar behavior to
          * {@link IdentityHashMap}
@@ -636,6 +477,7 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
      * An option specifying which Java reference type should be used to refer to a key and/or value.
      */
     public enum ReferenceType {
+
         /**
          * Indicates a normal Java strong reference should be used
          */
@@ -684,7 +526,7 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 
         @SuppressWarnings("unchecked")
         static <K, V> Segment<K, V>[] newArray(final int i) {
-            return new Segment[i];
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -730,8 +572,7 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 
         private final boolean identityComparisons;
 
-        Segment(final int initialCapacity, final float loadFactor, final ReferenceType keyType, final ReferenceType valueType,
-                final boolean identityComparisons) {
+        Segment(final int initialCapacity, final float loadFactor, final ReferenceType keyType, final ReferenceType valueType, final boolean identityComparisons) {
             this.loadFactor = loadFactor;
             this.keyType = keyType;
             this.valueType = valueType;
@@ -740,133 +581,36 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
         }
 
         V apply(final K key, final int hash, final BiFunction<? super K, ? super V, ? extends V> remappingFunction) {
-            lock();
-            try {
-                final V oldValue = get(key, hash);
-                final V newValue = remappingFunction.apply(key, oldValue);
-
-                if (newValue == null) {
-                    // delete mapping
-                    if (oldValue != null) {
-                        // something to remove
-                        removeInternal(key, hash, oldValue, false);
-                    }
-                    return null;
-                }
-                // add or replace old mapping
-                putInternal(key, hash, newValue, null, false);
-                return newValue;
-            } finally {
-                unlock();
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         V applyIfPresent(final K key, final int hash, final BiFunction<? super K, ? super V, ? extends V> remappingFunction) {
-            lock();
-            try {
-                final V oldValue = get(key, hash);
-                if (oldValue == null) {
-                    return null;
-                }
-
-                final V newValue = remappingFunction.apply(key, oldValue);
-
-                if (newValue == null) {
-                    removeInternal(key, hash, oldValue, false);
-                    return null;
-                }
-                putInternal(key, hash, newValue, null, false);
-                return newValue;
-            } finally {
-                unlock();
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         void clear() {
-            if (count != 0) {
-                lock();
-                try {
-                    final HashEntry<K, V>[] tab = table;
-                    Arrays.fill(tab, null);
-                    ++modCount;
-                    // replace the reference queue to avoid unnecessary stale cleanups
-                    refQueue = new ReferenceQueue<>();
-                    // write-volatile
-                    count = 0;
-                } finally {
-                    unlock();
-                }
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         boolean containsKey(final Object key, final int hash) {
-            // read-volatile
-            if (count != 0) {
-                HashEntry<K, V> e = getFirst(hash);
-                while (e != null) {
-                    if (e.hash == hash && keyEq(key, e.key())) {
-                        return true;
-                    }
-                    e = e.next;
-                }
-            }
-            return false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         boolean containsValue(final Object value) {
-            // read-volatile
-            if (count != 0) {
-                final HashEntry<K, V>[] tab = table;
-                final int len = tab.length;
-                for (int i = 0; i < len; i++) {
-                    for (HashEntry<K, V> e = tab[i]; e != null; e = e.next) {
-                        final Object opaque = e.valueRef;
-                        final V v;
-                        if (opaque == null) {
-                            // recheck
-                            v = readValueUnderLock(e);
-                        } else {
-                            v = e.dereferenceValue(opaque);
-                        }
-                        if (Objects.equals(value, v)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /* Specialized implementations of map methods */
         V get(final Object key, final int hash) {
-            // read-volatile
-            if (count != 0) {
-                HashEntry<K, V> e = getFirst(hash);
-                while (e != null) {
-                    if (e.hash == hash && keyEq(key, e.key())) {
-                        final Object opaque = e.valueRef;
-                        if (opaque != null) {
-                            return e.dereferenceValue(opaque);
-                        }
-                        // recheck
-                        return readValueUnderLock(e);
-                    }
-                    e = e.next;
-                }
-            }
-            return null;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Gets properly casted first entry of bin for given hash.
-         */
         HashEntry<K, V> getFirst(final int hash) {
-            final HashEntry<K, V>[] tab = table;
-            return tab[hash & tab.length - 1];
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         V getValue(final K key, final V value, final Function<? super K, ? extends V> function) {
-            return value != null ? value : function.apply(key);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private boolean keyEq(final Object src, final Object dest) {
@@ -874,19 +618,11 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
         }
 
         HashEntry<K, V> newHashEntry(final K key, final int hash, final HashEntry<K, V> next, final V value) {
-            return new HashEntry<>(key, hash, next, value, keyType, valueType, refQueue);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * This method must be called with exactly one of <code>value</code> and <code>function</code> non-null.
-         **/
         V put(final K key, final int hash, final V value, final Function<? super K, ? extends V> function, final boolean onlyIfAbsent) {
-            lock();
-            try {
-                return putInternal(key, hash, value, function, onlyIfAbsent);
-            } finally {
-                unlock();
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private V putInternal(final K key, final int hash, final V value, final Function<? super K, ? extends V> function, final boolean onlyIfAbsent) {
@@ -917,7 +653,6 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
             } else {
                 final V v = getValue(key, value, function);
                 resultValue = function != null ? v : null;
-
                 if (v != null) {
                     ++modCount;
                     tab[index] = newHashEntry(key, hash, first, v);
@@ -928,88 +663,16 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
             return resultValue;
         }
 
-        /**
-         * Reads value field of an entry under lock. Called if value field ever appears to be null. This is possible only if a compiler happens to reorder a
-         * HashEntry initialization with its table assignment, which is legal under memory model but is not known to ever occur.
-         */
         V readValueUnderLock(final HashEntry<K, V> e) {
-            lock();
-            try {
-                removeStale();
-                return e.value();
-            } finally {
-                unlock();
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         int rehash() {
-            final HashEntry<K, V>[] oldTable = table;
-            final int oldCapacity = oldTable.length;
-            if (oldCapacity >= MAXIMUM_CAPACITY) {
-                return 0;
-            }
-            //
-            // Reclassify nodes in each list to new Map. Because we are using power-of-two expansion, the elements from each bin must either stay at the same
-            // index, or move with a power of two offset. We eliminate unnecessary node creation by catching cases where old nodes can be reused because their
-            // next fields won't change. Statistically, at the default threshold, only about one-sixth of them need cloning when a table doubles. The nodes they
-            // replace will be garbage collectable as soon as they are no longer referenced by any reader thread that may be in the midst of traversing table
-            // right now.
-            //
-            final HashEntry<K, V>[] newTable = HashEntry.newArray(oldCapacity << 1);
-            threshold = (int) (newTable.length * loadFactor);
-            final int sizeMask = newTable.length - 1;
-            int reduce = 0;
-            for (int i = 0; i < oldCapacity; i++) {
-                // We need to guarantee that any existing reads of old Map can
-                // proceed. So we cannot yet null out each bin.
-                final HashEntry<K, V> e = oldTable[i];
-                if (e != null) {
-                    final HashEntry<K, V> next = e.next;
-                    final int idx = e.hash & sizeMask;
-                    // Single node on list
-                    if (next == null) {
-                        newTable[idx] = e;
-                    } else {
-                        // Reuse trailing consecutive sequence at same slot
-                        HashEntry<K, V> lastRun = e;
-                        int lastIdx = idx;
-                        for (HashEntry<K, V> last = next; last != null; last = last.next) {
-                            final int k = last.hash & sizeMask;
-                            if (k != lastIdx) {
-                                lastIdx = k;
-                                lastRun = last;
-                            }
-                        }
-                        newTable[lastIdx] = lastRun;
-                        // Clone all remaining nodes
-                        for (HashEntry<K, V> p = e; p != lastRun; p = p.next) {
-                            // Skip GC'd weak refs
-                            final K key = p.key();
-                            if (key == null) {
-                                reduce++;
-                                continue;
-                            }
-                            final int k = p.hash & sizeMask;
-                            final HashEntry<K, V> n = newTable[k];
-                            newTable[k] = newHashEntry(key, p.hash, n, p.value());
-                        }
-                    }
-                }
-            }
-            table = newTable;
-            return reduce;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Removes match on key only if value is null, else match both.
-         */
         V remove(final Object key, final int hash, final Object value, final boolean refRemove) {
-            lock();
-            try {
-                return removeInternal(key, hash, value, refRemove);
-            } finally {
-                unlock();
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private V removeInternal(final Object key, final int hash, final Object value, final boolean refRemove) {
@@ -1025,7 +688,6 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
             while (e != null && key != e.keyRef && (refRemove || hash != e.hash || !keyEq(key, e.key()))) {
                 e = e.next;
             }
-
             V oldValue = null;
             if (e != null) {
                 final V v = e.value();
@@ -1054,28 +716,15 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
         }
 
         void removeStale() {
-            KeyReference ref;
-            while ((ref = (KeyReference) refQueue.poll()) != null) {
-                remove(ref.keyRef(), ref.keyHash(), null, true);
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         V replace(final K key, final int hash, final V newValue) {
-            lock();
-            try {
-                return replaceInternal(key, hash, newValue);
-            } finally {
-                unlock();
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         boolean replace(final K key, final int hash, final V oldValue, final V newValue) {
-            lock();
-            try {
-                return replaceInternal2(key, hash, oldValue, newValue);
-            } finally {
-                unlock();
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private V replaceInternal(final K key, final int hash, final V newValue) {
@@ -1106,13 +755,8 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
             return replaced;
         }
 
-        /**
-         * Sets table to new HashEntry array. Call only while holding lock or in constructor.
-         */
         void setTable(final HashEntry<K, V>[] newTable) {
-            threshold = (int) (newTable.length * loadFactor);
-            table = newTable;
-            refQueue = new ReferenceQueue<>();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -1133,38 +777,32 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 
         @Override
         public boolean equals(final Object o) {
-            if (!(o instanceof Map.Entry)) {
-                return false;
-            }
-            final Entry<?, ?> e = (Entry<?, ?>) o;
-            return eq(key, e.getKey()) && eq(value, e.getValue());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K getKey() {
-            return key;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V getValue() {
-            return value;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int hashCode() {
-            return (key == null ? 0 : key.hashCode()) ^ (value == null ? 0 : value.hashCode());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V setValue(final V value) {
-            final V oldValue = this.value;
-            this.value = value;
-            return oldValue;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public String toString() {
-            return key + "=" + value;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -1182,17 +820,19 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 
         @Override
         public int keyHash() {
-            return hash;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Object keyRef() {
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     private static final class SoftValueReference<V> extends SoftReference<V> implements KeyReference {
+
         private final Object keyRef;
+
         private final int hash;
 
         SoftValueReference(final V value, final Object keyRef, final int hash, final ReferenceQueue<Object> refQueue) {
@@ -1203,51 +843,53 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 
         @Override
         public int keyHash() {
-            return hash;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Object keyRef() {
-            return keyRef;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     private final class ValueIterator extends HashIterator implements Iterator<V>, Enumeration<V> {
+
         @Override
         public V next() {
-            return super.nextEntry().value();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V nextElement() {
-            return super.nextEntry().value();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     private final class Values extends AbstractCollection<V> {
+
         @Override
         public void clear() {
-            ConcurrentReferenceHashMap.this.clear();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean contains(final Object o) {
-            return ConcurrentReferenceHashMap.this.containsValue(o);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean isEmpty() {
-            return ConcurrentReferenceHashMap.this.isEmpty();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<V> iterator() {
-            return new ValueIterator();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return ConcurrentReferenceHashMap.this.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -1255,6 +897,7 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
      * A weak-key reference which stores the key hash needed for reclamation.
      */
     private static final class WeakKeyReference<K> extends WeakReference<K> implements KeyReference {
+
         private final int hash;
 
         WeakKeyReference(final K key, final int hash, final ReferenceQueue<Object> refQueue) {
@@ -1264,17 +907,19 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 
         @Override
         public int keyHash() {
-            return hash;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Object keyRef() {
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     private static final class WeakValueReference<V> extends WeakReference<V> implements KeyReference {
+
         private final Object keyRef;
+
         private final int hash;
 
         WeakValueReference(final V value, final Object keyRef, final int hash, final ReferenceQueue<Object> refQueue) {
@@ -1285,12 +930,12 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 
         @Override
         public int keyHash() {
-            return hash;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Object keyRef() {
-            return keyRef;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -1303,17 +948,9 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
             super(k, v);
         }
 
-        /**
-         * Set our entry's value and writes it through to the map. The value to return is somewhat arbitrary: since a WriteThroughEntry does not necessarily
-         * track asynchronous changes, the most recent "previous" value could be different from what we return (or could even have been removed in which case
-         * the put will re-establish). We do not and cannot guarantee more.
-         */
         @Override
         public V setValue(final V value) {
-            Objects.requireNonNull(value, "value");
-            final V v = super.setValue(value);
-            ConcurrentReferenceHashMap.this.put(getKey(), value);
-            return v;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -1355,30 +992,8 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
      */
     private static final int RETRIES_BEFORE_LOCK = 2;
 
-    /**
-     * Creates a new Builder.
-     * <p>
-     * By default, keys are weak, and values are strong.
-     * </p>
-     * <p>
-     * The default values are:
-     * </p>
-     * <ul>
-     * <li>concurrency level: {@value #DEFAULT_CONCURRENCY_LEVEL}</li>
-     * <li>initial capacity: {@value #DEFAULT_INITIAL_CAPACITY}</li>
-     * <li>key reference type: {@link ReferenceType#WEAK}</li>
-     * <li>load factor: {@value #DEFAULT_LOAD_FACTOR}</li>
-     * <li>options: {@code null}</li>
-     * <li>source map: {@code null}</li>
-     * <li>value reference type: {@link ReferenceType#STRONG}</li>
-     * </ul>
-     *
-     * @param <K> the type of keys.
-     * @param <V> the type of values.
-     * @return a new Builder.
-     */
     public static <K, V> Builder<K, V> builder() {
-        return new Builder<>();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1436,8 +1051,7 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
      * @param options          the behavioral options.
      * @throws IllegalArgumentException if the initial capacity is negative or the load factor or concurrencyLevel are nonpositive.
      */
-    private ConcurrentReferenceHashMap(int initialCapacity, final float loadFactor, int concurrencyLevel, final ReferenceType keyType,
-            final ReferenceType valueType, final EnumSet<Option> options) {
+    private ConcurrentReferenceHashMap(int initialCapacity, final float loadFactor, int concurrencyLevel, final ReferenceType keyType, final ReferenceType valueType, final EnumSet<Option> options) {
         if (!(loadFactor > 0) || initialCapacity < 0 || concurrencyLevel <= 0) {
             throw new IllegalArgumentException();
         }
@@ -1471,336 +1085,97 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
         }
     }
 
-    /**
-     * Removes all of the mappings from this map.
-     */
     @Override
     public void clear() {
-        for (final Segment<K, V> segment : segments) {
-            segment.clear();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public V compute(final K key, final BiFunction<? super K, ? super V, ? extends V> remappingFunction) {
-        Objects.requireNonNull(key);
-        Objects.requireNonNull(remappingFunction);
-
-        final int hash = hashOf(key);
-        final Segment<K, V> segment = segmentFor(hash);
-        return segment.apply(key, hash, remappingFunction);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * The default implementation is equivalent to the following steps for this {@code map}, then returning the current value or {@code null} if now absent:
-     *
-     * <pre>{@code
-     * if (map.get(key) == null) {
-     *     V newValue = mappingFunction.apply(key);
-     *     if (newValue != null)
-     *         return map.putIfAbsent(key, newValue);
-     * }
-     * }</pre>
-     * <p>
-     * The default implementation may retry these steps when multiple threads attempt updates including potentially calling the mapping function multiple times.
-     * </p>
-     * <p>
-     * This implementation assumes that the ConcurrentMap cannot contain null values and {@code get()} returning null unambiguously means the key is absent.
-     * Implementations which support null values <strong>must</strong> override this default implementation.
-     * </p>
-     */
     @Override
     public V computeIfAbsent(final K key, final Function<? super K, ? extends V> mappingFunction) {
-        Objects.requireNonNull(key);
-        Objects.requireNonNull(mappingFunction);
-
-        final int hash = hashOf(key);
-        final Segment<K, V> segment = segmentFor(hash);
-        final V v = segment.get(key, hash);
-        return v == null ? segment.put(key, hash, null, mappingFunction, true) : v;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public V computeIfPresent(final K key, final BiFunction<? super K, ? super V, ? extends V> remappingFunction) {
-        Objects.requireNonNull(key);
-        Objects.requireNonNull(remappingFunction);
-
-        final int hash = hashOf(key);
-        final Segment<K, V> segment = segmentFor(hash);
-        final V v = segment.get(key, hash);
-        if (v == null) {
-            return null;
-        }
-
-        return segmentFor(hash).applyIfPresent(key, hash, remappingFunction);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Tests if the specified object is a key in this table.
-     *
-     * @param key possible key
-     * @return {@code true} if and only if the specified object is a key in this table, as determined by the {@code equals} method; {@code false} otherwise.
-     * @throws NullPointerException if the specified key is null
-     */
     @Override
     public boolean containsKey(final Object key) {
-        final int hash = hashOf(key);
-        return segmentFor(hash).containsKey(key, hash);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns {@code true} if this map maps one or more keys to the specified value. Note: This method requires a full internal traversal of the hash table,
-     * therefore it is much slower than the method {@code containsKey}.
-     *
-     * @param value value whose presence in this map is to be tested
-     * @return {@code true} if this map maps one or more keys to the specified value
-     * @throws NullPointerException if the specified value is null
-     */
     @Override
     public boolean containsValue(final Object value) {
-        Objects.requireNonNull(value, "value");
-        // See explanation of modCount use above
-        final Segment<K, V>[] segments = this.segments;
-        final int[] mc = new int[segments.length];
-        // Try a few times without locking
-        for (int k = 0; k < RETRIES_BEFORE_LOCK; ++k) {
-            // final int sum = 0;
-            int mcsum = 0;
-            for (int i = 0; i < segments.length; ++i) {
-                // final int c = segments[i].count;
-                mcsum += mc[i] = segments[i].modCount;
-                if (segments[i].containsValue(value)) {
-                    return true;
-                }
-            }
-            boolean cleanSweep = true;
-            if (mcsum != 0) {
-                for (int i = 0; i < segments.length; ++i) {
-                    // final int c = segments[i].count;
-                    if (mc[i] != segments[i].modCount) {
-                        cleanSweep = false;
-                        break;
-                    }
-                }
-            }
-            if (cleanSweep) {
-                return false;
-            }
-        }
-        // Resort to locking all segments
-        for (final Segment<K, V> segment : segments) {
-            segment.lock();
-        }
-        boolean found = false;
-        try {
-            for (final Segment<K, V> segment : segments) {
-                if (segment.containsValue(value)) {
-                    found = true;
-                    break;
-                }
-            }
-        } finally {
-            for (final Segment<K, V> segment : segments) {
-                segment.unlock();
-            }
-        }
-        return found;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns a {@link Set} view of the mappings contained in this map. The set is backed by the map, so changes to the map are reflected in the set, and
-     * vice-versa. The set supports element removal, which removes the corresponding mapping from the map, via the {@code Iterator.remove}, {@code Set.remove},
-     * {@code removeAll}, {@code retainAll}, and {@code clear} operations. It does not support the {@code add} or {@code addAll} operations.
-     * <p>
-     * The view's {@code iterator} is a "weakly consistent" iterator that will never throw {@link ConcurrentModificationException}, and is guaranteed to
-     * traverse elements as they existed upon construction of the iterator, and may (but is not guaranteed to) reflect any modifications subsequent to
-     * construction.
-     * </p>
-     */
     @Override
     public Set<Entry<K, V>> entrySet() {
-        final Set<Entry<K, V>> es = entrySet;
-        return es != null ? es : (entrySet = new EntrySet(false));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the value to which the specified key is mapped, or {@code null} if this map contains no mapping for the key.
-     * <p>
-     * If this map contains a mapping from a key {@code k} to a value {@code v} such that {@code key.equals(k)}, then this method returns {@code v}; otherwise
-     * it returns {@code null}. (There can be at most one such mapping.)
-     * </p>
-     *
-     * @throws NullPointerException if the specified key is null
-     */
     @Override
     public V get(final Object key) {
-        final int hash = hashOf(key);
-        return segmentFor(hash).get(key, hash);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private int hashOf(final Object key) {
         return hash(identityComparisons ? System.identityHashCode(key) : key.hashCode());
     }
 
-    /**
-     * Returns {@code true} if this map contains no key-value mappings.
-     *
-     * @return {@code true} if this map contains no key-value mappings
-     */
     @Override
     public boolean isEmpty() {
-        final Segment<K, V>[] segments = this.segments;
-        //
-        // We keep track of per-segment modCounts to avoid ABA problems in which an element in one segment was added and in another removed during traversal, in
-        // which case the table was never actually empty at any point. Note the similar use of modCounts in the size() and containsValue() methods, which are
-        // the only other methods also susceptible to ABA problems.
-        //
-        final int[] mc = new int[segments.length];
-        int mcsum = 0;
-        for (int i = 0; i < segments.length; ++i) {
-            if (segments[i].count != 0) {
-                return false;
-            }
-            mcsum += mc[i] = segments[i].modCount;
-        }
-        // If mcsum happens to be zero, then we know we got a snapshot
-        // before any modifications at all were made. This is
-        // probably common enough to bother tracking.
-        if (mcsum != 0) {
-            for (int i = 0; i < segments.length; ++i) {
-                if (segments[i].count != 0 || mc[i] != segments[i].modCount) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns a {@link Set} view of the keys contained in this map. The set is backed by the map, so changes to the map are reflected in the set, and
-     * vice-versa. The set supports element removal, which removes the corresponding mapping from this map, via the {@code Iterator.remove}, {@code Set.remove},
-     * {@code removeAll}, {@code retainAll}, and {@code clear} operations. It does not support the {@code add} or {@code addAll} operations.
-     * <p>
-     * The view's {@code iterator} is a "weakly consistent" iterator that will never throw {@link ConcurrentModificationException}, and guarantees to traverse
-     * elements as they existed upon construction of the iterator, and may (but is not guaranteed to) reflect any modifications subsequent to construction.
-     * </p>
-     */
     @Override
     public Set<K> keySet() {
-        final Set<K> ks = keySet;
-        return ks != null ? ks : (keySet = new KeySet());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes any stale entries whose keys have been finalized. Use of this method is normally not necessary since stale entries are automatically removed
-     * lazily, when blocking operations are required. However, there are some cases where this operation should be performed eagerly, such as cleaning up old
-     * references to a ClassLoader in a multi-classloader environment.
-     * <p>
-     * Note: this method will acquire locks one at a time across all segments of this table, so this method should be used sparingly.
-     * </p>
-     */
     public void purgeStaleEntries() {
-        for (final Segment<K, V> segment : segments) {
-            segment.removeStale();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Maps the specified key to the specified value in this table. Neither the key nor the value can be null.
-     * <p>
-     * The value can be retrieved by calling the {@code get} method with a key that is equal to the original key.
-     * </p>
-     *
-     * @param key   key with which the specified value is to be associated
-     * @param value value to be associated with the specified key
-     * @return the previous value associated with {@code key}, or {@code null} if there was no mapping for {@code key}
-     * @throws NullPointerException if the specified key or value is null
-     */
     @Override
     public V put(final K key, final V value) {
-        Objects.requireNonNull(key, "key");
-        Objects.requireNonNull(value, "value");
-        final int hash = hashOf(key);
-        return segmentFor(hash).put(key, hash, value, null, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Copies all of the mappings from the specified map to this one. These mappings replace any mappings that this map had for any of the keys currently in the
-     * specified map.
-     *
-     * @param m mappings to be stored in this map
-     */
     @Override
     public void putAll(final Map<? extends K, ? extends V> m) {
-        for (final Entry<? extends K, ? extends V> e : m.entrySet()) {
-            put(e.getKey(), e.getValue());
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @return the previous value associated with the specified key, or {@code null} if there was no mapping for the key
-     * @throws NullPointerException if the specified key or value is null
-     */
     @Override
     public V putIfAbsent(final K key, final V value) {
-        Objects.requireNonNull(value, "value");
-        final int hash = hashOf(key);
-        return segmentFor(hash).put(key, hash, value, null, true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes the key (and its corresponding value) from this map. This method does nothing if the key is not in the map.
-     *
-     * @param key the key that needs to be removed
-     * @return the previous value associated with {@code key}, or {@code null} if there was no mapping for {@code key}
-     * @throws NullPointerException if the specified key is null
-     */
     @Override
     public V remove(final Object key) {
-        final int hash = hashOf(key);
-        return segmentFor(hash).remove(key, hash, null, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @throws NullPointerException if the specified key is null
-     */
     @Override
     public boolean remove(final Object key, final Object value) {
-        final int hash = hashOf(key);
-        if (value == null) {
-            return false;
-        }
-        return segmentFor(hash).remove(key, hash, value, false) != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @return the previous value associated with the specified key, or {@code null} if there was no mapping for the key
-     * @throws NullPointerException if the specified key or value is null
-     */
     @Override
     public V replace(final K key, final V value) {
-        Objects.requireNonNull(value, "value");
-        final int hash = hashOf(key);
-        return segmentFor(hash).replace(key, hash, value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @throws NullPointerException if any of the arguments are null
-     */
     @Override
     public boolean replace(final K key, final V oldValue, final V newValue) {
-        Objects.requireNonNull(oldValue, "oldValue");
-        Objects.requireNonNull(newValue, "newValue");
-        final int hash = hashOf(key);
-        return segmentFor(hash).replace(key, hash, oldValue, newValue);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1813,72 +1188,13 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
         return segments[hash >>> segmentShift & segmentMask];
     }
 
-    /**
-     * Returns the number of key-value mappings in this map. If the map contains more than {@code Integer.MAX_VALUE} elements, returns
-     * {@code Integer.MAX_VALUE}.
-     *
-     * @return the number of key-value mappings in this map
-     */
     @Override
     public int size() {
-        final Segment<K, V>[] segments = this.segments;
-        long sum = 0;
-        long check = 0;
-        final int[] mc = new int[segments.length];
-        // Try a few times to get accurate count. On failure due to
-        // continuous async changes in table, resort to locking.
-        for (int k = 0; k < RETRIES_BEFORE_LOCK; ++k) {
-            check = 0;
-            sum = 0;
-            int mcsum = 0;
-            for (int i = 0; i < segments.length; ++i) {
-                sum += segments[i].count;
-                mcsum += mc[i] = segments[i].modCount;
-            }
-            if (mcsum != 0) {
-                for (int i = 0; i < segments.length; ++i) {
-                    check += segments[i].count;
-                    if (mc[i] != segments[i].modCount) {
-                        // force retry
-                        check = -1;
-                        break;
-                    }
-                }
-            }
-            if (check == sum) {
-                break;
-            }
-        }
-        if (check != sum) {
-            // Resort to locking all segments
-            sum = 0;
-            for (final Segment<K, V> segment : segments) {
-                segment.lock();
-            }
-            for (final Segment<K, V> segment : segments) {
-                sum += segment.count;
-            }
-            for (final Segment<K, V> segment : segments) {
-                segment.unlock();
-            }
-        }
-        return sum > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) sum;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns a {@link Collection} view of the values contained in this map. The collection is backed by the map, so changes to the map are reflected in the
-     * collection, and vice-versa. The collection supports element removal, which removes the corresponding mapping from this map, via the
-     * {@code Iterator.remove}, {@code Collection.remove}, {@code removeAll}, {@code retainAll}, and {@code clear} operations. It does not support the
-     * {@code add} or {@code addAll} operations.
-     * <p>
-     * The view's {@code iterator} is a "weakly consistent" iterator that will never throw {@link ConcurrentModificationException}, and guarantees to traverse
-     * elements as they existed upon construction of the iterator, and may (but is not guaranteed to) reflect any modifications subsequent to construction.
-     * </p>
-     */
     @Override
     public Collection<V> values() {
-        final Collection<V> vs = values;
-        return vs != null ? vs : (values = new Values());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

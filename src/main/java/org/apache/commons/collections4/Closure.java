@@ -38,7 +38,7 @@ public interface Closure<T> extends Consumer<T> {
 
     @Override
     default void accept(final T input) {
-        execute(input);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -50,5 +50,4 @@ public interface Closure<T> extends Consumer<T> {
      * @throws FunctorException (runtime) if any other error occurs
      */
     void execute(T input);
-
 }

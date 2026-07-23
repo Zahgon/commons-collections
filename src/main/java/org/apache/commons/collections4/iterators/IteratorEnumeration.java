@@ -28,7 +28,9 @@ import java.util.Iterator;
  */
 public class IteratorEnumeration<E> implements Enumeration<E> {
 
-    /** The iterator being decorated. */
+    /**
+     * The iterator being decorated.
+     */
     private Iterator<? extends E> iterator;
 
     /**
@@ -48,44 +50,21 @@ public class IteratorEnumeration<E> implements Enumeration<E> {
         this.iterator = iterator;
     }
 
-    /**
-     * Gets the underlying iterator.
-     *
-     * @return the underlying iterator
-     */
     public Iterator<? extends E> getIterator() {
-        return iterator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns true if the underlying iterator has more elements.
-     *
-     * @return true if the underlying iterator has more elements
-     */
     @Override
     public boolean hasMoreElements() {
-        return iterator.hasNext();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the next element from the underlying iterator.
-     *
-     * @return the next element from the underlying iterator.
-     * @throws java.util.NoSuchElementException if the underlying iterator has
-     * no more elements
-     */
     @Override
     public E nextElement() {
-        return iterator.next();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the underlying iterator.
-     *
-     * @param iterator the new underlying iterator
-     */
     public void setIterator(final Iterator<? extends E> iterator) {
-        this.iterator = iterator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

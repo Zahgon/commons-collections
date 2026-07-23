@@ -39,10 +39,8 @@ public abstract class AbstractIteratorDecorator<E> extends AbstractUntypedIterat
         super(iterator);
     }
 
-    /** {@inheritDoc} */
     @Override
     public E next() {
-        return getIterator().next();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

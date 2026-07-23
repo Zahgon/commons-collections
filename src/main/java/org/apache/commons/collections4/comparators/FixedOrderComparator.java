@@ -63,31 +63,39 @@ public class FixedOrderComparator<T> implements Comparator<T>, Serializable {
          * Before unknown object behaviors.
          */
         BEFORE,
-
         /**
          * After unknown object behaviors.
          */
         AFTER,
-
         /**
          * Exception unknown object behaviors.
          */
         EXCEPTION
     }
 
-    /** Serialization version from Collections 4.0. */
+    /**
+     * Serialization version from Collections 4.0.
+     */
     private static final long serialVersionUID = 82794675842863201L;
 
-    /** Internal map of object to position */
+    /**
+     * Internal map of object to position
+     */
     private final Map<T, Integer> map = new HashMap<>();
 
-    /** Counter used in determining the position in the map */
+    /**
+     * Counter used in determining the position in the map
+     */
     private int counter;
 
-    /** Is the comparator locked against further change */
+    /**
+     * Is the comparator locked against further change
+     */
     private boolean isLocked;
 
-    /** The behavior in the case of an unknown object */
+    /**
+     * The behavior in the case of an unknown object
+     */
     private UnknownObjectBehavior unknownObjectBehavior = UnknownObjectBehavior.EXCEPTION;
 
     // Constructors
@@ -128,146 +136,44 @@ public class FixedOrderComparator<T> implements Comparator<T>, Serializable {
     }
 
     // Methods for adding items
-    /**
-     * Adds an item, which compares as after all items known to the Comparator.
-     * If the item is already known to the Comparator, its old position is
-     * replaced with the new position.
-     *
-     * @param obj  the item to be added to the Comparator.
-     * @return true if obj has been added for the first time, false if
-     *  it was already known to the Comparator.
-     * @throws UnsupportedOperationException if a comparison has already been made
-     */
     public boolean add(final T obj) {
-        checkLocked();
-        final Integer position = map.put(obj, Integer.valueOf(counter++));
-        return position == null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Adds a new item, which compares as equal to the given existing item.
-     *
-     * @param existingObj  an item already in the Comparator's set of
-     *  known objects
-     * @param newObj  an item to be added to the Comparator's set of
-     *  known objects
-     * @return true if newObj has been added for the first time, false if
-     *  it was already known to the Comparator.
-     * @throws IllegalArgumentException if existingObject is not in the
-     *  Comparator's set of known objects.
-     * @throws UnsupportedOperationException if a comparison has already been made
-     */
     public boolean addAsEqual(final T existingObj, final T newObj) {
-        checkLocked();
-        final Integer position = map.get(existingObj);
-        if (position == null) {
-            throw new IllegalArgumentException(existingObj + " not known to " + this);
-        }
-        final Integer result = map.put(newObj, position);
-        return result == null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Checks to see whether the comparator is now locked against further changes.
-     *
-     * @throws UnsupportedOperationException if the comparator is locked
-     */
     protected void checkLocked() {
-        if (isLocked()) {
-            throw new UnsupportedOperationException("Cannot modify a FixedOrderComparator after a comparison");
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     // Comparator methods
-    /**
-     * Compares two objects according to the order of this Comparator.
-     * <p>
-     * It is important to note that this class will throw an IllegalArgumentException
-     * in the case of an unrecognized object. This is not specified in the
-     * Comparator interface, but is the most appropriate exception.
-     *
-     * @param obj1  the first object to compare
-     * @param obj2  the second object to compare
-     * @return negative if obj1 is less, positive if greater, zero if equal
-     * @throws IllegalArgumentException if obj1 or obj2 are not known
-     *  to this Comparator and an alternative behavior has not been set
-     *  via {@link #setUnknownObjectBehavior(UnknownObjectBehavior)}.
-     */
     @Override
     public int compare(final T obj1, final T obj2) {
-        isLocked = true;
-        final Integer position1 = map.get(obj1);
-        final Integer position2 = map.get(obj2);
-        if (position1 == null || position2 == null) {
-            switch (unknownObjectBehavior) {
-            case BEFORE:
-                return position1 == null ? position2 == null ? 0 : -1 : 1;
-            case AFTER:
-                return position1 == null ? position2 == null ? 0 : 1 : -1;
-            case EXCEPTION:
-                final Object unknownObj = position1 == null ? obj1 : obj2;
-                throw new IllegalArgumentException("Attempting to compare unknown object "
-                        + unknownObj);
-            default: //could be null
-                throw new UnsupportedOperationException("Unknown unknownObjectBehavior: "
-                        + unknownObjectBehavior);
-            }
-        }
-        return position1.compareTo(position2);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final FixedOrderComparator<?> other = (FixedOrderComparator<?>) obj;
-        return counter == other.counter && isLocked == other.isLocked && Objects.equals(map, other.map) && unknownObjectBehavior == other.unknownObjectBehavior;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the behavior for comparing unknown objects.
-     *
-     * @return {@link UnknownObjectBehavior}
-     */
     public UnknownObjectBehavior getUnknownObjectBehavior() {
-        return unknownObjectBehavior;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(counter, isLocked, map, unknownObjectBehavior);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     // Bean methods / state querying methods
-    /**
-     * Returns true if modifications cannot be made to the FixedOrderComparator.
-     * FixedOrderComparators cannot be modified once they have performed a comparison.
-     *
-     * @return true if attempts to change the FixedOrderComparator yield an
-     *  UnsupportedOperationException, false if it can be changed.
-     */
     public boolean isLocked() {
-        return isLocked;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the behavior for comparing unknown objects.
-     *
-     * @param unknownObjectBehavior  the flag for unknown behavior -
-     * UNKNOWN_AFTER, UNKNOWN_BEFORE or UNKNOWN_THROW_EXCEPTION
-     * @throws UnsupportedOperationException if a comparison has been performed
-     * @throws NullPointerException if unknownObjectBehavior is null
-     */
     public void setUnknownObjectBehavior(final UnknownObjectBehavior unknownObjectBehavior) {
-        checkLocked();
-        this.unknownObjectBehavior = Objects.requireNonNull(unknownObjectBehavior, "unknownObjectBehavior");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

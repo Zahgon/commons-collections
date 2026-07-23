@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.bag;
 
 import java.util.Comparator;
-
 import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.SortedBag;
 
@@ -43,26 +42,13 @@ import org.apache.commons.collections4.SortedBag;
  */
 public class PredicatedSortedBag<E> extends PredicatedBag<E> implements SortedBag<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 3448581314086406616L;
 
-    /**
-     * Factory method to create a predicated (validating) bag.
-     * <p>
-     * If there are any elements already in the bag being decorated, they
-     * are validated.
-     *
-     * @param <E> the type of the elements in the bag
-     * @param bag  the bag to decorate, must not be null
-     * @param predicate  the predicate to use for validation, must not be null
-     * @return a new predicated SortedBag
-     * @throws NullPointerException if bag or predicate is null
-     * @throws IllegalArgumentException if the bag contains invalid elements
-     * @since 4.0
-     */
-    public static <E> PredicatedSortedBag<E> predicatedSortedBag(final SortedBag<E> bag,
-                                                                 final Predicate<? super E> predicate) {
-        return new PredicatedSortedBag<>(bag, predicate);
+    public static <E> PredicatedSortedBag<E> predicatedSortedBag(final SortedBag<E> bag, final Predicate<? super E> predicate) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -81,27 +67,21 @@ public class PredicatedSortedBag<E> extends PredicatedBag<E> implements SortedBa
 
     @Override
     public Comparator<? super E> comparator() {
-        return decorated().comparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the decorated sorted bag.
-     *
-     * @return the decorated bag
-     */
     @Override
     protected SortedBag<E> decorated() {
-        return (SortedBag<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E first() {
-        return decorated().first();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E last() {
-        return decorated().last();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -19,7 +19,6 @@ package org.apache.commons.collections4.multimap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.FluentIterable;
 import org.apache.commons.collections4.MultiValuedMap;
@@ -43,65 +42,27 @@ import org.apache.commons.collections4.Transformer;
  */
 public class TransformedMultiValuedMap<K, V> extends AbstractMultiValuedMapDecorator<K, V> {
 
-    /** Serialization Version */
+    /**
+     * Serialization Version
+     */
     private static final long serialVersionUID = 20150612L;
 
-    /**
-     * Factory method to create a transforming MultiValuedMap that will
-     * transform existing contents of the specified map.
-     * <p>
-     * If there are any elements already in the map being decorated, they will
-     * be transformed by this method. Contrast this with
-     * {@link #transformingMap(MultiValuedMap, Transformer, Transformer)}.
-     * </p>
-     *
-     * @param <K> the key type
-     * @param <V> the value type
-     * @param map  the MultiValuedMap to decorate, may not be null
-     * @param keyTransformer  the transformer to use for key conversion, null means no conversion
-     * @param valueTransformer  the transformer to use for value conversion, null means no conversion
-     * @return a new transformed MultiValuedMap
-     * @throws NullPointerException if map is null
-     */
-    public static <K, V> TransformedMultiValuedMap<K, V> transformedMap(final MultiValuedMap<K, V> map,
-            final Transformer<? super K, ? extends K> keyTransformer,
-            final Transformer<? super V, ? extends V> valueTransformer) {
-        final TransformedMultiValuedMap<K, V> decorated =
-                new TransformedMultiValuedMap<>(map, keyTransformer, valueTransformer);
-        if (!map.isEmpty()) {
-            final MultiValuedMap<K, V> mapCopy = new ArrayListValuedHashMap<>(map);
-            decorated.clear();
-            decorated.putAll(mapCopy);
-        }
-        return decorated;
+    public static <K, V> TransformedMultiValuedMap<K, V> transformedMap(final MultiValuedMap<K, V> map, final Transformer<? super K, ? extends K> keyTransformer, final Transformer<? super V, ? extends V> valueTransformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public static <K, V> TransformedMultiValuedMap<K, V> transformingMap(final MultiValuedMap<K, V> map, final Transformer<? super K, ? extends K> keyTransformer, final Transformer<? super V, ? extends V> valueTransformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
-     * Factory method to create a transforming MultiValuedMap.
-     * <p>
-     * If there are any elements already in the map being decorated, they are
-     * NOT transformed. Contrast this with
-     * {@link #transformedMap(MultiValuedMap, Transformer, Transformer)}.
-     * </p>
-     *
-     * @param <K> the key type
-     * @param <V> the value type
-     * @param map  the MultiValuedMap to decorate, may not be null
-     * @param keyTransformer  the transformer to use for key conversion, null means no conversion
-     * @param valueTransformer  the transformer to use for value conversion, null means no conversion
-     * @return a new transformed MultiValuedMap
-     * @throws NullPointerException if map is null
+     * The key transformer
      */
-    public static <K, V> TransformedMultiValuedMap<K, V> transformingMap(final MultiValuedMap<K, V> map,
-            final Transformer<? super K, ? extends K> keyTransformer,
-            final Transformer<? super V, ? extends V> valueTransformer) {
-        return new TransformedMultiValuedMap<>(map, keyTransformer, valueTransformer);
-    }
-
-    /** The key transformer */
     private final Transformer<? super K, ? extends K> keyTransformer;
 
-    /** The value transformer */
+    /**
+     * The value transformer
+     */
     private final Transformer<? super V, ? extends V> valueTransformer;
 
     /**
@@ -116,9 +77,7 @@ public class TransformedMultiValuedMap<K, V> extends AbstractMultiValuedMapDecor
      * @param valueTransformer  the transformer to use for value conversion, null means no conversion
      * @throws NullPointerException if map is null
      */
-    protected TransformedMultiValuedMap(final MultiValuedMap<K, V> map,
-            final Transformer<? super K, ? extends K> keyTransformer,
-            final Transformer<? super V, ? extends V> valueTransformer) {
+    protected TransformedMultiValuedMap(final MultiValuedMap<K, V> map, final Transformer<? super K, ? extends K> keyTransformer, final Transformer<? super V, ? extends V> valueTransformer) {
         super(map);
         this.keyTransformer = keyTransformer;
         this.valueTransformer = valueTransformer;
@@ -126,68 +85,29 @@ public class TransformedMultiValuedMap<K, V> extends AbstractMultiValuedMapDecor
 
     @Override
     public boolean put(final K key, final V value) {
-        return decorated().put(transformKey(key), transformValue(value));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean putAll(final K key, final Iterable<? extends V> values) {
-        Objects.requireNonNull(values, "values");
-
-        final Iterable<V> transformedValues = FluentIterable.of(values).transform(valueTransformer);
-        final Iterator<? extends V> it = transformedValues.iterator();
-        return it.hasNext() && CollectionUtils.addAll(decorated().get(transformKey(key)), it);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean putAll(final Map<? extends K, ? extends V> map) {
-        Objects.requireNonNull(map, "map");
-        boolean changed = false;
-        for (final Map.Entry<? extends K, ? extends V> entry : map.entrySet()) {
-            changed |= put(entry.getKey(), entry.getValue());
-        }
-        return changed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean putAll(final MultiValuedMap<? extends K, ? extends V> map) {
-        Objects.requireNonNull(map, "map");
-        boolean changed = false;
-        for (final Map.Entry<? extends K, ? extends V> entry : map.entries()) {
-            changed |= put(entry.getKey(), entry.getValue());
-        }
-        return changed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Transforms a key.
-     * <p>
-     * The transformer itself may throw an exception if necessary.
-     * </p>
-     *
-     * @param object  the object to transform
-     * @return the transformed object
-     */
     protected K transformKey(final K object) {
-        if (keyTransformer == null) {
-            return object;
-        }
-        return keyTransformer.apply(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Transforms a value.
-     * <p>
-     * The transformer itself may throw an exception if necessary.
-     * </p>
-     *
-     * @param object  the object to transform
-     * @return the transformed object
-     */
     protected V transformValue(final V object) {
-        if (valueTransformer == null) {
-            return object;
-        }
-        return valueTransformer.apply(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

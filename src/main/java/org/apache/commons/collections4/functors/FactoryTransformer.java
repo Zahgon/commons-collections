@@ -18,7 +18,6 @@ package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Factory;
 import org.apache.commons.collections4.Transformer;
 
@@ -31,23 +30,18 @@ import org.apache.commons.collections4.Transformer;
  */
 public class FactoryTransformer<T, R> implements Transformer<T, R>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = -6817674502475353160L;
 
-    /**
-     * Factory method that performs validation.
-     *
-     * @param <I>  the input type
-     * @param <O>  the output type
-     * @param factory  the factory to call, not null
-     * @return the {@code factory} transformer
-     * @throws NullPointerException if the factory is null
-     */
     public static <I, O> Transformer<I, O> factoryTransformer(final Factory<? extends O> factory) {
-        return new FactoryTransformer<>(Objects.requireNonNull(factory, "factory"));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The factory to wrap */
+    /**
+     * The factory to wrap
+     */
     private final Factory<? extends R> iFactory;
 
     /**
@@ -60,26 +54,12 @@ public class FactoryTransformer<T, R> implements Transformer<T, R>, Serializable
         iFactory = factory;
     }
 
-    /**
-     * Gets the factory.
-     *
-     * @return the factory
-     * @since 3.1
-     */
     public Factory<? extends R> getFactory() {
-        return iFactory;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Transforms the input by ignoring the input and returning the result of
-     * calling the decorated factory.
-     *
-     * @param input  the input object to transform
-     * @return the transformed result
-     */
     @Override
     public R transform(final T input) {
-        return iFactory.get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

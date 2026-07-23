@@ -19,7 +19,6 @@ package org.apache.commons.collections4.functors;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Factory;
 import org.apache.commons.collections4.FunctorException;
 
@@ -37,40 +36,28 @@ import org.apache.commons.collections4.FunctorException;
  */
 public class InstantiateFactory<T> implements Factory<T> {
 
-    /**
-     * Factory method that performs validation.
-     *
-     * @param <T>  the type the factory creates
-     * @param classToInstantiate  the class to instantiate, not null
-     * @param paramTypes  the constructor parameter types, cloned
-     * @param args  the constructor arguments, cloned
-     * @return a new instantiate factory
-     * @throws NullPointerException if classToInstantiate is null
-     * @throws IllegalArgumentException if paramTypes does not match args
-     */
-    public static <T> Factory<T> instantiateFactory(final Class<T> classToInstantiate,
-                                                    final Class<?>[] paramTypes,
-                                                    final Object[] args) {
-        Objects.requireNonNull(classToInstantiate, "classToInstantiate");
-        if (paramTypes == null && args != null
-            || paramTypes != null && args == null
-            || paramTypes != null && args != null && paramTypes.length != args.length) {
-            throw new IllegalArgumentException("Parameter types must match the arguments");
-        }
-
-        if (paramTypes == null || paramTypes.length == 0) {
-            return new InstantiateFactory<>(classToInstantiate);
-        }
-        return new InstantiateFactory<>(classToInstantiate, paramTypes, args);
+    public static <T> Factory<T> instantiateFactory(final Class<T> classToInstantiate, final Class<?>[] paramTypes, final Object[] args) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    /** The class to create */
+
+    /**
+     * The class to create
+     */
     private final Class<T> iClassToInstantiate;
-    /** The constructor parameter types */
+
+    /**
+     * The constructor parameter types
+     */
     private final Class<?>[] iParamTypes;
-    /** The constructor arguments */
+
+    /**
+     * The constructor arguments
+     */
     private final Object[] iArgs;
 
-    /** The constructor */
+    /**
+     * The constructor
+     */
     private transient Constructor<T> iConstructor;
 
     /**
@@ -101,27 +88,9 @@ public class InstantiateFactory<T> implements Factory<T> {
         findConstructor();
     }
 
-    /**
-     * Creates an object using the stored constructor.
-     *
-     * @return the new object
-     */
     @Override
     public T create() {
-        // needed for post-serialization
-        if (iConstructor == null) {
-            findConstructor();
-        }
-
-        try {
-            return iConstructor.newInstance(iArgs);
-        } catch (final InstantiationException ex) {
-            throw new FunctorException("InstantiateFactory: InstantiationException", ex);
-        } catch (final IllegalAccessException ex) {
-            throw new FunctorException("InstantiateFactory: Constructor must be public", ex);
-        } catch (final InvocationTargetException ex) {
-            throw new FunctorException("InstantiateFactory: Constructor threw an exception", ex);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -134,5 +103,4 @@ public class InstantiateFactory<T> implements Factory<T> {
             throw new IllegalArgumentException("InstantiateFactory: The constructor must exist and be public ");
         }
     }
-
 }

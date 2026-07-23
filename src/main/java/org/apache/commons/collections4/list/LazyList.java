@@ -18,7 +18,6 @@ package org.apache.commons.collections4.list;
 
 import java.util.List;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Factory;
 import org.apache.commons.collections4.Transformer;
 
@@ -67,41 +66,27 @@ import org.apache.commons.collections4.Transformer;
  */
 public class LazyList<E> extends AbstractSerializableListDecorator<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -3677737457567429713L;
 
-    /**
-     * Factory method to create a lazily instantiating list.
-     *
-     * @param <E> the type of the elements in the list
-     * @param list  the list to decorate, must not be null
-     * @param factory  the factory to use for creation, must not be null
-     * @return a new lazy list
-     * @throws NullPointerException if list or factory is null
-     * @since 4.0
-     */
     public static <E> LazyList<E> lazyList(final List<E> list, final Factory<? extends E> factory) {
-        return new LazyList<>(list, factory);
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public static <E> LazyList<E> lazyList(final List<E> list, final Transformer<Integer, ? extends E> transformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
-     * Transformer method to create a lazily instantiating list.
-     *
-     * @param <E> the type of the elements in the list
-     * @param list  the list to decorate, must not be null
-     * @param transformer  the transformer to use for creation, must not be null
-     * @return a new lazy list
-     * @throws NullPointerException if list or transformer is null
-     * @since 4.4
+     * The factory to use to lazily instantiate the objects
      */
-    public static <E> LazyList<E> lazyList(final List<E> list, final Transformer<Integer, ? extends E> transformer) {
-        return new LazyList<>(list, transformer);
-    }
-
-    /** The factory to use to lazily instantiate the objects */
     private final Factory<? extends E> factory;
 
-    /** The transformer to use to lazily instantiate the objects */
+    /**
+     * The transformer to use to lazily instantiate the objects
+     */
     private final Transformer<Integer, ? extends E> transformer;
 
     /**
@@ -140,52 +125,13 @@ public class LazyList<E> extends AbstractSerializableListDecorator<E> {
         throw new IllegalStateException("Factory and Transformer are both null!");
     }
 
-    /**
-     * Decorate the get method to perform the lazy behavior.
-     * <p>
-     * If the requested index is greater than the current size, the list will
-     * grow to the new size and a new object will be returned from the factory
-     * or transformer. Indexes in-between the old size and the requested size
-     * are left with a placeholder that is replaced with a factory or
-     * transformer object when requested.
-     *
-     * @param index  the index to retrieve
-     * @return the element at the given index
-     */
     @Override
     public E get(final int index) {
-        final int size = decorated().size();
-        if (index < size) {
-            // within bounds, get the object
-            E object = decorated().get(index);
-            if (object == null) {
-                // item is a placeholder, create new one, set and return
-                object = element(index);
-                decorated().set(index, object);
-            }
-            // good and ready to go
-            return object;
-        }
-        // we have to grow the list
-        for (int i = size; i < index; i++) {
-            decorated().add(null);
-        }
-        // create our last object, set and return
-        final E object = element(index);
-        decorated().add(object);
-        return object;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public List<E> subList(final int fromIndex, final int toIndex) {
-        final List<E> sub = decorated().subList(fromIndex, toIndex);
-        if (factory != null) {
-            return new LazyList<>(sub, factory);
-        }
-        if (transformer != null) {
-            return new LazyList<>(sub, transformer);
-        }
-        throw new IllegalStateException("Factory and Transformer are both null!");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

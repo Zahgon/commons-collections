@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
-
 import org.apache.commons.collections4.Factory;
 
 /**
@@ -33,28 +32,25 @@ import org.apache.commons.collections4.Factory;
  */
 public class ConstantFactory<T> implements Factory<T>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = -3520677225766901240L;
 
-    /** Returns null each time */
-    @SuppressWarnings("rawtypes") // The null factory works for all object types
+    /**
+     * Returns null each time
+     */
+    // The null factory works for all object types
+    @SuppressWarnings("rawtypes")
     public static final Factory NULL_INSTANCE = new ConstantFactory<>(null);
 
-    /**
-     * Factory method that performs validation.
-     *
-     * @param <T>  the type of the constant
-     * @param constantToReturn  the constant object to return each time in the factory
-     * @return the {@code constant} factory.
-     */
     public static <T> Factory<T> constantFactory(final T constantToReturn) {
-        if (constantToReturn == null) {
-            return NULL_INSTANCE;
-        }
-        return new ConstantFactory<>(constantToReturn);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The closures to call in turn */
+    /**
+     * The closures to call in turn
+     */
     private final T iConstant;
 
     /**
@@ -67,24 +63,12 @@ public class ConstantFactory<T> implements Factory<T>, Serializable {
         iConstant = constantToReturn;
     }
 
-    /**
-     * Always return constant.
-     *
-     * @return the stored constant value
-     */
     @Override
     public T create() {
-        return iConstant;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the constant.
-     *
-     * @return the constant
-     * @since 3.1
-     */
     public T getConstant() {
-        return iConstant;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -31,10 +31,14 @@ import java.util.Iterator;
  */
 public class SkippingIterator<E> extends AbstractIteratorDecorator<E> {
 
-    /** The offset to bound the first element return */
+    /**
+     * The offset to bound the first element return
+     */
     private final long offset;
 
-    /** The position of the current element */
+    /**
+     * The position of the current element
+     */
     private long pos;
 
     /**
@@ -51,11 +55,9 @@ public class SkippingIterator<E> extends AbstractIteratorDecorator<E> {
      */
     public SkippingIterator(final Iterator<E> iterator, final long offset) {
         super(iterator);
-
         if (offset < 0) {
             throw new IllegalArgumentException("Offset parameter must not be negative.");
         }
-
         this.offset = offset;
         this.pos = 0;
         init();
@@ -72,25 +74,11 @@ public class SkippingIterator<E> extends AbstractIteratorDecorator<E> {
 
     @Override
     public E next() {
-        final E next = super.next();
-        pos++;
-        return next;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     * <p>
-     * In case an offset other than 0 was specified, the underlying iterator will be advanced
-     * to this position upon creation. A call to {@link #remove()} will still result in an
-     * {@link IllegalStateException} if no explicit call to {@link #next()} has been made prior
-     * to calling {@link #remove()}.
-     */
     @Override
     public void remove() {
-        if (pos <= offset) {
-            throw new IllegalStateException("remove() cannot be called before calling next()");
-        }
-        super.remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

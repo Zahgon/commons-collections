@@ -25,18 +25,8 @@ import org.apache.commons.collections4.trie.UnmodifiableTrie;
  */
 public class TrieUtils {
 
-    /**
-     * Returns an unmodifiable instance of a {@link Trie}
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param trie  the trie to make unmodifiable, must not be null
-     * @return an unmodifiable trie backed by the given trie
-     * @throws NullPointerException if trie is null
-     * @see java.util.Collections#unmodifiableMap(java.util.Map)
-     */
     public static <K, V> Trie<K, V> unmodifiableTrie(final Trie<K, ? extends V> trie) {
-        return UnmodifiableTrie.unmodifiableTrie(trie);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -45,5 +35,4 @@ public class TrieUtils {
     private TrieUtils() {
         // empty
     }
-
 }

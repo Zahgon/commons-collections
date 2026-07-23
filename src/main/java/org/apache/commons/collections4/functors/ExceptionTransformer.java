@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
-
 import org.apache.commons.collections4.FunctorException;
 import org.apache.commons.collections4.Transformer;
 
@@ -30,23 +29,20 @@ import org.apache.commons.collections4.Transformer;
  */
 public final class ExceptionTransformer<T, R> implements Transformer<T, R>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 7179106032121985545L;
 
-    /** Singleton predicate instance */
-    @SuppressWarnings("rawtypes") // the static instance works for all types
+    /**
+     * Singleton predicate instance
+     */
+    // the static instance works for all types
+    @SuppressWarnings("rawtypes")
     public static final Transformer INSTANCE = new ExceptionTransformer<>();
 
-    /**
-     * Factory returning the singleton instance.
-     *
-     * @param <I>  the input type
-     * @param <O>  the output type
-     * @return the singleton instance
-     * @since 3.1
-     */
     public static <I, O> Transformer<I, O> exceptionTransformer() {
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -64,16 +60,8 @@ public final class ExceptionTransformer<T, R> implements Transformer<T, R>, Seri
         return INSTANCE;
     }
 
-    /**
-     * Transforms the input to result by cloning it.
-     *
-     * @param input  the input object to transform
-     * @return never
-     * @throws FunctorException always
-     */
     @Override
     public R transform(final T input) {
-        throw new FunctorException("ExceptionTransformer invoked");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

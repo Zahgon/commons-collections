@@ -27,7 +27,9 @@ import java.util.function.LongPredicate;
 class CountingLongPredicate implements LongPredicate {
 
     private int idx;
+
     private final long[] ary;
+
     private final LongBiPredicate func;
 
     /**
@@ -43,27 +45,12 @@ class CountingLongPredicate implements LongPredicate {
         this.func = func;
     }
 
-    /**
-     * Call the long-long consuming bi-predicate for each remaining unpaired long in
-     * the input array. This method should be invoked after the predicate has been
-     * passed to {@link BitMapExtractor#processBitMaps(LongPredicate)} to consume any
-     * unpaired bitmaps. The second argument to the bi-predicate will be zero.
-     *
-     * @return true if all calls to the predicate were successful
-     */
     boolean processRemaining() {
-        // uses local references for optimization benefit.
-        int i = idx;
-        final long[] a = ary;
-        final int limit = a.length;
-        while (i != limit && func.test(a[i], 0)) {
-            i++;
-        }
-        return i == limit;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean test(final long other) {
-        return func.test(idx == ary.length ? 0 : ary[idx++], other);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -18,7 +18,6 @@ package org.apache.commons.collections4.iterators;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
 import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.functors.TruePredicate;
 
@@ -34,16 +33,24 @@ import org.apache.commons.collections4.functors.TruePredicate;
  */
 public class FilterIterator<E> implements IteratorOperations<E> {
 
-    /** The iterator to be filtered. */
+    /**
+     * The iterator to be filtered.
+     */
     private Iterator<? extends E> iterator;
 
-    /** The predicate to filter elements. */
+    /**
+     * The predicate to filter elements.
+     */
     private Predicate<? super E> predicate = TruePredicate.truePredicate();
 
-    /** The next object in the iteration. */
+    /**
+     * The next object in the iteration.
+     */
     private E nextObject;
 
-    /** Whether the next object has been calculated yet. */
+    /**
+     * Whether the next object has been calculated yet.
+     */
     private boolean nextObjectSet;
 
     /**
@@ -75,86 +82,35 @@ public class FilterIterator<E> implements IteratorOperations<E> {
         this.predicate = safePredicate(predicate);
     }
 
-    /**
-     * Gets the iterator this iterator is using.
-     *
-     * @return the underlying iterator.
-     */
     public Iterator<? extends E> getIterator() {
-        return iterator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the predicate this iterator is using.
-     *
-     * @return the filtering predicate.
-     */
     public Predicate<? super E> getPredicate() {
-        return predicate;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns true if the underlying iterator contains an object that
-     * matches the predicate.
-     *
-     * @return true if there is another object that matches the predicate
-     * @throws NullPointerException if either the iterator or predicate are null
-     */
     @Override
     public boolean hasNext() {
-        return nextObjectSet || setNextObject();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the next object that matches the predicate.
-     *
-     * @return the next object which matches the given predicate
-     * @throws NullPointerException if either the iterator or predicate are null
-     * @throws NoSuchElementException if there are no more elements that
-     *  match the predicate
-     */
     @Override
     public E next() {
-        if (!nextObjectSet && !setNextObject()) {
-            throw new NoSuchElementException();
-        }
-        nextObjectSet = false;
-        return nextObject;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes from the underlying collection of the base iterator the last
-     * element returned by this iterator.
-     * This method can only be called
-     * if {@code next()} was called, but not after
-     * {@code hasNext()}, because the {@code hasNext()} call
-     * changes the base iterator.
-     *
-     * @throws IllegalStateException if {@code hasNext()} has already
-     *  been called.
-     */
     @Override
     public void remove() {
-        if (nextObjectSet) {
-            throw new IllegalStateException("remove() cannot be called");
-        }
-        iterator.remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private Predicate<? super E> safePredicate(final Predicate<? super E> predicate) {
         return predicate != null ? predicate : TruePredicate.truePredicate();
     }
 
-    /**
-     * Sets the iterator for this iterator to use.
-     * If iteration has started, this effectively resets the iterator.
-     *
-     * @param iterator  the iterator to use
-     */
     public void setIterator(final Iterator<? extends E> iterator) {
-        this.iterator = iterator;
-        nextObject = null;
-        nextObjectSet = false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -173,15 +129,7 @@ public class FilterIterator<E> implements IteratorOperations<E> {
         return false;
     }
 
-    /**
-     * Sets the predicate this the iterator to use where null accepts all values.
-     *
-     * @param predicate  the predicate to use, null accepts all values.
-     */
     public void setPredicate(final Predicate<? super E> predicate) {
-        this.predicate = safePredicate(predicate);
-        nextObject = null;
-        nextObjectSet = false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

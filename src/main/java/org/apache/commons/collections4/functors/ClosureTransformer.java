@@ -18,7 +18,6 @@ package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Closure;
 import org.apache.commons.collections4.Transformer;
 
@@ -31,22 +30,18 @@ import org.apache.commons.collections4.Transformer;
  */
 public class ClosureTransformer<T> implements Transformer<T, T>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 478466901448617286L;
 
-    /**
-     * Factory method that performs validation.
-     *
-     * @param <T>  the type of the object to transform
-     * @param closure  the closure to call, not null
-     * @return the {@code closure} transformer
-     * @throws NullPointerException if the closure is null
-     */
     public static <T> Transformer<T, T> closureTransformer(final Closure<? super T> closure) {
-        return new ClosureTransformer<>(Objects.requireNonNull(closure, "closure"));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The closure to wrap */
+    /**
+     * The closure to wrap
+     */
     private final Closure<? super T> iClosure;
 
     /**
@@ -59,26 +54,12 @@ public class ClosureTransformer<T> implements Transformer<T, T>, Serializable {
         iClosure = closure;
     }
 
-    /**
-     * Gets the closure.
-     *
-     * @return the closure
-     * @since 3.1
-     */
     public Closure<? super T> getClosure() {
-        return iClosure;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Transforms the input to result by executing a closure.
-     *
-     * @param input  the input object to transform
-     * @return the transformed result
-     */
     @Override
     public T transform(final T input) {
-        iClosure.accept(input);
-        return input;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

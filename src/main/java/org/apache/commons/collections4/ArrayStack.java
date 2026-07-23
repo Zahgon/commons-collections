@@ -46,7 +46,9 @@ import java.util.EmptyStackException;
 @Deprecated
 public class ArrayStack<E> extends ArrayList<E> {
 
-    /** Ensure serialization compatibility */
+    /**
+     * Ensure serialization compatibility
+     */
     private static final long serialVersionUID = 2130079159931574599L;
 
     /**
@@ -67,100 +69,27 @@ public class ArrayStack<E> extends ArrayList<E> {
         super(initialSize);
     }
 
-    /**
-     * Return {@code true} if this stack is currently empty.
-     * <p>
-     * This method exists for compatibility with {@link java.util.Stack}.
-     * New users of this class should use {@code isEmpty} instead.
-     * </p>
-     *
-     * @return true if the stack is currently empty
-     */
     public boolean empty() {
-        return isEmpty();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the top item off of this stack without removing it.
-     *
-     * @return the top item on the stack
-     * @throws EmptyStackException  if the stack is empty
-     */
     public E peek() throws EmptyStackException {
-        final int n = size();
-        if (n <= 0) {
-            throw new EmptyStackException();
-        }
-        return get(n - 1);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the n'th item down (zero-relative) from the top of this
-     * stack without removing it.
-     *
-     * @param n  the number of items down to go
-     * @return the n'th item on the stack, zero relative
-     * @throws EmptyStackException  if there are not enough items on the
-     *  stack to satisfy this request
-     */
     public E peek(final int n) throws EmptyStackException {
-        final int m = size() - n - 1;
-        if (m < 0) {
-            throw new EmptyStackException();
-        }
-        return get(m);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Pops the top item off of this stack and return it.
-     *
-     * @return the top item on the stack
-     * @throws EmptyStackException  if the stack is empty
-     */
     public E pop() throws EmptyStackException {
-        final int n = size();
-        if (n <= 0) {
-            throw new EmptyStackException();
-        }
-        return remove(n - 1);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Pushes a new item onto the top of this stack. The pushed item is also
-     * returned. This is equivalent to calling {@code add}.
-     *
-     * @param item  the item to be added
-     * @return the item just pushed
-     */
     public E push(final E item) {
-        add(item);
-        return item;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the one-based position of the distance from the top that the
-     * specified object exists on this stack, where the top-most element is
-     * considered to be at distance {@code 1}.  If the object is not
-     * present on the stack, return {@code -1} instead.  The
-     * {@code equals()} method is used to compare to the items
-     * in this stack.
-     *
-     * @param object  the object to be searched for
-     * @return the 1-based depth into the stack of the object, or -1 if not found
-     */
     public int search(final Object object) {
-        int i = size() - 1;        // Current index
-        int n = 1;                 // Current distance
-        while (i >= 0) {
-            final Object current = get(i);
-            if (object == null && current == null ||
-                object != null && object.equals(current)) {
-                return n;
-            }
-            i--;
-            n++;
-        }
-        return -1;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

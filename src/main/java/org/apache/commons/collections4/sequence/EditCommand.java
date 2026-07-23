@@ -48,7 +48,9 @@ package org.apache.commons.collections4.sequence;
  */
 public abstract class EditCommand<T> {
 
-    /** Object on which the command should be applied. */
+    /**
+     * Object on which the command should be applied.
+     */
     private final T object;
 
     /**
@@ -71,13 +73,7 @@ public abstract class EditCommand<T> {
      */
     public abstract void accept(CommandVisitor<T> visitor);
 
-    /**
-     * Gets the object associated with this command.
-     *
-     * @return the object on which the command is applied
-     */
     protected T getObject() {
-        return object;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -19,7 +19,6 @@ package org.apache.commons.collections4.functors;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Objects;
-
 import org.apache.commons.collections4.FunctorException;
 import org.apache.commons.collections4.Transformer;
 
@@ -38,51 +37,27 @@ import org.apache.commons.collections4.Transformer;
  */
 public class InvokerTransformer<T, R> implements Transformer<T, R> {
 
-    /**
-     * Gets an instance of this transformer calling a specific method with no arguments.
-     *
-     * @param <I>  the input type
-     * @param <O>  the output type
-     * @param methodName  the method name to call
-     * @return an invoker transformer
-     * @throws NullPointerException if methodName is null
-     * @since 3.1
-     */
     public static <I, O> Transformer<I, O> invokerTransformer(final String methodName) {
-        return new InvokerTransformer<>(Objects.requireNonNull(methodName, "methodName"));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
+
+    public static <I, O> Transformer<I, O> invokerTransformer(final String methodName, final Class<?>[] paramTypes, final Object[] args) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
     /**
-     * Gets an instance of this transformer calling a specific method with specific values.
-     *
-     * @param <I>  the input type
-     * @param <O>  the output type
-     * @param methodName  the method name to call
-     * @param paramTypes  the parameter types of the method
-     * @param args  the arguments to pass to the method
-     * @return an invoker transformer
-     * @throws NullPointerException if methodName is null
-     * @throws IllegalArgumentException if paramTypes does not match args
+     * The method name to call
      */
-    public static <I, O> Transformer<I, O> invokerTransformer(final String methodName, final Class<?>[] paramTypes,
-                                                              final Object[] args) {
-        Objects.requireNonNull(methodName, "methodName");
-        if (paramTypes == null && args != null
-            || paramTypes != null && args == null
-            || paramTypes != null && args != null && paramTypes.length != args.length) {
-            throw new IllegalArgumentException("The parameter types must match the arguments");
-        }
-        if (paramTypes == null || paramTypes.length == 0) {
-            return new InvokerTransformer<>(methodName);
-        }
-        return new InvokerTransformer<>(methodName, paramTypes, args);
-    }
-    /** The method name to call */
     private final String iMethodName;
 
-    /** The array of reflection parameter types */
+    /**
+     * The array of reflection parameter types
+     */
     private final Class<?>[] iParamTypes;
 
-    /** The array of reflection arguments */
+    /**
+     * The array of reflection arguments
+     */
     private final Object[] iArgs;
 
     /**
@@ -112,32 +87,9 @@ public class InvokerTransformer<T, R> implements Transformer<T, R> {
         iArgs = args != null ? args.clone() : null;
     }
 
-    /**
-     * Transforms the input to result by invoking a method on the input.
-     *
-     * @param input  the input object to transform
-     * @return the transformed result, null if null input
-     */
     @Override
     @SuppressWarnings("unchecked")
     public R transform(final Object input) {
-        if (input == null) {
-            return null;
-        }
-        try {
-            final Class<?> cls = input.getClass();
-            final Method method = cls.getMethod(iMethodName, iParamTypes);
-            return (R) method.invoke(input, iArgs);
-        } catch (final NoSuchMethodException ex) {
-            throw new FunctorException("InvokerTransformer: The method '" + iMethodName + "' on '" +
-                                       input.getClass() + "' does not exist");
-        } catch (final IllegalAccessException ex) {
-            throw new FunctorException("InvokerTransformer: The method '" + iMethodName + "' on '" +
-                                       input.getClass() + "' cannot be accessed");
-        } catch (final InvocationTargetException ex) {
-            throw new FunctorException("InvokerTransformer: The method '" + iMethodName + "' on '" +
-                                       input.getClass() + "' threw an exception", ex);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

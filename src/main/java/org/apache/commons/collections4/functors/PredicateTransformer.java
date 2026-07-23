@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
-
 import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.Transformer;
 
@@ -30,25 +29,18 @@ import org.apache.commons.collections4.Transformer;
  */
 public class PredicateTransformer<T> implements Transformer<T, Boolean>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 5278818408044349346L;
 
-    /**
-     * Factory method that performs validation.
-     *
-     * @param <T>  the input type
-     * @param predicate  the predicate to call, not null
-     * @return the {@code predicate} transformer
-     * @throws IllegalArgumentException if the predicate is null
-     */
     public static <T> Transformer<T, Boolean> predicateTransformer(final Predicate<? super T> predicate) {
-        if (predicate == null) {
-            throw new IllegalArgumentException("Predicate must not be null");
-        }
-        return new PredicateTransformer<>(predicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The closure to wrap */
+    /**
+     * The closure to wrap
+     */
     private final Predicate<? super T> iPredicate;
 
     /**
@@ -61,25 +53,12 @@ public class PredicateTransformer<T> implements Transformer<T, Boolean>, Seriali
         iPredicate = predicate;
     }
 
-    /**
-     * Gets the predicate.
-     *
-     * @return the predicate
-     * @since 3.1
-     */
     public Predicate<? super T> getPredicate() {
-        return iPredicate;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Transforms the input to result by calling a predicate.
-     *
-     * @param input  the input object to transform
-     * @return the transformed result
-     */
     @Override
     public Boolean transform(final T input) {
-        return Boolean.valueOf(iPredicate.test(input));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

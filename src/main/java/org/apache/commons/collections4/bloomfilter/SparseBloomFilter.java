@@ -68,137 +68,76 @@ public final class SparseBloomFilter implements BloomFilter<SparseBloomFilter> {
 
     @Override
     public long[] asBitMapArray() {
-        final long[] result = BitMaps.newBitMap(shape);
-        for (final int i : indices) {
-            BitMaps.set(result, i);
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int cardinality() {
-        return indices.size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int characteristics() {
-        return SPARSE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        indices.clear();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean contains(final BitMapExtractor bitMapExtractor) {
-        return contains(IndexExtractor.fromBitMapExtractor(bitMapExtractor));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean contains(final IndexExtractor indexExtractor) {
-        return indexExtractor.processIndices(indices::contains);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a new instance of this {@link SparseBloomFilter} with the same properties as the current one.
-     *
-     * @return a copy of this {@link SparseBloomFilter}.
-     */
     @Override
     public SparseBloomFilter copy() {
-        return new SparseBloomFilter(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Shape getShape() {
-        return shape;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean isEmpty() {
-        return indices.isEmpty();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean merge(final BitMapExtractor bitMapExtractor) {
-        Objects.requireNonNull(bitMapExtractor, "bitMapExtractor");
-        return this.merge(IndexExtractor.fromBitMapExtractor(bitMapExtractor));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean merge(final BloomFilter<?> other) {
-        Objects.requireNonNull(other, "other");
-        final IndexExtractor indexExtractor = (other.characteristics() & SPARSE) != 0 ? (IndexExtractor) other : IndexExtractor.fromBitMapExtractor(other);
-        merge(indexExtractor);
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean merge(final Hasher hasher) {
-        Objects.requireNonNull(hasher, "hasher");
-        merge(hasher.indices(shape));
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean merge(final IndexExtractor indexExtractor) {
-        Objects.requireNonNull(indexExtractor, "indexExtractor");
-        indexExtractor.processIndices(this::add);
-        if (!indices.isEmpty()) {
-            if (indices.last() >= shape.getNumberOfBits()) {
-                throw new IllegalArgumentException(String.format("Value in list %s is greater than maximum value (%s)",
-                        indices.last(), shape.getNumberOfBits() - 1));
-            }
-            if (indices.first() < 0) {
-                throw new IllegalArgumentException(
-                        String.format("Value in list %s is less than 0", indices.first()));
-            }
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean processBitMaps(final LongPredicate consumer) {
-        Objects.requireNonNull(consumer, "consumer");
-        final int limit = BitMaps.numberOfBitMaps(shape);
-        //
-        // because our indices are always in order we can shorten the time necessary to
-        // create the longs for the consumer
-        //
-        // the currently constructed bitMap
-        long bitMap = 0;
-        // the bitmap we are working on
-        int idx = 0;
-        for (final int i : indices) {
-            while (BitMaps.getLongIndex(i) != idx) {
-                if (!consumer.test(bitMap)) {
-                    return false;
-                }
-                bitMap = 0;
-                idx++;
-            }
-            bitMap |= BitMaps.getLongBit(i);
-        }
-        // we fall through with data in the bitMap
-        if (!consumer.test(bitMap)) {
-            return false;
-        }
-        // account for hte bitMap in the previous block + the next one
-        idx++;
-        // while there are more blocks to generate send zero to the consumer.
-        while (idx < limit) {
-            if (!consumer.test(0L)) {
-                return false;
-            }
-            idx++;
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean processIndices(final IntPredicate consumer) {
-        Objects.requireNonNull(consumer, "consumer");
-        return indices.stream().allMatch(consumer::test);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

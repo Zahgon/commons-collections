@@ -39,16 +39,24 @@ import java.util.Objects;
  */
 public class BoundedIterator<E> implements Iterator<E> {
 
-    /** The iterator being decorated. */
+    /**
+     * The iterator being decorated.
+     */
     private final Iterator<? extends E> iterator;
 
-    /** The offset to bound the first element return */
+    /**
+     * The offset to bound the first element return
+     */
     private final long offset;
 
-    /** The max number of elements to return */
+    /**
+     * The max number of elements to return
+     */
     private final long max;
 
-    /** The position of the current element */
+    /**
+     * The position of the current element
+     */
     private long pos;
 
     /**
@@ -72,7 +80,6 @@ public class BoundedIterator<E> implements Iterator<E> {
         if (max < 0) {
             throw new IllegalArgumentException("Max parameter must not be negative.");
         }
-
         this.iterator = Objects.requireNonNull(iterator, "iterator");
         this.offset = offset;
         this.max = max;
@@ -93,10 +100,7 @@ public class BoundedIterator<E> implements Iterator<E> {
 
     @Override
     public boolean hasNext() {
-        if (!checkBounds()) {
-            return false;
-        }
-        return iterator.hasNext();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -111,28 +115,11 @@ public class BoundedIterator<E> implements Iterator<E> {
 
     @Override
     public E next() {
-        if (!checkBounds()) {
-            throw new NoSuchElementException();
-        }
-        final E next = iterator.next();
-        pos++;
-        return next;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     * <p>
-     * In case an offset other than 0 was specified, the underlying iterator will be advanced
-     * to this position upon creation. A call to {@link #remove()} will still result in an
-     * {@link IllegalStateException} if no explicit call to {@link #next()} has been made prior
-     * to calling {@link #remove()}.
-     * </p>
-     */
     @Override
     public void remove() {
-        if (pos <= offset) {
-            throw new IllegalStateException("remove() cannot be called before calling next()");
-        }
-        iterator.remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

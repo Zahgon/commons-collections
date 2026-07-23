@@ -19,7 +19,6 @@ package org.apache.commons.collections4;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Objects;
-
 import org.apache.commons.collections4.comparators.BooleanComparator;
 import org.apache.commons.collections4.comparators.ComparableComparator;
 import org.apache.commons.collections4.comparators.ComparatorChain;
@@ -49,190 +48,55 @@ public class ComparatorUtils {
      *
      * @see ComparableComparator#comparableComparator()
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" }) // explicit type needed for Java 1.5 compilation
+    // explicit type needed for Java 1.5 compilation
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static final Comparator NATURAL_COMPARATOR = ComparableComparator.<Comparable>comparableComparator();
 
-    /**
-     * Gets a Comparator that can sort Boolean objects.
-     * <p>
-     * The parameter specifies whether true or false is sorted first.
-     * </p>
-     * <p>
-     * The comparator throws NullPointerException if a null value is compared.
-     * </p>
-     *
-     * @param trueFirst  when {@code true}, sort
-     *        {@code true} {@link Boolean}s before
-     *        {@code false} {@link Boolean}s.
-     * @return  a comparator that sorts booleans
-     */
     public static Comparator<Boolean> booleanComparator(final boolean trueFirst) {
-        return BooleanComparator.booleanComparator(trueFirst);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a comparator that compares using a collection of {@link Comparator}s,
-     * applied in (default iterator) sequence until one returns not equal or the
-     * collection is exhausted.
-     *
-     * @param <E>  the object type to compare
-     * @param comparators  the comparators to use, not null or empty or containing nulls
-     * @return a {@link ComparatorChain} formed from the input comparators
-     * @throws NullPointerException if comparators collection is null or contains a null
-     * @throws ClassCastException if the comparators collection contains the wrong object type
-     * @see ComparatorChain
-     */
     @SuppressWarnings("unchecked")
     public static <E> Comparator<E> chainedComparator(final Collection<Comparator<E>> comparators) {
-        return chainedComparator(comparators.toArray(EMPTY_COMPARATOR_ARRAY));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a comparator that compares using an array of {@link Comparator}s, applied
-     * in sequence until one returns not equal or the array is exhausted.
-     *
-     * @param <E>  the object type to compare
-     * @param comparators  the comparators to use, not null or empty or containing nulls
-     * @return a {@link ComparatorChain} formed from the input comparators
-     * @throws NullPointerException if comparators array is null or contains a null
-     * @see ComparatorChain
-     */
     public static <E> Comparator<E> chainedComparator(final Comparator<E>... comparators) {
-        final ComparatorChain<E> chain = new ComparatorChain<>();
-        for (final Comparator<E> comparator : comparators) {
-            chain.addComparator(Objects.requireNonNull(comparator, "comparator"));
-        }
-        return chain;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the largest of the given objects according to the given
-     * comparator, returning the second object if the comparator
-     * returns equal.
-     *
-     * @param <E>  the object type to compare
-     * @param o1  the first object to compare
-     * @param o2  the second object to compare
-     * @param comparator  the sort order to use
-     * @return  the larger of the two objects
-     */
     @SuppressWarnings("unchecked")
     public static <E> E max(final E o1, final E o2, Comparator<E> comparator) {
-        if (comparator == null) {
-            comparator = NATURAL_COMPARATOR;
-        }
-        final int c = comparator.compare(o1, o2);
-        return c > 0 ? o1 : o2;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the smallest of the given objects according to the given
-     * comparator, returning the second object if the comparator
-     * returns equal.
-     *
-     * @param <E>  the object type to compare
-     * @param o1  the first object to compare
-     * @param o2  the second object to compare
-     * @param comparator  the sort order to use
-     * @return  the smaller of the two objects
-     */
     @SuppressWarnings("unchecked")
     public static <E> E min(final E o1, final E o2, Comparator<E> comparator) {
-        if (comparator == null) {
-            comparator = NATURAL_COMPARATOR;
-        }
-        final int c = comparator.compare(o1, o2);
-        return c < 0 ? o1 : o2;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a comparator that uses the natural order of the objects.
-     *
-     * @param <E>  the object type to compare
-     * @return  a comparator which uses natural order
-     */
     @SuppressWarnings("unchecked")
     public static <E extends Comparable<? super E>> Comparator<E> naturalComparator() {
-        return NATURAL_COMPARATOR;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a Comparator that controls the comparison of {@code null} values.
-     * <p>
-     * The returned comparator will consider a null value to be greater than
-     * any nonnull value, and equal to any other null value.  Two nonnull
-     * values will be evaluated with the given comparator.
-     * </p>
-     *
-     * @param <E>  the object type to compare
-     * @param comparator the comparator that wants to allow nulls
-     * @return  a version of that comparator that allows nulls
-     * @see NullComparator
-     */
     @SuppressWarnings("unchecked")
     public static <E> Comparator<E> nullHighComparator(Comparator<E> comparator) {
-        if (comparator == null) {
-            comparator = NATURAL_COMPARATOR;
-        }
-        return new NullComparator<>(comparator, true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a Comparator that controls the comparison of {@code null} values.
-     * <p>
-     * The returned comparator will consider a null value to be less than
-     * any nonnull value, and equal to any other null value.  Two nonnull
-     * values will be evaluated with the given comparator.
-     * </p>
-     *
-     * @param <E>  the object type to compare
-     * @param comparator the comparator that wants to allow nulls
-     * @return  a version of that comparator that allows nulls
-     * @see NullComparator
-     */
     @SuppressWarnings("unchecked")
     public static <E> Comparator<E> nullLowComparator(Comparator<E> comparator) {
-        if (comparator == null) {
-            comparator = NATURAL_COMPARATOR;
-        }
-        return new NullComparator<>(comparator, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a comparator that reverses the order of the given comparator.
-     *
-     * @param <E>  the object type to compare
-     * @param comparator  the comparator to reverse
-     * @return  a comparator that reverses the order of the input comparator
-     * @see ReverseComparator
-     */
     public static <E> Comparator<E> reversedComparator(final Comparator<E> comparator) {
-        return new ReverseComparator<>(comparator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a Comparator that passes transformed objects to the given comparator.
-     * <p>
-     * Objects passed to the returned comparator will first be transformed
-     * by the given transformer before they are compared by the given
-     * comparator.
-     * </p>
-     *
-     * @param <I>  the input object type of the transformed comparator
-     * @param <O>  the object type of the decorated comparator
-     * @param comparator  the sort order to use
-     * @param transformer  the transformer to use
-     * @return  a comparator that transforms its input objects before comparing them
-     * @see  TransformingComparator
-     */
     @SuppressWarnings("unchecked")
-    public static <I, O> Comparator<I> transformedComparator(Comparator<O> comparator,
-            final Transformer<? super I, ? extends O> transformer) {
-
-        if (comparator == null) {
-            comparator = NATURAL_COMPARATOR;
-        }
-        return new TransformingComparator<>(transformer, comparator);
+    public static <I, O> Comparator<I> transformedComparator(Comparator<O> comparator, final Transformer<? super I, ? extends O> transformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -241,5 +105,4 @@ public class ComparatorUtils {
     private ComparatorUtils() {
         // empty
     }
-
 }

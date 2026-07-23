@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.collections4.properties;
 
 import java.io.IOException;
@@ -48,247 +47,202 @@ public class PropertiesFactory extends AbstractPropertiesFactory<Properties> {
 
         @Override
         public synchronized void clear() {
-            // Noop
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
-        public synchronized Object compute(final Object key,
-            final BiFunction<? super Object, ? super Object, ? extends Object> remappingFunction) {
-            Objects.requireNonNull(key);
-            throw new UnsupportedOperationException();
+        public synchronized Object compute(final Object key, final BiFunction<? super Object, ? super Object, ? extends Object> remappingFunction) {
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
-        public synchronized Object computeIfAbsent(final Object key,
-            final Function<? super Object, ? extends Object> mappingFunction) {
-            Objects.requireNonNull(key);
-            throw new UnsupportedOperationException();
+        public synchronized Object computeIfAbsent(final Object key, final Function<? super Object, ? extends Object> mappingFunction) {
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
-        public synchronized Object computeIfPresent(final Object key,
-            final BiFunction<? super Object, ? super Object, ? extends Object> remappingFunction) {
-            Objects.requireNonNull(key);
-            throw new UnsupportedOperationException();
+        public synchronized Object computeIfPresent(final Object key, final BiFunction<? super Object, ? super Object, ? extends Object> remappingFunction) {
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized boolean contains(final Object value) {
-            return false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized boolean containsKey(final Object key) {
-            return false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean containsValue(final Object value) {
-            return false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized Enumeration<Object> elements() {
-            return Collections.emptyEnumeration();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Set<Entry<Object, Object>> entrySet() {
-            return Collections.emptySet();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized boolean equals(final Object o) {
-            return o instanceof Properties && ((Properties) o).isEmpty();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized void forEach(final BiConsumer<? super Object, ? super Object> action) {
-            Objects.requireNonNull(action);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized Object get(final Object key) {
-            return null;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized Object getOrDefault(final Object key, final Object defaultValue) {
-            return defaultValue;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public String getProperty(final String key) {
-            return null;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public String getProperty(final String key, final String defaultValue) {
-            return defaultValue;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized int hashCode() {
-            return 0;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized boolean isEmpty() {
-            return true;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized Enumeration<Object> keys() {
-            return Collections.emptyEnumeration();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Set<Object> keySet() {
-            return Collections.emptySet();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Throws {@link UnsupportedOperationException}.
-         * Caller should use try-with-resources statement.
-         */
         @SuppressWarnings("resource")
         @Override
         public synchronized void load(final InputStream inStream) throws IOException {
-            Objects.requireNonNull(inStream);
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Throws {@link UnsupportedOperationException}.
-         * Caller should use try-with-resources statement.
-         */
         @SuppressWarnings("resource")
         @Override
         public synchronized void load(final Reader reader) throws IOException {
-            Objects.requireNonNull(reader);
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Throws {@link UnsupportedOperationException}.
-         * Caller should use try-with-resources statement.
-         */
         @SuppressWarnings("resource")
         @Override
-        public synchronized void loadFromXML(final InputStream in)
-            throws IOException, InvalidPropertiesFormatException {
-            Objects.requireNonNull(in);
-            throw new UnsupportedOperationException();
+        public synchronized void loadFromXML(final InputStream in) throws IOException, InvalidPropertiesFormatException {
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
-        public synchronized Object merge(final Object key, final Object value,
-            final BiFunction<? super Object, ? super Object, ? extends Object> remappingFunction) {
-            Objects.requireNonNull(key);
-            Objects.requireNonNull(value);
-            throw new UnsupportedOperationException();
+        public synchronized Object merge(final Object key, final Object value, final BiFunction<? super Object, ? super Object, ? extends Object> remappingFunction) {
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Enumeration<?> propertyNames() {
-            return Collections.emptyEnumeration();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized Object put(final Object key, final Object value) {
-            Objects.requireNonNull(key);
-            Objects.requireNonNull(value);
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized void putAll(final Map<? extends Object, ? extends Object> t) {
-            Objects.requireNonNull(t);
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized Object putIfAbsent(final Object key, final Object value) {
-            Objects.requireNonNull(key);
-            Objects.requireNonNull(value);
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         protected void rehash() {
-            // Noop
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized Object remove(final Object key) {
-            Objects.requireNonNull(key);
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized boolean remove(final Object key, final Object value) {
-            Objects.requireNonNull(key);
-            Objects.requireNonNull(value);
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized Object replace(final Object key, final Object value) {
-            Objects.requireNonNull(key);
-            Objects.requireNonNull(value);
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized boolean replace(final Object key, final Object oldValue, final Object newValue) {
-            Objects.requireNonNull(key);
-            Objects.requireNonNull(oldValue);
-            Objects.requireNonNull(newValue);
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
-        public synchronized void replaceAll(
-            final BiFunction<? super Object, ? super Object, ? extends Object> function) {
-            Objects.requireNonNull(function);
-            throw new UnsupportedOperationException();
+        public synchronized void replaceAll(final BiFunction<? super Object, ? super Object, ? extends Object> function) {
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @SuppressWarnings("deprecation")
         @Override
         public void save(final OutputStream out, final String comments) {
-            // Implement as super
-            super.save(out, comments);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized Object setProperty(final String key, final String value) {
-            Objects.requireNonNull(key);
-            Objects.requireNonNull(value);
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized int size() {
-            return 0;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Set<String> stringPropertyNames() {
-            return Collections.emptySet();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public synchronized String toString() {
-            // Implement as super
-            return super.toString();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Collection<Object> values() {
-            return Collections.emptyList();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -310,14 +264,8 @@ public class PropertiesFactory extends AbstractPropertiesFactory<Properties> {
         // There is only one instance.
     }
 
-    /**
-     * Subclasses override to provide customized properties instances.
-     *
-     * @return a new Properties instance.
-     */
     @Override
     protected Properties createProperties() {
-        return new Properties();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

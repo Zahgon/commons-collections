@@ -42,14 +42,8 @@ public class DeleteCommand<T> extends EditCommand<T> {
         super(object);
     }
 
-    /**
-     * Accept a visitor. When a {@code DeleteCommand} accepts a visitor, it calls
-     * its {@link CommandVisitor#visitDeleteCommand visitDeleteCommand} method.
-     *
-     * @param visitor  the visitor to be accepted
-     */
     @Override
     public void accept(final CommandVisitor<T> visitor) {
-        visitor.visitDeleteCommand(getObject());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

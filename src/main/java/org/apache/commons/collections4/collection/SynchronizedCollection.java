@@ -43,25 +43,23 @@ import java.util.function.Predicate;
  */
 public class SynchronizedCollection<E> implements Collection<E>, Serializable {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 2412805092710877986L;
 
-    /**
-     * Factory method to create a synchronized collection.
-     *
-     * @param <T> the type of the elements in the collection
-     * @param coll  the collection to decorate, must not be null
-     * @return a new synchronized collection
-     * @throws NullPointerException if collection is null
-     * @since 4.0
-     */
     public static <T> SynchronizedCollection<T> synchronizedCollection(final Collection<T> coll) {
-        return new SynchronizedCollection<>(coll);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    /** The collection to decorate */
+
+    /**
+     * The collection to decorate
+     */
     private final Collection<E> collection;
 
-    /** The object to lock on, needed for List/SortedSet views */
+    /**
+     * The object to lock on, needed for List/SortedSet views
+     */
     protected final Object lock;
 
     /**
@@ -89,145 +87,90 @@ public class SynchronizedCollection<E> implements Collection<E>, Serializable {
 
     @Override
     public boolean add(final E object) {
-        synchronized (lock) {
-            return decorated().add(object);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final Collection<? extends E> coll) {
-        synchronized (lock) {
-            return decorated().addAll(coll);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        synchronized (lock) {
-            decorated().clear();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean contains(final Object object) {
-        synchronized (lock) {
-            return decorated().contains(object);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean containsAll(final Collection<?> coll) {
-        synchronized (lock) {
-            return decorated().containsAll(coll);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the collection being decorated.
-     *
-     * @return the decorated collection
-     */
     protected Collection<E> decorated() {
-        return collection;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object object) {
-        synchronized (lock) {
-            if (object == this) {
-                return true;
-            }
-            return object == this || decorated().equals(object);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        synchronized (lock) {
-            return decorated().hashCode();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean isEmpty() {
-        synchronized (lock) {
-            return decorated().isEmpty();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Iterators must be manually synchronized.
-     * <pre>
-     * synchronized (coll) {
-     *   Iterator it = coll.iterator();
-     *   // do stuff with iterator
-     * }
-     * </pre>
-     *
-     * @return an iterator that must be manually synchronized on the collection
-     */
     @Override
     public Iterator<E> iterator() {
-        return decorated().iterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean remove(final Object object) {
-        synchronized (lock) {
-            return decorated().remove(object);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean removeAll(final Collection<?> coll) {
-        synchronized (lock) {
-            return decorated().removeAll(coll);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * @since 4.4
-     */
     @Override
     public boolean removeIf(final Predicate<? super E> filter) {
-        synchronized (lock) {
-            return decorated().removeIf(filter);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean retainAll(final Collection<?> coll) {
-        synchronized (lock) {
-            return decorated().retainAll(coll);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int size() {
-        synchronized (lock) {
-            return decorated().size();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Object[] toArray() {
-        synchronized (lock) {
-            return decorated().toArray();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public <T> T[] toArray(final T[] object) {
-        synchronized (lock) {
-            return decorated().toArray(object);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        synchronized (lock) {
-            return decorated().toString();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

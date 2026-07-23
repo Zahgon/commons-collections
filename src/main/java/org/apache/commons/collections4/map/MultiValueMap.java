@@ -27,7 +27,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.Factory;
 import org.apache.commons.collections4.FunctorException;
@@ -78,7 +77,9 @@ public class MultiValueMap<K, V> extends AbstractMapDecorator<K, Object> impleme
      */
     private static final class ReflectionFactory<T extends Collection<?>> implements Factory<T>, Serializable {
 
-        /** Serialization version */
+        /**
+         * Serialization version
+         */
         private static final long serialVersionUID = 2986114157496788874L;
 
         private final Class<T> clazz;
@@ -89,11 +90,7 @@ public class MultiValueMap<K, V> extends AbstractMapDecorator<K, Object> impleme
 
         @Override
         public T create() {
-            try {
-                return clazz.getDeclaredConstructor().newInstance();
-            } catch (final Exception ex) {
-                throw new FunctorException("Cannot instantiate class: " + clazz, ex);
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -116,31 +113,32 @@ public class MultiValueMap<K, V> extends AbstractMapDecorator<K, Object> impleme
      * Inner class that provides the values view.
      */
     private final class Values extends AbstractCollection<V> {
+
         @Override
         public void clear() {
-            MultiValueMap.this.clear();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<V> iterator() {
-            final IteratorChain<V> chain = new IteratorChain<>();
-            for (final K k : keySet()) {
-                chain.addIterator(new ValuesIterator(k));
-            }
-            return chain;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return totalSize();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
+
     /**
      * Inner class that provides the values iterator.
      */
     private final class ValuesIterator implements Iterator<V> {
+
         private final Object key;
+
         private final Collection<V> values;
+
         private final Iterator<V> iterator;
 
         ValuesIterator(final Object key) {
@@ -151,79 +149,46 @@ public class MultiValueMap<K, V> extends AbstractMapDecorator<K, Object> impleme
 
         @Override
         public boolean hasNext() {
-            return iterator.hasNext();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V next() {
-            return iterator.next();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void remove() {
-            iterator.remove();
-            if (values.isEmpty()) {
-                MultiValueMap.this.remove(key);
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -2214159910087182007L;
 
-    /**
-     * Creates a map which decorates the given {@code map} and
-     * maps keys to collections of type {@code collectionClass}.
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param <C>  the collection class type
-     * @param map  the map to wrap
-     * @param collectionClass  the type of the collection class
-     * @return a new multi-value map
-     * @since 4.0
-     */
-    public static <K, V, C extends Collection<V>> MultiValueMap<K, V> multiValueMap(final Map<K, ? super C> map,
-                                                                                    final Class<C> collectionClass) {
-        return new MultiValueMap<>(map, new ReflectionFactory<>(collectionClass));
+    public static <K, V, C extends Collection<V>> MultiValueMap<K, V> multiValueMap(final Map<K, ? super C> map, final Class<C> collectionClass) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a map which decorates the given {@code map} and
-     * creates the value collections using the supplied {@code collectionFactory}.
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param <C>  the collection class type
-     * @param map  the map to decorate
-     * @param collectionFactory  the collection factory (must return a Collection object).
-     * @return a new multi-value map
-     * @since 4.0
-     */
-    public static <K, V, C extends Collection<V>> MultiValueMap<K, V> multiValueMap(final Map<K, ? super C> map,
-            final Factory<C> collectionFactory) {
-        return new MultiValueMap<>(map, collectionFactory);
+    public static <K, V, C extends Collection<V>> MultiValueMap<K, V> multiValueMap(final Map<K, ? super C> map, final Factory<C> collectionFactory) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a map which wraps the given map and
-     * maps keys to ArrayLists.
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to wrap
-     * @return a new multi-value map
-     * @since 4.0
-     */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public static <K, V> MultiValueMap<K, V> multiValueMap(final Map<K, ? super Collection<V>> map) {
-        return MultiValueMap.<K, V, ArrayList>multiValueMap((Map<K, ? super Collection>) map, ArrayList.class);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The factory for creating value collections. */
+    /**
+     * The factory for creating value collections.
+     */
     private final Factory<? extends Collection<V>> collectionFactory;
 
-    /** The cached values. */
+    /**
+     * The cached values.
+     */
     private transient Collection<V> valuesView;
 
     /**
@@ -244,8 +209,7 @@ public class MultiValueMap<K, V> extends AbstractMapDecorator<K, Object> impleme
      * @param collectionFactory  the collection factory which must return a Collection instance
      */
     @SuppressWarnings("unchecked")
-    protected <C extends Collection<V>> MultiValueMap(final Map<K, ? super C> map,
-                                                      final Factory<C> collectionFactory) {
+    protected <C extends Collection<V>> MultiValueMap(final Map<K, ? super C> map, final Factory<C> collectionFactory) {
         super((Map<K, Object>) map);
         if (collectionFactory == null) {
             throw new IllegalArgumentException("The factory must not be null");
@@ -253,243 +217,57 @@ public class MultiValueMap<K, V> extends AbstractMapDecorator<K, Object> impleme
         this.collectionFactory = collectionFactory;
     }
 
-    /**
-     * Clear the map.
-     */
     @Override
     public void clear() {
-        // If you believe that you have GC issues here, try uncommenting this code
-//        Set pairs = getMap().entrySet();
-//        Iterator pairsIterator = pairs.iterator();
-//        while (pairsIterator.hasNext()) {
-//            Map.Entry keyValuePair = (Map.Entry) pairsIterator.next();
-//            Collection coll = (Collection) keyValuePair.getValue();
-//            coll.clear();
-//        }
-        decorated().clear();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Checks whether the map contains the value specified.
-     * <p>
-     * This checks all collections against all keys for the value, and thus could be slow.
-     * </p>
-     *
-     * @param value  the value to search for
-     * @return true if the map contains the value
-     */
     @Override
     @SuppressWarnings("unchecked")
     public boolean containsValue(final Object value) {
-        final Set<Map.Entry<K, Object>> pairs = decorated().entrySet();
-        if (pairs != null) {
-            for (final Map.Entry<K, Object> entry : pairs) {
-                if (((Collection<V>) entry.getValue()).contains(value)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Checks whether the collection at the specified key contains the value.
-     *
-     * @param key  the key to search for
-     * @param value  the value to search for
-     * @return true if the map contains the value
-     */
     public boolean containsValue(final Object key, final Object value) {
-        final Collection<V> coll = getCollection(key);
-        if (coll == null) {
-            return false;
-        }
-        return coll.contains(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a new instance of the map value Collection container
-     * using the factory.
-     * <p>
-     * This method can be overridden to perform your own processing
-     * instead of using the factory.
-     * </p>
-     *
-     * @param size  the collection size that is about to be added
-     * @return the new collection
-     */
     protected Collection<V> createCollection(final int size) {
-        return collectionFactory.get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     * <p>
-     * Note: the returned Entry objects will contain as value a {@link Collection}
-     * of all values that are mapped to the given key. To get a "flattened" version
-     * of all mappings contained in this map, use {@link #iterator()}.
-     * </p>
-     *
-     * @see #iterator()
-     */
     @Override
-    public Set<Entry<K, Object>> entrySet() { // NOPMD
-        return super.entrySet();
+    public Set<Entry<K, Object>> entrySet() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the collection mapped to the specified key.
-     * This method is a convenience method to typecast the result of {@code get(key)}.
-     *
-     * @param key  the key to retrieve
-     * @return the collection mapped to the key, null if no mapping
-     */
     @SuppressWarnings("unchecked")
     public Collection<V> getCollection(final Object key) {
-        return (Collection<V>) decorated().get(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets an iterator for all mappings stored in this {@link MultiValueMap}.
-     * <p>
-     * The iterator will return multiple Entry objects with the same key
-     * if there are multiple values mapped to this key.
-     * </p>
-     * <p>
-     * Note: calling {@link java.util.Map.Entry#setValue(Object)} on any of the returned
-     * elements will result in a {@link UnsupportedOperationException}.
-     * </p>
-     *
-     * @return the iterator of all mappings in this map
-     * @since 4.0
-     */
     public Iterator<Entry<K, V>> iterator() {
-        final Collection<K> allKeys = new ArrayList<>(keySet());
-        final Iterator<K> keyIterator = allKeys.iterator();
-
-        return new LazyIteratorChain<Entry<K, V>>() {
-            @Override
-            protected Iterator<? extends Entry<K, V>> nextIterator(final int count) {
-                if (!keyIterator.hasNext()) {
-                    return null;
-                }
-                final K key = keyIterator.next();
-                final Transformer<V, Entry<K, V>> transformer = input -> new Entry<K, V>() {
-                    @Override
-                    public K getKey() {
-                        return key;
-                    }
-
-                    @Override
-                    public V getValue() {
-                        return input;
-                    }
-
-                    @Override
-                    public V setValue(final V value) {
-                        throw new UnsupportedOperationException();
-                    }
-                };
-                return new TransformIterator<>(new ValuesIterator(key), transformer);
-            }
-        };
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets an iterator for the collection mapped to the specified key.
-     *
-     * @param key  the key to get an iterator for
-     * @return the iterator of the collection at the key, empty iterator if key not in map
-     */
     public Iterator<V> iterator(final Object key) {
-        if (!containsKey(key)) {
-            return EmptyIterator.<V>emptyIterator();
-        }
-        return new ValuesIterator(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Adds the value to the collection associated with the specified key.
-     * <p>
-     * Unlike a normal {@code Map} the previous value is not replaced.
-     * Instead, the new value is added to the collection stored against the key.
-     * </p>
-     *
-     * @param key  the key to store against
-     * @param value  the value to add to the collection at the key
-     * @return the value added if the map changed and null if the map did not change
-     */
     @Override
     @SuppressWarnings("unchecked")
     public Object put(final K key, final Object value) {
-        boolean result = false;
-        Collection<V> coll = getCollection(key);
-        if (coll == null) {
-            coll = createCollection(1);  // might produce a non-empty collection
-            coll.add((V) value);
-            if (!coll.isEmpty()) {
-                // only add if non-zero size to maintain class state
-                decorated().put(key, coll);
-                result = true;  // map definitely changed
-            }
-        } else {
-            result = coll.add((V) value);
-        }
-        return result ? value : null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Adds a collection of values to the collection associated with
-     * the specified key.
-     *
-     * @param key  the key to store against
-     * @param values  the values to add to the collection at the key, null ignored
-     * @return true if this map changed
-     */
     public boolean putAll(final K key, final Collection<V> values) {
-        if (values == null || values.isEmpty()) {
-            return false;
-        }
-        boolean result = false;
-        Collection<V> coll = getCollection(key);
-        if (coll == null) {
-            coll = createCollection(values.size());  // might produce a non-empty collection
-            coll.addAll(values);
-            if (!coll.isEmpty()) {
-                // only add if non-zero size to maintain class state
-                decorated().put(key, coll);
-                result = true;  // map definitely changed
-            }
-        } else {
-            result = coll.addAll(values);
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Override superclass to ensure that MultiMap instances are
-     * correctly handled.
-     * <p>
-     * If you call this method with a normal map, each entry is
-     * added using {@code put(Object,Object)}.
-     * If you call this method with a multi map, each entry is
-     * added using {@code putAll(Object,Collection)}.
-     * </p>
-     *
-     * @param map  the map to copy (either a normal or multi map)
-     */
     @Override
     @SuppressWarnings("unchecked")
     public void putAll(final Map<? extends K, ?> map) {
-        if (map instanceof MultiMap) {
-            for (final Map.Entry<? extends K, Object> entry : ((MultiMap<? extends K, V>) map).entrySet()) {
-                putAll(entry.getKey(), (Collection<V>) entry.getValue());
-            }
-        } else {
-            for (final Map.Entry<? extends K, ?> entry : map.entrySet()) {
-                put(entry.getKey(), entry.getValue());
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -500,83 +278,31 @@ public class MultiValueMap<K, V> extends AbstractMapDecorator<K, Object> impleme
      * @throws ClassNotFoundException if an object read from the stream cannot be loaded
      * @since 4.0
      */
-    @SuppressWarnings("unchecked") // (1) should only fail if input stream is incorrect
+    // (1) should only fail if input stream is incorrect
+    @SuppressWarnings("unchecked")
     private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
-        map = (Map<K, Object>) in.readObject(); // (1)
+        // (1)
+        map = (Map<K, Object>) in.readObject();
     }
 
-    /**
-     * Removes a specific value from map.
-     * <p>
-     * The item is removed from the collection mapped to the specified key.
-     * Other values attached to that key are unaffected.
-     * </p>
-     * <p>
-     * If the last value for a key is removed, {@code null} will be returned
-     * from a subsequent {@code get(key)}.
-     * </p>
-     *
-     * @param key  the key to remove from
-     * @param value the value to remove
-     * @return {@code true} if the mapping was removed, {@code false} otherwise
-     */
     @Override
     public boolean removeMapping(final Object key, final Object value) {
-        final Collection<V> valuesForKey = getCollection(key);
-        if (valuesForKey == null) {
-            return false;
-        }
-        final boolean removed = valuesForKey.remove(value);
-        if (!removed) {
-            return false;
-        }
-        if (valuesForKey.isEmpty()) {
-            remove(key);
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the size of the collection mapped to the specified key.
-     *
-     * @param key  the key to get size for
-     * @return the size of the collection at the key, zero if key not in map
-     */
     public int size(final Object key) {
-        final Collection<V> coll = getCollection(key);
-        if (coll == null) {
-            return 0;
-        }
-        return coll.size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the total size of the map by counting all the values.
-     *
-     * @return the total size of the map counting all values
-     */
     public int totalSize() {
-        int total = 0;
-        for (final Object v : decorated().values()) {
-            total += CollectionUtils.size(v);
-        }
-        return total;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a collection containing all the values in the map.
-     * <p>
-     * This returns a collection containing the combination of values from all keys.
-     * </p>
-     *
-     * @return a collection view of the values contained in this map
-     */
     @Override
     @SuppressWarnings("unchecked")
     public Collection<Object> values() {
-        final Collection<V> vs = valuesView;
-        return (Collection<Object>) (vs != null ? vs : (valuesView = new Values()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -590,5 +316,4 @@ public class MultiValueMap<K, V> extends AbstractMapDecorator<K, Object> impleme
         out.defaultWriteObject();
         out.writeObject(map);
     }
-
 }

@@ -21,7 +21,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
-
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.collections4.ListValuedMap;
 
@@ -37,14 +36,17 @@ import org.apache.commons.collections4.ListValuedMap;
  * @param <V> the type of the values in this map
  * @since 4.1
  */
-public abstract class AbstractListValuedMap<K, V> extends AbstractMultiValuedMap<K, V>
-        implements ListValuedMap<K, V> {
+public abstract class AbstractListValuedMap<K, V> extends AbstractMultiValuedMap<K, V> implements ListValuedMap<K, V> {
 
-    /** Values ListIterator */
+    /**
+     * Values ListIterator
+     */
     private final class ValuesListIterator implements ListIterator<V> {
 
         private final K key;
+
         private List<V> values;
+
         private ListIterator<V> iterator;
 
         ValuesListIterator(final K key) {
@@ -61,58 +63,48 @@ public abstract class AbstractListValuedMap<K, V> extends AbstractMultiValuedMap
 
         @Override
         public void add(final V value) {
-            if (getMap().get(key) == null) {
-                final List<V> list = createCollection();
-                getMap().put(key, list);
-                values = list;
-                iterator = list.listIterator();
-            }
-            iterator.add(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean hasNext() {
-            return iterator.hasNext();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean hasPrevious() {
-            return iterator.hasPrevious();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V next() {
-            return iterator.next();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int nextIndex() {
-            return iterator.nextIndex();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V previous() {
-            return iterator.previous();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int previousIndex() {
-            return iterator.previousIndex();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void remove() {
-            iterator.remove();
-            if (values.isEmpty()) {
-                getMap().remove(key);
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void set(final V value) {
-            iterator.set(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -126,102 +118,68 @@ public abstract class AbstractListValuedMap<K, V> extends AbstractMultiValuedMap
 
         @Override
         public void add(final int index, final V value) {
-            List<V> list = getMapping();
-            if (list == null) {
-                list = createCollection();
-                getMap().put(key, list);
-            }
-            list.add(index, value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean addAll(final int index, final Collection<? extends V> c) {
-            List<V> list = getMapping();
-            if (list == null) {
-                list = createCollection();
-                final boolean changed = list.addAll(index, c);
-                if (changed) {
-                    getMap().put(key, list);
-                }
-                return changed;
-            }
-            return list.addAll(index, c);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean equals(final Object other) {
-            final List<V> list = getMapping();
-            if (list == null) {
-                return Collections.emptyList().equals(other);
-            }
-            if (!(other instanceof List)) {
-                return false;
-            }
-            final List<?> otherList = (List<?>) other;
-            return ListUtils.isEqualList(list, otherList);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V get(final int index) {
-            final List<V> list = ListUtils.emptyIfNull(getMapping());
-            return list.get(index);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         protected List<V> getMapping() {
-            return getMap().get(key);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int hashCode() {
-            final List<V> list = getMapping();
-            return ListUtils.hashCodeForList(list);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int indexOf(final Object o) {
-            final List<V> list = ListUtils.emptyIfNull(getMapping());
-            return list.indexOf(o);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int lastIndexOf(final Object o) {
-            final List<V> list = ListUtils.emptyIfNull(getMapping());
-            return list.lastIndexOf(o);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public ListIterator<V> listIterator() {
-            return new ValuesListIterator(key);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public ListIterator<V> listIterator(final int index) {
-            return new ValuesListIterator(key, index);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V remove(final int index) {
-            final List<V> list = ListUtils.emptyIfNull(getMapping());
-            final V value = list.remove(index);
-            if (list.isEmpty()) {
-                AbstractListValuedMap.this.remove(key);
-            }
-            return value;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V set(final int index, final V value) {
-            final List<V> list = ListUtils.emptyIfNull(getMapping());
-            return list.set(index, value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public List<V> subList(final int fromIndex, final int toIndex) {
-            final List<V> list = ListUtils.emptyIfNull(getMapping());
-            return list.subList(fromIndex, toIndex);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -247,42 +205,24 @@ public abstract class AbstractListValuedMap<K, V> extends AbstractMultiValuedMap
     @Override
     protected abstract List<V> createCollection();
 
-    /**
-     * Gets the list of values associated with the specified key. This would
-     * return an empty list in case the mapping is not present
-     *
-     * @param key  the key to retrieve
-     * @return the {@code List} of values, will return an empty {@link List} for no mapping
-     */
     @Override
     public List<V> get(final K key) {
-        return wrappedCollection(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     @SuppressWarnings("unchecked")
     protected Map<K, List<V>> getMap() {
-        return (Map<K, List<V>>) super.getMap();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes all values associated with the specified key.
-     * <p>
-     * A subsequent {@code get(Object)} would return an empty list.
-     * </p>
-     *
-     * @param key  the key to remove values from
-     * @return the {@code List} of values removed, will return an empty,
-     *   unmodifiable list for no mapping found.
-     */
     @Override
     public List<V> remove(final Object key) {
-        return ListUtils.emptyIfNull(getMap().remove(key));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     List<V> wrappedCollection(final K key) {
-        return new WrappedList(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

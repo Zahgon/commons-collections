@@ -18,7 +18,6 @@ package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.Transformer;
 
@@ -31,28 +30,23 @@ import org.apache.commons.collections4.Transformer;
  */
 public final class TransformedPredicate<T> extends AbstractPredicate<T> implements PredicateDecorator<T>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = -5596090919668315834L;
 
-    /**
-     * Creates the predicate.
-     *
-     * @param <T> the type that the predicate queries
-     * @param transformer  the transformer to call
-     * @param predicate  the predicate to call with the result of the transform
-     * @return the predicate
-     * @throws NullPointerException if the transformer or the predicate is null
-     */
-    public static <T> Predicate<T> transformedPredicate(final Transformer<? super T, ? extends T> transformer,
-                                                        final Predicate<? super T> predicate) {
-        return new TransformedPredicate<>(Objects.requireNonNull(transformer, "transformer"),
-                Objects.requireNonNull(predicate, "predicate"));
+    public static <T> Predicate<T> transformedPredicate(final Transformer<? super T, ? extends T> transformer, final Predicate<? super T> predicate) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The transformer to call */
+    /**
+     * The transformer to call
+     */
     private final Transformer<? super T, ? extends T> iTransformer;
 
-    /** The predicate to call */
+    /**
+     * The predicate to call
+     */
     private final Predicate<? super T> iPredicate;
 
     /**
@@ -62,44 +56,23 @@ public final class TransformedPredicate<T> extends AbstractPredicate<T> implemen
      * @param transformer  the transformer to use
      * @param predicate  the predicate to decorate
      */
-    public TransformedPredicate(final Transformer<? super T, ? extends T> transformer,
-                                final Predicate<? super T> predicate) {
+    public TransformedPredicate(final Transformer<? super T, ? extends T> transformer, final Predicate<? super T> predicate) {
         iTransformer = transformer;
         iPredicate = predicate;
     }
 
-    /**
-     * Gets the predicate being decorated.
-     *
-     * @return the predicate as the only element in an array
-     * @since 3.1
-     */
     @Override
     @SuppressWarnings("unchecked")
     public Predicate<? super T>[] getPredicates() {
-        return new Predicate[] {iPredicate};
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the transformer in use.
-     *
-     * @return the transformer
-     */
     public Transformer<? super T, ? extends T> getTransformer() {
-        return iTransformer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Evaluates the predicate returning the result of the decorated predicate
-     * once the input has been transformed
-     *
-     * @param object  the input object which will be transformed
-     * @return true if decorated predicate returns true
-     */
     @Override
     public boolean test(final T object) {
-        final T result = iTransformer.apply(object);
-        return iPredicate.test(result);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

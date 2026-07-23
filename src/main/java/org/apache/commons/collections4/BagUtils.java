@@ -38,226 +38,63 @@ public class BagUtils {
     /**
      * An empty unmodifiable bag.
      */
-    @SuppressWarnings("rawtypes") // OK, empty bag is compatible with any type
+    // OK, empty bag is compatible with any type
+    @SuppressWarnings("rawtypes")
     public static final Bag EMPTY_BAG = UnmodifiableBag.unmodifiableBag(new HashBag<>());
 
     /**
      * An empty unmodifiable sorted bag.
      */
-    @SuppressWarnings("rawtypes") // OK, empty bag is compatible with any type
-    public static final Bag EMPTY_SORTED_BAG =
-            UnmodifiableSortedBag.unmodifiableSortedBag(new TreeBag<>());
+    // OK, empty bag is compatible with any type
+    @SuppressWarnings("rawtypes")
+    public static final Bag EMPTY_SORTED_BAG = UnmodifiableSortedBag.unmodifiableSortedBag(new TreeBag<>());
 
-    /**
-     * Returns a bag that complies to the Collection contract, backed by the given bag.
-     *
-     * @param <E> the element type
-     * @param bag the bag to decorate, must not be null
-     * @return a Bag that complies to the Collection contract
-     * @throws NullPointerException if bag is null
-     * @since 4.0
-     */
     public static <E> Bag<E> collectionBag(final Bag<E> bag) {
-        return CollectionBag.collectionBag(bag);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets an empty {@code Bag}.
-     *
-     * @param <E> the element type
-     * @return an empty Bag
-     */
-    @SuppressWarnings("unchecked") // OK, empty bag is compatible with any type
+    // OK, empty bag is compatible with any type
+    @SuppressWarnings("unchecked")
     public static <E> Bag<E> emptyBag() {
-        return EMPTY_BAG;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets an empty {@code SortedBag}.
-     *
-     * @param <E> the element type
-     * @return an empty sorted Bag
-     */
-    @SuppressWarnings("unchecked") // OK, empty bag is compatible with any type
+    // OK, empty bag is compatible with any type
+    @SuppressWarnings("unchecked")
     public static <E> SortedBag<E> emptySortedBag() {
-        return (SortedBag<E>) EMPTY_SORTED_BAG;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns a predicated (validating) bag backed by the given bag.
-     * <p>
-     * Only objects that pass the test in the given predicate can be added to
-     * the bag. Trying to add an invalid object results in an
-     * IllegalArgumentException. It is important not to use the original bag
-     * after invoking this method, as it is a backdoor for adding invalid
-     * objects.
-     * </p>
-     *
-     * @param <E> the element type
-     * @param bag the bag to predicate, must not be null
-     * @param predicate the predicate for the bag, must not be null
-     * @return a predicated bag backed by the given bag
-     * @throws NullPointerException if the Bag or Predicate is null
-     */
     public static <E> Bag<E> predicatedBag(final Bag<E> bag, final Predicate<? super E> predicate) {
-        return PredicatedBag.predicatedBag(bag, predicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns a predicated (validating) sorted bag backed by the given sorted
-     * bag.
-     * <p>
-     * Only objects that pass the test in the given predicate can be added to
-     * the bag. Trying to add an invalid object results in an
-     * IllegalArgumentException. It is important not to use the original bag
-     * after invoking this method, as it is a backdoor for adding invalid
-     * objects.
-     * </p>
-     *
-     * @param <E> the element type
-     * @param bag the sorted bag to predicate, must not be null
-     * @param predicate the predicate for the bag, must not be null
-     * @return a predicated bag backed by the given bag
-     * @throws NullPointerException if the SortedBag or Predicate is null
-     */
-    public static <E> SortedBag<E> predicatedSortedBag(final SortedBag<E> bag,
-            final Predicate<? super E> predicate) {
-        return PredicatedSortedBag.predicatedSortedBag(bag, predicate);
+    public static <E> SortedBag<E> predicatedSortedBag(final SortedBag<E> bag, final Predicate<? super E> predicate) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns a synchronized (thread-safe) bag backed by the given bag. In
-     * order to guarantee serial access, it is critical that all access to the
-     * backing bag is accomplished through the returned bag.
-     * <p>
-     * It is imperative that the user manually synchronize on the returned bag
-     * when iterating over it:
-     * </p>
-     *
-     * <pre>
-     * Bag bag = BagUtils.synchronizedBag(new HashBag());
-     * ...
-     * synchronized(bag) {
-     *     Iterator i = bag.iterator(); // Must be in synchronized block
-     *     while (i.hasNext())
-     *         foo(i.next());
-     *     }
-     * }
-     * </pre>
-     *
-     * Failure to follow this advice may result in non-deterministic behavior.
-     *
-     * @param <E> the element type
-     * @param bag the bag to synchronize, must not be null
-     * @return a synchronized bag backed by that bag
-     * @throws NullPointerException if the Bag is null
-     */
     public static <E> Bag<E> synchronizedBag(final Bag<E> bag) {
-        return SynchronizedBag.synchronizedBag(bag);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns a synchronized (thread-safe) sorted bag backed by the given
-     * sorted bag. In order to guarantee serial access, it is critical that all
-     * access to the backing bag is accomplished through the returned bag.
-     * <p>
-     * It is imperative that the user manually synchronize on the returned bag
-     * when iterating over it:
-     * </p>
-     *
-     * <pre>
-     * SortedBag bag = BagUtils.synchronizedSortedBag(new TreeBag());
-     * ...
-     * synchronized(bag) {
-     *     Iterator i = bag.iterator(); // Must be in synchronized block
-     *     while (i.hasNext())
-     *         foo(i.next());
-     *     }
-     * }
-     * </pre>
-     *
-     * Failure to follow this advice may result in non-deterministic behavior.
-     *
-     * @param <E> the element type
-     * @param bag the bag to synchronize, must not be null
-     * @return a synchronized bag backed by that bag
-     * @throws NullPointerException if the SortedBag is null
-     */
     public static <E> SortedBag<E> synchronizedSortedBag(final SortedBag<E> bag) {
-        return SynchronizedSortedBag.synchronizedSortedBag(bag);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns a transformed bag backed by the given bag.
-     * <p>
-     * Each object is passed through the transformer as it is added to the Bag.
-     * It is important not to use the original bag after invoking this method,
-     * as it is a backdoor for adding untransformed objects.
-     * </p>
-     * <p>
-     * Existing entries in the specified bag will not be transformed.
-     * If you want that behavior, see {@link TransformedBag#transformedBag(Bag, Transformer)}.
-     * </p>
-     *
-     * @param <E> the element type
-     * @param bag the bag to predicate, must not be null
-     * @param transformer the transformer for the bag, must not be null
-     * @return a transformed bag backed by the given bag
-     * @throws NullPointerException if the Bag or Transformer is null
-     */
     public static <E> Bag<E> transformingBag(final Bag<E> bag, final Transformer<? super E, ? extends E> transformer) {
-        return TransformedBag.transformingBag(bag, transformer);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns a transformed sorted bag backed by the given bag.
-     * <p>
-     * Each object is passed through the transformer as it is added to the Bag.
-     * It is important not to use the original bag after invoking this method,
-     * as it is a backdoor for adding untransformed objects.
-     * </p>
-     * <p>
-     * Existing entries in the specified bag will not be transformed.
-     * If you want that behavior, see
-     * {@link TransformedSortedBag#transformedSortedBag(SortedBag, Transformer)}.
-     * </p>
-     *
-     * @param <E> the element type
-     * @param bag the bag to predicate, must not be null
-     * @param transformer the transformer for the bag, must not be null
-     * @return a transformed bag backed by the given bag
-     * @throws NullPointerException if the Bag or Transformer is null
-     */
-    public static <E> SortedBag<E> transformingSortedBag(final SortedBag<E> bag,
-                                                         final Transformer<? super E, ? extends E> transformer) {
-        return TransformedSortedBag.transformingSortedBag(bag, transformer);
+    public static <E> SortedBag<E> transformingSortedBag(final SortedBag<E> bag, final Transformer<? super E, ? extends E> transformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns an unmodifiable view of the given bag. Any modification attempts
-     * to the returned bag will raise an {@link UnsupportedOperationException}.
-     *
-     * @param <E> the element type
-     * @param bag the bag whose unmodifiable view is to be returned, must not be null
-     * @return an unmodifiable view of that bag
-     * @throws NullPointerException if the Bag is null
-     */
     public static <E> Bag<E> unmodifiableBag(final Bag<? extends E> bag) {
-        return UnmodifiableBag.unmodifiableBag(bag);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns an unmodifiable view of the given sorted bag. Any modification
-     * attempts to the returned bag will raise an
-     * {@link UnsupportedOperationException}.
-     *
-     * @param <E> the element type
-     * @param bag the bag whose unmodifiable view is to be returned, must not be null
-     * @return an unmodifiable view of that bag
-     * @throws NullPointerException if the SortedBag is null
-     */
     public static <E> SortedBag<E> unmodifiableSortedBag(final SortedBag<E> bag) {
-        return UnmodifiableSortedBag.unmodifiableSortedBag(bag);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -266,5 +103,4 @@ public class BagUtils {
     private BagUtils() {
         // empty
     }
-
 }

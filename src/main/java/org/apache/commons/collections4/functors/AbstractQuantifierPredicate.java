@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -28,10 +27,14 @@ import org.apache.commons.collections4.Predicate;
  */
 public abstract class AbstractQuantifierPredicate<T> extends AbstractPredicate<T> implements PredicateDecorator<T>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = -3094696765038308799L;
 
-    /** The array of predicates to call */
+    /**
+     * The array of predicates to call
+     */
     protected final Predicate<? super T>[] iPredicates;
 
     /**
@@ -43,15 +46,8 @@ public abstract class AbstractQuantifierPredicate<T> extends AbstractPredicate<T
         iPredicates = predicates;
     }
 
-    /**
-     * Gets the predicates.
-     *
-     * @return a copy of the predicates
-     * @since 3.1
-     */
     @Override
     public Predicate<? super T>[] getPredicates() {
-        return FunctorUtils.copy(iPredicates);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

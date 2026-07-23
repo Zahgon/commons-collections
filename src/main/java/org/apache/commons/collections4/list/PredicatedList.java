@@ -19,7 +19,6 @@ package org.apache.commons.collections4.list;
 import java.util.Collection;
 import java.util.List;
 import java.util.ListIterator;
-
 import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.collection.PredicatedCollection;
 import org.apache.commons.collections4.iterators.AbstractListIteratorDecorator;
@@ -66,36 +65,22 @@ public class PredicatedList<E> extends PredicatedCollection<E> implements List<E
 
         @Override
         public void add(final E object) {
-            validate(object);
-            getListIterator().add(object);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void set(final E object) {
-            validate(object);
-            getListIterator().set(object);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -5722039223898659102L;
 
-    /**
-     * Factory method to create a predicated (validating) list.
-     * <p>
-     * If there are any elements already in the list being decorated, they
-     * are validated.
-     *
-     * @param <T> the type of the elements in the list
-     * @param list  the list to decorate, must not be null
-     * @param predicate  the predicate to use for validation, must not be null
-     * @return a new predicated list
-     * @throws NullPointerException if list or predicate is null
-     * @throws IllegalArgumentException if the list contains invalid elements
-     * @since 4.0
-     */
     public static <T> PredicatedList<T> predicatedList(final List<T> list, final Predicate<? super T> predicate) {
-        return new PredicatedList<>(list, predicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -115,78 +100,66 @@ public class PredicatedList<E> extends PredicatedCollection<E> implements List<E
 
     @Override
     public void add(final int index, final E object) {
-        validate(object);
-        decorated().add(index, object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final int index, final Collection<? extends E> coll) {
-        for (final E aColl : coll) {
-            validate(aColl);
-        }
-        return decorated().addAll(index, coll);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the list being decorated.
-     *
-     * @return the decorated list
-     */
     @Override
     protected List<E> decorated() {
-        return (List<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object object) {
-        return object == this || decorated().equals(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E get(final int index) {
-        return decorated().get(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return decorated().hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int indexOf(final Object object) {
-        return decorated().indexOf(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int lastIndexOf(final Object object) {
-        return decorated().lastIndexOf(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public ListIterator<E> listIterator() {
-        return listIterator(0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public ListIterator<E> listIterator(final int i) {
-        return new PredicatedListIterator(decorated().listIterator(i));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E remove(final int index) {
-        return decorated().remove(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E set(final int index, final E object) {
-        validate(object);
-        return decorated().set(index, object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public List<E> subList(final int fromIndex, final int toIndex) {
-        final List<E> sub = decorated().subList(fromIndex, toIndex);
-        return new PredicatedList<>(sub, predicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

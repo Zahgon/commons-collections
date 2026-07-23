@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.functors;
 
 import java.util.Collection;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -34,57 +33,19 @@ import org.apache.commons.collections4.Predicate;
  */
 public final class AnyPredicate<T> extends AbstractQuantifierPredicate<T> {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 7429999530934647542L;
 
-    /**
-     * Creates the predicate.
-     * <p>
-     * If the collection is size zero, the predicate always returns false.
-     * If the collection is size one, then that predicate is returned.
-     * </p>
-     *
-     * @param <T> the type that the predicate queries
-     * @param predicates  the predicates to check, cloned, not null
-     * @return the {@code all} predicate
-     * @throws NullPointerException if the predicates array is null
-     * @throws NullPointerException if any predicate in the array is null
-     */
     @SuppressWarnings("unchecked")
     public static <T> Predicate<T> anyPredicate(final Collection<? extends Predicate<? super T>> predicates) {
-        final Predicate<? super T>[] preds = FunctorUtils.validate(predicates);
-        if (preds.length == 0) {
-            return FalsePredicate.<T>falsePredicate();
-        }
-        if (preds.length == 1) {
-            return (Predicate<T>) preds[0];
-        }
-        return new AnyPredicate<>(preds);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates the predicate.
-     * <p>
-     * If the array is size zero, the predicate always returns false.
-     * If the array is size one, then that predicate is returned.
-     * </p>
-     *
-     * @param <T> the type that the predicate queries
-     * @param predicates  the predicates to check, cloned, not null
-     * @return the {@code any} predicate
-     * @throws NullPointerException if the predicates array is null
-     * @throws NullPointerException if any predicate in the array is null
-     */
     @SuppressWarnings("unchecked")
     public static <T> Predicate<T> anyPredicate(final Predicate<? super T>... predicates) {
-        FunctorUtils.validate(predicates);
-        if (predicates.length == 0) {
-            return FalsePredicate.<T>falsePredicate();
-        }
-        if (predicates.length == 1) {
-            return (Predicate<T>) predicates[0];
-        }
-        return new AnyPredicate<T>(FunctorUtils.copy(predicates));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -97,20 +58,8 @@ public final class AnyPredicate<T> extends AbstractQuantifierPredicate<T> {
         super(predicates);
     }
 
-    /**
-     * Evaluates the predicate returning true if any predicate returns true.
-     *
-     * @param object  the input object
-     * @return true if any decorated predicate return true
-     */
     @Override
     public boolean test(final T object) {
-        for (final Predicate<? super T> iPredicate : iPredicates) {
-            if (iPredicate.test(object)) {
-                return true;
-            }
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

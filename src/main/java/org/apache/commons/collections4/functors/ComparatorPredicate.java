@@ -19,7 +19,6 @@ package org.apache.commons.collections4.functors;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -88,66 +87,47 @@ public class ComparatorPredicate<T> extends AbstractPredicate<T> implements Seri
          * Equal criterion.
          */
         EQUAL,
-
         /**
          * Greater criterion.
          */
         GREATER,
-
         /**
          * Less criterion.
          */
         LESS,
-
         /**
          * Greater or equal criterion.
          */
         GREATER_OR_EQUAL,
-
         /**
          * Less or equal Criterion.
          */
-        LESS_OR_EQUAL,
+        LESS_OR_EQUAL
     }
 
     private static final long serialVersionUID = -1863209236504077399L;
 
-    /**
-     * Creates the comparator predicate
-     *
-     * @param <T> the type that the predicate queries
-     * @param object  the object to compare to
-     * @param comparator  the comparator to use for comparison
-     * @return the predicate
-     * @throws NullPointerException if comparator is null
-     */
     public static <T> Predicate<T> comparatorPredicate(final T object, final Comparator<T> comparator) {
-        return comparatorPredicate(object, comparator, Criterion.EQUAL);
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public static <T> Predicate<T> comparatorPredicate(final T object, final Comparator<T> comparator, final Criterion criterion) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
-     * Creates the comparator predicate
-     *
-     * @param <T> the type that the predicate queries
-     * @param object  the object to compare to
-     * @param comparator  the comparator to use for comparison
-     * @param criterion  the criterion to use to evaluate comparison
-     * @return the predicate
-     * @throws NullPointerException if comparator or criterion is null
+     * The internal object to compare with
      */
-    public static <T> Predicate<T> comparatorPredicate(final T object, final Comparator<T> comparator,
-                                                       final Criterion criterion) {
-        return new ComparatorPredicate<>(object, Objects.requireNonNull(comparator, "comparator"),
-                Objects.requireNonNull(criterion, "criterion"));
-    }
-
-    /** The internal object to compare with */
     private final T object;
 
-    /** The comparator to use for comparison */
+    /**
+     * The comparator to use for comparison
+     */
     private final Comparator<T> comparator;
 
-    /** The comparison evaluation criterion to use */
+    /**
+     * The comparison evaluation criterion to use
+     */
     private final Criterion criterion;
 
     /**
@@ -164,48 +144,8 @@ public class ComparatorPredicate<T> extends AbstractPredicate<T> implements Seri
         this.criterion = criterion;
     }
 
-    /**
-     * Evaluates the predicate. The predicate evaluates to {@code true} in the following cases:
-     *
-     * <ul>
-     * <li>{@code comparator.compare(object, input) == 0 &amp;&amp; criterion == EQUAL}</li>
-     * <li>{@code comparator.compare(object, input) &lt; 0 &amp;&amp; criterion == LESS}</li>
-     * <li>{@code comparator.compare(object, input) &gt; 0 &amp;&amp; criterion == GREATER}</li>
-     * <li>{@code comparator.compare(object, input) &gt;= 0 &amp;&amp; criterion == GREATER_OR_EQUAL}</li>
-     * <li>{@code comparator.compare(object, input) &lt;= 0 &amp;&amp; criterion == LESS_OR_EQUAL}</li>
-     * </ul>
-     *
-     * @see org.apache.commons.collections4.Predicate#test(Object)
-     * @see java.util.Comparator#compare(Object first, Object second)
-     * @param target  the target object to compare to
-     * @return {@code true} if the comparison succeeds according to the selected criterion
-     * @throws IllegalStateException if the criterion is invalid (really not possible)
-     */
     @Override
     public boolean test(final T target) {
-
-        boolean result = false;
-        final int comparison = comparator.compare(object, target);
-        switch (criterion) {
-        case EQUAL:
-            result = comparison == 0;
-            break;
-        case GREATER:
-            result = comparison > 0;
-            break;
-        case LESS:
-            result = comparison < 0;
-            break;
-        case GREATER_OR_EQUAL:
-            result = comparison >= 0;
-            break;
-        case LESS_OR_EQUAL:
-            result = comparison <= 0;
-            break;
-        default:
-            throw new IllegalStateException("The current criterion '" + criterion + "' is invalid.");
-        }
-
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -18,7 +18,6 @@ package org.apache.commons.collections4.set;
 
 import java.util.Iterator;
 import java.util.NavigableSet;
-
 import org.apache.commons.collections4.Transformer;
 
 /**
@@ -35,54 +34,17 @@ import org.apache.commons.collections4.Transformer;
  */
 public class TransformedNavigableSet<E> extends TransformedSortedSet<E> implements NavigableSet<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 20150528L;
 
-    /**
-     * Factory method to create a transforming navigable set that will transform
-     * existing contents of the specified navigable set.
-     * <p>
-     * If there are any elements already in the set being decorated, they
-     * will be transformed by this method.
-     * Contrast this with {@link #transformingNavigableSet(NavigableSet, Transformer)}.
-     *
-     * @param <E> the element type
-     * @param set  the set to decorate, must not be null
-     * @param transformer  the transformer to use for conversion, must not be null
-     * @return a new transformed {@link NavigableSet}
-     * @throws NullPointerException if set or transformer is null
-     */
-    public static <E> TransformedNavigableSet<E> transformedNavigableSet(final NavigableSet<E> set,
-            final Transformer<? super E, ? extends E> transformer) {
-
-        final TransformedNavigableSet<E> decorated = new TransformedNavigableSet<>(set, transformer);
-        if (!set.isEmpty()) {
-            @SuppressWarnings("unchecked") // set is type E
-            final E[] values = (E[]) set.toArray(); // NOPMD - false positive for generics
-            set.clear();
-            for (final E value : values) {
-                decorated.decorated().add(transformer.apply(value));
-            }
-        }
-        return decorated;
+    public static <E> TransformedNavigableSet<E> transformedNavigableSet(final NavigableSet<E> set, final Transformer<? super E, ? extends E> transformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Factory method to create a transforming navigable set.
-     * <p>
-     * If there are any elements already in the set being decorated, they
-     * are NOT transformed.
-     * Contrast this with {@link #transformedNavigableSet(NavigableSet, Transformer)}.
-     *
-     * @param <E> the element type
-     * @param set  the set to decorate, must not be null
-     * @param transformer  the transformer to use for conversion, must not be null
-     * @return a new transformed {@link NavigableSet}
-     * @throws NullPointerException if set or transformer is null
-     */
-    public static <E> TransformedNavigableSet<E> transformingNavigableSet(final NavigableSet<E> set,
-            final Transformer<? super E, ? extends E> transformer) {
-        return new TransformedNavigableSet<>(set, transformer);
+    public static <E> TransformedNavigableSet<E> transformingNavigableSet(final NavigableSet<E> set, final Transformer<? super E, ? extends E> transformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -95,78 +57,67 @@ public class TransformedNavigableSet<E> extends TransformedSortedSet<E> implemen
      * @param transformer  the transformer to use for conversion, must not be null
      * @throws NullPointerException if set or transformer is null
      */
-    protected TransformedNavigableSet(final NavigableSet<E> set,
-                                      final Transformer<? super E, ? extends E> transformer) {
+    protected TransformedNavigableSet(final NavigableSet<E> set, final Transformer<? super E, ? extends E> transformer) {
         super(set, transformer);
     }
 
     @Override
     public E ceiling(final E e) {
-        return decorated().ceiling(e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the decorated navigable set.
-     *
-     * @return the decorated navigable set
-     */
     @Override
     protected NavigableSet<E> decorated() {
-        return (NavigableSet<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<E> descendingIterator() {
-        return decorated().descendingIterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public NavigableSet<E> descendingSet() {
-        return transformingNavigableSet(decorated().descendingSet(), transformer);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E floor(final E e) {
-        return decorated().floor(e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public NavigableSet<E> headSet(final E toElement, final boolean inclusive) {
-        final NavigableSet<E> head = decorated().headSet(toElement, inclusive);
-        return transformingNavigableSet(head, transformer);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E higher(final E e) {
-        return decorated().higher(e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E lower(final E e) {
-        return decorated().lower(e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E pollFirst() {
-        return decorated().pollFirst();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E pollLast() {
-        return decorated().pollLast();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
-    public NavigableSet<E> subSet(final E fromElement, final boolean fromInclusive, final E toElement,
-            final boolean toInclusive) {
-        final NavigableSet<E> sub = decorated().subSet(fromElement, fromInclusive, toElement, toInclusive);
-        return transformingNavigableSet(sub, transformer);
+    public NavigableSet<E> subSet(final E fromElement, final boolean fromInclusive, final E toElement, final boolean toInclusive) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public NavigableSet<E> tailSet(final E fromElement, final boolean inclusive) {
-        final NavigableSet<E> tail = decorated().tailSet(fromElement, inclusive);
-        return transformingNavigableSet(tail, transformer);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

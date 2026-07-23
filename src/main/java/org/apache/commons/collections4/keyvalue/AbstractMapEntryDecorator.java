@@ -18,7 +18,6 @@ package org.apache.commons.collections4.keyvalue;
 
 import java.util.Map;
 import java.util.Objects;
-
 import org.apache.commons.collections4.KeyValue;
 
 /**
@@ -31,7 +30,9 @@ import org.apache.commons.collections4.KeyValue;
  */
 public abstract class AbstractMapEntryDecorator<K, V> implements Map.Entry<K, V>, KeyValue<K, V> {
 
-    /** The {@code Map.Entry} to decorate */
+    /**
+     * The {@code Map.Entry} to decorate
+     */
     private final Map.Entry<K, V> entry;
 
     /**
@@ -46,44 +47,35 @@ public abstract class AbstractMapEntryDecorator<K, V> implements Map.Entry<K, V>
 
     @Override
     public boolean equals(final Object object) {
-        if (object == this) {
-            return true;
-        }
-        return entry.equals(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K getKey() {
-        return entry.getKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the map being decorated.
-     *
-     * @return the decorated map
-     */
     protected Map.Entry<K, V> getMapEntry() {
-        return entry;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public V getValue() {
-        return entry.getValue();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return entry.hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public V setValue(final V value) {
-        return entry.setValue(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return entry.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

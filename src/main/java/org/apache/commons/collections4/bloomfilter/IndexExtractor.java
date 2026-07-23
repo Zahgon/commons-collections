@@ -33,94 +33,16 @@ import java.util.function.LongPredicate;
 @FunctionalInterface
 public interface IndexExtractor {
 
-    /**
-     * Creates an IndexExtractor from a {@code BitMapExtractor}.
-     *
-     * @param bitMapExtractor the {@code BitMapExtractor}
-     * @return a new {@code IndexExtractor}.
-     */
     static IndexExtractor fromBitMapExtractor(final BitMapExtractor bitMapExtractor) {
-        Objects.requireNonNull(bitMapExtractor, "bitMapExtractor");
-        return consumer -> {
-            final LongPredicate longPredicate = new LongPredicate() {
-                int wordIdx;
-
-                @Override
-                public boolean test(long word) {
-                    int i = wordIdx;
-                    while (word != 0) {
-                        if ((word & 1) == 1 && !consumer.test(i)) {
-                            return false;
-                        }
-                        word >>>= 1;
-                        i++;
-                    }
-                    wordIdx += 64;
-                    return true;
-                }
-            };
-            return bitMapExtractor.processBitMaps(longPredicate::test);
-        };
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates an IndexExtractor from an array of integers.
-     *
-     * @param values the index values
-     * @return an IndexExtractor that uses the values.
-     */
     static IndexExtractor fromIndexArray(final int... values) {
-        return new IndexExtractor() {
-
-            @Override
-            public int[] asIndexArray() {
-                return values.clone();
-            }
-
-            @Override
-            public boolean processIndices(final IntPredicate predicate) {
-                for (final int value : values) {
-                    if (!predicate.test(value)) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-        };
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Return a copy of the IndexExtractor data as an int array.
-     *
-     * <p>Indices ordering and uniqueness is not guaranteed.</p>
-     *
-     * <p><em>
-     * The default implementation of this method creates an array and populates
-     * it.  Implementations that have access to an index array should consider
-     * returning a copy of that array if possible.
-     * </em></p>
-     *
-     * @return An int array of the data.
-     */
     default int[] asIndexArray() {
-        final class Indices {
-            private int[] data = new int[32];
-            private int size;
-
-            boolean add(final int index) {
-                data = IndexUtils.ensureCapacityForAdd(data, size);
-                data[size++] = index;
-                return true;
-            }
-
-            int[] toArray() {
-                // Edge case to avoid a large array copy
-                return size == data.length ? data : Arrays.copyOf(data, size);
-            }
-        }
-        final Indices indices = new Indices();
-        processIndices(indices::add);
-        return indices.toArray();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -138,41 +60,7 @@ public interface IndexExtractor {
      */
     boolean processIndices(IntPredicate predicate);
 
-    /**
-     * Creates an IndexExtractor comprising the unique indices for this extractor.
-     *
-     * <p>By default creates a new extractor with some overhead to remove
-     * duplicates.  IndexExtractors that return unique indices by default
-     * should override this to return {@code this}.</p>
-     *
-     * <p>The default implementation will filter the indices from this instance
-     * and return them in ascending order.</p>
-     *
-     * @return the IndexExtractor of unique values.
-     * @throws IndexOutOfBoundsException if any index is less than zero.
-     */
     default IndexExtractor uniqueIndices() {
-        final BitSet bitSet = new BitSet();
-        processIndices(i -> {
-            bitSet.set(i);
-            return true;
-        });
-
-        return new IndexExtractor() {
-            @Override
-            public boolean processIndices(final IntPredicate predicate) {
-                for (int idx = bitSet.nextSetBit(0); idx >= 0; idx = bitSet.nextSetBit(idx + 1)) {
-                    if (!predicate.test(idx)) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-
-            @Override
-            public IndexExtractor uniqueIndices() {
-                return this;
-            }
-        };
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

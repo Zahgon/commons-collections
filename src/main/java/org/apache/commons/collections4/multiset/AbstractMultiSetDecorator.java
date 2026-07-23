@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.multiset;
 
 import java.util.Set;
-
 import org.apache.commons.collections4.MultiSet;
 import org.apache.commons.collections4.collection.AbstractCollectionDecorator;
 
@@ -30,10 +29,11 @@ import org.apache.commons.collections4.collection.AbstractCollectionDecorator;
  * @param <E> the type held in the multiset
  * @since 4.1
  */
-public abstract class AbstractMultiSetDecorator<E>
-        extends AbstractCollectionDecorator<E> implements MultiSet<E> {
+public abstract class AbstractMultiSetDecorator<E> extends AbstractCollectionDecorator<E> implements MultiSet<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 20150610L;
 
     /**
@@ -54,52 +54,46 @@ public abstract class AbstractMultiSetDecorator<E>
 
     @Override
     public int add(final E object, final int count) {
-        return decorated().add(object, count);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the multiset being decorated.
-     *
-     * @return the decorated multiset
-     */
     @Override
     protected MultiSet<E> decorated() {
-        return (MultiSet<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<Entry<E>> entrySet() {
-        return decorated().entrySet();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object object) {
-        return object == this || decorated().equals(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int getCount(final Object object) {
-        return decorated().getCount(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return decorated().hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int remove(final Object object, final int count) {
-        return decorated().remove(object, count);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int setCount(final E object, final int count) {
-        return decorated().setCount(object, count);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<E> uniqueSet() {
-        return decorated().uniqueSet();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

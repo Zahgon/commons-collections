@@ -19,7 +19,6 @@ package org.apache.commons.collections4;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
-
 import org.apache.commons.collections4.functors.ChainedClosure;
 import org.apache.commons.collections4.functors.EqualPredicate;
 import org.apache.commons.collections4.functors.ExceptionClosure;
@@ -60,296 +59,69 @@ import org.apache.commons.collections4.functors.WhileClosure;
  */
 public class ClosureUtils {
 
-    /**
-     * Creates a Closure that calls a Transformer each time it is called.
-     * The transformer will be called using the closure's input object.
-     * The transformer's result will be ignored.
-     *
-     * @see org.apache.commons.collections4.functors.TransformerClosure
-     * @param <E>  the type that the closure acts on
-     * @param transformer  the transformer to run each time in the closure, null means nop
-     * @return the closure
-     */
     public static <E> Closure<E> asClosure(final Transformer<? super E, ?> transformer) {
-        return TransformerClosure.transformerClosure(transformer);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Create a new Closure that calls each closure in turn, passing the
-     * result into the next closure.
-     *
-     * @see org.apache.commons.collections4.functors.ChainedClosure
-     * @param <E>  the type that the closure acts on
-     * @param closures  an array of closures to chain
-     * @return the {@code chained} closure
-     * @throws NullPointerException if the closures array is null
-     * @throws NullPointerException if any closure in the array is null
-     */
     public static <E> Closure<E> chainedClosure(final Closure<? super E>... closures) {
-        return ChainedClosure.chainedClosure(closures);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Create a new Closure that calls each closure in turn, passing the
-     * result into the next closure. The ordering is that of the iterator()
-     * method on the collection.
-     *
-     * @see org.apache.commons.collections4.functors.ChainedClosure
-     * @param <E>  the type that the closure acts on
-     * @param closures  a collection of closures to chain
-     * @return the {@code chained} closure
-     * @throws NullPointerException if the closures collection is null
-     * @throws NullPointerException if any closure in the collection is null
-     */
     public static <E> Closure<E> chainedClosure(final Collection<? extends Closure<? super E>> closures) {
-        return ChainedClosure.chainedClosure(closures);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a Closure that will call the closure once and then repeatedly
-     * until the predicate returns false.
-     *
-     * @see org.apache.commons.collections4.functors.WhileClosure
-     * @param <E>  the type that the closure acts on
-     * @param closure  the closure to call repeatedly, not null
-     * @param predicate  the predicate to use as an end of loop test, not null
-     * @return the {@code do-while} closure
-     * @throws NullPointerException if either argument is null
-     */
-    public static <E> Closure<E> doWhileClosure(final Closure<? super E> closure,
-                                                final Predicate<? super E> predicate) {
-        return WhileClosure.<E>whileClosure(predicate, closure, true);
+    public static <E> Closure<E> doWhileClosure(final Closure<? super E> closure, final Predicate<? super E> predicate) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a Closure that always throws an exception.
-     * This could be useful during testing as a placeholder.
-     *
-     * @param <E>  the type that the closure acts on
-     * @return the closure
-     * @see ExceptionClosure
-     */
     public static <E> Closure<E> exceptionClosure() {
-        return ExceptionClosure.<E>exceptionClosure();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a Closure that will call the closure {@code count} times.
-     * <p>
-     * A null closure or zero count returns the {@code NOPClosure}.
-     *
-     * @see org.apache.commons.collections4.functors.ForClosure
-     * @param <E>  the type that the closure acts on
-     * @param count  the number of times to loop
-     * @param closure  the closure to call repeatedly
-     * @return the {@code for} closure
-     */
     public static <E> Closure<E> forClosure(final int count, final Closure<? super E> closure) {
-        return ForClosure.forClosure(count, closure);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Create a new Closure that calls another closure based on the
-     * result of the specified predicate.
-     *
-     * @see org.apache.commons.collections4.functors.IfClosure
-     * @param <E>  the type that the closure acts on
-     * @param predicate  the validating predicate
-     * @param trueClosure  the closure called if the predicate is true
-     * @return the {@code if} closure
-     * @throws NullPointerException if the predicate or closure is null
-     * @since 3.2
-     */
-    public static <E> Closure<E> ifClosure(final Predicate<? super E> predicate,
-                                           final Closure<? super E> trueClosure) {
-        return IfClosure.<E>ifClosure(predicate, trueClosure);
+    public static <E> Closure<E> ifClosure(final Predicate<? super E> predicate, final Closure<? super E> trueClosure) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Create a new Closure that calls one of two closures depending
-     * on the specified predicate.
-     *
-     * @see org.apache.commons.collections4.functors.IfClosure
-     * @param <E>  the type that the closure acts on
-     * @param predicate  the predicate to switch on
-     * @param trueClosure  the closure called if the predicate is true
-     * @param falseClosure  the closure called if the predicate is false
-     * @return the {@code switch} closure
-     * @throws NullPointerException if the predicate or either closure is null
-     */
-    public static <E> Closure<E> ifClosure(final Predicate<? super E> predicate,
-                                           final Closure<? super E> trueClosure,
-                                           final Closure<? super E> falseClosure) {
-        return IfClosure.<E>ifClosure(predicate, trueClosure, falseClosure);
+    public static <E> Closure<E> ifClosure(final Predicate<? super E> predicate, final Closure<? super E> trueClosure, final Closure<? super E> falseClosure) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a Closure that will invoke a specific method on the closure's
-     * input object by reflection.
-     *
-     * @see org.apache.commons.collections4.functors.InvokerTransformer
-     * @see org.apache.commons.collections4.functors.TransformerClosure
-     * @param <E>  the type that the closure acts on
-     * @param methodName  the name of the method
-     * @return the {@code invoker} closure
-     * @throws NullPointerException if the method name is null
-     */
     public static <E> Closure<E> invokerClosure(final String methodName) {
-        // reuse transformer as it has caching - this is lazy really, should have inner class here
-        return asClosure(InvokerTransformer.<E, Object>invokerTransformer(methodName));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a Closure that will invoke a specific method on the closure's
-     * input object by reflection.
-     *
-     * @see org.apache.commons.collections4.functors.InvokerTransformer
-     * @see org.apache.commons.collections4.functors.TransformerClosure
-     * @param <E>  the type that the closure acts on
-     * @param methodName  the name of the method
-     * @param paramTypes  the parameter types
-     * @param args  the arguments
-     * @return the {@code invoker} closure
-     * @throws NullPointerException if the method name is null
-     * @throws IllegalArgumentException if the paramTypes and args don't match
-     */
-    public static <E> Closure<E> invokerClosure(final String methodName, final Class<?>[] paramTypes,
-                                                final Object[] args) {
-        // reuse transformer as it has caching - this is lazy really, should have inner class here
-        return asClosure(InvokerTransformer.<E, Object>invokerTransformer(methodName, paramTypes, args));
+    public static <E> Closure<E> invokerClosure(final String methodName, final Class<?>[] paramTypes, final Object[] args) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a Closure that will do nothing.
-     * This could be useful during testing as a placeholder.
-     *
-     * @see org.apache.commons.collections4.functors.NOPClosure
-     * @param <E>  the type that the closure acts on
-     * @return the closure
-     */
     public static <E> Closure<E> nopClosure() {
-        return NOPClosure.<E>nopClosure();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Create a new Closure that calls one of the closures depending
-     * on the predicates.
-     * <p>
-     * The Map consists of Predicate keys and Closure values. A closure
-     * is called if its matching predicate returns true. Each predicate is evaluated
-     * until one returns true. If no predicates evaluate to true, the default
-     * closure is called. The default closure is set in the map with a
-     * null key. The ordering is that of the iterator() method on the entryset
-     * collection of the map.
-     * </p>
-     *
-     * @see org.apache.commons.collections4.functors.SwitchClosure
-     * @param <E>  the type that the closure acts on
-     * @param predicatesAndClosures  a map of predicates to closures
-     * @return the {@code switch} closure
-     * @throws NullPointerException if the map is null
-     * @throws NullPointerException if any closure in the map is null
-     * @throws ClassCastException  if the map elements are of the wrong type
-     */
     public static <E> Closure<E> switchClosure(final Map<Predicate<E>, Closure<E>> predicatesAndClosures) {
-        return SwitchClosure.switchClosure(predicatesAndClosures);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Create a new Closure that calls one of the closures depending
-     * on the predicates.
-     * <p>
-     * The closure at array location 0 is called if the predicate at array
-     * location 0 returned true. Each predicate is evaluated
-     * until one returns true.
-     * </p>
-     *
-     * @see org.apache.commons.collections4.functors.SwitchClosure
-     * @param <E>  the type that the closure acts on
-     * @param predicates  an array of predicates to check, not null
-     * @param closures  an array of closures to call, not null
-     * @return the {@code switch} closure
-     * @throws NullPointerException if either array is null
-     * @throws NullPointerException if any element in the arrays is null
-     * @throws IllegalArgumentException if the arrays have different sizes
-     */
-    public static <E> Closure<E> switchClosure(final Predicate<? super E>[] predicates,
-                                               final Closure<? super E>[] closures) {
-        return SwitchClosure.<E>switchClosure(predicates, closures, null);
+    public static <E> Closure<E> switchClosure(final Predicate<? super E>[] predicates, final Closure<? super E>[] closures) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Create a new Closure that calls one of the closures depending
-     * on the predicates.
-     * <p>
-     * The closure at array location 0 is called if the predicate at array
-     * location 0 returned true. Each predicate is evaluated
-     * until one returns true. If no predicates evaluate to true, the default
-     * closure is called.
-     * </p>
-     *
-     * @see org.apache.commons.collections4.functors.SwitchClosure
-     * @param <E>  the type that the closure acts on
-     * @param predicates  an array of predicates to check, not null
-     * @param closures  an array of closures to call, not null
-     * @param defaultClosure  the default to call if no predicate matches
-     * @return the {@code switch} closure
-     * @throws NullPointerException if either array is null
-     * @throws NullPointerException if any element in the arrays is null
-     * @throws IllegalArgumentException if the arrays are different sizes
-     */
-    public static <E> Closure<E> switchClosure(final Predicate<? super E>[] predicates,
-                                               final Closure<? super E>[] closures,
-                                               final Closure<? super E> defaultClosure) {
-        return SwitchClosure.<E>switchClosure(predicates, closures, defaultClosure);
+    public static <E> Closure<E> switchClosure(final Predicate<? super E>[] predicates, final Closure<? super E>[] closures, final Closure<? super E> defaultClosure) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Create a new Closure that uses the input object as a key to find the
-     * closure to call.
-     * <p>
-     * The Map consists of object keys and Closure values. A closure
-     * is called if the input object equals the key. If there is no match, the
-     * default closure is called. The default closure is set in the map
-     * using a null key.
-     * </p>
-     *
-     * @see org.apache.commons.collections4.functors.SwitchClosure
-     * @param <E>  the type that the closure acts on
-     * @param objectsAndClosures  a map of objects to closures
-     * @return the closure
-     * @throws NullPointerException if the map is null
-     * @throws NullPointerException if any closure in the map is null
-     */
     @SuppressWarnings("unchecked")
     public static <E> Closure<E> switchMapClosure(final Map<? extends E, Closure<E>> objectsAndClosures) {
-        Objects.requireNonNull(objectsAndClosures, "objectsAndClosures");
-        final Closure<? super E> def = objectsAndClosures.remove(null);
-        final int size = objectsAndClosures.size();
-        final Closure<? super E>[] trs = new Closure[size];
-        final Predicate<E>[] preds = new Predicate[size];
-        int i = 0;
-        for (final Map.Entry<? extends E, Closure<E>> entry : objectsAndClosures.entrySet()) {
-            preds[i] = EqualPredicate.<E>equalPredicate(entry.getKey());
-            trs[i] = entry.getValue();
-            i++;
-        }
-        return ClosureUtils.<E>switchClosure(preds, trs, def);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a Closure that will call the closure repeatedly until the
-     * predicate returns false.
-     *
-     * @see org.apache.commons.collections4.functors.WhileClosure
-     * @param <E>  the type that the closure acts on
-     * @param predicate  the predicate to use as an end of loop test, not null
-     * @param closure  the closure to call repeatedly, not null
-     * @return the {@code while} closure
-     * @throws NullPointerException if either argument is null
-     */
     public static <E> Closure<E> whileClosure(final Predicate<? super E> predicate, final Closure<? super E> closure) {
-        return WhileClosure.<E>whileClosure(predicate, closure, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -358,5 +130,4 @@ public class ClosureUtils {
     private ClosureUtils() {
         // empty
     }
-
 }

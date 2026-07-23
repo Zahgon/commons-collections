@@ -31,35 +31,15 @@ public abstract class AbstractEmptyMapIterator<K, V> extends AbstractEmptyIterat
     public AbstractEmptyMapIterator() {
     }
 
-    /**
-     * Always throws IllegalStateException.
-     *
-     * @return Always throws IllegalStateException.
-     * @throws IllegalStateException Always thrown.
-     */
     public K getKey() {
-        throw new IllegalStateException("Iterator contains no elements");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Always throws IllegalStateException.
-     *
-     * @return Always throws IllegalStateException.
-     * @throws IllegalStateException Always thrown.
-     */
     public V getValue() {
-        throw new IllegalStateException("Iterator contains no elements");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Always throws IllegalStateException.
-     *
-     * @param ignored ignored.
-     * @return Always throws IllegalStateException.
-     * @throws IllegalStateException Always thrown.
-     */
     public V setValue(final V ignored) {
-        throw new IllegalStateException("Iterator contains no elements");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

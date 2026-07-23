@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Set;
-
 import org.apache.commons.collections4.MapIterator;
 import org.apache.commons.collections4.MultiSet;
 import org.apache.commons.collections4.MultiValuedMap;
@@ -39,13 +38,16 @@ import org.apache.commons.collections4.MultiValuedMap;
  * @param <V> the type of value elements
  * @since 4.1
  */
-public abstract class AbstractMultiValuedMapDecorator<K, V>
-        implements MultiValuedMap<K, V>, Serializable {
+public abstract class AbstractMultiValuedMapDecorator<K, V> implements MultiValuedMap<K, V>, Serializable {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 20150612L;
 
-    /** MultiValuedMap to decorate */
+    /**
+     * MultiValuedMap to decorate
+     */
     private final MultiValuedMap<K, V> map;
 
     /**
@@ -60,124 +62,115 @@ public abstract class AbstractMultiValuedMapDecorator<K, V>
 
     @Override
     public Map<K, Collection<V>> asMap() {
-        return decorated().asMap();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        decorated().clear();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean containsKey(final Object key) {
-        return decorated().containsKey(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean containsMapping(final Object key, final Object value) {
-        return decorated().containsMapping(key, value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean containsValue(final Object value) {
-        return decorated().containsValue(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * The decorated multivalued map.
-     *
-     * @return the map to decorate
-     */
     protected MultiValuedMap<K, V> decorated() {
-        return map;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Collection<Entry<K, V>> entries() {
-        return decorated().entries();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object object) {
-        if (object == this) {
-            return true;
-        }
-        return decorated().equals(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Collection<V> get(final K key) {
-        return decorated().get(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return decorated().hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean isEmpty() {
-        return decorated().isEmpty();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public MultiSet<K> keys() {
-        return decorated().keys();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<K> keySet() {
-        return decorated().keySet();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public MapIterator<K, V> mapIterator() {
-        return decorated().mapIterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean put(final K key, final V value) {
-        return decorated().put(key, value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean putAll(final K key, final Iterable<? extends V> values) {
-        return decorated().putAll(key, values);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean putAll(final Map<? extends K, ? extends V> map) {
-        return decorated().putAll(map);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean putAll(final MultiValuedMap<? extends K, ? extends V> map) {
-        return decorated().putAll(map);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Collection<V> remove(final Object key) {
-        return decorated().remove(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean removeMapping(final Object key, final Object item) {
-        return decorated().removeMapping(key, item);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int size() {
-        return decorated().size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return decorated().toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Collection<V> values() {
-        return decorated().values();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

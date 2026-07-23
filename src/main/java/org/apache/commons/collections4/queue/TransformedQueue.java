@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.queue;
 
 import java.util.Queue;
-
 import org.apache.commons.collections4.Transformer;
 import org.apache.commons.collections4.collection.TransformedCollection;
 
@@ -35,55 +34,17 @@ import org.apache.commons.collections4.collection.TransformedCollection;
  */
 public class TransformedQueue<E> extends TransformedCollection<E> implements Queue<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -7901091318986132033L;
 
-    /**
-     * Factory method to create a transforming queue that will transform
-     * existing contents of the specified queue.
-     * <p>
-     * If there are any elements already in the queue being decorated, they
-     * will be transformed by this method.
-     * Contrast this with {@link #transformingQueue(Queue, Transformer)}.
-     *
-     * @param <E> the type of the elements in the queue
-     * @param queue  the queue to decorate, must not be null
-     * @param transformer  the transformer to use for conversion, must not be null
-     * @return a new transformed Queue
-     * @throws NullPointerException if queue or transformer is null
-     * @since 4.0
-     */
-    public static <E> TransformedQueue<E> transformedQueue(final Queue<E> queue,
-                                                           final Transformer<? super E, ? extends E> transformer) {
-        // throws IAE if queue or transformer is null
-        final TransformedQueue<E> decorated = new TransformedQueue<>(queue, transformer);
-        if (!queue.isEmpty()) {
-            @SuppressWarnings("unchecked") // queue is type <E>
-            final E[] values = (E[]) queue.toArray(); // NOPMD - false positive for generics
-            queue.clear();
-            for (final E value : values) {
-                decorated.decorated().add(transformer.apply(value));
-            }
-        }
-        return decorated;
+    public static <E> TransformedQueue<E> transformedQueue(final Queue<E> queue, final Transformer<? super E, ? extends E> transformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Factory method to create a transforming queue.
-     * <p>
-     * If there are any elements already in the queue being decorated, they
-     * are NOT transformed.
-     * Contrast this with {@link #transformedQueue(Queue, Transformer)}.
-     *
-     * @param <E> the type of the elements in the queue
-     * @param queue  the queue to decorate, must not be null
-     * @param transformer  the transformer to use for conversion, must not be null
-     * @return a new transformed Queue
-     * @throws NullPointerException if queue or transformer is null
-     */
-    public static <E> TransformedQueue<E> transformingQueue(final Queue<E> queue,
-                                                            final Transformer<? super E, ? extends E> transformer) {
-        return new TransformedQueue<>(queue, transformer);
+    public static <E> TransformedQueue<E> transformingQueue(final Queue<E> queue, final Transformer<? super E, ? extends E> transformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -102,36 +63,30 @@ public class TransformedQueue<E> extends TransformedCollection<E> implements Que
 
     @Override
     public E element() {
-        return getQueue().element();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the decorated queue.
-     *
-     * @return the decorated queue
-     */
     protected Queue<E> getQueue() {
-        return (Queue<E>) decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean offer(final E obj) {
-        return getQueue().offer(transform(obj));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E peek() {
-        return getQueue().peek();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E poll() {
-        return getQueue().poll();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E remove() {
-        return getQueue().remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

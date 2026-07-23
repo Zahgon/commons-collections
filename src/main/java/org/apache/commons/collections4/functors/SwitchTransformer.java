@@ -19,7 +19,6 @@ package org.apache.commons.collections4.functors;
 import java.io.Serializable;
 import java.util.Map;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.Transformer;
 
@@ -33,89 +32,34 @@ import org.apache.commons.collections4.Transformer;
  */
 public class SwitchTransformer<T, R> implements Transformer<T, R>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = -6404460890903469332L;
 
-    /**
-     * Create a new Transformer that calls one of the transformers depending
-     * on the predicates.
-     * <p>
-     * The Map consists of Predicate keys and Transformer values. A transformer
-     * is called if its matching predicate returns true. Each predicate is evaluated
-     * until one returns true. If no predicates evaluate to true, the default
-     * transformer is called. The default transformer is set in the map with a
-     * null key. The ordering is that of the iterator() method on the entryset
-     * collection of the map.
-     *
-     * @param <I>  the input type
-     * @param <O>  the output type
-     * @param map  a map of predicates to transformers
-     * @return the {@code switch} transformer
-     * @throws NullPointerException if the map is null
-     * @throws NullPointerException if any transformer in the map is null
-     * @throws ClassCastException  if the map elements are of the wrong type
-     */
     @SuppressWarnings("unchecked")
-    public static <I, O> Transformer<I, O> switchTransformer(
-            final Map<? extends Predicate<? super I>, ? extends Transformer<? super I, ? extends O>> map) {
+    public static <I, O> Transformer<I, O> switchTransformer(final Map<? extends Predicate<? super I>, ? extends Transformer<? super I, ? extends O>> map) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-        Objects.requireNonNull(map, "map");
-        if (map.isEmpty()) {
-            return ConstantTransformer.<I, O>nullTransformer();
-        }
-        // convert to array like this to guarantee iterator() ordering
-        final Transformer<? super I, ? extends O> defaultTransformer = map.remove(null);
-        final int size = map.size();
-        if (size == 0) {
-            return (Transformer<I, O>) (defaultTransformer == null ? ConstantTransformer.<I, O>nullTransformer() :
-                                                                     defaultTransformer);
-        }
-        final Transformer<? super I, ? extends O>[] transformers = new Transformer[size];
-        final Predicate<? super I>[] preds = new Predicate[size];
-        int i = 0;
-        for (final Map.Entry<? extends Predicate<? super I>,
-                             ? extends Transformer<? super I, ? extends O>> entry : map.entrySet()) {
-            preds[i] = entry.getKey();
-            transformers[i] = entry.getValue();
-            i++;
-        }
-        return new SwitchTransformer<>(false, preds, transformers, defaultTransformer);
-    }
-    /**
-     * Factory method that performs validation and copies the parameter arrays.
-     *
-     * @param <I>  the input type
-     * @param <O>  the output type
-     * @param predicates  array of predicates, cloned, no nulls
-     * @param transformers  matching array of transformers, cloned, no nulls
-     * @param defaultTransformer  the transformer to use if no match, null means return null
-     * @return the {@code chained} transformer
-     * @throws NullPointerException if either array is null
-     * @throws NullPointerException if any element in the arrays is null
-     * @throws IllegalArgumentException if the arrays have different sizes
-     */
     @SuppressWarnings("unchecked")
-    public static <I, O> Transformer<I, O> switchTransformer(final Predicate<? super I>[] predicates,
-            final Transformer<? super I, ? extends O>[] transformers,
-            final Transformer<? super I, ? extends O> defaultTransformer) {
-        FunctorUtils.validate(predicates);
-        FunctorUtils.validate(transformers);
-        if (predicates.length != transformers.length) {
-            throw new IllegalArgumentException("The predicate and transformer arrays must be the same size");
-        }
-        if (predicates.length == 0) {
-            return (Transformer<I, O>) (defaultTransformer == null ? ConstantTransformer.<I, O>nullTransformer() :
-                                                                     defaultTransformer);
-        }
-        return new SwitchTransformer<>(predicates, transformers, defaultTransformer);
+    public static <I, O> Transformer<I, O> switchTransformer(final Predicate<? super I>[] predicates, final Transformer<? super I, ? extends O>[] transformers, final Transformer<? super I, ? extends O> defaultTransformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    /** The tests to consider */
+
+    /**
+     * The tests to consider
+     */
     private final Predicate<? super T>[] iPredicates;
 
-    /** The matching transformers to call */
+    /**
+     * The matching transformers to call
+     */
     private final Transformer<? super T, ? extends R>[] iTransformers;
 
-    /** The default transformer to call if no tests match */
+    /**
+     * The default transformer to call if no tests match
+     */
     private final Transformer<? super T, ? extends R> iDefault;
 
     /**
@@ -126,13 +70,10 @@ public class SwitchTransformer<T, R> implements Transformer<T, R>, Serializable 
      * @param transformers  matching array of transformers, no nulls
      * @param defaultTransformer  the transformer to use if no match, null means return null
      */
-    private SwitchTransformer(final boolean clone, final Predicate<? super T>[] predicates,
-                             final Transformer<? super T, ? extends R>[] transformers,
-                             final Transformer<? super T, ? extends R> defaultTransformer) {
+    private SwitchTransformer(final boolean clone, final Predicate<? super T>[] predicates, final Transformer<? super T, ? extends R>[] transformers, final Transformer<? super T, ? extends R> defaultTransformer) {
         iPredicates = clone ? FunctorUtils.copy(predicates) : predicates;
         iTransformers = clone ? FunctorUtils.copy(transformers) : transformers;
-        iDefault = defaultTransformer == null ?
-                ConstantTransformer.<T, R>nullTransformer() : defaultTransformer;
+        iDefault = defaultTransformer == null ? ConstantTransformer.<T, R>nullTransformer() : defaultTransformer;
     }
 
     /**
@@ -143,57 +84,24 @@ public class SwitchTransformer<T, R> implements Transformer<T, R>, Serializable 
      * @param transformers  matching array of transformers, cloned, no nulls
      * @param defaultTransformer  the transformer to use if no match, null means return null
      */
-    public SwitchTransformer(final Predicate<? super T>[] predicates,
-            final Transformer<? super T, ? extends R>[] transformers,
-            final Transformer<? super T, ? extends R> defaultTransformer) {
+    public SwitchTransformer(final Predicate<? super T>[] predicates, final Transformer<? super T, ? extends R>[] transformers, final Transformer<? super T, ? extends R> defaultTransformer) {
         this(true, predicates, transformers, defaultTransformer);
     }
 
-    /**
-     * Gets the default transformer.
-     *
-     * @return the default transformer
-     * @since 3.1
-     */
     public Transformer<? super T, ? extends R> getDefaultTransformer() {
-        return iDefault;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the predicates.
-     *
-     * @return a copy of the predicates
-     * @since 3.1
-     */
     public Predicate<? super T>[] getPredicates() {
-        return FunctorUtils.copy(iPredicates);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the transformers.
-     *
-     * @return a copy of the transformers
-     * @since 3.1
-     */
     public Transformer<? super T, ? extends R>[] getTransformers() {
-        return FunctorUtils.copy(iTransformers);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Transforms the input to result by calling the transformer whose matching
-     * predicate returns true.
-     *
-     * @param input  the input object to transform
-     * @return the transformed result
-     */
     @Override
     public R transform(final T input) {
-        for (int i = 0; i < iPredicates.length; i++) {
-            if (iPredicates[i].test(input)) {
-                return iTransformers[i].apply(input);
-            }
-        }
-        return iDefault.apply(input);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.bag;
 
 import java.util.Comparator;
-
 import org.apache.commons.collections4.Bag;
 import org.apache.commons.collections4.SortedBag;
 
@@ -37,20 +36,13 @@ import org.apache.commons.collections4.SortedBag;
  */
 public class SynchronizedSortedBag<E> extends SynchronizedBag<E> implements SortedBag<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 722374056718497858L;
 
-    /**
-     * Factory method to create a synchronized sorted bag.
-     *
-     * @param <E> the type of the elements in the bag
-     * @param bag  the bag to decorate, must not be null
-     * @return a new synchronized SortedBag
-     * @throws NullPointerException if bag is null
-     * @since 4.0
-     */
     public static <E> SynchronizedSortedBag<E> synchronizedSortedBag(final SortedBag<E> bag) {
-        return new SynchronizedSortedBag<>(bag);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -76,32 +68,20 @@ public class SynchronizedSortedBag<E> extends SynchronizedBag<E> implements Sort
 
     @Override
     public synchronized Comparator<? super E> comparator() {
-        synchronized (lock) {
-            return getSortedBag().comparator();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized E first() {
-        synchronized (lock) {
-            return getSortedBag().first();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the bag being decorated.
-     *
-     * @return the decorated bag
-     */
     protected SortedBag<E> getSortedBag() {
-        return (SortedBag<E>) decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized E last() {
-        synchronized (lock) {
-            return getSortedBag().last();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

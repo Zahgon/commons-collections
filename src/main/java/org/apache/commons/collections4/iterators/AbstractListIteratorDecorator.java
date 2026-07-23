@@ -30,7 +30,9 @@ import java.util.Objects;
  */
 public class AbstractListIteratorDecorator<E> implements ListIterator<E> {
 
-    /** The iterator being decorated */
+    /**
+     * The iterator being decorated
+     */
     private final ListIterator<E> iterator;
 
     /**
@@ -43,67 +45,52 @@ public class AbstractListIteratorDecorator<E> implements ListIterator<E> {
         this.iterator = Objects.requireNonNull(iterator, "iterator");
     }
 
-    /** {@inheritDoc} */
     @Override
     public void add(final E obj) {
-        iterator.add(obj);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the iterator being decorated.
-     *
-     * @return the decorated iterator
-     */
     protected ListIterator<E> getListIterator() {
-        return iterator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasNext() {
-        return iterator.hasNext();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPrevious() {
-        return iterator.hasPrevious();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc} */
     @Override
     public E next() {
-        return iterator.next();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc} */
     @Override
     public int nextIndex() {
-        return iterator.nextIndex();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc} */
     @Override
     public E previous() {
-        return iterator.previous();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc} */
     @Override
     public int previousIndex() {
-        return iterator.previousIndex();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc} */
     @Override
     public void remove() {
-        iterator.remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc} */
     @Override
     public void set(final E obj) {
-        iterator.set(obj);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -22,7 +22,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Map;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Factory;
 import org.apache.commons.collections4.Transformer;
 import org.apache.commons.collections4.functors.FactoryTransformer;
@@ -69,40 +68,22 @@ import org.apache.commons.collections4.functors.FactoryTransformer;
  */
 public class LazyMap<K, V> extends AbstractMapDecorator<K, V> implements Serializable {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 7990956402564206740L;
 
-    /**
-     * Factory method to create a lazily instantiated map.
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @param factory  the factory to use, must not be null
-     * @return a new lazy map
-     * @throws NullPointerException if map or factory is null
-     * @since 4.0
-     */
     public static <K, V> LazyMap<K, V> lazyMap(final Map<K, V> map, final Factory<? extends V> factory) {
-        return new LazyMap<>(map, factory);
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public static <V, K> LazyMap<K, V> lazyMap(final Map<K, V> map, final Transformer<? super K, ? extends V> factory) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
-     * Factory method to create a lazily instantiated map.
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @param factory  the factory to use, must not be null
-     * @return a new lazy map
-     * @throws NullPointerException if map or factory is null
-     * @since 4.0
+     * The factory to use to construct elements
      */
-    public static <V, K> LazyMap<K, V> lazyMap(final Map<K, V> map, final Transformer<? super K, ? extends V> factory) {
-        return new LazyMap<>(map, factory);
-    }
-
-    /** The factory to use to construct elements */
     protected final Transformer<? super K, ? extends V> factory;
 
     /**
@@ -131,15 +112,7 @@ public class LazyMap<K, V> extends AbstractMapDecorator<K, V> implements Seriali
 
     @Override
     public V get(final Object key) {
-        // create value for key if key is not currently in the map
-        if (!map.containsKey(key)) {
-            @SuppressWarnings("unchecked")
-            final K castKey = (K) key;
-            final V value = factory.apply(castKey);
-            map.put(castKey, value);
-            return value;
-        }
-        return map.get(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -167,7 +140,6 @@ public class LazyMap<K, V> extends AbstractMapDecorator<K, V> implements Seriali
         out.defaultWriteObject();
         out.writeObject(map);
     }
-
     // no need to wrap keySet, entrySet or values as they are views of
     // existing map entries - you can't do a map-style get on them.
 }

@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Transformer;
 
 /**
@@ -40,60 +39,22 @@ import org.apache.commons.collections4.Transformer;
  */
 public class TransformedCollection<E> extends AbstractCollectionDecorator<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 8692300188161871514L;
 
-    /**
-     * Factory method to create a transforming collection that will transform
-     * existing contents of the specified collection.
-     * <p>
-     * If there are any elements already in the collection being decorated, they
-     * will be transformed by this method.
-     * Contrast this with {@link #transformingCollection(Collection, Transformer)}.
-     *
-     * @param <E> the type of the elements in the collection
-     * @param collection  the collection to decorate, must not be null
-     * @param transformer  the transformer to use for conversion, must not be null
-     * @return a new transformed Collection
-     * @throws NullPointerException if collection or transformer is null
-     * @since 4.0
-     */
-    public static <E> TransformedCollection<E> transformedCollection(final Collection<E> collection,
-            final Transformer<? super E, ? extends E> transformer) {
+    public static <E> TransformedCollection<E> transformedCollection(final Collection<E> collection, final Transformer<? super E, ? extends E> transformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-        final TransformedCollection<E> decorated = new TransformedCollection<>(collection, transformer);
-        // null collection & transformer are disallowed by the constructor call above
-        if (!collection.isEmpty()) {
-            @SuppressWarnings("unchecked") // collection is of type E
-            final E[] values = (E[]) collection.toArray(); // NOPMD - false positive for generics
-            collection.clear();
-            for (final E value : values) {
-                decorated.decorated().add(transformer.apply(value));
-            }
-        }
-        return decorated;
+    public static <E> TransformedCollection<E> transformingCollection(final Collection<E> coll, final Transformer<? super E, ? extends E> transformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
-     * Factory method to create a transforming collection.
-     * <p>
-     * If there are any elements already in the collection being decorated, they
-     * are NOT transformed.
-     * Contrast this with {@link #transformedCollection(Collection, Transformer)}.
-     *
-     * @param <E> the type of the elements in the collection
-     * @param coll  the collection to decorate, must not be null
-     * @param transformer  the transformer to use for conversion, must not be null
-     * @return a new transformed collection
-     * @throws NullPointerException if collection or transformer is null
-     * @since 4.0
+     * The transformer to use
      */
-    public static <E> TransformedCollection<E> transformingCollection(final Collection<E> coll,
-            final Transformer<? super E, ? extends E> transformer) {
-        return new TransformedCollection<>(coll, transformer);
-    }
-
-    /** The transformer to use */
     protected final Transformer<? super E, ? extends E> transformer;
 
     /**
@@ -113,40 +74,19 @@ public class TransformedCollection<E> extends AbstractCollectionDecorator<E> {
 
     @Override
     public boolean add(final E object) {
-        return decorated().add(transform(object));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final Collection<? extends E> coll) {
-        return decorated().addAll(transform(coll));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Transforms a collection.
-     * <p>
-     * The transformer itself may throw an exception if necessary.
-     *
-     * @param coll  the collection to transform
-     * @return a transformed object
-     */
     protected Collection<E> transform(final Collection<? extends E> coll) {
-        final List<E> list = new ArrayList<>(coll.size());
-        for (final E item : coll) {
-            list.add(transform(item));
-        }
-        return list;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Transforms an object.
-     * <p>
-     * The transformer itself may throw an exception if necessary.
-     *
-     * @param object  the object to transform
-     * @return a transformed object
-     */
     protected E transform(final E object) {
-        return transformer.apply(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

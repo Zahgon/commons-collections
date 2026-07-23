@@ -28,11 +28,11 @@ import java.util.NavigableSet;
  * @param <E> the type of the elements in the navigable set
  * @since 4.1
  */
-public abstract class AbstractNavigableSetDecorator<E>
-        extends AbstractSortedSetDecorator<E>
-        implements NavigableSet<E> {
+public abstract class AbstractNavigableSetDecorator<E> extends AbstractSortedSetDecorator<E> implements NavigableSet<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 20150528L;
 
     /**
@@ -53,68 +53,61 @@ public abstract class AbstractNavigableSetDecorator<E>
 
     @Override
     public E ceiling(final E e) {
-        return decorated().ceiling(e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the set being decorated.
-     *
-     * @return the decorated set
-     */
     @Override
     protected NavigableSet<E> decorated() {
-        return (NavigableSet<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<E> descendingIterator() {
-        return decorated().descendingIterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public NavigableSet<E> descendingSet() {
-        return decorated().descendingSet();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E floor(final E e) {
-        return decorated().floor(e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public NavigableSet<E> headSet(final E toElement, final boolean inclusive) {
-        return decorated().headSet(toElement, inclusive);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E higher(final E e) {
-        return decorated().higher(e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E lower(final E e) {
-        return decorated().lower(e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E pollFirst() {
-        return decorated().pollFirst();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E pollLast() {
-        return decorated().pollLast();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
-    public NavigableSet<E> subSet(final E fromElement, final boolean fromInclusive, final E toElement,
-            final boolean toInclusive) {
-        return decorated().subSet(fromElement, fromInclusive, toElement, toInclusive);
+    public NavigableSet<E> subSet(final E fromElement, final boolean fromInclusive, final E toElement, final boolean toInclusive) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public NavigableSet<E> tailSet(final E fromElement, final boolean inclusive) {
-        return decorated().tailSet(fromElement, inclusive);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

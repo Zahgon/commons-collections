@@ -59,9 +59,13 @@ public class LayeredBloomFilter<T extends BloomFilter<T>> implements BloomFilter
      * A class used to locate matching filters across all the layers.
      */
     private class Finder implements Predicate<BloomFilter> {
+
         int[] result = new int[layerManager.getDepth()];
+
         int bfIdx;
+
         int resultIdx;
+
         BloomFilter<?> bf;
 
         Finder(final BloomFilter<?> bf) {
@@ -69,16 +73,12 @@ public class LayeredBloomFilter<T extends BloomFilter<T>> implements BloomFilter
         }
 
         int[] getResult() {
-            return Arrays.copyOf(result, resultIdx);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean test(final BloomFilter x) {
-            if (x.contains(bf)) {
-                result[resultIdx++] = bfIdx;
-            }
-            bfIdx++;
-            return true;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -99,80 +99,50 @@ public class LayeredBloomFilter<T extends BloomFilter<T>> implements BloomFilter
 
     @Override
     public int cardinality() {
-        return SetOperations.cardinality(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int characteristics() {
-        return 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Forces the execution of the cleanup Consumer that was provided when the associated LayerManager was built.
-     *
-     * @see LayerManager.Builder#setCleanup(java.util.function.Consumer)
-     */
     public void cleanup() {
-        layerManager.cleanup();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public final void clear() {
-        layerManager.clear();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean contains(final BitMapExtractor bitMapExtractor) {
-        return contains(createFilter(bitMapExtractor));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns {@code true} if this any layer contained by this filter contains the specified filter.
-     * <p>
-     * If the {@code other} is a BloomFilterExtractor each filter within the {@code other} is checked to see if it exits within this filter.
-     * </p>
-     *
-     * @param other the other Bloom filter
-     * @return {@code true} if this filter contains the other filter.
-     */
     @Override
     public boolean contains(final BloomFilter other) {
-        return other instanceof BloomFilterExtractor ? contains((BloomFilterExtractor) other) : !processBloomFilters(x -> !x.contains(other));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns {@code true} if each filter within the {@code bloomFilterExtractor} exits within this filter.
-     *
-     * @param bloomFilterExtractor the BloomFilterExtractor that provides the filters to check for.
-     * @return {@code true} if this filter contains all of the filters contained in the {@code bloomFilterExtractor}.
-     */
     public boolean contains(final BloomFilterExtractor bloomFilterExtractor) {
-        final boolean[] result = { true };
-        // return false when we have found a match to short circuit checks
-        return bloomFilterExtractor.processBloomFilters(x -> {
-            result[0] &= contains(x);
-            return result[0];
-        });
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean contains(final Hasher hasher) {
-        return contains(createFilter(hasher));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean contains(final IndexExtractor indexExtractor) {
-        return contains(createFilter(indexExtractor));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates a new instance of this {@link LayeredBloomFilter} with the same properties as the current one.
-     *
-     * @return a copy of this {@link LayeredBloomFilter}.
-     */
     @Override
     public LayeredBloomFilter<T> copy() {
-        return new LayeredBloomFilter<>(shape, layerManager.copy());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -213,153 +183,84 @@ public class LayeredBloomFilter<T extends BloomFilter<T>> implements BloomFilter
 
     @Override
     public int estimateN() {
-        return flatten().estimateN();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int estimateUnion(final BloomFilter other) {
-        Objects.requireNonNull(other, "other");
-        final BloomFilter cpy = this.flatten();
-        cpy.merge(other);
-        return cpy.estimateN();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Finds the layers in which the BitMapExtractor is found.
-     *
-     * @param bitMapExtractor the BitMapExtractor to search for.
-     * @return an array of layer indices in which the Bloom filter is found.
-     */
     public int[] find(final BitMapExtractor bitMapExtractor) {
-        final SimpleBloomFilter bf = new SimpleBloomFilter(shape);
-        bf.merge(bitMapExtractor);
-        return find(bf);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Finds the layers in which the Bloom filter is found.
-     *
-     * @param bf the Bloom filter to search for.
-     * @return an array of layer indices in which the Bloom filter is found.
-     */
     public int[] find(final BloomFilter bf) {
-        final Finder finder = new Finder(bf);
-        processBloomFilters(finder);
-        return finder.getResult();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Finds the layers in which the Hasher is found.
-     *
-     * @param hasher the Hasher to search for.
-     * @return an array of layer indices in which the Bloom filter is found.
-     */
     public int[] find(final Hasher hasher) {
-        final SimpleBloomFilter bf = new SimpleBloomFilter(shape);
-        bf.merge(hasher);
-        return find(bf);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Finds the layers in which the IndexExtractor is found.
-     *
-     * @param indexExtractor the Index extractor to search for.
-     * @return an array of layer indices in which the Bloom filter is found.
-     */
     public int[] find(final IndexExtractor indexExtractor) {
-        final SimpleBloomFilter bf = new SimpleBloomFilter(shape);
-        bf.merge(indexExtractor);
-        return find(bf);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Create a standard (non-layered) Bloom filter by merging all of the layers. If the filter is empty this method will return an empty Bloom filter.
-     *
-     * @return the merged bloom filter.
-     */
     @Override
     public SimpleBloomFilter flatten() {
-        final SimpleBloomFilter bf = new SimpleBloomFilter(shape);
-        processBloomFilters(bf::merge);
-        return bf;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the Bloom filter at the specified depth
-     *
-     * @param depth the depth of the filter to return.
-     * @return the Bloom filter at the specified depth.
-     * @throws NoSuchElementException if depth is not in the range [0,getDepth())
-     */
     public T get(final int depth) {
-        return layerManager.get(depth);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the depth of the deepest layer. The minimum value returned by this method is 1.
-     *
-     * @return the depth of the deepest layer.
-     */
     public final int getDepth() {
-        return layerManager.getDepth();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public final Shape getShape() {
-        return shape;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean isEmpty() {
-        return processBloomFilters(BloomFilter::isEmpty);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean merge(final BitMapExtractor bitMapExtractor) {
-        return layerManager.getTarget().merge(bitMapExtractor);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean merge(final BloomFilter bf) {
-        return layerManager.getTarget().merge(bf);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean merge(final IndexExtractor indexExtractor) {
-        return layerManager.getTarget().merge(indexExtractor);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Forces and advance to the next layer. This method will clean-up the current layers and generate a new filter layer. In most cases is it unnecessary to
-     * call this method directly.
-     *
-     * @see LayerManager.Builder#setCleanup(java.util.function.Consumer)
-     * @see LayerManager.Builder#setExtendCheck(Predicate)
-     */
     public void next() {
-        layerManager.next();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean processBitMaps(final LongPredicate predicate) {
-        return flatten().processBitMaps(predicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Processes the Bloom filters in depth order with the most recent filters first. Each filter is passed to the predicate in turn. The function exits on the
-     * first {@code false} returned by the predicate.
-     *
-     * @param bloomFilterPredicate the predicate to execute.
-     * @return {@code true} if all filters passed the predicate, {@code false} otherwise.
-     */
     @Override
     public final boolean processBloomFilters(final Predicate<BloomFilter> bloomFilterPredicate) {
-        return layerManager.processBloomFilters(bloomFilterPredicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean processIndices(final IntPredicate predicate) {
-        return processBloomFilters(bf -> bf.processIndices(predicate));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

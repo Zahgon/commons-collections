@@ -55,22 +55,9 @@ public abstract class CatchAndRethrowClosure<T> implements Closure<T> {
         // empty
     }
 
-    /**
-     * Execute this closure on the specified input object.
-     *
-     * @param input the input to execute on
-     * @throws FunctorException (runtime) if the closure execution resulted in a
-     *             checked exception.
-     */
     @Override
     public void execute(final T input) {
-        try {
-            executeAndThrow(input);
-        } catch (final RuntimeException ex) {
-            throw ex;
-        } catch (final Throwable t) {
-            throw new FunctorException(t);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

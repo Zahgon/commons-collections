@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -28,22 +27,19 @@ import org.apache.commons.collections4.Predicate;
  */
 public final class NullPredicate<T> extends AbstractPredicate<T> implements Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 7533784454832764388L;
 
-    /** Singleton predicate instance */
+    /**
+     * Singleton predicate instance
+     */
     @SuppressWarnings("rawtypes")
     public static final Predicate INSTANCE = new NullPredicate<>();
 
-    /**
-     * Factory returning the singleton instance.
-     *
-     * @param <T> the type that the predicate queries
-     * @return the singleton instance
-     * @since 3.1
-     */
     public static <T> Predicate<T> nullPredicate() {
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -61,15 +57,8 @@ public final class NullPredicate<T> extends AbstractPredicate<T> implements Seri
         return INSTANCE;
     }
 
-    /**
-     * Evaluates the predicate returning true if the input is null.
-     *
-     * @param object  the input object
-     * @return true if input is null
-     */
     @Override
     public boolean test(final T object) {
-        return object == null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

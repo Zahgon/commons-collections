@@ -47,7 +47,6 @@ public interface Factory<T> extends Supplier<T> {
 
     @Override
     default T get() {
-        return create();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

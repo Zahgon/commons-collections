@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.iterators;
 
 import java.util.Iterator;
-
 import org.apache.commons.collections4.ResettableIterator;
 
 /**
@@ -74,27 +73,32 @@ public class IteratorIterable<E> implements Iterable<E> {
      */
     private static <E> Iterator<E> createTypesafeIterator(final Iterator<? extends E> iterator) {
         return new Iterator<E>() {
+
             @Override
             public boolean hasNext() {
-                return iterator.hasNext();
+                throw new UnsupportedOperationException("STUB: not implemented");
             }
 
             @Override
             public E next() {
-                return iterator.next();
+                throw new UnsupportedOperationException("STUB: not implemented");
             }
 
             @Override
             public void remove() {
-                iterator.remove();
+                throw new UnsupportedOperationException("STUB: not implemented");
             }
         };
     }
 
-    /** The iterator being adapted into an iterable. */
+    /**
+     * The iterator being adapted into an iterable.
+     */
     private final Iterator<? extends E> iterator;
 
-    /** The iterator parameterized as the {@link #iterator()} return type. */
+    /**
+     * The iterator parameterized as the {@link #iterator()} return type.
+     */
     private final Iterator<E> typeSafeIterator;
 
     /**
@@ -123,16 +127,8 @@ public class IteratorIterable<E> implements Iterable<E> {
         this.typeSafeIterator = createTypesafeIterator(this.iterator);
     }
 
-    /**
-     * Gets the iterator wrapped by this iterable.
-     *
-     * @return the iterator
-     */
     @Override
     public Iterator<E> iterator() {
-        if (iterator instanceof ResettableIterator) {
-            ((ResettableIterator<? extends E>) iterator).reset();
-        }
-        return typeSafeIterator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

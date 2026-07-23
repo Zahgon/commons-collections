@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Queue;
 import java.util.Set;
-
 import org.apache.commons.collections4.Bag;
 import org.apache.commons.collections4.MultiSet;
 import org.apache.commons.collections4.Predicate;
@@ -89,13 +88,19 @@ public class PredicatedCollection<E> extends AbstractCollectionDecorator<E> {
      */
     public static class Builder<E> {
 
-        /** The predicate to use. */
+        /**
+         * The predicate to use.
+         */
         private final Predicate<? super E> predicate;
 
-        /** The buffer containing valid elements. */
+        /**
+         * The buffer containing valid elements.
+         */
         private final List<E> accepted = new ArrayList<>();
 
-        /** The buffer containing rejected elements. */
+        /**
+         * The buffer containing rejected elements.
+         */
         private final List<E> rejected = new ArrayList<>();
 
         /**
@@ -108,255 +113,79 @@ public class PredicatedCollection<E> extends AbstractCollectionDecorator<E> {
             this.predicate = Objects.requireNonNull(predicate, "predicate");
         }
 
-        /**
-         * Adds the item to the builder.
-         * <p>
-         * If the predicate is true, it is added to the list of accepted elements,
-         * otherwise it is added to the rejected list.
-         *
-         * @param item  the element to add
-         * @return the PredicatedCollectionBuilder.
-         */
         public Builder<E> add(final E item) {
-            if (predicate.test(item)) {
-                accepted.add(item);
-            } else {
-                rejected.add(item);
-            }
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Adds all elements from the given collection to the builder.
-         * <p>
-         * All elements for which the predicate evaluates to true will be added to the
-         * list of accepted elements, otherwise they are added to the rejected list.
-         *
-         * @param items  the elements to add to the builder
-         * @return the PredicatedCollectionBuilder.
-         */
         public Builder<E> addAll(final Collection<? extends E> items) {
-            if (items != null) {
-                for (final E item : items) {
-                    add(item);
-                }
-            }
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Create a new predicated bag filled with the accepted elements.
-         * <p>
-         * The builder is not modified by this method, so it is possible to create more collections
-         * or add more elements afterwards. Further changes will not propagate to the returned bag.
-         *
-         * @return a new predicated bag.
-         */
         public Bag<E> createPredicatedBag() {
-            return createPredicatedBag(new HashBag<>());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Decorates the given bag with validating behavior using the predicate. All accepted elements
-         * are appended to the bag. If the bag already contains elements, they are validated.
-         * <p>
-         * The builder is not modified by this method, so it is possible to create more collections
-         * or add more elements afterwards. Further changes will not propagate to the returned bag.
-         *
-         * @param bag  the bag to decorate, must not be null
-         * @return the decorated bag.
-         * @throws NullPointerException if bag is null
-         * @throws IllegalArgumentException if bag contains invalid elements
-         */
         public Bag<E> createPredicatedBag(final Bag<E> bag) {
-            Objects.requireNonNull(bag, "bag");
-            final PredicatedBag<E> predicatedBag = PredicatedBag.predicatedBag(bag, predicate);
-            predicatedBag.addAll(accepted);
-            return predicatedBag;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Create a new predicated list filled with the accepted elements.
-         * <p>
-         * The builder is not modified by this method, so it is possible to create more collections
-         * or add more elements afterwards. Further changes will not propagate to the returned list.
-         *
-         * @return a new predicated list.
-         */
         public List<E> createPredicatedList() {
-            return createPredicatedList(new ArrayList<>());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Decorates the given list with validating behavior using the predicate. All accepted elements
-         * are appended to the list. If the list already contains elements, they are validated.
-         * <p>
-         * The builder is not modified by this method, so it is possible to create more collections
-         * or add more elements afterwards. Further changes will not propagate to the returned list.
-         *
-         * @param list  the List to decorate, must not be null
-         * @return the decorated list.
-         * @throws NullPointerException if list is null
-         * @throws IllegalArgumentException if list contains invalid elements
-         */
         public List<E> createPredicatedList(final List<E> list) {
-            Objects.requireNonNull(list, "list");
-            final List<E> predicatedList = PredicatedList.predicatedList(list, predicate);
-            predicatedList.addAll(accepted);
-            return predicatedList;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Create a new predicated multiset filled with the accepted elements.
-         * <p>
-         * The builder is not modified by this method, so it is possible to create more collections
-         * or add more elements afterwards. Further changes will not propagate to the returned multiset.
-         *
-         * @return a new predicated multiset.
-         */
         public MultiSet<E> createPredicatedMultiSet() {
-            return createPredicatedMultiSet(new HashMultiSet<>());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Decorates the given multiset with validating behavior using the predicate. All accepted elements
-         * are appended to the multiset. If the multiset already contains elements, they are validated.
-         * <p>
-         * The builder is not modified by this method, so it is possible to create more collections
-         * or add more elements afterwards. Further changes will not propagate to the returned multiset.
-         *
-         * @param multiset  the multiset to decorate, must not be null
-         * @return the decorated multiset.
-         * @throws NullPointerException if multiset is null
-         * @throws IllegalArgumentException if multiset contains invalid elements
-         */
         public MultiSet<E> createPredicatedMultiSet(final MultiSet<E> multiset) {
-            Objects.requireNonNull(multiset, "multiset");
-            final PredicatedMultiSet<E> predicatedMultiSet =
-                    PredicatedMultiSet.predicatedMultiSet(multiset, predicate);
-            predicatedMultiSet.addAll(accepted);
-            return predicatedMultiSet;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Create a new predicated queue filled with the accepted elements.
-         * <p>
-         * The builder is not modified by this method, so it is possible to create more collections
-         * or add more elements afterwards. Further changes will not propagate to the returned queue.
-         *
-         * @return a new predicated queue.
-         */
         public Queue<E> createPredicatedQueue() {
-            return createPredicatedQueue(new LinkedList<>());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Decorates the given queue with validating behavior using the predicate. All accepted elements
-         * are appended to the queue. If the queue already contains elements, they are validated.
-         * <p>
-         * The builder is not modified by this method, so it is possible to create more collections
-         * or add more elements afterwards. Further changes will not propagate to the returned queue.
-         *
-         * @param queue  the queue to decorate, must not be null
-         * @return the decorated queue.
-         * @throws NullPointerException if queue is null
-         * @throws IllegalArgumentException if queue contains invalid elements
-         */
         public Queue<E> createPredicatedQueue(final Queue<E> queue) {
-            Objects.requireNonNull(queue, "queue");
-            final PredicatedQueue<E> predicatedQueue = PredicatedQueue.predicatedQueue(queue, predicate);
-            predicatedQueue.addAll(accepted);
-            return predicatedQueue;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Create a new predicated set filled with the accepted elements.
-         * <p>
-         * The builder is not modified by this method, so it is possible to create more collections
-         * or add more elements afterwards. Further changes will not propagate to the returned set.
-         *
-         * @return a new predicated set.
-         */
         public Set<E> createPredicatedSet() {
-            return createPredicatedSet(new HashSet<>());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Decorates the given list with validating behavior using the predicate. All accepted elements
-         * are appended to the set. If the set already contains elements, they are validated.
-         * <p>
-         * The builder is not modified by this method, so it is possible to create more collections
-         * or add more elements afterwards. Further changes will not propagate to the returned set.
-         *
-         * @param set  the set to decorate, must not be null
-         * @return the decorated set.
-         * @throws NullPointerException if set is null
-         * @throws IllegalArgumentException if set contains invalid elements
-         */
         public Set<E> createPredicatedSet(final Set<E> set) {
-            Objects.requireNonNull(set, "set");
-            final PredicatedSet<E> predicatedSet = PredicatedSet.predicatedSet(set, predicate);
-            predicatedSet.addAll(accepted);
-            return predicatedSet;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Returns an unmodifiable collection containing all rejected elements.
-         *
-         * @return an unmodifiable collection
-         */
         public Collection<E> rejectedElements() {
-            return Collections.unmodifiableCollection(rejected);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -5259182142076705162L;
 
-    /**
-     * Returns a Builder with the given predicate.
-     *
-     * @param <E>  the element type
-     * @param predicate  the predicate to use
-     * @return a new Builder for predicated collections
-     * @since 4.1
-     */
     public static <E> Builder<E> builder(final Predicate<? super E> predicate) {
-        return new Builder<>(predicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns a Builder with a NotNullPredicate.
-     *
-     * @param <E>  the element type
-     * @return a new Builder for predicated collections that ignores null values.
-     * @since 4.1
-     */
     public static <E> Builder<E> notNullBuilder() {
-        return new Builder<>(NotNullPredicate.<E>notNullPredicate());
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public static <T> PredicatedCollection<T> predicatedCollection(final Collection<T> coll, final Predicate<? super T> predicate) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
-     * Factory method to create a predicated (validating) collection.
-     * <p>
-     * If there are any elements already in the collection being decorated, they
-     * are validated.
-     *
-     * @param <T> the type of the elements in the collection
-     * @param coll  the collection to decorate, must not be null
-     * @param predicate  the predicate to use for validation, must not be null
-     * @return a new predicated collection
-     * @throws NullPointerException if collection or predicate is null
-     * @throws IllegalArgumentException if the collection contains invalid elements
-     * @since 4.0
+     * The predicate to use
      */
-    public static <T> PredicatedCollection<T> predicatedCollection(final Collection<T> coll,
-                                                                   final Predicate<? super T> predicate) {
-        return new PredicatedCollection<>(coll, predicate);
-    }
-
-    /** The predicate to use */
     protected final Predicate<? super E> predicate;
 
     /**
@@ -378,51 +207,17 @@ public class PredicatedCollection<E> extends AbstractCollectionDecorator<E> {
         }
     }
 
-    /**
-     * Override to validate the object being added to ensure it matches
-     * the predicate.
-     *
-     * @param object  the object being added
-     * @return the result of adding to the underlying collection
-     * @throws IllegalArgumentException if the add is invalid
-     */
     @Override
     public boolean add(final E object) {
-        validate(object);
-        return decorated().add(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Override to validate the objects being added to ensure they match
-     * the predicate. If anyone fails, no update is made to the underlying
-     * collection.
-     *
-     * @param coll  the collection being added
-     * @return the result of adding to the underlying collection
-     * @throws IllegalArgumentException if the add is invalid
-     */
     @Override
     public boolean addAll(final Collection<? extends E> coll) {
-        for (final E item : coll) {
-            validate(item);
-        }
-        return decorated().addAll(coll);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Validates the object being added to ensure it matches the predicate.
-     * <p>
-     * The predicate itself should not throw an exception, but return false to
-     * indicate that the object cannot be added.
-     *
-     * @param object  the object being added
-     * @throws IllegalArgumentException if the add is invalid
-     */
     protected void validate(final E object) {
-        if (!predicate.test(object)) {
-            throw new IllegalArgumentException("Cannot add Object '" + object + "' - Predicate '" +
-                                               predicate + "' rejected it");
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

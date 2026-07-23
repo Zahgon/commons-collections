@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Predicate;
-
 import org.apache.commons.collections4.MultiMap;
 import org.apache.commons.collections4.Transformer;
 import org.apache.commons.collections4.map.MultiValueMap;
@@ -47,52 +46,32 @@ import org.apache.commons.collections4.map.MultiValueMap;
 public class IndexedCollection<K, C> extends AbstractCollectionDecorator<C> {
 
     // TODO: replace with MultiValuedMap
-
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -5512610452568370038L;
 
-    /**
-     * Create an {@link IndexedCollection} for a non-unique index.
-     *
-     * @param <K> the index object type.
-     * @param <C> the collection type.
-     * @param coll the decorated {@link Collection}.
-     * @param keyTransformer the {@link Transformer} for generating index keys.
-     * @return the created {@link IndexedCollection}.
-     */
-    public static <K, C> IndexedCollection<K, C> nonUniqueIndexedCollection(final Collection<C> coll,
-                                                                            final Transformer<C, K> keyTransformer) {
-        return new IndexedCollection<>(coll, keyTransformer,
-                                           MultiValueMap.<K, C>multiValueMap(new HashMap<>()),
-                                           false);
+    public static <K, C> IndexedCollection<K, C> nonUniqueIndexedCollection(final Collection<C> coll, final Transformer<C, K> keyTransformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public static <K, C> IndexedCollection<K, C> uniqueIndexedCollection(final Collection<C> coll, final Transformer<C, K> keyTransformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
-     * Create an {@link IndexedCollection} for a unique index.
-     * <p>
-     * If an element is added, which maps to an existing key, an {@link IllegalArgumentException}
-     * will be thrown.
-     *
-     * @param <K> the index object type.
-     * @param <C> the collection type.
-     * @param coll the decorated {@link Collection}.
-     * @param keyTransformer the {@link Transformer} for generating index keys.
-     * @return the created {@link IndexedCollection}.
+     * The {@link Transformer} for generating index keys.
      */
-    public static <K, C> IndexedCollection<K, C> uniqueIndexedCollection(final Collection<C> coll,
-                                                                         final Transformer<C, K> keyTransformer) {
-        return new IndexedCollection<>(coll, keyTransformer,
-                                           MultiValueMap.<K, C>multiValueMap(new HashMap<>()),
-                                           true);
-    }
-
-    /** The {@link Transformer} for generating index keys. */
     private final Transformer<C, K> keyTransformer;
 
-    /** The map of indexes to collected objects. */
+    /**
+     * The map of indexes to collected objects.
+     */
     private final MultiMap<K, C> index;
 
-    /** The uniqueness constraint for the index. */
+    /**
+     * The uniqueness constraint for the index.
+     */
     private final boolean uniqueIndex;
 
     /**
@@ -103,8 +82,7 @@ public class IndexedCollection<K, C> extends AbstractCollectionDecorator<C> {
      * @param map  map to use as index
      * @param uniqueIndex  if the index shall enforce uniqueness of index keys
      */
-    public IndexedCollection(final Collection<C> coll, final Transformer<C, K> keyTransformer,
-                             final MultiMap<K, C> map, final boolean uniqueIndex) {
+    public IndexedCollection(final Collection<C> coll, final Transformer<C, K> keyTransformer, final MultiMap<K, C> map, final boolean uniqueIndex) {
         super(coll);
         this.keyTransformer = keyTransformer;
         this.index = map;
@@ -112,28 +90,14 @@ public class IndexedCollection<K, C> extends AbstractCollectionDecorator<C> {
         reindex();
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @throws IllegalArgumentException if the object maps to an existing key and the index
-     *   enforces a uniqueness constraint
-     */
     @Override
     public boolean add(final C object) {
-        final boolean added = super.add(object);
-        if (added) {
-            addToIndex(object);
-        }
-        return added;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final Collection<? extends C> coll) {
-        boolean changed = false;
-        for (final C c: coll) {
-            changed |= add(c);
-        }
-        return changed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -153,80 +117,37 @@ public class IndexedCollection<K, C> extends AbstractCollectionDecorator<C> {
 
     @Override
     public void clear() {
-        super.clear();
-        index.clear();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     * <p>
-     * Note: uses the index for fast lookup
-     */
     @SuppressWarnings("unchecked")
     @Override
     public boolean contains(final Object object) {
-        return index.containsKey(keyTransformer.apply((C) object));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     * <p>
-     * Note: uses the index for fast lookup
-     */
     @Override
     public boolean containsAll(final Collection<?> coll) {
-        for (final Object o : coll) {
-            if (!contains(o)) {
-                return false;
-            }
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the element associated with the given key.
-     * <p>
-     * In case of a non-unique index, this method will return the first
-     * value associated with the given key. To retrieve all elements associated
-     * with a key, use {@link #values(Object)}.
-     *
-     * @param key  key to look up
-     * @return element found
-     * @see #values(Object)
-     */
     public C get(final K key) {
-        @SuppressWarnings("unchecked") // index is a MultiMap which returns a Collection
-        final Collection<C> coll = (Collection<C>) index.get(key);
-        return coll == null ? null : coll.iterator().next();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Clears the index and re-indexes the entire decorated {@link Collection}.
-     */
     public void reindex() {
-        index.clear();
-        for (final C c : decorated()) {
-            addToIndex(c);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public boolean remove(final Object object) {
-        final boolean removed = super.remove(object);
-        if (removed) {
-            removeFromIndex((C) object);
-        }
-        return removed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean removeAll(final Collection<?> coll) {
-        boolean changed = false;
-        for (final Object o : coll) {
-            changed |= remove(o);
-        }
-        return changed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -238,46 +159,19 @@ public class IndexedCollection<K, C> extends AbstractCollectionDecorator<C> {
         index.remove(keyTransformer.apply(object));
     }
 
-    /**
-     * @since 4.4
-     */
     @Override
     public boolean removeIf(final Predicate<? super C> filter) {
-        if (Objects.isNull(filter)) {
-            return false;
-        }
-        boolean changed = false;
-        final Iterator<C> it = iterator();
-        while (it.hasNext()) {
-            if (filter.test(it.next())) {
-                it.remove();
-                changed = true;
-            }
-        }
-        if (changed) {
-            reindex();
-        }
-        return changed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean retainAll(final Collection<?> coll) {
-        final boolean changed = super.retainAll(coll);
-        if (changed) {
-            reindex();
-        }
-        return changed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets all elements associated with the given key.
-     *
-     * @param key  key to look up
-     * @return a collection of elements found, or null if {@code contains(key) == false}
-     */
-    @SuppressWarnings("unchecked") // index is a MultiMap which returns a Collection
+    // index is a MultiMap which returns a Collection
+    @SuppressWarnings("unchecked")
     public Collection<C> values(final K key) {
-        return (Collection<C>) index.get(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

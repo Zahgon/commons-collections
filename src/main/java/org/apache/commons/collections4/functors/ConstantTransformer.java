@@ -18,7 +18,6 @@ package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Transformer;
 
 /**
@@ -35,40 +34,28 @@ import org.apache.commons.collections4.Transformer;
  */
 public class ConstantTransformer<T, R> implements Transformer<T, R>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 6374440726369055124L;
 
-    /** Returns null each time */
+    /**
+     * Returns null each time
+     */
     @SuppressWarnings("rawtypes")
     public static final Transformer NULL_INSTANCE = new ConstantTransformer<>(null);
 
-    /**
-     * Transformer method that performs validation.
-     *
-     * @param <I>  the input type
-     * @param <O>  the output type
-     * @param constantToReturn  the constant object to return each time in the factory
-     * @return the {@code constant} factory.
-     */
     public static <I, O> Transformer<I, O> constantTransformer(final O constantToReturn) {
-        if (constantToReturn == null) {
-            return nullTransformer();
-        }
-        return new ConstantTransformer<>(constantToReturn);
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public static <I, O> Transformer<I, O> nullTransformer() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
-     * Gets a typed null instance.
-     *
-     * @param <I>  the input type
-     * @param <O>  the output type
-     * @return Transformer&lt;I, O&gt; that always returns null.
+     * The closures to call in turn
      */
-    public static <I, O> Transformer<I, O> nullTransformer() {
-        return NULL_INSTANCE;
-    }
-
-    /** The closures to call in turn */
     private final R iConstant;
 
     /**
@@ -81,51 +68,22 @@ public class ConstantTransformer<T, R> implements Transformer<T, R>, Serializabl
         iConstant = constantToReturn;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean equals(final Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof ConstantTransformer)) {
-            return false;
-        }
-        final Object otherConstant = ((ConstantTransformer<?, ?>) obj).getConstant();
-        return Objects.equals(otherConstant, getConstant());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the constant.
-     *
-     * @return the constant
-     * @since 3.1
-     */
     public R getConstant() {
-        return iConstant;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int hashCode() {
-        int result = "ConstantTransformer".hashCode() << 2;
-        if (getConstant() != null) {
-            result |= getConstant().hashCode();
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Transforms the input by ignoring it and returning the stored constant instead.
-     *
-     * @param input  the input object which is ignored
-     * @return the stored constant
-     */
     @Override
     public R transform(final T input) {
-        return iConstant;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

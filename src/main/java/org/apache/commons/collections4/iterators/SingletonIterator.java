@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.iterators;
 
 import java.util.NoSuchElementException;
-
 import org.apache.commons.collections4.ResettableIterator;
 
 /**
@@ -27,16 +26,26 @@ import org.apache.commons.collections4.ResettableIterator;
  * @param <E> the type of elements returned by this iterator.
  * @since 2.0
  */
-public class SingletonIterator<E>
-        implements ResettableIterator<E> {
+public class SingletonIterator<E> implements ResettableIterator<E> {
 
-    /** Whether remove is allowed */
+    /**
+     * Whether remove is allowed
+     */
     private final boolean removeAllowed;
-    /** Is the cursor before the first element */
+
+    /**
+     * Is the cursor before the first element
+     */
     private boolean beforeFirst = true;
-    /** Has the element been removed */
+
+    /**
+     * Has the element been removed
+     */
     private boolean removed;
-    /** The object */
+
+    /**
+     * The object
+     */
     private E object;
 
     /**
@@ -62,63 +71,23 @@ public class SingletonIterator<E>
         this.removeAllowed = removeAllowed;
     }
 
-    /**
-     * Is another object available from the iterator?
-     * <p>
-     * This returns true if the single object hasn't been returned yet.
-     *
-     * @return true if the single object hasn't been returned yet
-     */
     @Override
     public boolean hasNext() {
-        return beforeFirst && !removed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the next object from the iterator.
-     * <p>
-     * This returns the single object if it hasn't been returned yet.
-     *
-     * @return the single object
-     * @throws NoSuchElementException if the single object has already
-     *    been returned
-     */
     @Override
     public E next() {
-        if (!beforeFirst || removed) {
-            throw new NoSuchElementException();
-        }
-        beforeFirst = false;
-        return object;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Remove the object from this iterator.
-     *
-     * @throws IllegalStateException if the {@code next} method has not
-     *        yet been called, or the {@code remove} method has already
-     *        been called after the last call to the {@code next}
-     *        method.
-     * @throws UnsupportedOperationException if remove is not supported
-     */
     @Override
     public void remove() {
-        if (!removeAllowed) {
-            throw new UnsupportedOperationException();
-        }
-        if (removed || beforeFirst) {
-            throw new IllegalStateException();
-        }
-        object = null;
-        removed = true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Reset the iterator to the start.
-     */
     @Override
     public void reset() {
-        beforeFirst = true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

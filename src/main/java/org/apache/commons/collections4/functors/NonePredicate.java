@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.functors;
 
 import java.util.Collection;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -34,48 +33,17 @@ import org.apache.commons.collections4.Predicate;
  */
 public final class NonePredicate<T> extends AbstractQuantifierPredicate<T> {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 2007613066565892961L;
 
-    /**
-     * Creates the predicate.
-     * <p>
-     * If the collection is size zero, the predicate always returns true.
-     * </p>
-     *
-     * @param <T> the type that the predicate queries
-     * @param predicates  the predicates to check, cloned, not null
-     * @return the {@code one} predicate
-     * @throws NullPointerException if the predicates array is null
-     * @throws NullPointerException if any predicate in the array is null
-     */
     public static <T> Predicate<T> nonePredicate(final Collection<? extends Predicate<? super T>> predicates) {
-        final Predicate<? super T>[] preds = FunctorUtils.validate(predicates);
-        if (preds.length == 0) {
-            return TruePredicate.<T>truePredicate();
-        }
-        return new NonePredicate<>(preds);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Creates the predicate.
-     * <p>
-     * If the array is size zero, the predicate always returns true.
-     * </p>
-     *
-     * @param <T> the type that the predicate queries
-     * @param predicates  the predicates to check, cloned, not null
-     * @return the {@code any} predicate
-     * @throws NullPointerException if the predicates array is null
-     * @throws NullPointerException if any predicate in the array is null
-     */
     public static <T> Predicate<T> nonePredicate(final Predicate<? super T>... predicates) {
-        FunctorUtils.validate(predicates);
-        if (predicates.length == 0) {
-            return TruePredicate.<T>truePredicate();
-        }
-        // <T> not needed in Eclipse but needed by the command line compiler
-        return new NonePredicate<T>(FunctorUtils.copy(predicates));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -88,20 +56,8 @@ public final class NonePredicate<T> extends AbstractQuantifierPredicate<T> {
         super(predicates);
     }
 
-    /**
-     * Evaluates the predicate returning false if any stored predicate returns false.
-     *
-     * @param object  the input object
-     * @return true if none of decorated predicates return true
-     */
     @Override
     public boolean test(final T object) {
-        for (final Predicate<? super T> iPredicate : iPredicates) {
-            if (iPredicate.test(object)) {
-                return false;
-            }
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

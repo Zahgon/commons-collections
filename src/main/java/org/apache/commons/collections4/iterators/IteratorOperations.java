@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.collections4.iterators;
 
 import java.util.ArrayList;
@@ -33,56 +32,23 @@ import java.util.function.Supplier;
  */
 public interface IteratorOperations<E> extends Iterator<E> {
 
-    /**
-     * Adds the remaining elements in the iterator to an arbitrary {@link Collection}. This method consumes the iterator.
-     *
-     * @param collection The target collection to add elements to.
-     * @return the given {@code collection}.
-     * @param <C> A collection of objects of type {@code <E>}.
-     */
     default <C extends Collection<E>> C addTo(final C collection) {
-        forEachRemaining(collection::add);
-        return collection;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the next item and removes it from the iterator.
-     *
-     * @return the next item from the iterator.
-     */
     default E removeNext() {
-        final E result = next();
-        remove();
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Adds the remaining elements in the iterator to a new {@link Collection} provided by the supplier. This method consumes the iterator.
-     *
-     * @param collectionSupplier supplies a collection target.
-     * @param <C> the collection type.
-     * @return a new Collection containing the remaining elements of this instance.
-     */
     default <C extends Collection<E>> C toCollection(final Supplier<C> collectionSupplier) {
-        return addTo(collectionSupplier.get());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Adds the remaining elements in the iterator to a new {@link List}. This method consumes the iterator.
-     *
-     * @return a new List containing the remaining elements of this instance.
-     */
     default List<E> toList() {
-        return toCollection(ArrayList::new);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Adds the remaining elements in the iterator to a new {@link Set}. This method consumes the iterator.
-     *
-     * @return a new Set containing the remaining elements of this instance.
-     */
     default Set<E> toSet() {
-        return toCollection(HashSet::new);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

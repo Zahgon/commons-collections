@@ -42,10 +42,11 @@ import java.util.Map;
  * @param <V> the type of the values in this map
  * @since 3.0
  */
-public class HashedMap<K, V>
-        extends AbstractHashedMap<K, V> implements Serializable, Cloneable {
+public class HashedMap<K, V> extends AbstractHashedMap<K, V> implements Serializable, Cloneable {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -1788199231038721040L;
 
     /**
@@ -88,14 +89,9 @@ public class HashedMap<K, V>
         super(map);
     }
 
-    /**
-     * Clones the map without cloning the keys or values.
-     *
-     * @return a shallow clone
-     */
     @Override
     public HashedMap<K, V> clone() {
-        return (HashedMap<K, V>) super.clone();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -120,5 +116,4 @@ public class HashedMap<K, V>
         out.defaultWriteObject();
         doWriteObject(out);
     }
-
 }

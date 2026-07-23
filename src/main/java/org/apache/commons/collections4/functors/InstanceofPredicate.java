@@ -18,7 +18,6 @@ package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -29,21 +28,18 @@ import org.apache.commons.collections4.Predicate;
  */
 public final class InstanceofPredicate extends AbstractPredicate<Object> implements Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = -6682656911025165584L;
 
-    /**
-     * Creates the identity predicate.
-     *
-     * @param type  the type to check for, may not be null
-     * @return the predicate
-     * @throws NullPointerException if the class is null
-     */
     public static Predicate<Object> instanceOfPredicate(final Class<?> type) {
-        return new InstanceofPredicate(Objects.requireNonNull(type, "type"));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The type to compare to */
+    /**
+     * The type to compare to
+     */
     private final Class<?> iType;
 
     /**
@@ -56,25 +52,12 @@ public final class InstanceofPredicate extends AbstractPredicate<Object> impleme
         iType = type;
     }
 
-    /**
-     * Gets the type to compare to.
-     *
-     * @return the type
-     * @since 3.1
-     */
     public Class<?> getType() {
-        return iType;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Evaluates the predicate returning true if the input object is of the correct type.
-     *
-     * @param object  the input object
-     * @return true if input is of stored type
-     */
     @Override
     public boolean test(final Object object) {
-        return iType.isInstance(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

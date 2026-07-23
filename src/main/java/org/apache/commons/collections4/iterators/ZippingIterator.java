@@ -21,7 +21,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-
 import org.apache.commons.collections4.FluentIterable;
 
 /**
@@ -38,13 +37,19 @@ import org.apache.commons.collections4.FluentIterable;
  */
 public class ZippingIterator<E> implements Iterator<E> {
 
-    /** The {@link Iterator}s to evaluate. */
+    /**
+     * The {@link Iterator}s to evaluate.
+     */
     private final Iterator<Iterator<? extends E>> iterators;
 
-    /** The next iterator to use for next(). */
+    /**
+     * The next iterator to use for next().
+     */
     private Iterator<? extends E> nextIterator;
 
-    /** The last iterator which was used for next(). */
+    /**
+     * The last iterator which was used for next().
+     */
     private Iterator<? extends E> lastReturned;
 
     /**
@@ -74,7 +79,7 @@ public class ZippingIterator<E> implements Iterator<E> {
      */
     @SuppressWarnings("unchecked")
     public ZippingIterator(final Iterator<? extends E> a, final Iterator<? extends E> b) {
-        this(new Iterator[] {a, b});
+        this(new Iterator[] { a, b });
     }
 
     /**
@@ -87,68 +92,22 @@ public class ZippingIterator<E> implements Iterator<E> {
      * @throws NullPointerException if either iterator is null
      */
     @SuppressWarnings("unchecked")
-    public ZippingIterator(final Iterator<? extends E> a,
-                           final Iterator<? extends E> b,
-                           final Iterator<? extends E> c) {
-        this(new Iterator[] {a, b, c});
+    public ZippingIterator(final Iterator<? extends E> a, final Iterator<? extends E> b, final Iterator<? extends E> c) {
+        this(new Iterator[] { a, b, c });
     }
 
-    /**
-     * Returns {@code true} if any child iterator has remaining elements.
-     *
-     * @return true if this iterator has remaining elements
-     */
     @Override
     public boolean hasNext() {
-        // the next iterator has already been determined
-        // this might happen if hasNext() is called multiple
-        if (nextIterator != null) {
-            return true;
-        }
-
-        while (iterators.hasNext()) {
-            final Iterator<? extends E> childIterator = iterators.next();
-            if (childIterator.hasNext()) {
-                nextIterator = childIterator;
-                return true;
-            }
-            // iterator is exhausted, remove it
-            iterators.remove();
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the next element from a child iterator.
-     *
-     * @return the next interleaved element
-     * @throws NoSuchElementException if no child iterator has any more elements
-     */
     @Override
     public E next() throws NoSuchElementException {
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
-
-        final E val = nextIterator.next();
-        lastReturned = nextIterator;
-        nextIterator = null;
-        return val;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes the last returned element from the child iterator that produced it.
-     *
-     * @throws IllegalStateException if there is no last returned element, or if
-     *   the last returned element has already been removed
-     */
     @Override
     public void remove() {
-        if (lastReturned == null) {
-            throw new IllegalStateException("No value can be removed at present");
-        }
-        lastReturned.remove();
-        lastReturned = null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

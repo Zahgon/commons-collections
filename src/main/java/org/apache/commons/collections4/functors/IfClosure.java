@@ -18,7 +18,6 @@ package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Closure;
 import org.apache.commons.collections4.Predicate;
 
@@ -31,49 +30,32 @@ import org.apache.commons.collections4.Predicate;
  */
 public class IfClosure<T> implements Closure<T>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = 3518477308466486130L;
 
-    /**
-     * Factory method that performs validation.
-     * <p>
-     * This factory creates a closure that performs no action when
-     * the predicate is false.
-     *
-     * @param <E> the type that the closure acts on
-     * @param predicate  predicate to switch on
-     * @param trueClosure  closure used if true
-     * @return the {@code if} closure
-     * @throws NullPointerException if either argument is null
-     * @since 3.2
-     */
     public static <E> Closure<E> ifClosure(final Predicate<? super E> predicate, final Closure<? super E> trueClosure) {
-        return IfClosure.<E>ifClosure(predicate, trueClosure, NOPClosure.<E>nopClosure());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
+
+    public static <E> Closure<E> ifClosure(final Predicate<? super E> predicate, final Closure<? super E> trueClosure, final Closure<? super E> falseClosure) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
     /**
-     * Factory method that performs validation.
-     *
-     * @param <E> the type that the closure acts on
-     * @param predicate  predicate to switch on
-     * @param trueClosure  closure used if true
-     * @param falseClosure  closure used if false
-     * @return the {@code if} closure
-     * @throws NullPointerException if any argument is null
+     * The test
      */
-    public static <E> Closure<E> ifClosure(final Predicate<? super E> predicate,
-                                           final Closure<? super E> trueClosure,
-                                           final Closure<? super E> falseClosure) {
-        return new IfClosure<>(Objects.requireNonNull(predicate, "predicate"),
-                Objects.requireNonNull(trueClosure, "trueClosure"),
-                Objects.requireNonNull(falseClosure, "falseClosure"));
-    }
-    /** The test */
     private final Predicate<? super T> iPredicate;
 
-    /** The closure to use if true */
+    /**
+     * The closure to use if true
+     */
     private final Closure<? super T> iTrueClosure;
 
-    /** The closure to use if false */
+    /**
+     * The closure to use if false
+     */
     private final Closure<? super T> iFalseClosure;
 
     /**
@@ -99,55 +81,26 @@ public class IfClosure<T> implements Closure<T>, Serializable {
      * @param trueClosure  closure used if true, not null
      * @param falseClosure  closure used if false, not null
      */
-    public IfClosure(final Predicate<? super T> predicate, final Closure<? super T> trueClosure,
-                     final Closure<? super T> falseClosure) {
+    public IfClosure(final Predicate<? super T> predicate, final Closure<? super T> trueClosure, final Closure<? super T> falseClosure) {
         iPredicate = predicate;
         iTrueClosure = trueClosure;
         iFalseClosure = falseClosure;
     }
 
-    /**
-     * Executes the true or false closure according to the result of the predicate.
-     *
-     * @param input  the input object
-     */
     @Override
     public void execute(final T input) {
-        if (iPredicate.test(input)) {
-            iTrueClosure.accept(input);
-        } else {
-            iFalseClosure.accept(input);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the closure called when false.
-     *
-     * @return the closure
-     * @since 3.1
-     */
     public Closure<? super T> getFalseClosure() {
-        return iFalseClosure;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the predicate.
-     *
-     * @return the predicate
-     * @since 3.1
-     */
     public Predicate<? super T> getPredicate() {
-        return iPredicate;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the closure called when true.
-     *
-     * @return the closure
-     * @since 3.1
-     */
     public Closure<? super T> getTrueClosure() {
-        return iTrueClosure;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

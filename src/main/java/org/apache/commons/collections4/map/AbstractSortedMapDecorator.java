@@ -22,7 +22,6 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
-
 import org.apache.commons.collections4.IterableSortedMap;
 import org.apache.commons.collections4.OrderedMapIterator;
 import org.apache.commons.collections4.iterators.ListIteratorWrapper;
@@ -45,8 +44,7 @@ import org.apache.commons.collections4.iterators.ListIteratorWrapper;
  * @param <V> the type of the values in the map
  * @since 3.0
  */
-public abstract class AbstractSortedMapDecorator<K, V> extends AbstractMapDecorator<K, V> implements
-        IterableSortedMap<K, V> {
+public abstract class AbstractSortedMapDecorator<K, V> extends AbstractMapDecorator<K, V> implements IterableSortedMap<K, V> {
 
     /**
      * OrderedMapIterator implementation.
@@ -54,8 +52,7 @@ public abstract class AbstractSortedMapDecorator<K, V> extends AbstractMapDecora
      * @param <K>  the key type
      * @param <V>  the value type
      */
-    protected static class SortedMapIterator<K, V> extends EntrySetToMapIteratorAdapter<K, V>
-            implements OrderedMapIterator<K, V> {
+    protected static class SortedMapIterator<K, V> extends EntrySetToMapIteratorAdapter<K, V> implements OrderedMapIterator<K, V> {
 
         /**
          * Create a new AbstractSortedMapDecorator.SortedMapIterator.
@@ -65,30 +62,19 @@ public abstract class AbstractSortedMapDecorator<K, V> extends AbstractMapDecora
             super(entrySet);
         }
 
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public boolean hasPrevious() {
-            return ((ListIterator<Map.Entry<K, V>>) iterator).hasPrevious();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public K previous() {
-            entry = ((ListIterator<Map.Entry<K, V>>) iterator).previous();
-            return getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public synchronized void reset() {
-            super.reset();
-            iterator = new ListIteratorWrapper<>(iterator);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -111,62 +97,51 @@ public abstract class AbstractSortedMapDecorator<K, V> extends AbstractMapDecora
 
     @Override
     public Comparator<? super K> comparator() {
-        return decorated().comparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the map being decorated.
-     *
-     * @return the decorated map
-     */
     @Override
     protected SortedMap<K, V> decorated() {
-        return (SortedMap<K, V>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K firstKey() {
-        return decorated().firstKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> headMap(final K toKey) {
-        return decorated().headMap(toKey);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K lastKey() {
-        return decorated().lastKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public OrderedMapIterator<K, V> mapIterator() {
-        return new SortedMapIterator<>(entrySet());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K nextKey(final K key) {
-        final Iterator<K> it = tailMap(key).keySet().iterator();
-        it.next();
-        return it.hasNext() ? it.next() : null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K previousKey(final K key) {
-        final SortedMap<K, V> headMap = headMap(key);
-        return headMap.isEmpty() ? null : headMap.lastKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> subMap(final K fromKey, final K toKey) {
-        return decorated().subMap(fromKey, toKey);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> tailMap(final K fromKey) {
-        return decorated().tailMap(fromKey);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

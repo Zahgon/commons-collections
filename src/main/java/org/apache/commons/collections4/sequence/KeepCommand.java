@@ -44,14 +44,8 @@ public class KeepCommand<T> extends EditCommand<T> {
         super(object);
     }
 
-    /**
-     * Accept a visitor. When a {@code KeepCommand} accepts a visitor, it
-     * calls its {@link CommandVisitor#visitKeepCommand visitKeepCommand} method.
-     *
-     * @param visitor  the visitor to be accepted
-     */
     @Override
     public void accept(final CommandVisitor<T> visitor) {
-        visitor.visitKeepCommand(getObject());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

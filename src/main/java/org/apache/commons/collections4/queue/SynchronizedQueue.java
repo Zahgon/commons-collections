@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.queue;
 
 import java.util.Queue;
-
 import org.apache.commons.collections4.collection.SynchronizedCollection;
 
 /**
@@ -32,22 +31,13 @@ import org.apache.commons.collections4.collection.SynchronizedCollection;
  */
 public class SynchronizedQueue<E> extends SynchronizedCollection<E> implements Queue<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 1L;
 
-    /**
-     * Factory method to create a synchronized queue.
-     *
-     * @param <E>
-     *            the type of the elements in the queue
-     * @param queue
-     *            the queue to decorate, must not be null
-     * @return a new synchronized Queue
-     * @throws NullPointerException
-     *             if queue is null
-     */
     public static <E> SynchronizedQueue<E> synchronizedQueue(final Queue<E> queue) {
-        return new SynchronizedQueue<>(queue);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -76,66 +66,43 @@ public class SynchronizedQueue<E> extends SynchronizedCollection<E> implements Q
         super(queue, lock);
     }
 
-    /**
-     * Gets the queue being decorated.
-     *
-     * @return the decorated queue
-     */
     @Override
     protected Queue<E> decorated() {
-        return (Queue<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E element() {
-        synchronized (lock) {
-            return decorated().element();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object object) {
-        if (object == this) {
-            return true;
-        }
-        synchronized (lock) {
-            return decorated().equals(object);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        synchronized (lock) {
-            return decorated().hashCode();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean offer(final E e) {
-        synchronized (lock) {
-            return decorated().offer(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E peek() {
-        synchronized (lock) {
-            return decorated().peek();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E poll() {
-        synchronized (lock) {
-            return decorated().poll();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E remove() {
-        synchronized (lock) {
-            return decorated().remove();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

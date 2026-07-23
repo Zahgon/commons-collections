@@ -53,14 +53,24 @@ import java.util.Objects;
  */
 public class ComparatorChain<E> implements Comparator<E>, Serializable {
 
-    /** Serialization version from Collections 2.0. */
+    /**
+     * Serialization version from Collections 2.0.
+     */
     private static final long serialVersionUID = -721644942746081630L;
 
-    /** The list of comparators in the chain. */
+    /**
+     * The list of comparators in the chain.
+     */
     private final List<Comparator<E>> comparatorChain;
-    /** Order - false (clear) = ascend; true (set) = descend. */
+
+    /**
+     * Order - false (clear) = ascend; true (set) = descend.
+     */
     private final BitSet orderingBits;
-   /** Whether the chain has been "locked". */
+
+    /**
+     * Whether the chain has been "locked".
+     */
     private boolean isLocked;
 
     /**
@@ -131,30 +141,12 @@ public class ComparatorChain<E> implements Comparator<E>, Serializable {
         orderingBits = bits;
     }
 
-    /**
-     * Add a Comparator to the end of the chain using the
-     * forward sort order
-     *
-     * @param comparator Comparator with the forward sort order
-     */
     public void addComparator(final Comparator<E> comparator) {
-        addComparator(comparator, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Add a Comparator to the end of the chain using the
-     * given sort order
-     *
-     * @param comparator Comparator to add to the end of the chain
-     * @param reverse    false = forward sort order; true = reverse sort order
-     */
     public void addComparator(final Comparator<E> comparator, final boolean reverse) {
-        checkLocked();
-
-        comparatorChain.add(comparator);
-        if (reverse) {
-            orderingBits.set(comparatorChain.size() - 1);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -175,174 +167,46 @@ public class ComparatorChain<E> implements Comparator<E>, Serializable {
      */
     private void checkLocked() {
         if (isLocked) {
-            throw new UnsupportedOperationException(
-                    "Comparator ordering cannot be changed after the first comparison is performed");
+            throw new UnsupportedOperationException("Comparator ordering cannot be changed after the first comparison is performed");
         }
     }
 
-    /**
-     * Perform comparisons on the Objects as per
-     * Comparator.compare(o1,o2).
-     *
-     * @param o1  the first object to compare
-     * @param o2  the second object to compare
-     * @return -1, 0, or 1
-     * @throws UnsupportedOperationException if the ComparatorChain does not contain at least one Comparator
-     */
     @Override
     public int compare(final E o1, final E o2) throws UnsupportedOperationException {
-        if (!isLocked) {
-            checkChainIntegrity();
-            isLocked = true;
-        }
-
-        // iterate over all comparators in the chain
-        final Iterator<Comparator<E>> comparators = comparatorChain.iterator();
-        for (int comparatorIndex = 0; comparators.hasNext(); ++comparatorIndex) {
-
-            final Comparator<? super E> comparator = comparators.next();
-            int retval = comparator.compare(o1, o2);
-            if (retval != 0) {
-                // invert the order if it is a reverse sort
-                if (orderingBits.get(comparatorIndex)) {
-                    if (retval > 0) {
-                        retval = -1;
-                    } else {
-                        retval = 1;
-                    }
-                }
-                return retval;
-            }
-        }
-
-        // if comparators are exhausted, return 0
-        return 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns {@code true} iff <em>that</em> Object is
-     * a {@link Comparator} whose ordering is known to be
-     * equivalent to mine.
-     * <p>
-     * This implementation returns {@code true}
-     * iff {@code <em>object</em>.{@link Object#getClass() getClass()}}
-     * equals {@code this.getClass()}, and the underlying
-     * comparators and order bits are equal.
-     * Subclasses may want to override this behavior to remain consistent
-     * with the {@link Comparator#equals(Object)} contract.
-     *
-     * @param object  the object to compare with
-     * @return true if equal
-     * @since 3.0
-     */
     @Override
     public boolean equals(final Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (null == object) {
-            return false;
-        }
-        if (object.getClass().equals(this.getClass())) {
-            final ComparatorChain<?> chain = (ComparatorChain<?>) object;
-            return Objects.equals(orderingBits, chain.orderingBits) &&
-                   Objects.equals(comparatorChain, chain.comparatorChain);
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Implement a hash code for this comparator that is consistent with
-     * {@link #equals(Object) equals}.
-     *
-     * @return a suitable hash code
-     * @since 3.0
-     */
     @Override
     public int hashCode() {
-        int hash = 0;
-        if (null != comparatorChain) {
-            hash ^= comparatorChain.hashCode();
-        }
-        if (null != orderingBits) {
-            hash ^= orderingBits.hashCode();
-        }
-        return hash;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Determine if modifications can still be made to the
-     * ComparatorChain.  ComparatorChains cannot be modified
-     * once they have performed a comparison.
-     *
-     * @return true = ComparatorChain cannot be modified; false =
-     *         ComparatorChain can still be modified.
-     */
     public boolean isLocked() {
-        return isLocked;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Replace the Comparator at the given index, maintaining
-     * the existing sort order.
-     *
-     * @param index      index of the Comparator to replace
-     * @param comparator Comparator to place at the given index
-     * @throws IndexOutOfBoundsException
-     *                   if index &lt; 0 or index &gt;= size()
-     */
     public void setComparator(final int index, final Comparator<E> comparator) throws IndexOutOfBoundsException {
-        setComparator(index, comparator, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Replace the Comparator at the given index in the
-     * ComparatorChain, using the given sort order
-     *
-     * @param index      index of the Comparator to replace
-     * @param comparator Comparator to set
-     * @param reverse    false = forward sort order; true = reverse sort order
-     */
     public void setComparator(final int index, final Comparator<E> comparator, final boolean reverse) {
-        checkLocked();
-
-        comparatorChain.set(index, comparator);
-        if (reverse) {
-            orderingBits.set(index);
-        } else {
-            orderingBits.clear(index);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Change the sort order at the given index in the
-     * ComparatorChain to a forward sort.
-     *
-     * @param index  Index of the ComparatorChain
-     */
     public void setForwardSort(final int index) {
-        checkLocked();
-        orderingBits.clear(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Change the sort order at the given index in the
-     * ComparatorChain to a reverse sort.
-     *
-     * @param index  Index of the ComparatorChain
-     */
     public void setReverseSort(final int index) {
-        checkLocked();
-        orderingBits.set(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Number of Comparators in the current ComparatorChain.
-     *
-     * @return Comparator count
-     */
     public int size() {
-        return comparatorChain.size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

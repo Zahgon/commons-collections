@@ -25,7 +25,6 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
-
 import org.apache.commons.collections4.Unmodifiable;
 import org.apache.commons.collections4.collection.UnmodifiableCollection;
 import org.apache.commons.collections4.set.UnmodifiableSet;
@@ -43,30 +42,15 @@ import org.apache.commons.collections4.set.UnmodifiableSet;
  * @param <V> the type of the values in this map
  * @since 3.0
  */
-public final class UnmodifiableSortedMap<K, V>
-        extends AbstractSortedMapDecorator<K, V>
-        implements Unmodifiable, Serializable {
-
-    /** Serialization version */
-    private static final long serialVersionUID = 5805344239827376360L;
+public final class UnmodifiableSortedMap<K, V> extends AbstractSortedMapDecorator<K, V> implements Unmodifiable, Serializable {
 
     /**
-     * Factory method to create an unmodifiable sorted map.
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @return a new unmodifiable sorted map
-     * @throws NullPointerException if map is null
-     * @since 4.0
+     * Serialization version
      */
+    private static final long serialVersionUID = 5805344239827376360L;
+
     public static <K, V> SortedMap<K, V> unmodifiableSortedMap(final SortedMap<K, ? extends V> map) {
-        if (map instanceof Unmodifiable) {
-            @SuppressWarnings("unchecked") // safe to upcast
-            final SortedMap<K, V> tmpMap = (SortedMap<K, V>) map;
-            return tmpMap;
-        }
-        return new UnmodifiableSortedMap<>(map);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -75,54 +59,55 @@ public final class UnmodifiableSortedMap<K, V>
      * @param map  the map to decorate, must not be null
      * @throws NullPointerException if map is null
      */
-    @SuppressWarnings("unchecked") // safe to upcast
+    // safe to upcast
+    @SuppressWarnings("unchecked")
     private UnmodifiableSortedMap(final SortedMap<K, ? extends V> map) {
         super((SortedMap<K, V>) map);
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Comparator<? super K> comparator() {
-        return decorated().comparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<Map.Entry<K, V>> entrySet() {
-        return UnmodifiableEntrySet.unmodifiableEntrySet(super.entrySet());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K firstKey() {
-        return decorated().firstKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> headMap(final K toKey) {
-        return new UnmodifiableSortedMap<>(decorated().headMap(toKey));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<K> keySet() {
-        return UnmodifiableSet.unmodifiableSet(super.keySet());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K lastKey() {
-        return decorated().lastKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public V put(final K key, final V value) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void putAll(final Map<? extends K, ? extends V> mapToCopy) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -141,22 +126,22 @@ public final class UnmodifiableSortedMap<K, V>
 
     @Override
     public V remove(final Object key) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> subMap(final K fromKey, final K toKey) {
-        return new UnmodifiableSortedMap<>(decorated().subMap(fromKey, toKey));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedMap<K, V> tailMap(final K fromKey) {
-        return new UnmodifiableSortedMap<>(decorated().tailMap(fromKey));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Collection<V> values() {
-        return UnmodifiableCollection.unmodifiableCollection(super.values());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -170,5 +155,4 @@ public final class UnmodifiableSortedMap<K, V>
         out.defaultWriteObject();
         out.writeObject(map);
     }
-
 }

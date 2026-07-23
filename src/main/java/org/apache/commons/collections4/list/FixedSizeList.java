@@ -21,7 +21,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.function.Predicate;
-
 import org.apache.commons.collections4.BoundedCollection;
 import org.apache.commons.collections4.iterators.AbstractListIteratorDecorator;
 import org.apache.commons.collections4.iterators.UnmodifiableIterator;
@@ -45,41 +44,35 @@ import org.apache.commons.collections4.iterators.UnmodifiableIterator;
  * @param <E> the type of elements in this collection
  * @since 3.0
  */
-public class FixedSizeList<E>
-        extends AbstractSerializableListDecorator<E>
-        implements BoundedCollection<E> {
+public class FixedSizeList<E> extends AbstractSerializableListDecorator<E> implements BoundedCollection<E> {
 
     /**
      * List iterator that only permits changes via set()
      */
     private final class FixedSizeListIterator extends AbstractListIteratorDecorator<E> {
+
         protected FixedSizeListIterator(final ListIterator<E> iterator) {
             super(iterator);
         }
+
         @Override
         public void add(final Object object) {
-            throw unsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
+
         @Override
         public void remove() {
-            throw unsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -2218010673611160319L;
 
-    /**
-     * Factory method to create a fixed size list.
-     *
-     * @param <E> the type of the elements in the list
-     * @param list  the list to decorate, must not be null
-     * @return a new fixed size list
-     * @throws NullPointerException if list is null
-     * @since 4.0
-     */
     public static <E> FixedSizeList<E> fixedSizeList(final List<E> list) {
-        return new FixedSizeList<>(list);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static UnsupportedOperationException unsupportedOperationException() {
@@ -98,106 +91,101 @@ public class FixedSizeList<E>
 
     @Override
     public boolean add(final E object) {
-        throw unsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void add(final int index, final E object) {
-        throw unsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final Collection<? extends E> coll) {
-        throw unsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final int index, final Collection<? extends E> coll) {
-        throw unsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clear() {
-        throw unsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E get(final int index) {
-        return decorated().get(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int indexOf(final Object object) {
-        return decorated().indexOf(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean isFull() {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<E> iterator() {
-        return UnmodifiableIterator.unmodifiableIterator(decorated().iterator());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int lastIndexOf(final Object object) {
-        return decorated().lastIndexOf(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public ListIterator<E> listIterator() {
-        return new FixedSizeListIterator(decorated().listIterator(0));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public ListIterator<E> listIterator(final int index) {
-        return new FixedSizeListIterator(decorated().listIterator(index));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int maxSize() {
-        return size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E remove(final int index) {
-        throw unsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean remove(final Object object) {
-        throw unsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean removeAll(final Collection<?> coll) {
-        throw unsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * @since 4.4
-     */
     @Override
     public boolean removeIf(final Predicate<? super E> filter) {
-        throw unsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean retainAll(final Collection<?> coll) {
-        throw unsupportedOperationException();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E set(final int index, final E object) {
-        return decorated().set(index, object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public List<E> subList(final int fromIndex, final int toIndex) {
-        final List<E> sub = decorated().subList(fromIndex, toIndex);
-        return new FixedSizeList<>(sub);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

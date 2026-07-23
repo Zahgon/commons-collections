@@ -25,7 +25,6 @@ import java.util.Comparator;
 import java.util.Objects;
 import java.util.SortedMap;
 import java.util.TreeMap;
-
 import org.apache.commons.collections4.SortedBag;
 
 /**
@@ -46,7 +45,9 @@ import org.apache.commons.collections4.SortedBag;
  */
 public class TreeBag<E> extends AbstractMapBag<E> implements SortedBag<E>, Serializable {
 
-    /** Serial version lock */
+    /**
+     * Serial version lock
+     */
     private static final long serialVersionUID = -7740146511091606676L;
 
     /**
@@ -87,42 +88,29 @@ public class TreeBag<E> extends AbstractMapBag<E> implements SortedBag<E>, Seria
         super(new TreeMap<>(), iterable);
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @throws IllegalArgumentException if the object to be added does not implement
-     * {@link Comparable} and the {@link TreeBag} is using natural ordering
-     * @throws NullPointerException if the specified key is null and this bag uses
-     * natural ordering, or its comparator does not permit null keys
-     */
     @Override
     public boolean add(final E object) {
-        if (comparator() == null && !(object instanceof Comparable)) {
-            Objects.requireNonNull(object, "object");
-            throw new IllegalArgumentException("Objects of type " + object.getClass() + " cannot be added to " +
-                                               "a naturally ordered TreeBag as it does not implement Comparable");
-        }
-        return super.add(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Comparator<? super E> comparator() {
-        return getMap().comparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E first() {
-        return getMap().firstKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     protected SortedMap<E, AbstractMapBag.MutableInteger> getMap() {
-        return (SortedMap<E, AbstractMapBag.MutableInteger>) super.getMap();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E last() {
-        return getMap().lastKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -134,7 +122,8 @@ public class TreeBag<E> extends AbstractMapBag<E> implements SortedBag<E>, Seria
      */
     private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
-        @SuppressWarnings("unchecked")  // This will fail at runtime if the stream is incorrect
+        // This will fail at runtime if the stream is incorrect
+        @SuppressWarnings("unchecked")
         final Comparator<? super E> comp = (Comparator<? super E>) in.readObject();
         super.doReadObject(new TreeMap<>(comp), in);
     }
@@ -150,5 +139,4 @@ public class TreeBag<E> extends AbstractMapBag<E> implements SortedBag<E>, Seria
         out.writeObject(comparator());
         super.doWriteObject(out);
     }
-
 }

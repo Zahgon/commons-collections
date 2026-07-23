@@ -18,7 +18,6 @@ package org.apache.commons.collections4.set;
 
 import java.util.Iterator;
 import java.util.NavigableSet;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -43,26 +42,13 @@ import org.apache.commons.collections4.Predicate;
  */
 public class PredicatedNavigableSet<E> extends PredicatedSortedSet<E> implements NavigableSet<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 20150528L;
 
-    /**
-     * Factory method to create a predicated (validating) navigable set.
-     * <p>
-     * If there are any elements already in the set being decorated, they
-     * are validated.
-     *
-     * @param <E> the element type
-     * @param set  the set to decorate, must not be null
-     * @param predicate  the predicate to use for validation, must not be null
-     * @return a new predicated navigable set.
-     * @throws NullPointerException if set or predicate is null
-     * @throws IllegalArgumentException if the set contains invalid elements
-     * @since 4.0
-     */
-    public static <E> PredicatedNavigableSet<E> predicatedNavigableSet(final NavigableSet<E> set,
-                                                                       final Predicate<? super E> predicate) {
-        return new PredicatedNavigableSet<>(set, predicate);
+    public static <E> PredicatedNavigableSet<E> predicatedNavigableSet(final NavigableSet<E> set, final Predicate<? super E> predicate) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -82,71 +68,61 @@ public class PredicatedNavigableSet<E> extends PredicatedSortedSet<E> implements
 
     @Override
     public E ceiling(final E e) {
-        return decorated().ceiling(e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the navigable set being decorated.
-     *
-     * @return the decorated navigable set
-     */
     @Override
     protected NavigableSet<E> decorated() {
-        return (NavigableSet<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<E> descendingIterator() {
-        return decorated().descendingIterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public NavigableSet<E> descendingSet() {
-        return predicatedNavigableSet(decorated().descendingSet(), predicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E floor(final E e) {
-        return decorated().floor(e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public NavigableSet<E> headSet(final E toElement, final boolean inclusive) {
-        final NavigableSet<E> head = decorated().headSet(toElement, inclusive);
-        return predicatedNavigableSet(head, predicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E higher(final E e) {
-        return decorated().higher(e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E lower(final E e) {
-        return decorated().lower(e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E pollFirst() {
-        return decorated().pollFirst();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E pollLast() {
-        return decorated().pollLast();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
-    public NavigableSet<E> subSet(final E fromElement, final boolean fromInclusive, final E toElement,
-            final boolean toInclusive) {
-        final NavigableSet<E> sub = decorated().subSet(fromElement, fromInclusive, toElement, toInclusive);
-        return predicatedNavigableSet(sub, predicate);
+    public NavigableSet<E> subSet(final E fromElement, final boolean fromInclusive, final E toElement, final boolean toInclusive) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public NavigableSet<E> tailSet(final E fromElement, final boolean inclusive) {
-        final NavigableSet<E> tail = decorated().tailSet(fromElement, inclusive);
-        return predicatedNavigableSet(tail, predicate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

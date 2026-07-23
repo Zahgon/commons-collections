@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.collections4;
 
 /**
@@ -36,76 +35,16 @@ package org.apache.commons.collections4;
  */
 final class ArrayUtils {
 
-    /**
-     * <p>
-     * Checks if the object is in the given array.
-     * </p>
-     * <p>
-     * The method returns {@code false} if a {@code null} array is passed in.
-     * </p>
-     *
-     * @param array        the array to search, may be {@code null}.
-     * @param objectToFind the object to find, may be {@code null}.
-     * @return {@code true} if the array contains the object
-     */
     static boolean contains(final Object[] array, final Object objectToFind) {
-        return indexOf(array, objectToFind) != CollectionUtils.INDEX_NOT_FOUND;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * <p>
-     * Finds the index of the given object in the array starting at the given index.
-     * </p>
-     * <p>
-     * This method returns {@link CollectionUtils#INDEX_NOT_FOUND} ({@code -1}) for a {@code null} input array.
-     * </p>
-     * <p>
-     * A negative startIndex is treated as zero. A startIndex larger than the array length will return {@link CollectionUtils#INDEX_NOT_FOUND} ({@code -1}).
-     * </p>
-     *
-     * @param array        the array to search for the object, may be {@code null}.
-     * @param objectToFind the object to find, may be {@code null}.
-     * @param startIndex   the index to start searching at
-     * @return the index of the object within the array starting at the index, {@link CollectionUtils#INDEX_NOT_FOUND} ({@code -1}) if not found or {@code null}
-     *         array input
-     */
     static int indexOf(final Object[] array, final Object objectToFind, int startIndex) {
-        if (array == null) {
-            return CollectionUtils.INDEX_NOT_FOUND;
-        }
-        if (startIndex < 0) {
-            startIndex = 0;
-        }
-        if (objectToFind == null) {
-            for (int i = startIndex; i < array.length; i++) {
-                if (array[i] == null) {
-                    return i;
-                }
-            }
-        } else {
-            for (int i = startIndex; i < array.length; i++) {
-                if (objectToFind.equals(array[i])) {
-                    return i;
-                }
-            }
-        }
-        return CollectionUtils.INDEX_NOT_FOUND;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * <p>
-     * Finds the index of the given object in the array.
-     * </p>
-     * <p>
-     * This method returns {@link CollectionUtils#INDEX_NOT_FOUND} ({@code -1}) for a {@code null} input array.
-     * </p>
-     *
-     * @param array        the array to search for the object, may be {@code null}.
-     * @param objectToFind the object to find, may be {@code null}.
-     * @return the index of the object within the array, {@link CollectionUtils#INDEX_NOT_FOUND} ({@code -1}) if not found or {@code null} array input
-     */
     static <T> int indexOf(final T[] array, final Object objectToFind) {
-        return indexOf(array, objectToFind, 0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -113,5 +52,4 @@ final class ArrayUtils {
      */
     private ArrayUtils() {
     }
-
 }

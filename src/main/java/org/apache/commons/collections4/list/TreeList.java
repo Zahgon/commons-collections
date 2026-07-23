@@ -25,7 +25,6 @@ import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.OrderedIterator;
 
@@ -63,11 +62,11 @@ import org.apache.commons.collections4.OrderedIterator;
  * @since 3.1
  */
 public class TreeList<E> extends AbstractList<E> {
-//    add; toArray; iterator; insert; get; indexOf; remove
-//    TreeList = 1260;7360;3080;  160;   170;3400;  170;
-//   ArrayList =  220;1480;1760; 6870;    50;1540; 7200;
-//  LinkedList =  270;7360;3350;55860;290720;2910;55200;
 
+    //    add; toArray; iterator; insert; get; indexOf; remove
+    //    TreeList = 1260;7360;3080;  160;   170;3400;  170;
+    //   ArrayList =  220;1480;1760; 6870;    50;1540; 7200;
+    //  LinkedList =  270;7360;3350;55860;290720;2910;55200;
     /**
      * Implements an AVLNode which keeps the offset updated.
      * <p>
@@ -81,19 +80,40 @@ public class TreeList<E> extends AbstractList<E> {
      * to indicate if they are a child (false) or a link as in linked list (true).
      */
     static class AVLNode<E> {
-        /** The left child node or the predecessor if {@link #leftIsPrevious}.*/
+
+        /**
+         * The left child node or the predecessor if {@link #leftIsPrevious}.
+         */
         private AVLNode<E> left;
-        /** Flag indicating that left reference is not a subtree but the predecessor. */
+
+        /**
+         * Flag indicating that left reference is not a subtree but the predecessor.
+         */
         private boolean leftIsPrevious;
-        /** The right child node or the successor if {@link #rightIsNext}. */
+
+        /**
+         * The right child node or the successor if {@link #rightIsNext}.
+         */
         private AVLNode<E> right;
-        /** Flag indicating that right reference is not a subtree but the successor. */
+
+        /**
+         * Flag indicating that right reference is not a subtree but the successor.
+         */
         private boolean rightIsNext;
-        /** How many levels of left/right are below this one. */
+
+        /**
+         * How many levels of left/right are below this one.
+         */
         private int height;
-        /** The relative position, root holds absolute position. */
+
+        /**
+         * The relative position, root holds absolute position.
+         */
         private int relativePosition;
-        /** The stored element. */
+
+        /**
+         * The stored element.
+         */
         private E value;
 
         /**
@@ -115,8 +135,7 @@ public class TreeList<E> extends AbstractList<E> {
          * @param rightFollower the node with the value following this one
          * @param leftFollower the node with the value leading this one
          */
-        private AVLNode(final int relativePosition, final E obj,
-                        final AVLNode<E> rightFollower, final AVLNode<E> leftFollower) {
+        private AVLNode(final int relativePosition, final E obj, final AVLNode<E> rightFollower, final AVLNode<E> leftFollower) {
             this.relativePosition = relativePosition;
             value = obj;
             rightIsNext = true;
@@ -146,8 +165,7 @@ public class TreeList<E> extends AbstractList<E> {
          * @param next  the {@code AVLNode} corresponding to element (end + 1)
          *          of the collection, or null if end is the last element of the collection
          */
-        private AVLNode(final Iterator<? extends E> iterator, final int start, final int end,
-                        final int absolutePositionOfParent, final AVLNode<E> prev, final AVLNode<E> next) {
+        private AVLNode(final Iterator<? extends E> iterator, final int start, final int end, final int absolutePositionOfParent, final AVLNode<E> prev, final AVLNode<E> next) {
             final int mid = start + (end - start) / 2;
             if (start < mid) {
                 left = new AVLNode<>(iterator, start, mid - 1, mid, prev, this);
@@ -180,7 +198,6 @@ public class TreeList<E> extends AbstractList<E> {
         private AVLNode<E> addAll(AVLNode<E> otherTree, final int currentSize) {
             final AVLNode<E> maxNode = max();
             final AVLNode<E> otherTreeMin = otherTree.min();
-
             // We need to efficiently merge the two AVL trees while keeping them
             // balanced (or nearly balanced). To do this, we take the shorter
             // tree and combine it with a similar-height subtree of the taller
@@ -190,10 +207,8 @@ public class TreeList<E> extends AbstractList<E> {
             if (otherTree.height > height) {
                 // CASE 1: The other tree is taller than this one. We will thus
                 // merge this tree into otherTree.
-
                 // STEP 1: Remove the maximum element from this tree.
                 final AVLNode<E> leftSubTree = removeMax();
-
                 // STEP 2: Navigate left from the root of otherTree until we
                 // find a subtree, s, that is no taller than me. (While we are
                 // navigating left, we store the nodes we encounter in a stack
@@ -210,7 +225,6 @@ public class TreeList<E> extends AbstractList<E> {
                         sAbsolutePosition += s.relativePosition;
                     }
                 }
-
                 // STEP 3: Replace s with a newly constructed subtree whose root
                 // is maxNode, whose left subtree is leftSubTree, and whose right
                 // subtree is s.
@@ -226,7 +240,6 @@ public class TreeList<E> extends AbstractList<E> {
                 }
                 maxNode.relativePosition = currentSize - 1 - sParentAbsolutePosition;
                 otherTree.relativePosition += currentSize;
-
                 // STEP 4: Re-balance the tree and recalculate the heights of s's ancestors.
                 s = maxNode;
                 while (!sAncestors.isEmpty()) {
@@ -237,7 +250,6 @@ public class TreeList<E> extends AbstractList<E> {
                 return s;
             }
             otherTree = otherTree.removeMin();
-
             final Deque<AVLNode<E>> sAncestors = new ArrayDeque<>();
             AVLNode<E> s = this;
             int sAbsolutePosition = s.relativePosition;
@@ -250,7 +262,6 @@ public class TreeList<E> extends AbstractList<E> {
                     sAbsolutePosition += s.relativePosition;
                 }
             }
-
             otherTreeMin.setRight(otherTree, null);
             otherTreeMin.setLeft(s, maxNode);
             if (otherTree != null) {
@@ -262,7 +273,6 @@ public class TreeList<E> extends AbstractList<E> {
                 s.relativePosition = sAbsolutePosition - currentSize;
             }
             otherTreeMin.relativePosition = currentSize - sParentAbsolutePosition;
-
             s = otherTreeMin;
             while (!sAncestors.isEmpty()) {
                 final AVLNode<E> sAncestor = sAncestors.pop();
@@ -276,42 +286,28 @@ public class TreeList<E> extends AbstractList<E> {
          * Balances according to the AVL algorithm.
          */
         private AVLNode<E> balance() {
-            switch (heightRightMinusLeft()) {
-            case 1:
-            case 0:
-            case -1:
-                return this;
-            case -2:
-                if (left.heightRightMinusLeft() > 0) {
-                    setLeft(left.rotateLeft(), null);
-                }
-                return rotateRight();
-            case 2:
-                if (right.heightRightMinusLeft() < 0) {
-                    setRight(right.rotateRight(), null);
-                }
-                return rotateLeft();
-            default:
-                throw new IllegalStateException("tree inconsistent!");
+            switch(heightRightMinusLeft()) {
+                case 1:
+                case 0:
+                case -1:
+                    return this;
+                case -2:
+                    if (left.heightRightMinusLeft() > 0) {
+                        setLeft(left.rotateLeft(), null);
+                    }
+                    return rotateRight();
+                case 2:
+                    if (right.heightRightMinusLeft() < 0) {
+                        setRight(right.rotateRight(), null);
+                    }
+                    return rotateLeft();
+                default:
+                    throw new IllegalStateException("tree inconsistent!");
             }
         }
 
-        /**
-         * Gets the element with the given index relative to the
-         * offset of the parent of this node.
-         */
         AVLNode<E> get(final int index) {
-            final int indexRelativeToMe = index - relativePosition;
-
-            if (indexRelativeToMe == 0) {
-                return this;
-            }
-
-            final AVLNode<E> nextNode = indexRelativeToMe < 0 ? getLeftSubTree() : getRightSubTree();
-            if (nextNode == null) {
-                return null;
-            }
-            return nextNode.get(indexRelativeToMe);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -345,13 +341,8 @@ public class TreeList<E> extends AbstractList<E> {
             return rightIsNext ? null : right;
         }
 
-        /**
-         * Gets the value.
-         *
-         * @return the value of this node
-         */
         E getValue() {
-            return value;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -361,39 +352,12 @@ public class TreeList<E> extends AbstractList<E> {
             return getHeight(getRightSubTree()) - getHeight(getLeftSubTree());
         }
 
-        /**
-         * Finds the index that contains the specified object.
-         */
         int indexOf(final Object object, final int index) {
-            if (getLeftSubTree() != null) {
-                final int result = left.indexOf(object, index + left.relativePosition);
-                if (result != -1) {
-                    return result;
-                }
-            }
-            if (Objects.equals(value, object)) {
-                return index;
-            }
-            if (getRightSubTree() != null) {
-                return right.indexOf(object, index + right.relativePosition);
-            }
-            return -1;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Inserts a node at the position index.
-         *
-         * @param index is the index of the position relative to the position of
-         * the parent node.
-         * @param obj is the object to be stored in the position.
-         */
         AVLNode<E> insert(final int index, final E obj) {
-            final int indexRelativeToMe = index - relativePosition;
-
-            if (indexRelativeToMe <= 0) {
-                return insertOnLeft(indexRelativeToMe, obj);
-            }
-            return insertOnRight(indexRelativeToMe, obj);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private AVLNode<E> insertOnLeft(final int indexRelativeToMe, final E obj) {
@@ -402,7 +366,6 @@ public class TreeList<E> extends AbstractList<E> {
             } else {
                 setLeft(left.insert(indexRelativeToMe, obj), null);
             }
-
             if (relativePosition >= 0) {
                 relativePosition++;
             }
@@ -443,64 +406,23 @@ public class TreeList<E> extends AbstractList<E> {
             return getLeftSubTree() == null ? this : left.min();
         }
 
-        /**
-         * Gets the next node in the list after this one.
-         *
-         * @return the next node
-         */
         AVLNode<E> next() {
-            if (rightIsNext || right == null) {
-                return right;
-            }
-            return right.min();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Gets the node in the list before this one.
-         *
-         * @return the previous node
-         */
         AVLNode<E> previous() {
-            if (leftIsPrevious || left == null) {
-                return left;
-            }
-            return left.max();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
          * Sets the height by calculation.
          */
         private void recalcHeight() {
-            height = Math.max(
-                getLeftSubTree() == null ? -1 : getLeftSubTree().height,
-                getRightSubTree() == null ? -1 : getRightSubTree().height) + 1;
+            height = Math.max(getLeftSubTree() == null ? -1 : getLeftSubTree().height, getRightSubTree() == null ? -1 : getRightSubTree().height) + 1;
         }
 
-        /**
-         * Removes the node at a given position.
-         *
-         * @param index is the index of the element to be removed relative to the position of
-         * the parent node of the current node.
-         */
         AVLNode<E> remove(final int index) {
-            final int indexRelativeToMe = index - relativePosition;
-
-            if (indexRelativeToMe == 0) {
-                return removeSelf();
-            }
-            if (indexRelativeToMe > 0) {
-                setRight(right.remove(indexRelativeToMe), right.right);
-                if (relativePosition < 0) {
-                    relativePosition++;
-                }
-            } else {
-                setLeft(left.remove(indexRelativeToMe), left.left);
-                if (relativePosition > 0) {
-                    relativePosition--;
-                }
-            }
-            recalcHeight();
-            return balance();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private AVLNode<E> removeMax() {
@@ -548,7 +470,6 @@ public class TreeList<E> extends AbstractList<E> {
                 right.min().setLeft(null, left);
                 return right;
             }
-
             if (heightRightMinusLeft() > 0) {
                 // more on the right, so delete from the right
                 final AVLNode<E> rightMin = right.min();
@@ -584,16 +505,14 @@ public class TreeList<E> extends AbstractList<E> {
         }
 
         private AVLNode<E> rotateLeft() {
-            final AVLNode<E> newTop = right; // can't be faedelung!
+            // can't be faedelung!
+            final AVLNode<E> newTop = right;
             final AVLNode<E> movedNode = getRightSubTree().getLeftSubTree();
-
             final int newTopPosition = relativePosition + getOffset(newTop);
             final int myNewPosition = -newTop.relativePosition;
             final int movedPosition = getOffset(newTop) + getOffset(movedNode);
-
             setRight(movedNode, newTop);
             newTop.setLeft(this, null);
-
             setOffset(newTop, newTopPosition);
             setOffset(this, myNewPosition);
             setOffset(movedNode, movedPosition);
@@ -601,16 +520,14 @@ public class TreeList<E> extends AbstractList<E> {
         }
 
         private AVLNode<E> rotateRight() {
-            final AVLNode<E> newTop = left; // can't be faedelung
+            // can't be faedelung
+            final AVLNode<E> newTop = left;
             final AVLNode<E> movedNode = getLeftSubTree().getRightSubTree();
-
             final int newTopPosition = relativePosition + getOffset(newTop);
             final int myNewPosition = -newTop.relativePosition;
             final int movedPosition = getOffset(newTop) + getOffset(movedNode);
-
             setLeft(movedNode, newTop);
             newTop.setRight(this, null);
-
             setOffset(newTop, newTopPosition);
             setOffset(this, myNewPosition);
             setOffset(movedNode, movedPosition);
@@ -653,100 +570,68 @@ public class TreeList<E> extends AbstractList<E> {
             recalcHeight();
         }
 
-        /**
-         * Sets the value.
-         *
-         * @param obj  the value to store
-         */
         void setValue(final E obj) {
-            this.value = obj;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Stores the node and its children into the array specified.
-         *
-         * @param array the array to be filled
-         * @param index the index of this node
-         */
         void toArray(final Object[] array, final int index) {
-            array[index] = value;
-            if (getLeftSubTree() != null) {
-                left.toArray(array, index + left.relativePosition);
-            }
-            if (getRightSubTree() != null) {
-                right.toArray(array, index + right.relativePosition);
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-//      private void checkFaedelung() {
-//          AVLNode maxNode = left.max();
-//          if (!maxNode.rightIsFaedelung || maxNode.right != this) {
-//              throw new RuntimeException(maxNode + " should right-faedel to " + this);
-//          }
-//          AVLNode minNode = right.min();
-//          if (!minNode.leftIsFaedelung || minNode.left != this) {
-//              throw new RuntimeException(maxNode + " should left-faedel to " + this);
-//          }
-//      }
-//
-//        private int checkTreeDepth() {
-//            int hright = (getRightSubTree() == null ? -1 : getRightSubTree().checkTreeDepth());
-//            //          System.out.print("checkTreeDepth");
-//            //          System.out.print(this);
-//            //          System.out.print(" left: ");
-//            //          System.out.print(_left);
-//            //          System.out.print(" right: ");
-//            //          System.out.println(_right);
-//
-//            int hleft = (left == null ? -1 : left.checkTreeDepth());
-//            if (height != Math.max(hright, hleft) + 1) {
-//                throw new RuntimeException(
-//                    "height should be max" + hleft + "," + hright + " but is " + height);
-//            }
-//            return height;
-//        }
-//
-//        private int checkLeftSubNode() {
-//            if (getLeftSubTree() == null) {
-//                return 0;
-//            }
-//            int count = 1 + left.checkRightSubNode();
-//            if (left.relativePosition != -count) {
-//                throw new RuntimeException();
-//            }
-//            return count + left.checkLeftSubNode();
-//        }
-//
-//        private int checkRightSubNode() {
-//            AVLNode right = getRightSubTree();
-//            if (right == null) {
-//                return 0;
-//            }
-//            int count = 1;
-//            count += right.checkLeftSubNode();
-//            if (right.relativePosition != count) {
-//                throw new RuntimeException();
-//            }
-//            return count + right.checkRightSubNode();
-//        }
-
-        /**
-         * Used for debugging.
-         */
+        //      private void checkFaedelung() {
+        //          AVLNode maxNode = left.max();
+        //          if (!maxNode.rightIsFaedelung || maxNode.right != this) {
+        //              throw new RuntimeException(maxNode + " should right-faedel to " + this);
+        //          }
+        //          AVLNode minNode = right.min();
+        //          if (!minNode.leftIsFaedelung || minNode.left != this) {
+        //              throw new RuntimeException(maxNode + " should left-faedel to " + this);
+        //          }
+        //      }
+        //
+        //        private int checkTreeDepth() {
+        //            int hright = (getRightSubTree() == null ? -1 : getRightSubTree().checkTreeDepth());
+        //            //          System.out.print("checkTreeDepth");
+        //            //          System.out.print(this);
+        //            //          System.out.print(" left: ");
+        //            //          System.out.print(_left);
+        //            //          System.out.print(" right: ");
+        //            //          System.out.println(_right);
+        //
+        //            int hleft = (left == null ? -1 : left.checkTreeDepth());
+        //            if (height != Math.max(hright, hleft) + 1) {
+        //                throw new RuntimeException(
+        //                    "height should be max" + hleft + "," + hright + " but is " + height);
+        //            }
+        //            return height;
+        //        }
+        //
+        //        private int checkLeftSubNode() {
+        //            if (getLeftSubTree() == null) {
+        //                return 0;
+        //            }
+        //            int count = 1 + left.checkRightSubNode();
+        //            if (left.relativePosition != -count) {
+        //                throw new RuntimeException();
+        //            }
+        //            return count + left.checkLeftSubNode();
+        //        }
+        //
+        //        private int checkRightSubNode() {
+        //            AVLNode right = getRightSubTree();
+        //            if (right == null) {
+        //                return 0;
+        //            }
+        //            int count = 1;
+        //            count += right.checkLeftSubNode();
+        //            if (right.relativePosition != count) {
+        //                throw new RuntimeException();
+        //            }
+        //            return count + right.checkRightSubNode();
+        //        }
         @Override
         public String toString() {
-            return new StringBuilder()
-                .append("AVLNode(")
-                .append(relativePosition)
-                .append(CollectionUtils.COMMA)
-                .append(left != null)
-                .append(CollectionUtils.COMMA)
-                .append(value)
-                .append(CollectionUtils.COMMA)
-                .append(getRightSubTree() != null)
-                .append(rightIsNext)
-                .append(")")
-                .toString();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -754,25 +639,33 @@ public class TreeList<E> extends AbstractList<E> {
      * A list iterator over the linked list.
      */
     static class TreeListIterator<E> implements ListIterator<E>, OrderedIterator<E> {
-        /** The parent list */
+
+        /**
+         * The parent list
+         */
         private final TreeList<E> parent;
+
         /**
          * Cache of the next node that will be returned by {@link #next()}.
          */
         private AVLNode<E> next;
+
         /**
          * The index of the next node to be returned.
          */
         private int nextIndex;
+
         /**
          * Cache of the last node that was returned by {@link #next()}
          * or {@link #previous()}.
          */
         private AVLNode<E> current;
+
         /**
          * The index of the last node that was returned.
          */
         private int currentIndex;
+
         /**
          * The modification count that the list is expected to have. If the list
          * doesn't have this count, then a
@@ -797,113 +690,62 @@ public class TreeList<E> extends AbstractList<E> {
 
         @Override
         public void add(final E obj) {
-            checkModCount();
-            parent.add(nextIndex, obj);
-            current = null;
-            currentIndex = -1;
-            nextIndex++;
-            expectedModCount++;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * Checks the modification count of the list is the value that this
-         * object expects.
-         *
-         * @throws ConcurrentModificationException If the list's modification
-         * count isn't the value that was expected.
-         */
         protected void checkModCount() {
-            if (parent.modCount != expectedModCount) {
-                throw new ConcurrentModificationException();
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean hasNext() {
-            return nextIndex < parent.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean hasPrevious() {
-            return nextIndex > 0;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public E next() {
-            checkModCount();
-            if (!hasNext()) {
-                throw new NoSuchElementException("No element at index " + nextIndex + ".");
-            }
-            if (next == null) {
-                next = parent.root.get(nextIndex);
-            }
-            final E value = next.getValue();
-            current = next;
-            currentIndex = nextIndex++;
-            next = next.next();
-            return value;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int nextIndex() {
-            return nextIndex;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public E previous() {
-            checkModCount();
-            if (!hasPrevious()) {
-                throw new NoSuchElementException("Already at start of list.");
-            }
-            if (next == null) {
-                next = parent.root.get(nextIndex - 1);
-            } else {
-                next = next.previous();
-            }
-            final E value = next.getValue();
-            current = next;
-            currentIndex = --nextIndex;
-            return value;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int previousIndex() {
-            return nextIndex() - 1;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void remove() {
-            checkModCount();
-            if (currentIndex == -1) {
-                throw new IllegalStateException();
-            }
-            parent.remove(currentIndex);
-            if (nextIndex != currentIndex) {
-                // remove() following next()
-                nextIndex--;
-            }
-            // the AVL node referenced by next may have become stale after a remove
-            // reset it now: will be retrieved by next call to next()/previous() via nextIndex
-            next = null;
-            current = null;
-            currentIndex = -1;
-            expectedModCount++;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void set(final E obj) {
-            checkModCount();
-            if (current == null) {
-                throw new IllegalStateException();
-            }
-            current.setValue(obj);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /** The root node in the AVL tree */
+    /**
+     * The root node in the AVL tree
+     */
     private AVLNode<E> root;
 
-    /** The current size of the list */
+    /**
+     * The current size of the list
+     */
     private int size;
 
     /**
@@ -925,47 +767,14 @@ public class TreeList<E> extends AbstractList<E> {
         }
     }
 
-    /**
-     * Adds a new element to the list.
-     *
-     * @param index  the index to add before
-     * @param obj  the element to add
-     */
     @Override
     public void add(final int index, final E obj) {
-        modCount++;
-        checkInterval(index, 0, size());
-        if (root == null) {
-            root = new AVLNode<>(index, obj, null, null);
-        } else {
-            root = root.insert(index, obj);
-        }
-        size++;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Appends all the elements in the specified collection to the end of this list,
-     * in the order that they are returned by the specified collection's Iterator.
-     * <p>
-     * This method runs in O(n + log m) time, where m is
-     * the size of this list and n is the size of {@code c}.
-     *
-     * @param c  the collection to be added to this list
-     * @return {@code true} if this list changed as a result of the call
-     * @throws NullPointerException if the specified collection contains a
-     *         null element and this collection does not permit null elements,
-     *         or if the specified collection is null
-     */
     @Override
     public boolean addAll(final Collection<? extends E> c) {
-        if (c.isEmpty()) {
-            return false;
-        }
-        modCount += c.size();
-        final AVLNode<E> cTree = new AVLNode<>(c);
-        root = root == null ? cTree : root.addAll(cTree, size);
-        size += c.size();
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -982,146 +791,58 @@ public class TreeList<E> extends AbstractList<E> {
         }
     }
 
-    /**
-     * Clears the list, removing all entries.
-     */
     @Override
     public void clear() {
-        modCount++;
-        root = null;
-        size = 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Searches for the presence of an object in the list.
-     *
-     * @param object  the object to check
-     * @return true if the object is found
-     */
     @Override
     public boolean contains(final Object object) {
-        return indexOf(object) >= 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the element at the specified index.
-     *
-     * @param index  the index to retrieve
-     * @return the element at the specified index
-     */
     @Override
     public E get(final int index) {
-        checkInterval(index, 0, size() - 1);
-        return root.get(index).getValue();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Searches for the index of an object in the list.
-     *
-     * @param object  the object to search
-     * @return the index of the object, -1 if not found
-     */
     @Override
     public int indexOf(final Object object) {
-        // override to go 75% faster
-        if (root == null) {
-            return -1;
-        }
-        return root.indexOf(object, root.relativePosition);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets an iterator over the list.
-     *
-     * @return an iterator over the list
-     */
     @Override
     public Iterator<E> iterator() {
-        // override to go 75% faster
-        return listIterator(0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a ListIterator over the list.
-     *
-     * @return the new iterator
-     */
     @Override
     public ListIterator<E> listIterator() {
-        // override to go 75% faster
-        return listIterator(0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a ListIterator over the list.
-     *
-     * @param fromIndex  the index to start from
-     * @return the new iterator
-     */
     @Override
     public ListIterator<E> listIterator(final int fromIndex) {
-        // override to go 75% faster
-        // cannot use EmptyIterator as iterator.add() must work
-        checkInterval(fromIndex, 0, size());
-        return new TreeListIterator<>(this, fromIndex);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes the element at the specified index.
-     *
-     * @param index  the index to remove
-     * @return the previous object at that index
-     */
     @Override
     public E remove(final int index) {
-        modCount++;
-        checkInterval(index, 0, size() - 1);
-        final E result = get(index);
-        root = root.remove(index);
-        size--;
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the element at the specified index.
-     *
-     * @param index  the index to set
-     * @param obj  the object to store at the specified index
-     * @return the previous object at that index
-     * @throws IndexOutOfBoundsException if the index is invalid
-     */
     @Override
     public E set(final int index, final E obj) {
-        checkInterval(index, 0, size() - 1);
-        final AVLNode<E> node = root.get(index);
-        final E result = node.value;
-        node.setValue(obj);
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the current size of the list.
-     *
-     * @return the current size
-     */
     @Override
     public int size() {
-        return size;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Converts the list into an array.
-     *
-     * @return the list as an array
-     */
     @Override
     public Object[] toArray() {
-        // override to go 20% faster
-        final Object[] array = new Object[size()];
-        if (root != null) {
-            root.toArray(array, root.relativePosition);
-        }
-        return array;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -51,6 +51,7 @@ public interface CellExtractor extends IndexExtractor {
      */
     @FunctionalInterface
     interface CellPredicate {
+
         /**
          * Performs an operation on the given {@code <index, count>} pair.
          *
@@ -61,81 +62,8 @@ public interface CellExtractor extends IndexExtractor {
         boolean test(int index, int count);
     }
 
-    /**
-     * Creates a CellExtractor from an IndexExtractor.
-     *
-     * <p>Note the following properties:</p>
-     * <ul>
-     * <li>Each index returned from the IndexExtractor is assumed to have a cell value of 1.</li>
-     * <li>The CellExtractor aggregates duplicate indices from the IndexExtractor.</li>
-     * </ul>
-     *
-     * <p>A CellExtractor that outputs the mapping [(1,2),(2,3),(3,1)] can be created from many combinations
-     * of indices including:</p>
-     * <pre>
-     * [1, 1, 2, 2, 2, 3]
-     * [1, 3, 1, 2, 2, 2]
-     * [3, 2, 1, 2, 1, 2]
-     * ...
-     * </pre>
-     *
-     * @param indexExtractor An index indexExtractor.
-     * @return A CellExtractor with the same indices as the IndexExtractor.
-     */
     static CellExtractor from(final IndexExtractor indexExtractor) {
-        return new CellExtractor() {
-            /**
-             * Class to track cell values in the TreeMap.
-             */
-            final class CounterCell implements Comparable<CounterCell> {
-                final int idx;
-                int count;
-
-                CounterCell(final int idx, final int count) {
-                    this.idx = idx;
-                    this.count = count;
-                }
-
-                @Override
-                public int compareTo(final CounterCell other) {
-                    return Integer.compare(idx, other.idx);
-                }
-            }
-
-            TreeMap<CounterCell, CounterCell> counterCells = new TreeMap<>();
-
-            @Override
-            public int[] asIndexArray() {
-                populate();
-                return counterCells.keySet().stream().mapToInt(c -> c.idx).toArray();
-            }
-
-            private void populate() {
-                if (counterCells.isEmpty()) {
-                    indexExtractor.processIndices(idx -> {
-                        final CounterCell cell = new CounterCell(idx, 1);
-                        final CounterCell counter = counterCells.get(cell);
-                        if (counter == null) {
-                            counterCells.put(cell, cell);
-                        } else {
-                            counter.count++;
-                        }
-                        return true;
-                    });
-                }
-            }
-
-            @Override
-            public boolean processCells(final CellPredicate consumer) {
-                populate();
-                for (final CounterCell cell : counterCells.values()) {
-                    if (!consumer.test(cell.idx, cell.count)) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-        };
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -154,17 +82,13 @@ public interface CellExtractor extends IndexExtractor {
      */
     boolean processCells(CellPredicate consumer);
 
-    /**
-     * The default implementation returns distinct and ordered indices for all cells with a non-zero count.
-     */
     @Override
     default boolean processIndices(final IntPredicate predicate) {
-        return processCells((i, v) -> predicate.test(i));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     default IndexExtractor uniqueIndices() {
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }
-

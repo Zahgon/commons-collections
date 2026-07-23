@@ -19,7 +19,6 @@ package org.apache.commons.collections4.list;
 import java.util.Collection;
 import java.util.List;
 import java.util.ListIterator;
-
 import org.apache.commons.collections4.collection.AbstractCollectionDecorator;
 
 /**
@@ -33,7 +32,9 @@ import org.apache.commons.collections4.collection.AbstractCollectionDecorator;
  */
 public abstract class AbstractListDecorator<E> extends AbstractCollectionDecorator<E> implements List<E> {
 
-    /** Serialization version--necessary in an abstract class? */
+    /**
+     * Serialization version--necessary in an abstract class?
+     */
     private static final long serialVersionUID = 4500739654952315623L;
 
     /**
@@ -55,72 +56,66 @@ public abstract class AbstractListDecorator<E> extends AbstractCollectionDecorat
 
     @Override
     public void add(final int index, final E object) {
-        decorated().add(index, object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final int index, final Collection<? extends E> coll) {
-        return decorated().addAll(index, coll);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the list being decorated.
-     *
-     * @return the decorated list
-     */
     @Override
     protected List<E> decorated() {
-        return (List<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object object) {
-        return object == this || decorated().equals(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E get(final int index) {
-        return decorated().get(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return decorated().hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int indexOf(final Object object) {
-        return decorated().indexOf(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int lastIndexOf(final Object object) {
-        return decorated().lastIndexOf(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public ListIterator<E> listIterator() {
-        return decorated().listIterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public ListIterator<E> listIterator(final int index) {
-        return decorated().listIterator(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E remove(final int index) {
-        return decorated().remove(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E set(final int index, final E object) {
-        return decorated().set(index, object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public List<E> subList(final int fromIndex, final int toIndex) {
-        return decorated().subList(fromIndex, toIndex);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

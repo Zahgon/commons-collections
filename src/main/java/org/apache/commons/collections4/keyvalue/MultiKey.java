@@ -47,9 +47,11 @@ import java.util.Objects;
  * @since 3.0
  */
 public class MultiKey<K> implements Serializable {
-    // This class could implement List, but that would confuse its purpose
 
-    /** Serialization version */
+    // This class could implement List, but that would confuse its purpose
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 4465448607415788805L;
 
     @SuppressWarnings("unchecked")
@@ -113,10 +115,14 @@ public class MultiKey<K> implements Serializable {
         return array;
     }
 
-    /** The individual keys */
+    /**
+     * The individual keys
+     */
     private final K[] keys;
 
-    /** The cached hashCode */
+    /**
+     * The cached hashCode
+     */
     private transient int hashCode;
 
     /**
@@ -245,101 +251,34 @@ public class MultiKey<K> implements Serializable {
         hashCode = total;
     }
 
-    /**
-     * Compares this object to another.
-     * <p>
-     * To be equal, the other object must be a {@code MultiKey} with the
-     * same number of keys which are also equal.
-     * </p>
-     *
-     * @param other  the other object to compare to
-     * @return true if equal
-     */
     @Override
     public boolean equals(final Object other) {
-        if (other == this) {
-            return true;
-        }
-        if (other instanceof MultiKey) {
-            final MultiKey<?> otherMulti = (MultiKey<?>) other;
-            return Arrays.equals(keys, otherMulti.keys);
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the key at the specified index.
-     * <p>
-     * The key should be immutable.
-     * If it is not then it must not be changed.
-     * </p>
-     *
-     * @param index  the index to retrieve
-     * @return the key at the index
-     * @throws IndexOutOfBoundsException if the index is invalid
-     * @since 3.1
-     */
     public K getKey(final int index) {
-        return keys[index];
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a clone of the array of keys.
-     * <p>
-     * The keys should be immutable
-     * If they are not then they must not be changed.
-     * </p>
-     *
-     * @return the individual keys
-     */
     public K[] getKeys() {
-        return keys.clone();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the combined hash code that is computed from all the keys.
-     * <p>
-     * This value is computed once and then cached, so elements should not
-     * change their hash codes once created (note that this is the same
-     * constraint that would be used if the individual keys elements were
-     * themselves {@link java.util.Map Map} keys).
-     * </p>
-     *
-     * @return the hash code
-     */
     @Override
     public int hashCode() {
-        return hashCode;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Recalculate the hash code after deserialization. The hash code of some
-     * keys might have change (hash codes based on the system hash code are
-     * only stable for the same process).
-     * @return the instance with recalculated hash code
-     */
     protected Object readResolve() {
-        calculateHashCode(keys);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the size of the list of keys.
-     *
-     * @return the size of the list of keys
-     * @since 3.1
-     */
     public int size() {
-        return keys.length;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a debugging string version of the key.
-     *
-     * @return a debugging string
-     */
     @Override
     public String toString() {
-        return "MultiKey" + Arrays.toString(keys);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

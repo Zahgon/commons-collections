@@ -21,7 +21,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Map;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -51,39 +50,25 @@ import org.apache.commons.collections4.Predicate;
  * @param <V> the type of the values in this map
  * @since 3.0
  */
-public class PredicatedMap<K, V>
-        extends AbstractInputCheckedMapDecorator<K, V>
-        implements Serializable {
-
-    /** Serialization version */
-    private static final long serialVersionUID = 7412622456128415156L;
+public class PredicatedMap<K, V> extends AbstractInputCheckedMapDecorator<K, V> implements Serializable {
 
     /**
-     * Factory method to create a predicated (validating) map.
-     * <p>
-     * If there are any elements already in the list being decorated, they
-     * are validated.
-     * </p>
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @param keyPredicate  the predicate to validate the keys, null means no check
-     * @param valuePredicate  the predicate to validate to values, null means no check
-     * @return a new predicated map
-     * @throws NullPointerException if the map is null
-     * @since 4.0
+     * Serialization version
      */
-    public static <K, V> PredicatedMap<K, V> predicatedMap(final Map<K, V> map,
-                                                           final Predicate<? super K> keyPredicate,
-                                                           final Predicate<? super V> valuePredicate) {
-        return new PredicatedMap<>(map, keyPredicate, valuePredicate);
+    private static final long serialVersionUID = 7412622456128415156L;
+
+    public static <K, V> PredicatedMap<K, V> predicatedMap(final Map<K, V> map, final Predicate<? super K> keyPredicate, final Predicate<? super V> valuePredicate) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The key predicate to use */
+    /**
+     * The key predicate to use
+     */
     protected final Predicate<? super K> keyPredicate;
 
-    /** The value predicate to use */
+    /**
+     * The value predicate to use
+     */
     protected final Predicate<? super V> valuePredicate;
 
     /**
@@ -94,53 +79,31 @@ public class PredicatedMap<K, V>
      * @param valuePredicate  the predicate to validate to values, null means no check
      * @throws NullPointerException if the map is null
      */
-    protected PredicatedMap(final Map<K, V> map, final Predicate<? super K> keyPredicate,
-                            final Predicate<? super V> valuePredicate) {
+    protected PredicatedMap(final Map<K, V> map, final Predicate<? super K> keyPredicate, final Predicate<? super V> valuePredicate) {
         super(map);
         this.keyPredicate = keyPredicate;
         this.valuePredicate = valuePredicate;
         map.forEach(this::validate);
     }
 
-    /**
-     * Override to validate an object set into the map via {@code setValue}.
-     *
-     * @param value  the value to validate
-     * @return the value itself
-     * @throws IllegalArgumentException if invalid
-     * @since 3.1
-     */
     @Override
     protected V checkSetValue(final V value) {
-        if (!valuePredicate.test(value)) {
-            throw new IllegalArgumentException("Cannot set value - Predicate rejected it");
-        }
-        return value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Override to only return true when there is a value transformer.
-     *
-     * @return true if a value predicate is in use
-     * @since 3.1
-     */
     @Override
     protected boolean isSetValueChecking() {
-        return valuePredicate != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public V put(final K key, final V value) {
-        validate(key, value);
-        return map.put(key, value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void putAll(final Map<? extends K, ? extends V> mapToCopy) {
-        for (final Map.Entry<? extends K, ? extends V> entry : mapToCopy.entrySet()) {
-            validate(entry.getKey(), entry.getValue());
-        }
-        super.putAll(mapToCopy);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -151,26 +114,16 @@ public class PredicatedMap<K, V>
      * @throws ClassNotFoundException if an object read from the stream cannot be loaded
      * @since 3.1
      */
-    @SuppressWarnings("unchecked") // (1) should only fail if input stream is incorrect
+    // (1) should only fail if input stream is incorrect
+    @SuppressWarnings("unchecked")
     private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
-        map = (Map<K, V>) in.readObject(); // (1)
+        // (1)
+        map = (Map<K, V>) in.readObject();
     }
 
-    /**
-     * Validates a key value pair.
-     *
-     * @param key  the key to validate
-     * @param value  the value to validate
-     * @throws IllegalArgumentException if invalid
-     */
     protected void validate(final K key, final V value) {
-        if (keyPredicate != null && !keyPredicate.test(key)) {
-            throw new IllegalArgumentException("Cannot add key - Predicate rejected it");
-        }
-        if (valuePredicate != null && !valuePredicate.test(value)) {
-            throw new IllegalArgumentException("Cannot add value - Predicate rejected it");
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -184,5 +137,4 @@ public class PredicatedMap<K, V>
         out.defaultWriteObject();
         out.writeObject(map);
     }
-
 }

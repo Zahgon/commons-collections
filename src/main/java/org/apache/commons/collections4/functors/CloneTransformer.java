@@ -35,19 +35,15 @@ import org.apache.commons.collections4.Transformer;
  */
 public class CloneTransformer<T> implements Transformer<T, T> {
 
-    /** Singleton predicate instance */
-    @SuppressWarnings("rawtypes") // the singleton instance works for all types
+    /**
+     * Singleton predicate instance
+     */
+    // the singleton instance works for all types
+    @SuppressWarnings("rawtypes")
     public static final Transformer INSTANCE = new CloneTransformer<>();
 
-    /**
-     * Factory returning the singleton instance.
-     *
-     * @param <T>  the type of the objects to be cloned
-     * @return the singleton instance
-     * @since 3.1
-     */
     public static <T> Transformer<T, T> cloneTransformer() {
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -56,18 +52,8 @@ public class CloneTransformer<T> implements Transformer<T, T> {
     private CloneTransformer() {
     }
 
-    /**
-     * Transforms the input to result by cloning it.
-     *
-     * @param input  the input object to transform
-     * @return the transformed result
-     */
     @Override
     public T transform(final T input) {
-        if (input == null) {
-            return null;
-        }
-        return PrototypeFactory.prototypeFactory(input).get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

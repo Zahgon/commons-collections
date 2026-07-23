@@ -32,37 +32,28 @@ import java.util.Objects;
  */
 public class PeekingIterator<E> implements Iterator<E> {
 
-    /**
-     * Decorates the specified iterator to support one-element lookahead.
-     * <p>
-     * If the iterator is already a {@link PeekingIterator} it is returned directly.
-     * </p>
-     *
-     * @param <E>      the element type
-     * @param iterator the iterator to decorate
-     * @return a new peeking iterator
-     * @throws NullPointerException if the iterator is null
-     */
     public static <E> PeekingIterator<E> peekingIterator(final Iterator<? extends E> iterator) {
-        Objects.requireNonNull(iterator, "iterator");
-        if (iterator instanceof PeekingIterator<?>) {
-            @SuppressWarnings("unchecked") // safe cast
-            final PeekingIterator<E> it = (PeekingIterator<E>) iterator;
-            return it;
-        }
-        return new PeekingIterator<>(iterator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The iterator being decorated. */
+    /**
+     * The iterator being decorated.
+     */
     private final Iterator<? extends E> iterator;
 
-    /** Indicates that the decorated iterator is exhausted. */
+    /**
+     * Indicates that the decorated iterator is exhausted.
+     */
     private boolean exhausted;
 
-    /** Indicates if the lookahead slot is filled. */
+    /**
+     * Indicates if the lookahead slot is filled.
+     */
     private boolean slotFilled;
 
-    /** The current slot for lookahead. */
+    /**
+     * The current slot for lookahead.
+     */
     private E slot;
 
     /**
@@ -74,22 +65,8 @@ public class PeekingIterator<E> implements Iterator<E> {
         this.iterator = iterator;
     }
 
-    /**
-     * Returns the next element in iteration without advancing the underlying iterator. If the iterator is already exhausted, null will be returned.
-     * <p>
-     * Note that if the underlying iterator is a {@link FilterIterator} or a {@link FilterListIterator}, the underlying predicate will <em>not</em> be tested if
-     * element() or {@link #peek()} has been called after the most recent invocation of {@link #next()}
-     * </p>
-     *
-     * @return the next element from the iterator
-     * @throws NoSuchElementException if the iterator is already exhausted according to {@link #hasNext()}
-     */
     public E element() {
-        fill();
-        if (exhausted) {
-            throw new NoSuchElementException();
-        }
-        return slot;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void fill() {
@@ -108,66 +85,20 @@ public class PeekingIterator<E> implements Iterator<E> {
 
     @Override
     public boolean hasNext() {
-        if (exhausted) {
-            return false;
-        }
-        return slotFilled || iterator.hasNext();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the next element in iteration.
-     * <p>
-     * Note that if the underlying iterator is a {@link FilterIterator} or a {@link FilterListIterator}, the underlying predicate will <em>not</em> be tested if
-     * {@link #element()} or {@link #peek()} has been called after the most recent invocation of {@link #next()}.
-     * </p>
-     *
-     * @return the next element from the iterator
-     * @throws NoSuchElementException if the iterator is already exhausted according to {@link #hasNext()}.
-     */
     @Override
     public E next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
-        final E x = slotFilled ? slot : iterator.next();
-        // reset the lookahead slot
-        slot = null;
-        slotFilled = false;
-        return x;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the next element in iteration without advancing the underlying iterator. If the iterator is already exhausted, null will be returned.
-     * <p>
-     * Note: this method does not throw a {@link NoSuchElementException} if the iterator is already exhausted. If you want such a behavior, use
-     * {@link #element()} instead.
-     * </p>
-     * <p>
-     * The rationale behind this is to follow the {@link java.util.Queue} interface which uses the same terminology.
-     * </p>
-     * <p>
-     * Note that if the underlying iterator is a {@link FilterIterator} or a {@link FilterListIterator}, the underlying predicate will <em>not</em> be tested if
-     * {@link #element()} or peek() has been called after the most recent invocation of {@link #next()}.
-     * </p>
-     *
-     * @return the next element from the iterator
-     */
     public E peek() {
-        fill();
-        return exhausted ? null : slot;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @throws IllegalStateException if {@link #peek()} or {@link #element()} has been called prior to the call to {@link #remove()}.
-     */
     @Override
     public void remove() {
-        if (slotFilled) {
-            throw new IllegalStateException("peek() or element() called before remove()");
-        }
-        iterator.remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

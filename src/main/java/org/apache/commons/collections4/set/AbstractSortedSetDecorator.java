@@ -29,11 +29,11 @@ import java.util.SortedSet;
  * @param <E> the type of the elements in the sorted set
  * @since 3.0
  */
-public abstract class AbstractSortedSetDecorator<E>
-        extends AbstractSetDecorator<E>
-        implements SortedSet<E> {
+public abstract class AbstractSortedSetDecorator<E> extends AbstractSetDecorator<E> implements SortedSet<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -3462240946294214398L;
 
     /**
@@ -55,42 +55,36 @@ public abstract class AbstractSortedSetDecorator<E>
 
     @Override
     public Comparator<? super E> comparator() {
-        return decorated().comparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the set being decorated.
-     *
-     * @return the decorated set
-     */
     @Override
     protected SortedSet<E> decorated() {
-        return (SortedSet<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E first() {
-        return decorated().first();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedSet<E> headSet(final E toElement) {
-        return decorated().headSet(toElement);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E last() {
-        return decorated().last();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedSet<E> subSet(final E fromElement, final E toElement) {
-        return decorated().subSet(fromElement, toElement);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public SortedSet<E> tailSet(final E fromElement) {
-        return decorated().tailSet(fromElement);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -29,11 +29,19 @@ import java.util.Iterator;
  */
 public class EnumerationIterator<E> implements Iterator<E> {
 
-    /** The collection to remove elements from */
+    /**
+     * The collection to remove elements from
+     */
     private final Collection<? super E> collection;
-    /** The enumeration being converted */
+
+    /**
+     * The enumeration being converted
+     */
     private Enumeration<? extends E> enumeration;
-    /** The last object retrieved */
+
+    /**
+     * The last object retrieved
+     */
     private E last;
 
     // Constructors
@@ -68,67 +76,27 @@ public class EnumerationIterator<E> implements Iterator<E> {
         this.last = null;
     }
 
-    /**
-     * Gets the underlying enumeration.
-     *
-     * @return the underlying enumeration
-     */
     public Enumeration<? extends E> getEnumeration() {
-        return enumeration;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     // Iterator interface
-    /**
-     * Returns true if the underlying enumeration has more elements.
-     *
-     * @return true if the underlying enumeration has more elements
-     * @throws NullPointerException  if the underlying enumeration is null
-     */
     @Override
     public boolean hasNext() {
-        return enumeration.hasMoreElements();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns the next object from the enumeration.
-     *
-     * @return the next object from the enumeration
-     * @throws NullPointerException if the enumeration is null
-     */
     @Override
     public E next() {
-        last = enumeration.nextElement();
-        return last;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes the last retrieved element if a collection is attached.
-     * <p>
-     * Functions if an associated {@code Collection} is known.
-     * If so, the first occurrence of the last returned object from this
-     * iterator will be removed from the collection.
-     *
-     * @throws IllegalStateException {@code next()} not called.
-     * @throws UnsupportedOperationException if no associated collection
-     */
     @Override
     public void remove() {
-        if (collection == null) {
-            throw new UnsupportedOperationException("No Collection associated with this Iterator");
-        }
-        if (last == null) {
-            throw new IllegalStateException("next() must have been called for remove() to function");
-        }
-        collection.remove(last);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the underlying enumeration.
-     *
-     * @param enumeration  the new underlying enumeration
-     */
     public void setEnumeration(final Enumeration<? extends E> enumeration) {
-        this.enumeration = enumeration;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

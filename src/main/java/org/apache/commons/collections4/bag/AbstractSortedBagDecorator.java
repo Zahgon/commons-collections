@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.bag;
 
 import java.util.Comparator;
-
 import org.apache.commons.collections4.SortedBag;
 
 /**
@@ -29,10 +28,11 @@ import org.apache.commons.collections4.SortedBag;
  * @param <E> the type of elements in this bag
  * @since 3.0
  */
-public abstract class AbstractSortedBagDecorator<E>
-        extends AbstractBagDecorator<E> implements SortedBag<E> {
+public abstract class AbstractSortedBagDecorator<E> extends AbstractBagDecorator<E> implements SortedBag<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -8223473624050467718L;
 
     /**
@@ -54,27 +54,21 @@ public abstract class AbstractSortedBagDecorator<E>
 
     @Override
     public Comparator<? super E> comparator() {
-        return decorated().comparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the bag being decorated.
-     *
-     * @return the decorated bag
-     */
     @Override
     protected SortedBag<E> decorated() {
-        return (SortedBag<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E first() {
-        return decorated().first();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E last() {
-        return decorated().last();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

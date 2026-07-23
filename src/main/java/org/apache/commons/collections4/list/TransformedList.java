@@ -19,7 +19,6 @@ package org.apache.commons.collections4.list;
 import java.util.Collection;
 import java.util.List;
 import java.util.ListIterator;
-
 import org.apache.commons.collections4.Transformer;
 import org.apache.commons.collections4.collection.TransformedCollection;
 import org.apache.commons.collections4.iterators.AbstractListIteratorDecorator;
@@ -57,65 +56,26 @@ public class TransformedList<E> extends TransformedCollection<E> implements List
 
         @Override
         public void add(E object) {
-            object = transform(object);
-            getListIterator().add(object);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void set(final E object) {
-            getListIterator().set(transform(object));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 1077193035000013141L;
 
-    /**
-     * Factory method to create a transforming list that will transform
-     * existing contents of the specified list.
-     * <p>
-     * If there are any elements already in the list being decorated, they
-     * will be transformed by this method.
-     * Contrast this with {@link #transformingList(List, Transformer)}.
-     *
-     * @param <E> the type of the elements in the list
-     * @param list  the list to decorate, must not be null
-     * @param transformer  the transformer to use for conversion, must not be null
-     * @return a new transformed List
-     * @throws NullPointerException if list or transformer is null
-     * @since 4.0
-     */
-    public static <E> TransformedList<E> transformedList(final List<E> list,
-                                                         final Transformer<? super E, ? extends E> transformer) {
-        final TransformedList<E> decorated = new TransformedList<>(list, transformer);
-        if (!list.isEmpty()) {
-            @SuppressWarnings("unchecked") // list is of type E
-            final E[] values = (E[]) list.toArray(); // NOPMD - false positive for generics
-            list.clear();
-            for (final E value : values) {
-                decorated.decorated().add(transformer.apply(value));
-            }
-        }
-        return decorated;
+    public static <E> TransformedList<E> transformedList(final List<E> list, final Transformer<? super E, ? extends E> transformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Factory method to create a transforming list.
-     * <p>
-     * If there are any elements already in the list being decorated, they
-     * are NOT transformed.
-     * Contrast this with {@link #transformedList(List, Transformer)}.
-     *
-     * @param <E> the type of the elements in the list
-     * @param list  the list to decorate, must not be null
-     * @param transformer  the transformer to use for conversion, must not be null
-     * @return a new transformed list
-     * @throws NullPointerException if list or transformer is null
-     * @since 4.0
-     */
-    public static <E> TransformedList<E> transformingList(final List<E> list,
-                                                          final Transformer<? super E, ? extends E> transformer) {
-        return new TransformedList<>(list, transformer);
+    public static <E> TransformedList<E> transformingList(final List<E> list, final Transformer<? super E, ? extends E> transformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -134,75 +94,65 @@ public class TransformedList<E> extends TransformedCollection<E> implements List
 
     @Override
     public void add(final int index, E object) {
-        object = transform(object);
-        getList().add(index, object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean addAll(final int index, Collection<? extends E> coll) {
-        coll = transform(coll);
-        return getList().addAll(index, coll);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object object) {
-        return object == this || decorated().equals(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E get(final int index) {
-        return getList().get(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the decorated list.
-     *
-     * @return the decorated list
-     */
     protected List<E> getList() {
-        return (List<E>) decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return decorated().hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int indexOf(final Object object) {
-        return getList().indexOf(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int lastIndexOf(final Object object) {
-        return getList().lastIndexOf(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public ListIterator<E> listIterator() {
-        return listIterator(0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public ListIterator<E> listIterator(final int i) {
-        return new TransformedListIterator(getList().listIterator(i));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E remove(final int index) {
-        return getList().remove(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E set(final int index, E object) {
-        object = transform(object);
-        return getList().set(index, object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public List<E> subList(final int fromIndex, final int toIndex) {
-        final List<E> sub = getList().subList(fromIndex, toIndex);
-        return new TransformedList<>(sub, transformer);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

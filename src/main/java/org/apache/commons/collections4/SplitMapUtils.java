@@ -20,7 +20,6 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-
 import org.apache.commons.collections4.collection.UnmodifiableCollection;
 import org.apache.commons.collections4.iterators.UnmodifiableMapIterator;
 import org.apache.commons.collections4.map.EntrySetToMapIteratorAdapter;
@@ -38,6 +37,7 @@ import org.apache.commons.collections4.set.UnmodifiableSet;
 public class SplitMapUtils {
 
     private static final class WrappedGet<K, V> implements IterableMap<K, V>, Unmodifiable {
+
         private final Get<K, V> get;
 
         private WrappedGet(final Get<K, V> get) {
@@ -46,90 +46,82 @@ public class SplitMapUtils {
 
         @Override
         public void clear() {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean containsKey(final Object key) {
-            return get.containsKey(key);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean containsValue(final Object value) {
-            return get.containsValue(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Set<Map.Entry<K, V>> entrySet() {
-            return UnmodifiableEntrySet.unmodifiableEntrySet(get.entrySet());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean equals(final Object arg0) {
-            if (arg0 == this) {
-                return true;
-            }
-            return arg0 instanceof WrappedGet && ((WrappedGet<?, ?>) arg0).get.equals(get);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V get(final Object key) {
-            return get.get(key);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int hashCode() {
-            return "WrappedGet".hashCode() << 4 | get.hashCode();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean isEmpty() {
-            return get.isEmpty();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Set<K> keySet() {
-            return UnmodifiableSet.unmodifiableSet(get.keySet());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public MapIterator<K, V> mapIterator() {
-            final MapIterator<K, V> it;
-            if (get instanceof IterableGet) {
-                it = ((IterableGet<K, V>) get).mapIterator();
-            } else {
-                it = new EntrySetToMapIteratorAdapter<>(get.entrySet());
-            }
-            return UnmodifiableMapIterator.unmodifiableMapIterator(it);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V put(final K key, final V value) {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void putAll(final Map<? extends K, ? extends V> t) {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V remove(final Object key) {
-            return get.remove(key);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return get.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Collection<V> values() {
-            return UnmodifiableCollection.unmodifiableCollection(get.values());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     private static final class WrappedPut<K, V> implements Map<K, V>, Put<K, V> {
+
         private final Put<K, V> put;
 
         private WrappedPut(final Put<K, V> put) {
@@ -138,122 +130,84 @@ public class SplitMapUtils {
 
         @Override
         public void clear() {
-            put.clear();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean containsKey(final Object key) {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean containsValue(final Object value) {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Set<Map.Entry<K, V>> entrySet() {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean equals(final Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            return obj instanceof WrappedPut && ((WrappedPut<?, ?>) obj).put.equals(put);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V get(final Object key) {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int hashCode() {
-            return "WrappedPut".hashCode() << 4 | put.hashCode();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean isEmpty() {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Set<K> keySet() {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         @SuppressWarnings("unchecked")
         public V put(final K key, final V value) {
-            return (V) put.put(key, value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void putAll(final Map<? extends K, ? extends V> t) {
-            put.putAll(t);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V remove(final Object key) {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Collection<V> values() {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /**
-     * Gets the specified {@link Get} as an instance of {@link IterableMap}.
-     * If {@code get} implements {@link IterableMap} directly, no conversion will take place.
-     * If {@code get} implements {@link Map} but not {@link IterableMap} it will be decorated.
-     * Otherwise, an {@link Unmodifiable} {@link IterableMap} will be returned.
-     *
-     * @param <K> the key type
-     * @param <V> the value type
-     * @param get to wrap, must not be null
-     * @return {@link IterableMap}
-     * @throws NullPointerException if the argument is null
-     */
     @SuppressWarnings("unchecked")
     public static <K, V> IterableMap<K, V> readableMap(final Get<K, V> get) {
-        Objects.requireNonNull(get, "get");
-        if (get instanceof Map) {
-            return get instanceof IterableMap ?
-                    (IterableMap<K, V>) get :
-                    MapUtils.iterableMap((Map<K, V>) get);
-        }
-        return new WrappedGet<>(get);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the specified {@link Put} as an instanceof {@link Map}.
-     * If {@code put} implements {@link Map} directly, no conversion will take place.
-     * Otherwise, a <em>write-only</em> {@link Map} will be returned.  On such a {@link Map}
-     * it is recommended that the result of #put(K, V) be discarded as it likely will not
-     * match {@code V} at runtime.
-     *
-     * @param <K> the key type
-     * @param <V> the element type
-     * @param put to wrap, must not be null
-     * @return {@link Map}
-     * @throws NullPointerException if the argument is null
-     */
     @SuppressWarnings("unchecked")
     public static <K, V> Map<K, V> writableMap(final Put<K, V> put) {
-        Objects.requireNonNull(put, "put");
-        if (put instanceof Map) {
-            return (Map<K, V>) put;
-        }
-        return new WrappedPut<>(put);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -262,5 +216,4 @@ public class SplitMapUtils {
     private SplitMapUtils() {
         // empty
     }
-
 }

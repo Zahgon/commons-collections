@@ -21,7 +21,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Map;
-
 import org.apache.commons.collections4.Transformer;
 
 /**
@@ -48,69 +47,29 @@ import org.apache.commons.collections4.Transformer;
  * @see org.apache.commons.collections4.splitmap.TransformedSplitMap
  * @since 3.0
  */
-public class TransformedMap<K, V>
-        extends AbstractInputCheckedMapDecorator<K, V>
-        implements Serializable {
+public class TransformedMap<K, V> extends AbstractInputCheckedMapDecorator<K, V> implements Serializable {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 7023152376788900464L;
 
-    /**
-     * Factory method to create a transforming map that will transform
-     * existing contents of the specified map.
-     * <p>
-     * If there are any elements already in the map being decorated, they
-     * will be transformed by this method.
-     * Contrast this with {@link #transformingMap(Map, Transformer, Transformer)}.
-     * </p>
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @param keyTransformer  the transformer to use for key conversion, null means no transformation
-     * @param valueTransformer  the transformer to use for value conversion, null means no transformation
-     * @return a new transformed map
-     * @throws NullPointerException if map is null
-     * @since 4.0
-     */
-    public static <K, V> TransformedMap<K, V> transformedMap(final Map<K, V> map,
-            final Transformer<? super K, ? extends K> keyTransformer,
-            final Transformer<? super V, ? extends V> valueTransformer) {
-        final TransformedMap<K, V> decorated = new TransformedMap<>(map, keyTransformer, valueTransformer);
-        if (!map.isEmpty()) {
-            final Map<K, V> transformed = decorated.transformMap(map);
-            decorated.clear();
-            decorated.decorated().putAll(transformed);  // avoids double transformation
-        }
-        return decorated;
-    }
-    /**
-     * Factory method to create a transforming map.
-     * <p>
-     * If there are any elements already in the map being decorated, they
-     * are NOT transformed.
-     * Contrast this with {@link #transformedMap(Map, Transformer, Transformer)}.
-     * </p>
-     *
-     * @param <K>  the key type
-     * @param <V>  the value type
-     * @param map  the map to decorate, must not be null
-     * @param keyTransformer  the transformer to use for key conversion, null means no transformation
-     * @param valueTransformer  the transformer to use for value conversion, null means no transformation
-     * @return a new transformed map
-     * @throws NullPointerException if map is null
-     * @since 4.0
-     */
-    public static <K, V> TransformedMap<K, V> transformingMap(final Map<K, V> map,
-            final Transformer<? super K, ? extends K> keyTransformer,
-            final Transformer<? super V, ? extends V> valueTransformer) {
-        return new TransformedMap<>(map, keyTransformer, valueTransformer);
+    public static <K, V> TransformedMap<K, V> transformedMap(final Map<K, V> map, final Transformer<? super K, ? extends K> keyTransformer, final Transformer<? super V, ? extends V> valueTransformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The transformer to use for the key */
+    public static <K, V> TransformedMap<K, V> transformingMap(final Map<K, V> map, final Transformer<? super K, ? extends K> keyTransformer, final Transformer<? super V, ? extends V> valueTransformer) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    /**
+     * The transformer to use for the key
+     */
     protected final Transformer<? super K, ? extends K> keyTransformer;
 
-    /** The transformer to use for the value */
+    /**
+     * The transformer to use for the value
+     */
     protected final Transformer<? super V, ? extends V> valueTransformer;
 
     /**
@@ -125,47 +84,30 @@ public class TransformedMap<K, V>
      * @param valueTransformer  the transformer to use for value conversion, null means no conversion
      * @throws NullPointerException if map is null
      */
-    protected TransformedMap(final Map<K, V> map, final Transformer<? super K, ? extends K> keyTransformer,
-            final Transformer<? super V, ? extends V> valueTransformer) {
+    protected TransformedMap(final Map<K, V> map, final Transformer<? super K, ? extends K> keyTransformer, final Transformer<? super V, ? extends V> valueTransformer) {
         super(map);
         this.keyTransformer = keyTransformer;
         this.valueTransformer = valueTransformer;
     }
 
-    /**
-     * Override to transform the value when using {@code setValue}.
-     *
-     * @param value  the value to transform
-     * @return the transformed value
-     * @since 3.1
-     */
     @Override
     protected V checkSetValue(final V value) {
-        return valueTransformer.apply(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Override to only return true when there is a value transformer.
-     *
-     * @return true if a value transformer is in use
-     * @since 3.1
-     */
     @Override
     protected boolean isSetValueChecking() {
-        return valueTransformer != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public V put(K key, V value) {
-        key = transformKey(key);
-        value = transformValue(value);
-        return decorated().put(key, value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void putAll(Map<? extends K, ? extends V> mapToCopy) {
-        mapToCopy = transformMap(mapToCopy);
-        decorated().putAll(mapToCopy);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -176,63 +118,25 @@ public class TransformedMap<K, V>
      * @throws ClassNotFoundException if an object read from the stream cannot be loaded
      * @since 3.1
      */
-    @SuppressWarnings("unchecked") // (1) should only fail if input stream is incorrect
+    // (1) should only fail if input stream is incorrect
+    @SuppressWarnings("unchecked")
     private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
-        map = (Map<K, V>) in.readObject(); // (1)
+        // (1)
+        map = (Map<K, V>) in.readObject();
     }
 
-    /**
-     * Transforms a key.
-     * <p>
-     * The transformer itself may throw an exception if necessary.
-     *
-     * @param object  the object to transform
-     * @return the transformed object
-     */
     protected K transformKey(final K object) {
-        if (keyTransformer == null) {
-            return object;
-        }
-        return keyTransformer.apply(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Transforms a map.
-     * <p>
-     * The transformer itself may throw an exception if necessary.
-     * </p>
-     *
-     * @param map  the map to transform
-     * @return the transformed object
-     */
     @SuppressWarnings("unchecked")
     protected Map<K, V> transformMap(final Map<? extends K, ? extends V> map) {
-        if (map.isEmpty()) {
-            return (Map<K, V>) map;
-        }
-        final Map<K, V> result = new LinkedMap<>(map.size());
-
-        for (final Map.Entry<? extends K, ? extends V> entry : map.entrySet()) {
-            result.put(transformKey(entry.getKey()), transformValue(entry.getValue()));
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Transforms a value.
-     * <p>
-     * The transformer itself may throw an exception if necessary.
-     * </p>
-     *
-     * @param object  the object to transform
-     * @return the transformed object
-     */
     protected V transformValue(final V object) {
-        if (valueTransformer == null) {
-            return object;
-        }
-        return valueTransformer.apply(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -246,5 +150,4 @@ public class TransformedMap<K, V>
         out.defaultWriteObject();
         out.writeObject(map);
     }
-
 }

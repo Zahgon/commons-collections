@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.multiset;
 
 import java.util.Set;
-
 import org.apache.commons.collections4.MultiSet;
 import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.collection.PredicatedCollection;
@@ -45,25 +44,13 @@ import org.apache.commons.collections4.collection.PredicatedCollection;
  */
 public class PredicatedMultiSet<E> extends PredicatedCollection<E> implements MultiSet<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 20150629L;
 
-    /**
-     * Factory method to create a predicated (validating) multiset.
-     * <p>
-     * If there are any elements already in the multiset being decorated, they
-     * are validated.
-     *
-     * @param <E> the type of the elements in the multiset
-     * @param multiset  the multiset to decorate, must not be null
-     * @param predicate  the predicate to use for validation, must not be null
-     * @return a new predicated MultiSet
-     * @throws NullPointerException if multiset or predicate is null
-     * @throws IllegalArgumentException if the multiset contains invalid elements
-     */
-    public static <E> PredicatedMultiSet<E> predicatedMultiSet(final MultiSet<E> multiset,
-                                                               final Predicate<? super E> predicate) {
-        return new PredicatedMultiSet<>(multiset, predicate);
+    public static <E> PredicatedMultiSet<E> predicatedMultiSet(final MultiSet<E> multiset, final Predicate<? super E> predicate) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -84,54 +71,46 @@ public class PredicatedMultiSet<E> extends PredicatedCollection<E> implements Mu
 
     @Override
     public int add(final E object, final int count) {
-        validate(object);
-        return decorated().add(object, count);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the decorated multiset.
-     *
-     * @return the decorated multiset
-     */
     @Override
     protected MultiSet<E> decorated() {
-        return (MultiSet<E>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<MultiSet.Entry<E>> entrySet() {
-        return decorated().entrySet();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object object) {
-        return object == this || decorated().equals(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int getCount(final Object object) {
-        return decorated().getCount(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return decorated().hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int remove(final Object object, final int count) {
-        return decorated().remove(object, count);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int setCount(final E object, final int count) {
-        validate(object);
-        return decorated().setCount(object, count);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<E> uniqueSet() {
-        return decorated().uniqueSet();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

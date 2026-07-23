@@ -21,7 +21,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Collection;
 import java.util.Iterator;
-
 import org.apache.commons.collections4.SortedBag;
 
 /**
@@ -32,19 +31,13 @@ import org.apache.commons.collections4.SortedBag;
  */
 public final class CollectionSortedBag<E> extends AbstractSortedBagDecorator<E> {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -2560033712679053143L;
 
-    /**
-     * Factory method to create a sorted bag that complies to the Collection contract.
-     *
-     * @param <E> the type of the elements in the bag
-     * @param bag  the sorted bag to decorate, must not be null
-     * @return a SortedBag that complies to the Collection contract
-     * @throws NullPointerException if bag is null
-     */
     public static <E> SortedBag<E> collectionSortedBag(final SortedBag<E> bag) {
-        return new CollectionSortedBag<>(bag);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -59,30 +52,23 @@ public final class CollectionSortedBag<E> extends AbstractSortedBagDecorator<E> 
 
     @Override
     public boolean add(final E object) {
-        return add(object, 1);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean add(final E object, final int count) {
-        decorated().add(object, count);
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     // Collection interface
-
     @Override
     public boolean addAll(final Collection<? extends E> coll) {
-        boolean changed = false;
-        for (final E current : coll) {
-            final boolean added = add(current, 1);
-            changed = changed || added;
-        }
-        return changed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean containsAll(final Collection<?> coll) {
-        return coll.stream().allMatch(this::contains);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -93,7 +79,8 @@ public final class CollectionSortedBag<E> extends AbstractSortedBagDecorator<E> 
      * @throws ClassNotFoundException if an object read from the stream cannot be loaded
      * @throws ClassCastException if deserialized object has wrong type
      */
-    @SuppressWarnings("unchecked") // will throw CCE, see Javadoc
+    // will throw CCE, see Javadoc
+    @SuppressWarnings("unchecked")
     private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
         setCollection((Collection<E>) in.readObject());
@@ -101,38 +88,17 @@ public final class CollectionSortedBag<E> extends AbstractSortedBagDecorator<E> 
 
     @Override
     public boolean remove(final Object object) {
-        return remove(object, 1);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean removeAll(final Collection<?> coll) {
-        if (coll != null) {
-            boolean result = false;
-            for (final Object obj : coll) {
-                final boolean changed = remove(obj, getCount(obj));
-                result = result || changed;
-            }
-            return result;
-        }
-        // let the decorated bag handle the case of null argument
-        return decorated().removeAll(null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean retainAll(final Collection<?> coll) {
-        if (coll != null) {
-            boolean modified = false;
-            final Iterator<E> e = iterator();
-            while (e.hasNext()) {
-                if (!coll.contains(e.next())) {
-                    e.remove();
-                    modified = true;
-                }
-            }
-            return modified;
-        }
-        // let the decorated bag handle the case of null argument
-        return decorated().retainAll(null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -145,5 +111,4 @@ public final class CollectionSortedBag<E> extends AbstractSortedBagDecorator<E> 
         out.defaultWriteObject();
         out.writeObject(decorated());
     }
-
 }

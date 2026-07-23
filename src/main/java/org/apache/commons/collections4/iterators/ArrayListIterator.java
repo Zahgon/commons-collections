@@ -18,7 +18,6 @@ package org.apache.commons.collections4.iterators;
 
 import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
-
 import org.apache.commons.collections4.ResettableListIterator;
 
 /**
@@ -39,8 +38,7 @@ import org.apache.commons.collections4.ResettableListIterator;
  * @see java.util.ListIterator
  * @since 3.0
  */
-public class ArrayListIterator<E> extends ArrayIterator<E>
-        implements ResettableListIterator<E> {
+public class ArrayListIterator<E> extends ArrayIterator<E> implements ResettableListIterator<E> {
 
     /**
      * Holds the index of the last item returned by a call to {@code next()}
@@ -92,117 +90,45 @@ public class ArrayListIterator<E> extends ArrayIterator<E>
         super(array, startIndex, endIndex);
     }
 
-    /**
-     * This iterator does not support modification of its backing collection, and so will
-     * always throw an {@link UnsupportedOperationException} when this method is invoked.
-     *
-     * @param o  the element to add
-     * @throws UnsupportedOperationException always thrown.
-     * @see java.util.ListIterator#set
-     */
     @Override
     public void add(final Object o) {
-        throw new UnsupportedOperationException("add() method is not supported");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns true if there are previous elements to return from the array.
-     *
-     * @return true if there is a previous element to return
-     */
     @Override
     public boolean hasPrevious() {
-        return index > startIndex;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the next element from the array.
-     *
-     * @return the next element
-     * @throws NoSuchElementException if there is no next element
-     */
     @Override
     @SuppressWarnings("unchecked")
     public E next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
-        lastItemIndex = index;
-        return (E) Array.get(array, index++);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the next index to be retrieved.
-     *
-     * @return the index of the item to be retrieved next
-     */
     @Override
     public int nextIndex() {
-        return index - startIndex;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the previous element from the array.
-     *
-     * @return the previous element
-     * @throws NoSuchElementException if there is no previous element
-     */
     @Override
     @SuppressWarnings("unchecked")
     public E previous() {
-        if (!hasPrevious()) {
-            throw new NoSuchElementException();
-        }
-        lastItemIndex = --index;
-        return (E) Array.get(array, index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the index of the item to be retrieved if {@link #previous()} is called.
-     *
-     * @return the index of the item to be retrieved next
-     */
     @Override
     public int previousIndex() {
-        return index - startIndex - 1;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Resets the iterator back to the start index.
-     */
     @Override
     public void reset() {
-        super.reset();
-        lastItemIndex = -1;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the element under the cursor.
-     * <p>
-     * This method sets the element that was returned by the last call
-     * to {@link #next()} of {@link #previous()}.
-     * </p>
-     * <p>
-     * <strong>Note:</strong> {@link java.util.ListIterator} implementations that support
-     * {@code add()} and {@code remove()} only allow {@code set()} to be called
-     * once per call to {@code next()} or {@code previous} (see the {@link java.util.ListIterator}
-     * Javadoc for more details). Since this implementation does
-     * not support {@code add()} or {@code remove()}, {@code set()} may be
-     * called as often as desired.
-     * </p>
-     *
-     * @param o  the element to set
-     * @throws IllegalStateException if {@link #next()} or {@link #previous()} has not been called
-     * before {@link #set(Object)}
-     * @see java.util.ListIterator#set
-     */
     @Override
     public void set(final Object o) {
-        if (lastItemIndex == -1) {
-            throw new IllegalStateException("must call next() or previous() before a call to set()");
-        }
-
-        Array.set(array, lastItemIndex, o);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

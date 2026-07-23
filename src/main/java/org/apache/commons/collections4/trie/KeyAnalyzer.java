@@ -35,7 +35,9 @@ import java.util.Comparator;
  */
 public abstract class KeyAnalyzer<K> implements Comparator<K>, Serializable {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = -20497563720380683L;
 
     /**
@@ -55,33 +57,20 @@ public abstract class KeyAnalyzer<K> implements Comparator<K>, Serializable {
      */
     public static final int OUT_OF_BOUNDS_BIT_KEY = -3;
 
-    /**
-     * Returns true if bitIndex is a {@link KeyAnalyzer#EQUAL_BIT_KEY}.
-     */
     static boolean isEqualBitKey(final int bitIndex) {
-        return bitIndex == EQUAL_BIT_KEY;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns true if bitIndex is a {@link KeyAnalyzer#NULL_BIT_KEY}.
-     */
     static boolean isNullBitKey(final int bitIndex) {
-        return bitIndex == NULL_BIT_KEY;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns true if bitIndex is a {@link KeyAnalyzer#OUT_OF_BOUNDS_BIT_KEY}.
-     */
     static boolean isOutOfBoundsIndex(final int bitIndex) {
-        return bitIndex == OUT_OF_BOUNDS_BIT_KEY;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns true if the given bitIndex is valid.
-     * Indices are considered valid if they're between 0 and {@link Integer#MAX_VALUE}
-     */
     static boolean isValidBitIndex(final int bitIndex) {
-        return bitIndex >= 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -104,8 +93,7 @@ public abstract class KeyAnalyzer<K> implements Comparator<K>, Serializable {
      * @param otherLengthInBits  the maximum key length in bits for the other key
      * @return the bit index where the key and other first differ
      */
-    public abstract int bitIndex(K key, int offsetInBits, int lengthInBits,
-                                 K other, int otherOffsetInBits, int otherLengthInBits);
+    public abstract int bitIndex(K key, int offsetInBits, int lengthInBits, K other, int otherOffsetInBits, int otherLengthInBits);
 
     /**
      * Returns the number of bits per element in the key.
@@ -118,14 +106,7 @@ public abstract class KeyAnalyzer<K> implements Comparator<K>, Serializable {
     @Override
     @SuppressWarnings("unchecked")
     public int compare(final K o1, final K o2) {
-        if (o1 == null) {
-            return o2 == null ? 0 : -1;
-        }
-        if (o2 == null) {
-            return 1;
-        }
-
-        return ((Comparable<K>) o1).compareTo(o2);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -157,5 +138,4 @@ public abstract class KeyAnalyzer<K> implements Comparator<K>, Serializable {
      * @return the bit length of the key
      */
     public abstract int lengthInBits(K key);
-
 }

@@ -28,9 +28,14 @@ import org.apache.commons.collections4.KeyValue;
  */
 public abstract class AbstractKeyValue<K, V> implements KeyValue<K, V> {
 
-    /** The key */
+    /**
+     * The key
+     */
     private K key;
-    /** The value */
+
+    /**
+     * The value
+     */
     private V value;
 
     /**
@@ -44,62 +49,26 @@ public abstract class AbstractKeyValue<K, V> implements KeyValue<K, V> {
         this.value = value;
     }
 
-    /**
-     * Gets the key from the pair.
-     *
-     * @return the key
-     */
     @Override
     public K getKey() {
-        return key;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the value from the pair.
-     *
-     * @return the value
-     */
     @Override
     public V getValue() {
-        return value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the key.
-     *
-     * @param key The key.
-     * @return The previous key.
-     */
     protected K setKey(final K key) {
-        final K old = this.key;
-        this.key = key;
-        return old;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Sets the value.
-     *
-     * @param value The value.
-     * @return The previous value.
-     */
     protected V setValue(final V value) {
-        final V old = this.value;
-        this.value = value;
-        return old;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets a debugging String view of the pair.
-     *
-     * @return a String view of the entry
-     */
     @Override
     public String toString() {
-        return new StringBuilder()
-            .append(getKey())
-            .append('=')
-            .append(getValue())
-            .toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

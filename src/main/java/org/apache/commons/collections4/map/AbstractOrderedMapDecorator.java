@@ -37,8 +37,7 @@ import org.apache.commons.collections4.OrderedMapIterator;
  * @param <V> the type of the values in this map
  * @since 3.0
  */
-public abstract class AbstractOrderedMapDecorator<K, V> extends AbstractMapDecorator<K, V>
-        implements OrderedMap<K, V> {
+public abstract class AbstractOrderedMapDecorator<K, V> extends AbstractMapDecorator<K, V> implements OrderedMap<K, V> {
 
     /**
      * Constructor only used in deserialization, do not use otherwise.
@@ -57,39 +56,33 @@ public abstract class AbstractOrderedMapDecorator<K, V> extends AbstractMapDecor
         super(map);
     }
 
-    /**
-     * Gets the map being decorated.
-     *
-     * @return the decorated map
-     */
     @Override
     protected OrderedMap<K, V> decorated() {
-        return (OrderedMap<K, V>) super.decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K firstKey() {
-        return decorated().firstKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K lastKey() {
-        return decorated().lastKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public OrderedMapIterator<K, V> mapIterator() {
-        return decorated().mapIterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K nextKey(final K key) {
-        return decorated().nextKey(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public K previousKey(final K key) {
-        return decorated().previousKey(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

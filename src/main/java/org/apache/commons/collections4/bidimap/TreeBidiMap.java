@@ -18,7 +18,6 @@ package org.apache.commons.collections4.bidimap;
 
 import static org.apache.commons.collections4.bidimap.TreeBidiMap.DataElement.KEY;
 import static org.apache.commons.collections4.bidimap.TreeBidiMap.DataElement.VALUE;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -30,7 +29,6 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Set;
-
 import org.apache.commons.collections4.KeyValue;
 import org.apache.commons.collections4.MapIterator;
 import org.apache.commons.collections4.OrderedBidiMap;
@@ -82,15 +80,16 @@ import org.apache.commons.collections4.keyvalue.UnmodifiableMapEntry;
  * @param <V> the type of the values in this map
  * @since 3.0 (previously DoubleOrderedMap v2.0)
  */
-public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
-    implements OrderedBidiMap<K, V>, Serializable {
+public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>> implements OrderedBidiMap<K, V>, Serializable {
 
     /**
      * A view of this map.
      */
     abstract class AbstractView<E> extends AbstractSet<E> {
 
-        /** Whether to return KEY or VALUE order. */
+        /**
+         * Whether to return KEY or VALUE order.
+         */
         final DataElement orderType;
 
         /**
@@ -103,12 +102,12 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
 
         @Override
         public void clear() {
-            TreeBidiMap.this.clear();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return TreeBidiMap.this.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -117,15 +116,29 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
      */
     abstract class AbstractViewIterator {
 
-        /** Whether to return KEY or VALUE order. */
+        /**
+         * Whether to return KEY or VALUE order.
+         */
         private final DataElement orderType;
-        /** The last node returned by the iterator. */
+
+        /**
+         * The last node returned by the iterator.
+         */
         Node<K, V> lastReturnedNode;
-        /** The next node to be returned by the iterator. */
+
+        /**
+         * The next node to be returned by the iterator.
+         */
         private Node<K, V> nextNode;
-        /** The previous node in the sequence returned by the iterator. */
+
+        /**
+         * The previous node in the sequence returned by the iterator.
+         */
         private Node<K, V> previousNode;
-        /** The modification count. */
+
+        /**
+         * The modification count.
+         */
         private int expectedModifications;
 
         /**
@@ -141,61 +154,28 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         }
 
         public final boolean hasNext() {
-            return nextNode != null;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public boolean hasPrevious() {
-            return previousNode != null;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         protected Node<K, V> navigateNext() {
-            if (nextNode == null) {
-                throw new NoSuchElementException();
-            }
-            if (modifications != expectedModifications) {
-                throw new ConcurrentModificationException();
-            }
-            lastReturnedNode = nextNode;
-            previousNode = nextNode;
-            nextNode = nextGreater(nextNode, orderType);
-            return lastReturnedNode;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         protected Node<K, V> navigatePrevious() {
-            if (previousNode == null) {
-                throw new NoSuchElementException();
-            }
-            if (modifications != expectedModifications) {
-                throw new ConcurrentModificationException();
-            }
-            nextNode = lastReturnedNode;
-            if (nextNode == null) {
-                nextNode = nextGreater(previousNode, orderType);
-            }
-            lastReturnedNode = previousNode;
-            previousNode = nextSmaller(previousNode, orderType);
-            return lastReturnedNode;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public final void remove() {
-            if (lastReturnedNode == null) {
-                throw new IllegalStateException();
-            }
-            if (modifications != expectedModifications) {
-                throw new ConcurrentModificationException();
-            }
-            doRedBlackDelete(lastReturnedNode);
-            expectedModifications++;
-            lastReturnedNode = null;
-            if (nextNode == null) {
-                previousNode = greatestNode(rootNode[orderType.ordinal()], orderType);
-            } else {
-                previousNode = nextSmaller(nextNode, orderType);
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     enum DataElement {
+
         KEY("key"), VALUE("value");
 
         private final String description;
@@ -211,9 +191,10 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
 
         @Override
         public String toString() {
-            return description;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
+
     /**
      * A view of this map.
      */
@@ -225,188 +206,156 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
 
         @Override
         public boolean contains(final Object obj) {
-            if (!(obj instanceof Map.Entry)) {
-                return false;
-            }
-            final Map.Entry<?, ?> entry = (Map.Entry<?, ?>) obj;
-            final Object value = entry.getValue();
-            final Node<K, V> node = lookupKey(entry.getKey());
-            return node != null && Objects.equals(node.getValue(), value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<Map.Entry<K, V>> iterator() {
-            return new ViewMapEntryIterator();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean remove(final Object obj) {
-            if (!(obj instanceof Map.Entry)) {
-                return false;
-            }
-            final Map.Entry<?, ?> entry = (Map.Entry<?, ?>) obj;
-            final Object value = entry.getValue();
-            final Node<K, V> node = lookupKey(entry.getKey());
-            if (node != null && Objects.equals(node.getValue(), value)) {
-                doRedBlackDelete(node);
-                return true;
-            }
-            return false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
+
     /**
      * The inverse map implementation.
      */
     final class Inverse implements OrderedBidiMap<V, K> {
 
-        /** Store the keySet once created. */
+        /**
+         * Store the keySet once created.
+         */
         private Set<V> inverseKeySet;
-        /** Store the valuesSet once created. */
+
+        /**
+         * Store the valuesSet once created.
+         */
         private Set<K> inverseValuesSet;
-        /** Store the entrySet once created. */
+
+        /**
+         * Store the entrySet once created.
+         */
         private Set<Map.Entry<V, K>> inverseEntrySet;
 
         @Override
         public void clear() {
-            TreeBidiMap.this.clear();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean containsKey(final Object key) {
-            return TreeBidiMap.this.containsValue(key);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean containsValue(final Object value) {
-            return TreeBidiMap.this.containsKey(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Set<Map.Entry<V, K>> entrySet() {
-            if (inverseEntrySet == null) {
-                inverseEntrySet = new InverseEntryView();
-            }
-            return inverseEntrySet;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean equals(final Object obj) {
-            return TreeBidiMap.this.doEquals(obj, VALUE);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V firstKey() {
-            if (TreeBidiMap.this.nodeCount == 0) {
-                throw new NoSuchElementException("Map is empty");
-            }
-            return leastNode(TreeBidiMap.this.rootNode[VALUE.ordinal()], VALUE).getValue();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K get(final Object key) {
-            return TreeBidiMap.this.getKey(key);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V getKey(final Object value) {
-            return TreeBidiMap.this.get(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int hashCode() {
-            return TreeBidiMap.this.doHashCode(VALUE);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public OrderedBidiMap<K, V> inverseBidiMap() {
-            return TreeBidiMap.this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean isEmpty() {
-            return TreeBidiMap.this.isEmpty();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Set<V> keySet() {
-            if (inverseKeySet == null) {
-                inverseKeySet = new ValueView(VALUE);
-            }
-            return inverseKeySet;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V lastKey() {
-            if (TreeBidiMap.this.nodeCount == 0) {
-                throw new NoSuchElementException("Map is empty");
-            }
-            return greatestNode(TreeBidiMap.this.rootNode[VALUE.ordinal()], VALUE).getValue();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public OrderedMapIterator<V, K> mapIterator() {
-            if (isEmpty()) {
-                return EmptyOrderedMapIterator.<V, K>emptyOrderedMapIterator();
-            }
-            return new InverseViewMapIterator(VALUE);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V nextKey(final V key) {
-            checkKey(key);
-            final Node<K, V> node = nextGreater(TreeBidiMap.this.<V>lookup(key, VALUE), VALUE);
-            return node == null ? null : node.getValue();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V previousKey(final V key) {
-            checkKey(key);
-            final Node<K, V> node = TreeBidiMap.this.nextSmaller(TreeBidiMap.this.<V>lookup(key, VALUE), VALUE);
-            return node == null ? null : node.getValue();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K put(final V key, final K value) {
-            final K result = get(key);
-            TreeBidiMap.this.doPut(value, key);
-            return result;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void putAll(final Map<? extends V, ? extends K> map) {
-            for (final Map.Entry<? extends V, ? extends K> e : map.entrySet()) {
-                put(e.getKey(), e.getValue());
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K remove(final Object key) {
-            return TreeBidiMap.this.removeValue(key);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V removeValue(final Object value) {
-            return TreeBidiMap.this.remove(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int size() {
-            return TreeBidiMap.this.size();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public String toString() {
-            return TreeBidiMap.this.doToString(VALUE);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Set<K> values() {
-            if (inverseValuesSet == null) {
-                inverseValuesSet = new KeyView(VALUE);
-            }
-            return inverseValuesSet;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
+
     /**
      * A view of this map.
      */
@@ -418,35 +367,20 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
 
         @Override
         public boolean contains(final Object obj) {
-            if (!(obj instanceof Map.Entry)) {
-                return false;
-            }
-            final Map.Entry<?, ?> entry = (Map.Entry<?, ?>) obj;
-            final Object value = entry.getValue();
-            final Node<K, V> node = lookupValue(entry.getKey());
-            return node != null && Objects.equals(node.getKey(), value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<Map.Entry<V, K>> iterator() {
-            return new InverseViewMapEntryIterator();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean remove(final Object obj) {
-            if (!(obj instanceof Map.Entry)) {
-                return false;
-            }
-            final Map.Entry<?, ?> entry = (Map.Entry<?, ?>) obj;
-            final Object value = entry.getValue();
-            final Node<K, V> node = lookupValue(entry.getKey());
-            if (node != null && Objects.equals(node.getKey(), value)) {
-                doRedBlackDelete(node);
-                return true;
-            }
-            return false;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
+
     /**
      * An iterator over the inverse map entries.
      */
@@ -465,14 +399,15 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
 
         @Override
         public Map.Entry<V, K> next() {
-            return createEntry(navigateNext());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Map.Entry<V, K> previous() {
-            return createEntry(navigatePrevious());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
+
     /**
      * An iterator over the map.
      */
@@ -487,37 +422,30 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
 
         @Override
         public V getKey() {
-            if (lastReturnedNode == null) {
-                throw new IllegalStateException(
-                        "Iterator getKey() can only be called after next() and before remove()");
-            }
-            return lastReturnedNode.getValue();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K getValue() {
-            if (lastReturnedNode == null) {
-                throw new IllegalStateException(
-                        "Iterator getValue() can only be called after next() and before remove()");
-            }
-            return lastReturnedNode.getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V next() {
-            return navigateNext().getValue();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V previous() {
-            return navigatePrevious().getValue();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K setValue(final K value) {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
+
     final class KeyView extends AbstractView<K> {
 
         /**
@@ -529,20 +457,18 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
 
         @Override
         public boolean contains(final Object obj) {
-            checkNonNullComparable(obj, KEY);
-            return lookupKey(obj) != null;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<K> iterator() {
-            return new ViewMapIterator(orderType);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean remove(final Object o) {
-            return doRemoveKey(o) != null;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -551,12 +477,19 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
     static class Node<K extends Comparable<K>, V extends Comparable<V>> implements Map.Entry<K, V>, KeyValue<K, V> {
 
         private final K key;
+
         private final V value;
+
         private final Node<K, V>[] leftNode;
+
         private final Node<K, V>[] rightNode;
+
         private final Node<K, V>[] parentNode;
+
         private final boolean[] blackColor;
+
         private int hashCodeValue;
+
         private boolean calculatedHashCode;
 
         /**
@@ -588,45 +521,25 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
             blackColor[dataElement.ordinal()] = node.blackColor[dataElement.ordinal()];
         }
 
-        /**
-         * Compares the specified object with this entry for equality.
-         * Returns true if the given object is also a map entry and
-         * the two entries represent the same mapping.
-         *
-         * @param obj  the object to be compared for equality with this entry.
-         * @return true if the specified object is equal to this entry.
-         */
         @Override
         public boolean equals(final Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof Map.Entry)) {
-                return false;
-            }
-            final Map.Entry<?, ?> e = (Map.Entry<?, ?>) obj;
-            return Objects.equals(getKey(), e.getKey()) && Objects.equals(getValue(), e.getValue());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private Object getData(final DataElement dataElement) {
-            switch (dataElement) {
-            case KEY:
-                return getKey();
-            case VALUE:
-                return getValue();
-            default:
-                throw new IllegalArgumentException();
+            switch(dataElement) {
+                case KEY:
+                    return getKey();
+                case VALUE:
+                    return getValue();
+                default:
+                    throw new IllegalArgumentException();
             }
         }
 
-        /**
-         * Gets the key.
-         *
-         * @return the key corresponding to this entry.
-         */
         @Override
         public K getKey() {
-            return key;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private Node<K, V> getLeft(final DataElement dataElement) {
@@ -648,26 +561,14 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
             return rightNode[dataElement.ordinal()];
         }
 
-        /**
-         * Gets the value.
-         *
-         * @return the value corresponding to this entry.
-         */
         @Override
         public V getValue() {
-            return value;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /**
-         * @return the hash code value for this map entry.
-         */
         @Override
         public int hashCode() {
-            if (!calculatedHashCode) {
-                hashCodeValue = getKey().hashCode() ^ getValue().hashCode();
-                calculatedHashCode = true;
-            }
-            return hashCodeValue;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -682,8 +583,7 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         }
 
         private boolean isLeftChild(final DataElement dataElement) {
-            return parentNode[dataElement.ordinal()] != null
-                    && parentNode[dataElement.ordinal()].leftNode[dataElement.ordinal()] == this;
+            return parentNode[dataElement.ordinal()] != null && parentNode[dataElement.ordinal()].leftNode[dataElement.ordinal()] == this;
         }
 
         /**
@@ -698,8 +598,7 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         }
 
         private boolean isRightChild(final DataElement dataElement) {
-            return parentNode[dataElement.ordinal()] != null
-                    && parentNode[dataElement.ordinal()].rightNode[dataElement.ordinal()] == this;
+            return parentNode[dataElement.ordinal()] != null && parentNode[dataElement.ordinal()].rightNode[dataElement.ordinal()] == this;
         }
 
         /**
@@ -741,16 +640,9 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
             rightNode[dataElement.ordinal()] = node;
         }
 
-        /**
-         * Optional operation that is not permitted in this implementation.
-         *
-         * @param ignored this parameter is ignored.
-         * @return does not return
-         * @throws UnsupportedOperationException always
-         */
         @Override
         public V setValue(final V ignored) throws UnsupportedOperationException {
-            throw new UnsupportedOperationException("Map.Entry.setValue is not supported");
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -762,9 +654,9 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
          */
         private void swapColors(final Node<K, V> node, final DataElement dataElement) {
             // Swap colors -- old hacker's trick
-            blackColor[dataElement.ordinal()]      ^= node.blackColor[dataElement.ordinal()];
+            blackColor[dataElement.ordinal()] ^= node.blackColor[dataElement.ordinal()];
             node.blackColor[dataElement.ordinal()] ^= blackColor[dataElement.ordinal()];
-            blackColor[dataElement.ordinal()]      ^= node.blackColor[dataElement.ordinal()];
+            blackColor[dataElement.ordinal()] ^= node.blackColor[dataElement.ordinal()];
         }
     }
 
@@ -779,20 +671,18 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
 
         @Override
         public boolean contains(final Object obj) {
-            checkNonNullComparable(obj, VALUE);
-            return lookupValue(obj) != null;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Iterator<V> iterator() {
-            return new InverseViewMapIterator(orderType);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean remove(final Object o) {
-            return doRemoveValue(o) != null;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -809,12 +699,12 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
 
         @Override
         public Map.Entry<K, V> next() {
-            return navigateNext();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Map.Entry<K, V> previous() {
-            return navigatePrevious();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -832,35 +722,27 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
 
         @Override
         public K getKey() {
-            if (lastReturnedNode == null) {
-                throw new IllegalStateException(
-                        "Iterator getKey() can only be called after next() and before remove()");
-            }
-            return lastReturnedNode.getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V getValue() {
-            if (lastReturnedNode == null) {
-                throw new IllegalStateException(
-                        "Iterator getValue() can only be called after next() and before remove()");
-            }
-            return lastReturnedNode.getValue();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K next() {
-            return navigateNext().getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public K previous() {
-            return navigatePrevious().getKey();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public V setValue(final V value) {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -1017,48 +899,19 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         putAll(map);
     }
 
-    /**
-     * Removes all mappings from this map.
-     */
     @Override
     public void clear() {
-        modify();
-
-        nodeCount = 0;
-        rootNode[KEY.ordinal()] = null;
-        rootNode[VALUE.ordinal()] = null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Checks whether this map contains a mapping for the specified key.
-     * <p>
-     * The key must implement {@code Comparable}.
-     *
-     * @param key  key whose presence in this map is to be tested
-     * @return true if this map contains a mapping for the specified key
-     * @throws ClassCastException if the key is of an inappropriate type
-     * @throws NullPointerException if the key is null
-     */
     @Override
     public boolean containsKey(final Object key) {
-        checkKey(key);
-        return lookupKey(key) != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Checks whether this map contains a mapping for the specified value.
-     * <p>
-     * The value must implement {@code Comparable}.
-     *
-     * @param value  value whose presence in this map is to be tested
-     * @return true if this map contains a mapping for the specified value
-     * @throws ClassCastException if the value is of an inappropriate type
-     * @throws NullPointerException if the value is null
-     */
     @Override
     public boolean containsValue(final Object value) {
-        checkValue(value);
-        return lookupValue(value) != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1100,7 +953,6 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         if (other.size() != size()) {
             return false;
         }
-
         if (nodeCount > 0) {
             try {
                 for (final MapIterator<?, ?> it = getMapIterator(dataElement); it.hasNext(); ) {
@@ -1144,11 +996,9 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
      */
     private void doPut(final K key, final V value) {
         checkKeyAndValue(key, value);
-
         // store previous and remove previous mappings
         doRemoveKey(key);
         doRemoveValue(value);
-
         Node<K, V> node = rootNode[KEY.ordinal()];
         if (node == null) {
             // map is empty
@@ -1156,12 +1006,10 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
             rootNode[KEY.ordinal()] = root;
             rootNode[VALUE.ordinal()] = root;
             grow();
-
         } else {
             // add new mapping
             while (true) {
                 final int cmp = compare(key, node.getKey());
-
                 if (cmp == 0) {
                     // shouldn't happen
                     throw new IllegalArgumentException("Cannot store a duplicate key (\"" + key + "\") in this Map");
@@ -1169,26 +1017,23 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
                 if (cmp < 0) {
                     if (node.getLeft(KEY) == null) {
                         final Node<K, V> newNode = new Node<>(key, value);
-
                         insertValue(newNode);
                         node.setLeft(newNode, KEY);
                         newNode.setParent(node, KEY);
                         doRedBlackInsert(newNode, KEY);
                         grow();
-
                         break;
                     }
                     node = node.getLeft(KEY);
-                } else { // cmp > 0
+                } else {
+                    // cmp > 0
                     if (node.getRight(KEY) == null) {
                         final Node<K, V> newNode = new Node<>(key, value);
-
                         insertValue(newNode);
                         node.setRight(newNode, KEY);
                         newNode.setParent(node, KEY);
                         doRedBlackInsert(newNode, KEY);
                         grow();
-
                         break;
                     }
                     node = node.getRight(KEY);
@@ -1259,75 +1104,57 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
      */
     private void doRedBlackDeleteFixup(final Node<K, V> replacementNode, final DataElement dataElement) {
         Node<K, V> currentNode = replacementNode;
-
         while (currentNode != rootNode[dataElement.ordinal()] && isBlack(currentNode, dataElement)) {
             if (currentNode.isLeftChild(dataElement)) {
                 Node<K, V> siblingNode = getRightChild(getParent(currentNode, dataElement), dataElement);
-
                 if (isRed(siblingNode, dataElement)) {
                     makeBlack(siblingNode, dataElement);
                     makeRed(getParent(currentNode, dataElement), dataElement);
                     rotateLeft(getParent(currentNode, dataElement), dataElement);
-
                     siblingNode = getRightChild(getParent(currentNode, dataElement), dataElement);
                 }
-
-                if (isBlack(getLeftChild(siblingNode, dataElement), dataElement)
-                    && isBlack(getRightChild(siblingNode, dataElement), dataElement)) {
+                if (isBlack(getLeftChild(siblingNode, dataElement), dataElement) && isBlack(getRightChild(siblingNode, dataElement), dataElement)) {
                     makeRed(siblingNode, dataElement);
-
                     currentNode = getParent(currentNode, dataElement);
                 } else {
                     if (isBlack(getRightChild(siblingNode, dataElement), dataElement)) {
                         makeBlack(getLeftChild(siblingNode, dataElement), dataElement);
                         makeRed(siblingNode, dataElement);
                         rotateRight(siblingNode, dataElement);
-
                         siblingNode = getRightChild(getParent(currentNode, dataElement), dataElement);
                     }
-
                     copyColor(getParent(currentNode, dataElement), siblingNode, dataElement);
                     makeBlack(getParent(currentNode, dataElement), dataElement);
                     makeBlack(getRightChild(siblingNode, dataElement), dataElement);
                     rotateLeft(getParent(currentNode, dataElement), dataElement);
-
                     currentNode = rootNode[dataElement.ordinal()];
                 }
             } else {
                 Node<K, V> siblingNode = getLeftChild(getParent(currentNode, dataElement), dataElement);
-
                 if (isRed(siblingNode, dataElement)) {
                     makeBlack(siblingNode, dataElement);
                     makeRed(getParent(currentNode, dataElement), dataElement);
                     rotateRight(getParent(currentNode, dataElement), dataElement);
-
                     siblingNode = getLeftChild(getParent(currentNode, dataElement), dataElement);
                 }
-
-                if (isBlack(getRightChild(siblingNode, dataElement), dataElement)
-                    && isBlack(getLeftChild(siblingNode, dataElement), dataElement)) {
+                if (isBlack(getRightChild(siblingNode, dataElement), dataElement) && isBlack(getLeftChild(siblingNode, dataElement), dataElement)) {
                     makeRed(siblingNode, dataElement);
-
                     currentNode = getParent(currentNode, dataElement);
                 } else {
                     if (isBlack(getLeftChild(siblingNode, dataElement), dataElement)) {
                         makeBlack(getRightChild(siblingNode, dataElement), dataElement);
                         makeRed(siblingNode, dataElement);
                         rotateLeft(siblingNode, dataElement);
-
                         siblingNode = getLeftChild(getParent(currentNode, dataElement), dataElement);
                     }
-
                     copyColor(getParent(currentNode, dataElement), siblingNode, dataElement);
                     makeBlack(getParent(currentNode, dataElement), dataElement);
                     makeBlack(getLeftChild(siblingNode, dataElement), dataElement);
                     rotateRight(getParent(currentNode, dataElement), dataElement);
-
                     currentNode = rootNode[dataElement.ordinal()];
                 }
             }
         }
-
         makeBlack(currentNode, dataElement);
     }
 
@@ -1341,63 +1168,48 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
     private void doRedBlackInsert(final Node<K, V> insertedNode, final DataElement dataElement) {
         Node<K, V> currentNode = insertedNode;
         makeRed(currentNode, dataElement);
-
-        while (currentNode != null
-            && currentNode != rootNode[dataElement.ordinal()]
-            && isRed(currentNode.getParent(dataElement), dataElement)) {
+        while (currentNode != null && currentNode != rootNode[dataElement.ordinal()] && isRed(currentNode.getParent(dataElement), dataElement)) {
             if (currentNode.isLeftChild(dataElement)) {
                 final Node<K, V> y = getRightChild(getGrandParent(currentNode, dataElement), dataElement);
-
                 if (isRed(y, dataElement)) {
                     makeBlack(getParent(currentNode, dataElement), dataElement);
                     makeBlack(y, dataElement);
                     makeRed(getGrandParent(currentNode, dataElement), dataElement);
-
                     currentNode = getGrandParent(currentNode, dataElement);
                 } else {
                     //dead code?
                     if (currentNode.isRightChild(dataElement)) {
                         currentNode = getParent(currentNode, dataElement);
-
                         rotateLeft(currentNode, dataElement);
                     }
-
                     makeBlack(getParent(currentNode, dataElement), dataElement);
                     makeRed(getGrandParent(currentNode, dataElement), dataElement);
-
                     if (getGrandParent(currentNode, dataElement) != null) {
                         rotateRight(getGrandParent(currentNode, dataElement), dataElement);
                     }
                 }
             } else {
-
                 // just like clause above, except swap left for right
                 final Node<K, V> y = getLeftChild(getGrandParent(currentNode, dataElement), dataElement);
-
                 if (isRed(y, dataElement)) {
                     makeBlack(getParent(currentNode, dataElement), dataElement);
                     makeBlack(y, dataElement);
                     makeRed(getGrandParent(currentNode, dataElement), dataElement);
-
                     currentNode = getGrandParent(currentNode, dataElement);
                 } else {
                     //dead code?
                     if (currentNode.isLeftChild(dataElement)) {
                         currentNode = getParent(currentNode, dataElement);
-
                         rotateRight(currentNode, dataElement);
                     }
-
                     makeBlack(getParent(currentNode, dataElement), dataElement);
                     makeRed(getGrandParent(currentNode, dataElement), dataElement);
-
                     if (getGrandParent(currentNode, dataElement) != null) {
                         rotateLeft(getGrandParent(currentNode, dataElement), dataElement);
                     }
                 }
             }
         }
-
         makeBlack(rootNode[dataElement.ordinal()], dataElement);
     }
 
@@ -1437,84 +1249,34 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         while (hasNext) {
             final Object key = it.next();
             final Object value = it.getValue();
-            buf.append(key == this ? "(this Map)" : key)
-                .append('=')
-                .append(value == this ? "(this Map)" : value);
-
+            buf.append(key == this ? "(this Map)" : key).append('=').append(value == this ? "(this Map)" : value);
             hasNext = it.hasNext();
             if (hasNext) {
                 buf.append(", ");
             }
         }
-
         buf.append('}');
         return buf.toString();
     }
 
-    /**
-     * Returns a set view of the entries contained in this map in key order.
-     * For simple iteration through the map, the MapIterator is quicker.
-     * <p>
-     * The set is backed by the map, so changes to the map are reflected in
-     * the set, and vice-versa. If the map is modified while an iteration over
-     * the set is in progress, the results of the iteration are undefined.
-     * <p>
-     * The set supports element removal, which removes the corresponding mapping
-     * from the map. It does not support the add or addAll operations.
-     * The returned MapEntry objects do not support setValue.
-     *
-     * @return a set view of the values contained in this map.
-     */
     @Override
     public Set<Map.Entry<K, V>> entrySet() {
-        if (entrySet == null) {
-            entrySet = new EntryView();
-        }
-        return entrySet;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Compares for equals as per the API.
-     *
-     * @param obj  the object to compare to
-     * @return true if equal
-     */
     @Override
     public boolean equals(final Object obj) {
-        return this.doEquals(obj, KEY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the first (lowest) key currently in this map.
-     *
-     * @return the first (lowest) key currently in this sorted map
-     * @throws NoSuchElementException if this map is empty
-     */
     @Override
     public K firstKey() {
-        if (nodeCount == 0) {
-            throw new NoSuchElementException("Map is empty");
-        }
-        return leastNode(rootNode[KEY.ordinal()], KEY).getKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the value to which this map maps the specified key.
-     * Returns null if the map contains no mapping for this key.
-     * <p>
-     * The key must implement {@code Comparable}.
-     *
-     * @param key  key whose associated value is to be returned
-     * @return the value to which this map maps the specified key,
-     *  or null if the map contains no mapping for this key
-     * @throws ClassCastException if the key is of an inappropriate type
-     * @throws NullPointerException if the key is null
-     */
     @Override
     public V get(final Object key) {
-        checkKey(key);
-        final Node<K, V> node = lookupKey(key);
-        return node == null ? null : node.getValue();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1529,23 +1291,9 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         return getParent(getParent(node, dataElement), dataElement);
     }
 
-    /**
-     * Gets the key to which this map maps the specified value.
-     * Returns null if the map contains no mapping for this value.
-     * <p>
-     * The value must implement {@code Comparable}.
-     *
-     * @param value  value whose associated key is to be returned.
-     * @return the key to which this map maps the specified value,
-     *  or null if the map contains no mapping for this value.
-     * @throws ClassCastException if the value is of an inappropriate type
-     * @throws NullPointerException if the value is null
-     */
     @Override
     public K getKey(final Object value) {
-        checkValue(value);
-        final Node<K, V> node = lookupValue(value);
-        return node == null ? null : node.getKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1561,13 +1309,13 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
     }
 
     private MapIterator<?, ?> getMapIterator(final DataElement dataElement) {
-        switch (dataElement) {
-        case KEY:
-            return new ViewMapIterator(KEY);
-        case VALUE:
-            return new InverseViewMapIterator(VALUE);
-        default:
-            throw new IllegalArgumentException();
+        switch(dataElement) {
+            case KEY:
+                return new ViewMapIterator(KEY);
+            case VALUE:
+                return new InverseViewMapIterator(VALUE);
+            default:
+                throw new IllegalArgumentException();
         }
     }
 
@@ -1621,14 +1369,9 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         nodeCount++;
     }
 
-    /**
-     * Gets the hash code value for this map as per the API.
-     *
-     * @return the hash code value for this map
-     */
     @Override
     public int hashCode() {
-        return this.doHashCode(KEY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1640,29 +1383,25 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
      */
     private void insertValue(final Node<K, V> newNode) throws IllegalArgumentException {
         Node<K, V> node = rootNode[VALUE.ordinal()];
-
         while (true) {
             final int cmp = compare(newNode.getValue(), node.getValue());
-
             if (cmp == 0) {
-                throw new IllegalArgumentException(
-                    "Cannot store a duplicate value (\"" + newNode.getData(VALUE) + "\") in this Map");
+                throw new IllegalArgumentException("Cannot store a duplicate value (\"" + newNode.getData(VALUE) + "\") in this Map");
             }
             if (cmp < 0) {
                 if (node.getLeft(VALUE) == null) {
                     node.setLeft(newNode, VALUE);
                     newNode.setParent(node, VALUE);
                     doRedBlackInsert(newNode, VALUE);
-
                     break;
                 }
                 node = node.getLeft(VALUE);
-            } else { // cmp > 0
+            } else {
+                // cmp > 0
                 if (node.getRight(VALUE) == null) {
                     node.setRight(newNode, VALUE);
                     newNode.setParent(node, VALUE);
                     doRedBlackInsert(newNode, VALUE);
-
                     break;
                 }
                 node = node.getRight(VALUE);
@@ -1670,61 +1409,24 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         }
     }
 
-    /**
-     * Gets the inverse map for comparison.
-     *
-     * @return the inverse map
-     */
     @Override
     public OrderedBidiMap<V, K> inverseBidiMap() {
-        if (inverse == null) {
-            inverse = new Inverse();
-        }
-        return inverse;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Checks whether the map is empty or not.
-     *
-     * @return true if the map is empty
-     */
     @Override
     public boolean isEmpty() {
-        return nodeCount == 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns a set view of the keys contained in this map in key order.
-     * <p>
-     * The set is backed by the map, so changes to the map are reflected in
-     * the set, and vice-versa. If the map is modified while an iteration over
-     * the set is in progress, the results of the iteration are undefined.
-     * <p>
-     * The set supports element removal, which removes the corresponding mapping
-     * from the map. It does not support the add or addAll operations.
-     *
-     * @return a set view of the keys contained in this map.
-     */
     @Override
     public Set<K> keySet() {
-        if (keySet == null) {
-            keySet = new KeyView(KEY);
-        }
-        return keySet;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the last (highest) key currently in this map.
-     *
-     * @return the last (highest) key currently in this sorted map
-     * @throws NoSuchElementException if this map is empty
-     */
     @Override
     public K lastKey() {
-        if (nodeCount == 0) {
-            throw new NoSuchElementException("Map is empty");
-        }
-        return greatestNode(rootNode[KEY.ordinal()], KEY).getKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1759,7 +1461,6 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
     private <T extends Comparable<T>> Node<K, V> lookup(final Object data, final DataElement dataElement) {
         Node<K, V> rval = null;
         Node<K, V> node = rootNode[dataElement.ordinal()];
-
         while (node != null) {
             final int cmp = compare((T) data, (T) node.getData(dataElement));
             if (cmp == 0) {
@@ -1768,7 +1469,6 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
             }
             node = cmp < 0 ? node.getLeft(dataElement) : node.getRight(dataElement);
         }
-
         return rval;
     }
 
@@ -1782,10 +1482,7 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
 
     @Override
     public OrderedMapIterator<K, V> mapIterator() {
-        if (isEmpty()) {
-            return EmptyOrderedMapIterator.<K, V>emptyOrderedMapIterator();
-        }
-        return new ViewMapIterator(KEY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1822,7 +1519,6 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
             // ... and that ancestor is the next greatest node
             Node<K, V> parent = node.getParent(dataElement);
             Node<K, V> child = node;
-
             while (parent != null && child == parent.getRight(dataElement)) {
                 child = parent;
                 parent = parent.getParent(dataElement);
@@ -1832,19 +1528,9 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         return rval;
     }
 
-    /**
-     * Gets the next key after the one specified.
-     * <p>
-     * The key must implement {@code Comparable}.
-     *
-     * @param key the key to search for next from
-     * @return the next key, null if no match or at end
-     */
     @Override
     public K nextKey(final K key) {
-        checkKey(key);
-        final Node<K, V> node = nextGreater(lookupKey(key), KEY);
-        return node == null ? null : node.getKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1872,7 +1558,6 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
             // ... and that ancestor is the next greatest node
             Node<K, V> parent = node.getParent(dataElement);
             Node<K, V> child = node;
-
             while (parent != null && child == parent.getLeft(dataElement)) {
                 child = parent;
                 parent = parent.getParent(dataElement);
@@ -1882,64 +1567,19 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         return rval;
     }
 
-    /**
-     * Gets the previous key before the one specified.
-     * <p>
-     * The key must implement {@code Comparable}.
-     *
-     * @param key the key to search for previous from
-     * @return the previous key, null if no match or at start
-     */
     @Override
     public K previousKey(final K key) {
-        checkKey(key);
-        final Node<K, V> node = nextSmaller(lookupKey(key), KEY);
-        return node == null ? null : node.getKey();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Puts the key-value pair into the map, replacing any previous pair.
-     * <p>
-     * When adding a key-value pair, the value may already exist in the map
-     * against a different key. That mapping is removed, to ensure that the
-     * value only occurs once in the inverse map.
-     * <pre>
-     *  BidiMap map1 = new TreeBidiMap();
-     *  map.put("A","B");  // contains A mapped to B, as per Map
-     *  map.put("A","C");  // contains A mapped to C, as per Map
-     *
-     *  BidiMap map2 = new TreeBidiMap();
-     *  map.put("A","B");  // contains A mapped to B, as per Map
-     *  map.put("C","B");  // contains C mapped to B, key A is removed
-     * </pre>
-     * <p>
-     * Both key and value must implement {@code Comparable}.
-     *
-     * @param key  key with which the specified value is to be  associated
-     * @param value  value to be associated with the specified key
-     * @return the previous value for the key
-     * @throws ClassCastException if the key is of an inappropriate type
-     * @throws NullPointerException if the key is null
-     */
     @Override
     public V put(final K key, final V value) {
-        final V result = get(key);
-        doPut(key, value);
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Puts all the mappings from the specified map into this map.
-     * <p>
-     * All keys and values must implement {@code Comparable}.
-     *
-     * @param map  the map to copy from
-     */
     @Override
     public void putAll(final Map<? extends K, ? extends V> map) {
-        for (final Map.Entry<? extends K, ? extends V> e : map.entrySet()) {
-            put(e.getKey(), e.getValue());
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1949,7 +1589,8 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
      * @throws IOException if an error occurs while reading from the stream
      * @throws ClassNotFoundException if an object read from the stream cannot be loaded
      */
-    @SuppressWarnings("unchecked") // This will fail at runtime if the stream is incorrect
+    // This will fail at runtime if the stream is incorrect
+    @SuppressWarnings("unchecked")
     private void readObject(final ObjectInputStream stream) throws IOException, ClassNotFoundException {
         stream.defaultReadObject();
         rootNode = new Node[2];
@@ -1961,36 +1602,14 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         }
     }
 
-    /**
-     * Removes the mapping for this key from this map if present.
-     * <p>
-     * The key must implement {@code Comparable}.
-     *
-     * @param key  key whose mapping is to be removed from the map.
-     * @return previous value associated with specified key,
-     *  or null if there was no mapping for key.
-     * @throws ClassCastException if the key is of an inappropriate type
-     * @throws NullPointerException if the key is null
-     */
     @Override
     public V remove(final Object key) {
-        return doRemoveKey(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Removes the mapping for this value from this map if present.
-     * <p>
-     * The value must implement {@code Comparable}.
-     *
-     * @param value  value whose mapping is to be removed from the map
-     * @return previous key associated with specified value,
-     *  or null if there was no mapping for value.
-     * @throws ClassCastException if the value is of an inappropriate type
-     * @throws NullPointerException if the value is null
-     */
     @Override
     public K removeValue(final Object value) {
-        return doRemoveValue(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2003,12 +1622,10 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
     private void rotateLeft(final Node<K, V> node, final DataElement dataElement) {
         final Node<K, V> rightChild = node.getRight(dataElement);
         node.setRight(rightChild.getLeft(dataElement), dataElement);
-
         if (rightChild.getLeft(dataElement) != null) {
             rightChild.getLeft(dataElement).setParent(node, dataElement);
         }
         rightChild.setParent(node.getParent(dataElement), dataElement);
-
         if (node.getParent(dataElement) == null) {
             // node was the root ... now its right child is the root
             rootNode[dataElement.ordinal()] = rightChild;
@@ -2017,7 +1634,6 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         } else {
             node.getParent(dataElement).setRight(rightChild, dataElement);
         }
-
         rightChild.setLeft(node, dataElement);
         node.setParent(rightChild, dataElement);
     }
@@ -2036,7 +1652,6 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
             leftChild.getRight(dataElement).setParent(node, dataElement);
         }
         leftChild.setParent(node.getParent(dataElement), dataElement);
-
         if (node.getParent(dataElement) == null) {
             // node was the root ... now its left child is the root
             rootNode[dataElement.ordinal()] = leftChild;
@@ -2045,7 +1660,6 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         } else {
             node.getParent(dataElement).setLeft(leftChild, dataElement);
         }
-
         leftChild.setRight(node, dataElement);
         node.setParent(leftChild, dataElement);
     }
@@ -2058,14 +1672,9 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         nodeCount--;
     }
 
-    /**
-     * Returns the number of key-value mappings in this map.
-     *
-     * @return the number of key-value mappings in this map
-     */
     @Override
     public int size() {
-        return nodeCount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2085,15 +1694,12 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         final Node<K, V> yFormerParent = y.getParent(dataElement);
         final Node<K, V> yFormerLeftChild = y.getLeft(dataElement);
         final Node<K, V> yFormerRightChild = y.getRight(dataElement);
-        final boolean xWasLeftChild =
-                x.getParent(dataElement) != null && x == x.getParent(dataElement).getLeft(dataElement);
-        final boolean yWasLeftChild =
-                y.getParent(dataElement) != null && y == y.getParent(dataElement).getLeft(dataElement);
-
+        final boolean xWasLeftChild = x.getParent(dataElement) != null && x == x.getParent(dataElement).getLeft(dataElement);
+        final boolean yWasLeftChild = y.getParent(dataElement) != null && y == y.getParent(dataElement).getLeft(dataElement);
         // Swap, handling special cases of one being the other's parent.
-        if (x == yFormerParent) { // x was y's parent
+        if (x == yFormerParent) {
+            // x was y's parent
             x.setParent(y, dataElement);
-
             if (yWasLeftChild) {
                 y.setLeft(x, dataElement);
                 y.setRight(xFormerRightChild, dataElement);
@@ -2103,7 +1709,6 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
             }
         } else {
             x.setParent(yFormerParent, dataElement);
-
             if (yFormerParent != null) {
                 if (yWasLeftChild) {
                     yFormerParent.setLeft(x, dataElement);
@@ -2111,14 +1716,12 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
                     yFormerParent.setRight(x, dataElement);
                 }
             }
-
             y.setLeft(xFormerLeftChild, dataElement);
             y.setRight(xFormerRightChild, dataElement);
         }
-
-        if (y == xFormerParent) { // y was x's parent
+        if (y == xFormerParent) {
+            // y was x's parent
             y.setParent(x, dataElement);
-
             if (xWasLeftChild) {
                 x.setLeft(y, dataElement);
                 x.setRight(yFormerRightChild, dataElement);
@@ -2128,7 +1731,6 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
             }
         } else {
             y.setParent(xFormerParent, dataElement);
-
             if (xFormerParent != null) {
                 if (xWasLeftChild) {
                     xFormerParent.setLeft(y, dataElement);
@@ -2136,30 +1738,23 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
                     xFormerParent.setRight(y, dataElement);
                 }
             }
-
             x.setLeft(yFormerLeftChild, dataElement);
             x.setRight(yFormerRightChild, dataElement);
         }
-
         // Fix children's parent pointers
         if (x.getLeft(dataElement) != null) {
             x.getLeft(dataElement).setParent(x, dataElement);
         }
-
         if (x.getRight(dataElement) != null) {
             x.getRight(dataElement).setParent(x, dataElement);
         }
-
         if (y.getLeft(dataElement) != null) {
             y.getLeft(dataElement).setParent(y, dataElement);
         }
-
         if (y.getRight(dataElement) != null) {
             y.getRight(dataElement).setParent(y, dataElement);
         }
-
         x.swapColors(y, dataElement);
-
         // Check if root changed
         if (rootNode[dataElement.ordinal()] == x) {
             rootNode[dataElement.ordinal()] = y;
@@ -2168,35 +1763,14 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         }
     }
 
-    /**
-     * Returns a string version of this Map in standard format.
-     *
-     * @return a standard format string version of the map
-     */
     @Override
     public String toString() {
-        return this.doToString(KEY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns a set view of the values contained in this map in key order.
-     * The returned object can be cast to a Set.
-     * <p>
-     * The set is backed by the map, so changes to the map are reflected in
-     * the set, and vice-versa. If the map is modified while an iteration over
-     * the set is in progress, the results of the iteration are undefined.
-     * <p>
-     * The set supports element removal, which removes the corresponding mapping
-     * from the map. It does not support the add or addAll operations.
-     *
-     * @return a set view of the values contained in this map.
-     */
     @Override
     public Set<V> values() {
-        if (valuesSet == null) {
-            valuesSet = new ValueView(KEY);
-        }
-        return valuesSet;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2213,5 +1787,4 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
             out.writeObject(entry.getValue());
         }
     }
-
 }

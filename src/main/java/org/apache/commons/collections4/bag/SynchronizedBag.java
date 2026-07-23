@@ -17,7 +17,6 @@
 package org.apache.commons.collections4.bag;
 
 import java.util.Set;
-
 import org.apache.commons.collections4.Bag;
 import org.apache.commons.collections4.collection.SynchronizedCollection;
 
@@ -41,7 +40,10 @@ public class SynchronizedBag<E> extends SynchronizedCollection<E> implements Bag
      * Synchronized Set for the Bag class.
      */
     final class SynchronizedBagSet extends SynchronizedCollection<E> implements Set<E> {
-        /** Serialization version */
+
+        /**
+         * Serialization version
+         */
         private static final long serialVersionUID = 2990565892366827855L;
 
         /**
@@ -54,20 +56,13 @@ public class SynchronizedBag<E> extends SynchronizedCollection<E> implements Bag
         }
     }
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 8084674570753837109L;
 
-    /**
-     * Factory method to create a synchronized bag.
-     *
-     * @param <E> the type of the elements in the bag
-     * @param bag  the bag to decorate, must not be null
-     * @return a new synchronized Bag
-     * @throws NullPointerException if bag is null
-     * @since 4.0
-     */
     public static <E> SynchronizedBag<E> synchronizedBag(final Bag<E> bag) {
-        return new SynchronizedBag<>(bag);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -93,57 +88,35 @@ public class SynchronizedBag<E> extends SynchronizedCollection<E> implements Bag
 
     @Override
     public boolean add(final E object, final int count) {
-        synchronized (lock) {
-            return getBag().add(object, count);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object object) {
-        if (object == this) {
-            return true;
-        }
-        synchronized (lock) {
-            return getBag().equals(object);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Gets the bag being decorated.
-     *
-     * @return the decorated bag
-     */
     protected Bag<E> getBag() {
-        return (Bag<E>) decorated();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int getCount(final Object object) {
-        synchronized (lock) {
-            return getBag().getCount(object);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        synchronized (lock) {
-            return getBag().hashCode();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean remove(final Object object, final int count) {
-        synchronized (lock) {
-            return getBag().remove(object, count);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Set<E> uniqueSet() {
-        synchronized (lock) {
-            final Set<E> set = getBag().uniqueSet();
-            return new SynchronizedBagSet(set, lock);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

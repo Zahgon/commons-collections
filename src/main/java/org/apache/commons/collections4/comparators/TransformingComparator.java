@@ -19,7 +19,6 @@ package org.apache.commons.collections4.comparators;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
-
 import org.apache.commons.collections4.ComparatorUtils;
 import org.apache.commons.collections4.Transformer;
 
@@ -39,13 +38,19 @@ import org.apache.commons.collections4.Transformer;
  */
 public class TransformingComparator<I, O> implements Comparator<I>, Serializable {
 
-    /** Serialization version from Collections 4.0. */
+    /**
+     * Serialization version from Collections 4.0.
+     */
     private static final long serialVersionUID = 3456940356043606220L;
 
-    /** The decorated comparator. */
+    /**
+     * The decorated comparator.
+     */
     private final Comparator<O> decorated;
 
-    /** The transformer being used. */
+    /**
+     * The transformer being used.
+     */
     private final Transformer<? super I, ? extends O> transformer;
 
     /**
@@ -64,66 +69,23 @@ public class TransformingComparator<I, O> implements Comparator<I>, Serializable
      * @param transformer  what will transform the arguments to {@code compare}
      * @param decorated  the decorated Comparator
      */
-    public TransformingComparator(final Transformer<? super I, ? extends O> transformer,
-                                  final Comparator<O> decorated) {
+    public TransformingComparator(final Transformer<? super I, ? extends O> transformer, final Comparator<O> decorated) {
         this.decorated = decorated;
         this.transformer = transformer;
     }
 
-    /**
-     * Returns the result of comparing the values from the transform operation.
-     *
-     * @param obj1  the first object to transform then compare
-     * @param obj2  the second object to transform then compare
-     * @return negative if obj1 is less, positive if greater, zero if equal
-     */
     @Override
     public int compare(final I obj1, final I obj2) {
-        final O value1 = transformer.apply(obj1);
-        final O value2 = transformer.apply(obj2);
-        return decorated.compare(value1, value2);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Returns {@code true} iff <em>that</em> Object is
-     * a {@link Comparator} whose ordering is known to be
-     * equivalent to mine.
-     * <p>
-     * This implementation returns {@code true}
-     * iff {@code <em>that</em>} is a {@link TransformingComparator}
-     * whose attributes are equal to mine.
-     *
-     * @param object  the object to compare to
-     * @return true if equal
-     */
     @Override
     public boolean equals(final Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (null == object) {
-            return false;
-        }
-        if (object.getClass().equals(this.getClass())) {
-            final TransformingComparator<?, ?> comp = (TransformingComparator<?, ?>) object;
-            return Objects.equals(decorated, comp.decorated) &&
-                   Objects.equals(transformer, comp.transformer);
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Implement a hash code for this comparator that is consistent with
-     * {@link #equals(Object) equals}.
-     *
-     * @return a hash code for this comparator.
-     */
     @Override
     public int hashCode() {
-        int total = 17;
-        total = total * 37 + (decorated == null ? 0 : decorated.hashCode());
-        return total * 37 + (transformer == null ? 0 : transformer.hashCode());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }
-

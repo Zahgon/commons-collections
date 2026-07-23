@@ -18,7 +18,6 @@ package org.apache.commons.collections4.functors;
 
 import java.io.Serializable;
 import java.util.Objects;
-
 import org.apache.commons.collections4.Predicate;
 
 /**
@@ -29,22 +28,18 @@ import org.apache.commons.collections4.Predicate;
  */
 public final class NotPredicate<T> extends AbstractPredicate<T> implements PredicateDecorator<T>, Serializable {
 
-    /** Serial version UID */
+    /**
+     * Serial version UID
+     */
     private static final long serialVersionUID = -2654603322338049674L;
 
-    /**
-     * Creates the not predicate.
-     *
-     * @param <T> the type that the predicate queries
-     * @param predicate  the predicate to decorate, not null
-     * @return the predicate
-     * @throws NullPointerException if the predicate is null
-     */
     public static <T> Predicate<T> notPredicate(final Predicate<? super T> predicate) {
-        return new NotPredicate<>(Objects.requireNonNull(predicate, "predicate"));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The predicate to decorate */
+    /**
+     * The predicate to decorate
+     */
     private final Predicate<? super T> iPredicate;
 
     /**
@@ -57,27 +52,14 @@ public final class NotPredicate<T> extends AbstractPredicate<T> implements Predi
         iPredicate = predicate;
     }
 
-    /**
-     * Gets the predicate being decorated.
-     *
-     * @return the predicate as the only element in an array
-     * @since 3.1
-     */
     @Override
     @SuppressWarnings("unchecked")
     public Predicate<? super T>[] getPredicates() {
-        return new Predicate[] {iPredicate};
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**
-     * Evaluates the predicate returning the opposite to the stored predicate.
-     *
-     * @param object  the input object
-     * @return true if predicate returns false
-     */
     @Override
     public boolean test(final T object) {
-        return !iPredicate.test(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }
